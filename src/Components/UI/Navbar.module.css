@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  font-family: "Quicksand";
+  color: #333;
+}
+
+.navbar{
+margin-top: 0;
+  background-image: url(../../Images/pattern-randomized.svg);
+  
+}
+
+.navbar_main_div {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  max-width: 700px;
+  margin: 0 auto;
+  border-bottom: 1px solid #f2f2f2;
+ 
+}
+
+.navbar .links {
+  margin-left: auto;
+}
+
+.navbar a {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  text-decoration: none;
+  padding: 6px;
+  font-weight: 800;
+}
+.navbar a:hover {
+  color: #f1356d;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.nvbbtn {
+  color: rgba(54, 162, 235, 1);
+  text-transform: capitalize;
+  font-weight: 800;
+}
+.nvbbtn:hover {
+  color: #8c50ff !important;
+}
+
+.cta {
+  font: inherit;
+  font-weight: 500;
+  border: 1px solid rgba(54, 162, 235, 1);
+  background: rgba(54, 162, 235, 0.2);
+  color: rgb(50, 4, 255);
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: color 250ms ease-in, background 250ms ease-in;
+  min-width: 8rem;
+  align-items: right;
+}
+
+.cta:hover,
+.button:active {
+  background: rgba(54, 162, 235, 0.5);
+  color: black;
+}
+
+.fancy_link {
+  font-size: 1.6rem;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: #f1356d;
+  position: relative;
+}
+
+.fancy_link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 250ms ease-in;
+}
+
+.fancy_link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.alertBar {
+  display: grid;
+  margin: auto;
+  align-items: center;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  border-bottom: 1px solid #f2f2f2;
+}

@@ -1,0 +1,83 @@
+.input {
+  margin: auto;
+  padding: 1rem;
+  width: 100%;
+  max-width: 20rem;
+  min-width: 90%;
+}
+
+.input label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.input input {
+  font: inherit;
+  display: block;
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 0.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.input input:focus {
+  outline: none;
+  border-color: #4f005f;
+}
+
+.hero {
+  min-height: 31rem;
+  max-height: 31rem;
+  height: 31rem;
+  overflow: hidden;
+  
+  
+}
+
+.chartshow {
+  padding: 50%;
+}
+
+.flex_container {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: 60%;
+  padding-bottom: 0.5rem;
+}
+
+.flex_container img {
+  margin: 5px;
+}
+.flex_item_left {
+  flex: 50%;
+}
+
+.flex_item_right {
+  flex: 50%;
+}
+
+/* Responsive layout - makes a one column layout (100%) instead of a two-column layout (50%) */
+@media only screen and (max-width: 965px) {
+  .flex_item_right {
+    flex: 100%;
+  }
+  .flex_item_left {
+    flex: 0;
+    display: none;
+    background-color: lightblue;
+  }
+
+  .flex_container {
+    width: 100%;
+  }
+  .input,
+  .hero {
+    margin: auto;
+    padding: 1rem;
+    width: 100%;
+  }
+}

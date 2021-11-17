@@ -1,0 +1,7 @@
+.myNavbar {
+  top: 0;
+  position: sticky;
+  margin-bottom: 1rem;
+  margin-top: 0;
+  z-index: 999!important;
+}

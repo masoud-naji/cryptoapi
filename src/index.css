@@ -1,0 +1,37 @@
+::-webkit-scrollbar {
+  width: 1em;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(54, 162, 235, 0.2);
+  border-radius: 20vw;
+  margin-block: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(54, 162, 235, 0.5);
+  border-radius: 20vw;
+  border: 0.15em solid rgba(54, 162, 235, 0.5);
+}
+
+@supports (scrollbar-color: red blue) {
+  * {
+    scrollbar-color: hsl(120 100% 20% /1) hsl(120 50% 50% /1);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Quicksand";
+  color: #333;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+  background-image: url(./Images/pattern-randomized.svg);
+}
