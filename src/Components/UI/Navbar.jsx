@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import classes from "./Navbar.module.css";
 import { Link } from "react-router-dom";
+import CoinContext from "../../contexts/coinContext";
 
-// const Navbar = ({ onShowForm, keytoggle }) => {
 const Navbar = () => {
+  const coinCTX = useContext(CoinContext);
+
   return (
     <nav className={classes.navbar}>
       <div className={classes.navbar_main_div}>

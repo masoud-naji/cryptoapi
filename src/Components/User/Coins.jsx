@@ -8,8 +8,11 @@ import Select from "react-select";
 import CoinContext from "../../contexts/coinContext";
 import PieChart from "../../Chart/pieChart";
 
+import { useHistory, withRouter } from "react-router-dom";
+
 function Coins() {
   const coinCTX = useContext(CoinContext);
+
   const [foundCoins, setFoundCoins] = useState(coinCTX.coins);
   const [error, setError] = useState();
   const [name, setName] = useState("");
@@ -23,7 +26,7 @@ function Coins() {
     { value: 50, label: "50" },
   ];
 
-  console.log(coinCTX.coins);
+  // console.log(coinCTX.coins);
 
   //////////////////////////////////////////// search by filter//////////////////////////////////////////////////
   const filter = (event) => {
@@ -56,6 +59,12 @@ function Coins() {
     setCurrentPage(1);
   };
 
+  const onRowClick = (coinname) => {
+    coinCTX.setSelectedCoin(coinname);
+    history.push("/Details");
+    // console.log(coinCTX);
+  };
+
   return (
     <Card className={classes.card}>
       <div className={style.tableContainer}>
@@ -73,7 +82,7 @@ function Coins() {
               id={style.myInput}
               onChange={filter}
               placeholder="Search for names.."
-              />
+            />
           </div>
           {/* /////////////DropDown/////////////////// */}
           <div className={style.toptable_childM}>
@@ -82,7 +91,6 @@ function Coins() {
               options={paginationOptions}
               onChange={optionSelectHandler}
               placeholder="Select Duration ..."
-
             />
           </div>
 
@@ -93,7 +101,6 @@ function Coins() {
               pageSize={pageSize}
               onPageChange={PageChangeHandler}
               currentPage={currentPage}
-              // placeholder={<div>Type to search</div>}
             />
           </div>
         </div>
@@ -102,7 +109,6 @@ function Coins() {
         <div>
           {" "}
           <Card className={classes.input}>
-            
             {foundCoins && foundCoins.length > 0 ? (
               <PieChart />
             ) : (
@@ -134,7 +140,10 @@ function Coins() {
                   .map(
                     (coin) =>
                       coin !== null && (
-                        <tr key={coin.id}>
+                        <tr
+                          key={coin.id}
+                          onClick={(e) => onRowClick(coin.name)}
+                        >
                           <td>
                             <img
                               src={coin.image}

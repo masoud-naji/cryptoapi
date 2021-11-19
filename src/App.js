@@ -9,12 +9,12 @@ import CoinContext from "./contexts/coinContext";
 import axios from "axios";
 import Chart from "./Chart/Chart";
 
-
 function App() {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState();
   const [coins, setCoins] = useState();
   const [Chartdata, setChartData] = useState([]);
+  const [selectedCoin, setSelectedCoin] = useState("bitcoin");
 
   useEffect(() => {
     axios
@@ -40,6 +40,8 @@ function App() {
           isPending: isPending,
           Chartdata: Chartdata,
           setChartData: setChartData,
+          selectedCoin: selectedCoin,
+          setSelectedCoin: setSelectedCoin,
         }}
       >
         <div>

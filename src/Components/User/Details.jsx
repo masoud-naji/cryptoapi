@@ -11,10 +11,10 @@ import _uniqueId from "lodash/uniqueId";
 
 import Chart from "../../Chart/Chart";
 
-function Details(props) {
-    const coinCTX = useContext(CoinContext);
-  const [foundCoins, setFoundCoins] = useState("bitcoin");
-  const [name, setName] = useState("bitcoin");
+function Details() {
+  const coinCTX = useContext(CoinContext);
+  const [foundCoins, setFoundCoins] = useState(coinCTX.selectedCoin);
+  const [name, setName] = useState(coinCTX.selectedCoin);
   const [error, setError] = useState();
   const [isItPending, setIsItPending] = useState(false);
   ////////////////////////////////////////////////Pagination item maker///////////////////////////////////////////
@@ -132,23 +132,6 @@ function Details(props) {
           </h3>
         )}
         <div className={style.toptable}>
-          {/* ///////////////////////////////////////////////Search////////////////////////////////////////////////// */}
-          {/* <div className={style.toptable_left}>
-            <input
-              type="search"
-              value={name}
-              id={style.myInput}
-              onChange={(e) => setName(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Search for coin name.."
-              list="mylist"
-            />
-            <datalist id="mylist" className={style.toptable_left}>
-              {coinCTX.coins.map((coin) => (
-                <option key={coin.id}>{coin.id}</option>
-              ))}
-            </datalist>
-          </div> */}
           {/* ///////////////////////////////////////////////// coinselect DropDown//////////////////////////////// */}
           <div className={style.toptable_childL}>
             <select
@@ -196,7 +179,6 @@ function Details(props) {
               pageSize={pageSize}
               onPageChange={PageChangeHandler}
               currentPage={currentPage}
-              placeholder={<div>Type to search</div>}
             />
           </div>
         </div>
