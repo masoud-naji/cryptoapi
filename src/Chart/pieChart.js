@@ -72,7 +72,7 @@ function MyPieChart(props) {
         fill="#ccc"
       >
         {/* {`(percent ${(percent * 100).toFixed(2)}%)`} */}
-        {`MarketCap ${value.toFixed(2)}%`}
+        {`MCap ${value.toFixed(2)}%`}
       </text>
     </g>
   );
@@ -106,7 +106,7 @@ export default function App() {
   return (
     <div className={style.toptable}>
       <div className={style.toptable_childL}>
-        <PieChart width={500} height={400}>
+        <PieChart width={550} height={350}>
           <Pie
             activeIndex={activeIndex}
             activeShape={MyPieChart}
@@ -133,7 +133,7 @@ export default function App() {
             {data.map((coin) => (
               <tr key={coin.name}>
                 <td className={style.infotable}>
-                  <Link
+                  {/* <Link
                     to={{
                       pathname: "./Details",
                       state: {
@@ -142,19 +142,20 @@ export default function App() {
                     }}
                   >
                     {coin.name}
-                  </Link>
+                  </Link> */}
+                  {coin.name}
                 </td>
                 <td className={style.infotable}>
-                  <Link
+                  {/* <Link
                     to={{
                       pathname: "./Details",
                       state: {
                         props: "bitcoin",
                       },
                     }}
-                  >
+                  > */}
                     {coin.marketCap.toFixed(2)} %
-                  </Link>
+                  {/* </Link> */}
                 </td>
               </tr>
             ))}

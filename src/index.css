@@ -1,5 +1,6 @@
 ::-webkit-scrollbar {
   width: 1em;
+  height: 0;
 }
 
 ::-webkit-scrollbar-track {
@@ -14,9 +15,10 @@
   border: 0.15em solid rgba(54, 162, 235, 0.5);
 }
 
+
 @supports (scrollbar-color: red blue) {
   * {
-    scrollbar-color: hsl(120 100% 20% /1) hsl(120 50% 50% /1);
+    scrollbar-color: rgba(54, 162, 235, 0.5) rgba(54, 162, 235, 0.2);
   }
 }
 

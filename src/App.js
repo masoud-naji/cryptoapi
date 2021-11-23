@@ -7,7 +7,7 @@ import Home from "./Home";
 import styles from "./App.module.css";
 import CoinContext from "./contexts/coinContext";
 import axios from "axios";
-import Chart from "./Chart/Chart";
+import Chart from "./Chart/News";
 
 function App() {
   const [isPending, setIsPending] = useState(false);
@@ -58,7 +58,7 @@ function App() {
                 }
               ></Route>
               <Route path="/Details" element={<Details />}></Route>
-              <Route path="/Chart" element={<Chart />}></Route>
+              <Route path="/News" element={<Chart />}></Route>
               <Route path="*" element={<NotFound />}></Route>
             </Routes>
           </div>
@@ -72,3 +72,4 @@ export default App;
 
 //npx json-server --watch Post/db.json --port 8000
 //npm i react-id-generator
+

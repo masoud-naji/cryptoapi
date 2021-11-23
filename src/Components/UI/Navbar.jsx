@@ -10,7 +10,7 @@ const Navbar = () => {
     <nav className={classes.navbar}>
       <div className={classes.navbar_main_div}>
         <Link className={classes.fancy_link} to="/">
-          Crypto Cross-cut MAXimizer
+          Crypto Cross-cut MINimizer
         </Link>
         <div className={classes.links}>
           <Link className={classes.nvbbtn} to="./">
@@ -19,15 +19,15 @@ const Navbar = () => {
           <Link className={classes.nvbbtn} to="./Details">
             Details
           </Link>
-          <Link className={classes.nvbbtn} to="./Chart">
+          {/* <Link className={classes.nvbbtn} to="./News"> */}
             {/* {keytoggle !== true ? ( */}
-            <button className={classes.cta}>Chart</button>
+            {/* <button className={classes.cta}>News</button> */}
             {/* ) : (
             <button onClick={() => onShowForm()} className={classes.cta}>
               New User
             </button>
           )} */}
-          </Link>
+          {/* </Link> */}
         </div>
       </div>
     </nav>

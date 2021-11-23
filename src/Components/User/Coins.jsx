@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import style from "./UsersList.module.css";
-import classes from "../UI/Card";
+import classes from '../UI/Card.module.css';
 import Card from "../UI/Card";
 import Pagination from "../UI/pagination";
 import Paginate from "../CustomHooks/Paginate";
@@ -8,11 +8,11 @@ import Select from "react-select";
 import CoinContext from "../../contexts/coinContext";
 import PieChart from "../../Chart/pieChart";
 
-import { useHistory, withRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Coins() {
   const coinCTX = useContext(CoinContext);
-
+  const navigate = useNavigate();
   const [foundCoins, setFoundCoins] = useState(coinCTX.coins);
   const [error, setError] = useState();
   const [name, setName] = useState("");
@@ -61,18 +61,33 @@ function Coins() {
 
   const onRowClick = (coinname) => {
     coinCTX.setSelectedCoin(coinname);
-    history.push("/Details");
-    // console.log(coinCTX);
+    navigate("/Details");
+    console.log(coinCTX.selectedCoin);
   };
 
   return (
     <Card className={classes.card}>
       <div className={style.tableContainer}>
-        {foundCoins && (
+        {/* {foundCoins && (
           <h3 className={style.tableTitle}>
             Currently Table Contain {foundCoins.length} Records
           </h3>
-        )}
+        )} */}
+
+       {/* /////////////////////////////////////////////////////Chart////////////////////////////////////////////////////// */}
+
+       <div >
+          <Card  className={`${classes.input} ${classes.topchart}`}>
+            {foundCoins && foundCoins.length > 0 ? (
+              <PieChart />
+            ) : (
+              <h2>{error}</h2>
+            )}
+          </Card>
+        </div>
+        <hr />
+
+
         {/* ///////////////Search///////////////// */}
         <div className={style.toptable}>
           <div className={style.toptable_childL}>
@@ -91,6 +106,7 @@ function Coins() {
               options={paginationOptions}
               onChange={optionSelectHandler}
               placeholder="Select Duration ..."
+              defaultValue={{ value: 10, label: "10" }}
             />
           </div>
 
@@ -104,19 +120,7 @@ function Coins() {
             />
           </div>
         </div>
-        {/* /////////////////////////////////////////////////////Chart////////////////////////////////////////////////////// */}
-
-        <div>
-          {" "}
-          <Card className={classes.input}>
-            {foundCoins && foundCoins.length > 0 ? (
-              <PieChart />
-            ) : (
-              <h2>{error}</h2>
-            )}
-          </Card>
-        </div>
-        <hr />
+ 
 
         <form>
           <table className={style.userTable}>
@@ -125,12 +129,12 @@ function Coins() {
                 <th>image</th>
                 <th>Name</th>
                 <th>symbol</th>
-                <th>current_price</th>
-                <th>total_volume</th>
-                <th>market_cap_rank</th>
-                <th>high_24h</th>
-                <th>low_24h</th>
-                <th>price_change24h</th>
+                <th>current price</th>
+                <th>total volume</th>
+                <th>market cap rank</th>
+                <th>low 24h</th>
+                <th>high 24h</th>
+                <th>price change24h</th>
               </tr>
             </thead>
             <tbody>
@@ -140,10 +144,7 @@ function Coins() {
                   .map(
                     (coin) =>
                       coin !== null && (
-                        <tr
-                          key={coin.id}
-                          onClick={(e) => onRowClick(coin.name)}
-                        >
+                        <tr key={coin.id} onClick={(e) => onRowClick(coin.id)}>
                           <td>
                             <img
                               src={coin.image}
@@ -165,8 +166,8 @@ function Coins() {
                             {" "}
                             {coin.market_cap_rank}
                           </td>
-                          <td data-label="high_24h">{coin.high_24h}</td>
                           <td data-label="low_24h">{coin.low_24h} $</td>
+                          <td data-label="high_24h">{coin.high_24h} $</td>
                           <td data-label="price_change_percentage_24h">
                             {coin.price_change_percentage_24h}%
                           </td>

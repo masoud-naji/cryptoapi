@@ -22,8 +22,10 @@
   text-align: center;
   align-items: center;
   margin: auto;
-  font-size: large;
+  margin-bottom: 1rem;
+  font-size: small;
   max-width: 80%;
+  color: rgba(54, 162, 235, 0.5);;
 }
 .userTable {
   border: 1px solid rgb(255, 255, 255);
@@ -35,33 +37,42 @@
   line-height: 1rem;
   align-items: center;
   padding: 0;
+  text-transform: capitalize;
 }
 
 .userTable thead {
-  background-color: rgba(54, 162, 235, 1);
-  color: #ccc;
+  background-color: rgba(37, 54, 106, 0.95);
+  color: rgb(255, 255, 255);
   border-radius: 10px;
   border-collapse: collapse;
   height: 50px;
 }
-.userTable td,
+
 .userTable th {
   border: 1px solid rgba(243, 242, 242, 0.2);
   text-align: center;
   border-radius: 4px;
   border-collapse: collapse;
   height: 50px;
-  /* min-width: 10%;
-  max-width: fit-content; */
+  color: #ccc;
+  word-wrap: break-word;
+}
+.userTable td {
+  border: 1px solid rgba(243, 242, 242, 0.2);
+  text-align: center;
+  border-radius: 4px;
+  border-collapse: collapse;
+  height: 50px;
   word-wrap: break-word;
 }
 
 .userTable tr {
   padding: 0;
+  color: rgb(8, 0, 0);
 }
 
 .userTable tr:nth-child(even) {
-  background-color: rgba(54, 162, 235, 0.2);
+  background-color: rgba(54, 162, 235, 0.1);
 }
 
 .userTable tr:hover {
@@ -90,7 +101,7 @@
   flex-grow: 4;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   gap: 1rem;
 }
@@ -104,16 +115,17 @@
   justify-content: center;
 }
 .toptable_childR {
-  flex: 1 1 max-content;
+  flex: 1 1 inherit;
   justify-content: right;
 }
 
 .dropdown {
   width: 100%;
   height: 38px;
-  margin: 0 0.5rem 0.6rem 0.5rem;
+  margin: 0 0rem 0.7rem 0rem;
   color: #0a58ca;
   border-radius: 5px;
+  /* border: 1px solid rgba(54, 162, 235, 1); */
 }
 
 .infotable {

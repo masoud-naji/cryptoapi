@@ -6,20 +6,19 @@
   color: #333;
 }
 
-.navbar{
-margin-top: 0;
+.navbar {
+  margin-top: 0;
   background-image: url(../../Images/pattern-randomized.svg);
-  
+  z-index: 9999;
 }
 
 .navbar_main_div {
   padding: 20px;
   display: flex;
   align-items: center;
-  max-width: 700px;
+  max-width: 70vh;
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
- 
 }
 
 .navbar .links {
@@ -40,6 +39,7 @@ margin-top: 0;
 }
 
 .nvbbtn {
+  flex: 1 1 inherit;
   color: rgba(54, 162, 235, 1);
   text-transform: capitalize;
   font-weight: 800;
