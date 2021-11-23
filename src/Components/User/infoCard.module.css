@@ -72,16 +72,12 @@ meter::-webkit-meter-optimum-value {
 }
 @media (min-width: 50rem) {
   .container {
-    /* grid-auto-flow: column; */
-
-    -ms-grid-columns: repeat(4, 1fr);
-    grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, 1fr);
   }
   .mycard {
     min-width: 100%;
     max-width: 100%;
     width: 100%;
     height: 20em;
-    
   }
 }

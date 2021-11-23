@@ -42,6 +42,8 @@
 }
 
 .HeroPlace {
+
+  display: -ms-grid;
   display: grid;
   /* grid-template-columns: 60% 40%; */
   grid-auto-flow: col;

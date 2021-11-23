@@ -96,6 +96,7 @@
 }
 
 .alertBar {
+  display: -ms-grid;
   display: grid;
   margin: auto;
   align-items: center;
