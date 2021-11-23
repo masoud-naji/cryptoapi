@@ -3,7 +3,7 @@
   background: rgba(54, 162, 235, 0.2);
   color: rgb(50, 4, 255);
   padding: 0.25rem 1rem;
-  cursor: pointer;
+  /* cursor: pointer; */
   border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 10px;

@@ -74,6 +74,43 @@ function Details() {
   // };
 
   useEffect(() => {
+    const getCoinNews = () => setName(coinCTX.selectedCoin);
+    axios
+      .get(`https://api.coingecko.com/api/v3/coins/${name}`)
+      .then((res) => {
+        if (res.status !== 200) return;
+        setIsItLoadingCoinDetail(false);
+        setCoindetail(res.data.description.en);
+        setCoinAllInfo(res.data);
+        console.log(res.data);
+        // console.log(res.data.description.en);
+      })
+      .catch((error) => {
+        setError(error);
+        setIsItLoadingCoinDetail(false);
+        setCoinAllInfo([]);
+        if (error.response) {
+          /*
+           * The request was made and the server responded with a
+           * status code that falls out of the range of 2xx
+           */
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          /*
+           * The request was made but no response was received, `error.request`
+           * is an instance of XMLHttpRequest in the browser and an instance
+           * of http.ClientRequest in Node.js
+           */
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request and triggered an Error
+          console.log("Error", error.message);
+        }
+        console.log(error.config);
+      });
+    //////////////////////////////////////////////////////////
     const search = () =>
       axios
         .get(
@@ -113,45 +150,9 @@ function Details() {
         });
 
     //////////////////////////////////////////
-    const getCoinNews = () =>
-      axios
-        .get(`https://api.coingecko.com/api/v3/coins/${name}`)
-        .then((res) => {
-          if (res.status !== 200) return;
-          setIsItLoadingCoinDetail(false);
-          setCoindetail(res.data.description.en);
-          setCoinAllInfo(res.data);
-          console.log(res.data);
-          // console.log(res.data.description.en);
-        })
-        .catch((error) => {
-          setError(error);
-          setIsItLoadingCoinDetail(false);
-          setFoundCoins([]);
-          if (error.response) {
-            /*
-             * The request was made and the server responded with a
-             * status code that falls out of the range of 2xx
-             */
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            /*
-             * The request was made but no response was received, `error.request`
-             * is an instance of XMLHttpRequest in the browser and an instance
-             * of http.ClientRequest in Node.js
-             */
-            console.log(error.request);
-          } else {
-            // Something happened in setting up the request and triggered an Error
-            console.log("Error", error.message);
-          }
-          console.log(error.config);
-        });
-    search();
     getCoinNews();
-  }, [name, startTime, endTime]);
+    search();
+  }, [name, startTime, endTime,coinCTX]);
 
   ////////////////////////////////////Pagination////////////////////////////////////////////////////////////
   const PageChangeHandler = (page) => {
@@ -189,7 +190,7 @@ function Details() {
         </div>
       </Card>
     );
-  } else {
+  } else if (foundCoins.length > 0) {
     return (
       <Card className={classes.card}>
         <div className={style.tableContainer}>
@@ -284,9 +285,21 @@ function Details() {
                 <summary className={cardStyle.infotext}>
                   Official WebSite
                 </summary>
-                {coinAllInfo.links.blockchain_site
-                  ? coinAllInfo.links.blockchain_site
-                  : ""}
+                {coinAllInfo.links.blockchain_site.map((webpage) => (
+                  <a href={coinAllInfo.links.blockchain_site[webpage.index]}>
+                    {coinAllInfo.links.blockchain_site[webpage.index]}
+                  </a>
+                ))}
+                {coinAllInfo.links.blockchain_site.length}
+                <a
+                  href={
+                    coinAllInfo.links.blockchain_site
+                      ? coinAllInfo.links.blockchain_site[0]
+                      : ""
+                  }
+                >
+                  Official WebSite
+                </a>
               </details>
               <hr />
 
@@ -405,6 +418,14 @@ function Details() {
               )}
             </p>
           </Card>
+        </div>
+      </Card>
+    );
+  } else {
+    return (
+      <Card className={classes.card}>
+        <div className={`${style.tableContainer} ${classes.App}`}>
+          Not Loading
         </div>
       </Card>
     );
