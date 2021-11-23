@@ -23,7 +23,7 @@ function Details() {
 
   // console.log(coinCTX.selectedCoin);
   const [foundCoins, setFoundCoins] = useState(coinCTX.selectedCoin);
-  const [name, setName] = useState(coinCTX.selectedCoin || "bitcoin");
+  const [name, setName] = useState(coinCTX ? coinCTX.selectedCoin : "bitcoin");
   const [error, setError] = useState();
   const [isItLoading, setIsItLoading] = useState(true);
   const [coindetail, setCoindetail] = useState([]);
@@ -32,13 +32,13 @@ function Details() {
   ////////////////////////////////////////////////Pagination item maker///////////////////////////////////////////
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  const paginatedFilteredCoins = Paginate(foundCoins, currentPage, pageSize);
-  const paginationOptions = [
-    { value: 10, label: "10" },
-    { value: 15, label: "15" },
-    { value: 20, label: "20" },
-    { value: 50, label: "50" },
-  ];
+  // const paginatedFilteredCoins = Paginate(foundCoins, currentPage, pageSize);
+  // const paginationOptions = [
+  //   { value: 10, label: "10" },
+  //   { value: 15, label: "15" },
+  //   { value: 20, label: "20" },
+  //   { value: 50, label: "50" },
+  // ];
 
   ////////////////////////////////////////////////duration Cotrol maker/////////////////////////////////////////
   const [startTime, setStartTime] = useState(
@@ -74,7 +74,7 @@ function Details() {
   // };
 
   useEffect(() => {
-    const getCoinNews = () => setName(coinCTX.selectedCoin);
+    const getCoinNews = () => setName(coinCTX.selectedCoin ? coinCTX.selectedCoin :'bitcoin');
     axios
       .get(`https://api.coingecko.com/api/v3/coins/${name}`)
       .then((res) => {
@@ -88,6 +88,7 @@ function Details() {
       .catch((error) => {
         setError(error);
         setIsItLoadingCoinDetail(false);
+        setCoindetail([]);
         setCoinAllInfo([]);
         if (error.response) {
           /*
@@ -152,7 +153,7 @@ function Details() {
     //////////////////////////////////////////
     getCoinNews();
     search();
-  }, [name, startTime, endTime,coinCTX]);
+  }, [name, startTime, endTime]);
 
   ////////////////////////////////////Pagination////////////////////////////////////////////////////////////
   const PageChangeHandler = (page) => {
@@ -178,6 +179,8 @@ function Details() {
     return (
       <Card className={classes.card}>
         <div className={`${style.tableContainer} ${classes.App}`}>
+          Loading ...
+          <br />
           <progress />
         </div>
       </Card>
@@ -186,6 +189,8 @@ function Details() {
     return (
       <Card className={classes.card}>
         <div className={`${style.tableContainer} ${classes.App}`}>
+          Loading ...
+          <br />
           <progress />
         </div>
       </Card>
@@ -264,7 +269,7 @@ function Details() {
           </div> */}
                   </div>
                   <Readmore maxCharecterCount={600}>
-                    {coindetail ? coindetail.replace(/<[^>]+>/g, "") : ""}
+                    {coinAllInfo.description.en ? coinAllInfo.description.en.replace(/<[^>]+>/g, "") : ""}
                   </Readmore>
                 </div>
               </div>
