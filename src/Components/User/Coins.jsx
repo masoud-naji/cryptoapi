@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import style from "./UsersList.module.css";
-import classes from '../UI/Card.module.css';
+import classes from "../UI/Card.module.css";
 import Card from "../UI/Card";
 import Pagination from "../UI/pagination";
 import Paginate from "../CustomHooks/Paginate";
@@ -9,11 +9,14 @@ import CoinContext from "../../contexts/coinContext";
 import PieChart from "../../Chart/pieChart";
 
 import { useNavigate } from "react-router-dom";
+import BasicTable from "./Table/BasicTable";
 
 function Coins() {
   const coinCTX = useContext(CoinContext);
-  const navigate = useNavigate();
   const [foundCoins, setFoundCoins] = useState(coinCTX.coins);
+  const [order, setOrder] = useState("ASC");
+  // const [sortedCoins, setSortedCoins] = useState(coinCTX.coins);
+  const navigate = useNavigate();
   const [error, setError] = useState();
   const [name, setName] = useState("");
   const [pageSize, setPageSize] = useState(10);
@@ -48,6 +51,28 @@ function Coins() {
     }
     setName(keyword);
   };
+  ////////////////////////////////////  Sorting ////////////////////////////////////////////////////////////
+  const sorting = (col) => {
+    console.log(col);
+    console.log(typeof foundCoins);
+    console.log(`sorting clickon ${col}`);
+    if (order === "ASC") {
+      const sorted = [...foundCoins].sort((a, b) =>
+        a[col].toLocaleLowerCase() > b[col].toLocaleLowerCase() ? 1 : -1
+      );
+      setFoundCoins(sorted);
+      setOrder("DSC");
+      console.log(foundCoins);
+    }
+    if (order === "DSC") {
+      const sorted = [...foundCoins].sort((a, b) =>
+        a[col].toLocaleLowerCase() < b[col].toLocaleLowerCase() ? 1 : -1
+      );
+      setFoundCoins(sorted);
+      setOrder("ASC");
+      console.log(foundCoins);
+    }
+  };
 
   ////////////////////////////////////Pagination////////////////////////////////////////////////////////////
   const PageChangeHandler = (page) => {
@@ -74,10 +99,10 @@ function Coins() {
           </h3>
         )} */}
 
-       {/* /////////////////////////////////////////////////////Chart////////////////////////////////////////////////////// */}
+        {/* /////////////////////////////////////////////////////Chart////////////////////////////////////////////////////// */}
 
-       <div >
-          <Card  className={`${classes.input} ${classes.topchart}`}>
+        <div>
+          <Card className={`${classes.input} ${classes.topchart}`}>
             {foundCoins && foundCoins.length > 0 ? (
               <PieChart />
             ) : (
@@ -86,7 +111,6 @@ function Coins() {
           </Card>
         </div>
         <hr />
-
 
         {/* ///////////////Search///////////////// */}
         <div className={style.toptable}>
@@ -120,21 +144,24 @@ function Coins() {
             />
           </div>
         </div>
- 
 
         <form>
           <table className={style.userTable}>
             <thead>
               <tr>
                 <th>image</th>
-                <th>Name</th>
-                <th>symbol</th>
-                <th>current price</th>
-                <th>total volume</th>
-                <th>market cap rank</th>
-                <th>low 24h</th>
-                <th>high 24h</th>
-                <th>price change24h</th>
+                <th onClick={() => sorting("name")}>Name</th>
+                <th onClick={() => sorting("symbol")}>symbol</th>
+                <th onClick={() => sorting("current_price")}>current price</th>
+                <th onClick={() => sorting("total_volume")}>total volume</th>
+                <th onClick={() => sorting("market_cap_rank")}>
+                  market cap rank
+                </th>
+                <th onClick={() => sorting("low_24h")}>low 24h</th>
+                <th onClick={() => sorting("high_24h")}>high 24h</th>
+                <th onClick={() => sorting("price_change_percentage_24h")}>
+                  price change24h
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -168,7 +195,15 @@ function Coins() {
                           </td>
                           <td data-label="low_24h">{coin.low_24h} $</td>
                           <td data-label="high_24h">{coin.high_24h} $</td>
-                          <td data-label="price_change_percentage_24h">
+                          <td
+                            data-label="price_change_percentage_24h"
+                            style={{
+                              color:
+                                Math.sign(coin.price_change_percentage_24h) < 0
+                                  ? "red"
+                                  : "green",
+                            }}
+                          >
                             {coin.price_change_percentage_24h}%
                           </td>
                         </tr>
@@ -179,6 +214,10 @@ function Coins() {
               )}
             </tbody>
           </table>
+          {/* ////////////////////////////////////new table using usetable////////////////////////////////////////////////// */}
+          {/* <BasicTable/> */}
+          {/* 
+////////////////////////////////////////////////////////////////////////////////////// */}
         </form>
       </div>
     </Card>

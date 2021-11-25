@@ -19,7 +19,8 @@ function App() {
   useEffect(() => {
     axios
       .get(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+        // "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=7d"
       )
       .then((res) => {
         setIsPending(false);
@@ -30,6 +31,8 @@ function App() {
         setIsPending(true);
       });
   }, []);
+
+  console.log(coins);
 
   return (
     <BrowserRouter>
@@ -70,6 +73,17 @@ function App() {
 
 export default App;
 
+
+
+//npx json-server --watch Post/db.json --port 8000
+//npm install react-confirm-alert --save
+//npm install bootstrap react-bootstrap
+//npm i lodash
+//npm install --save react-chartjs-2 chart.js
+//npm i react-router
+//npm install -S react-router-dom
+//npm i react-select
+// npm install html-to-text
 //npx json-server --watch Post/db.json --port 8000
 //npm i react-id-generator
-
+//npm install  react-table

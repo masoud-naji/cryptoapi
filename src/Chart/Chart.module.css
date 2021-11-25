@@ -4,25 +4,25 @@
 
 a:link {
   text-decoration: none;
-  color: black;
+  color: rgb(183, 225, 253);
   font-family: "Quicksand";
 }
 
 a:visited {
   text-decoration: none;
-  color: black;
+  color: rgb(183, 225, 253);
   font-family: "Quicksand";
 }
 
 a:hover {
   text-decoration: none;
-  color: black;
+  color: rgb(183, 225, 253);
   font-family: "Quicksand";
 }
 
 a:active {
   text-decoration: none;
-  color: black;
+  color: rgb(183, 225, 253);
   font-family: "Quicksand";
 }
 .users {

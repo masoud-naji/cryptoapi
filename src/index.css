@@ -37,3 +37,7 @@ body {
   margin: 0;
   background-image: url(./Images/pattern-randomized.svg);
 }
+
+a{
+  color: rgba(57,133,197,0.5);
+}

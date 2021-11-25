@@ -15,11 +15,12 @@ import stock from "../../Images/stock.png";
 import stock2 from "../../Images/stock2.png";
 import stock3 from "../../Images/stock3.png";
 import stock4 from "../../Images/stock4.png";
+import bussines from "../../Images/Business_SVG.svg"
 
 function Details() {
   const coinCTX = useContext(CoinContext);
   const [foundCoins, setFoundCoins] = useState(coinCTX.selectedCoin);
-  const [name, setName] = useState("cardano");
+  const [name, setName] = useState(coinCTX.selectedCoin ?  coinCTX.selectedCoin  : "cardano" );
   const [error, setError] = useState();
   const [isItLoading, setIsItLoading] = useState(true);
   const [isItLoadingCoinDetail, setIsItLoadingCoinDetail] = useState(true);
@@ -65,7 +66,7 @@ function Details() {
           if (res.status !== 200) return;
           setIsItLoadingCoinDetail(false);
           setCoinAllInfo(res.data);
-          // console.log(res.data);
+          console.log(res.data);
           // console.log(res.data.description.en);
         })
         .catch((error) => {
@@ -185,7 +186,8 @@ function Details() {
     !isItLoadingCoinDetail &&
     Object.keys(coinAllInfo).length > 0
   ) {
-    console.log(coinAllInfo.links.blockchain_site);
+    console.log(coinAllInfo.links);
+    console.log(coinCTX.selectedCoin);
     return (
       <Card className={classes.card}>
         <div className={style.tableContainer}>
@@ -258,20 +260,26 @@ function Details() {
 
                     {/* ? coinAllInfo.description.en.replace(/<[^>]+>/g, "") */}
                   </div>
-
-                  {coinAllInfo.status_updates.length > 0 &&
-                    coinAllInfo.status_updates.map((descript, index) => (
-                      <li
-                        key={descript.created_at}
-                        className={style.tableTitle}
-                      >
-                        <p className={cardStyle.infotext}>
-                          Date: {descript.created_at} <br />
-                          Category: {descript.category}
-                        </p>
-                        {descript.description}--
-                      </li>
-                    ))}
+                  <div className={style.toptablestatus}>
+                    <ul>
+                      {coinAllInfo.status_updates.length > 0 ?
+                        coinAllInfo.status_updates.map((descript) => (
+                          <li
+                            key={descript.created_at}
+                            className={style.tableTitle}
+                          >
+                            <p className={cardStyle.infotext}>
+                              Date: {descript.created_at} <br />
+                              Category: {descript.category}
+                            </p>
+                            {descript.description}--
+                          </li>
+                        )) :
+                        <img src={bussines} style={{width: "10rem", height: "10rem" ,  objectFit:"scale-down" , margin:"3rem 3rem 0 0" }
+                         }/>
+                        }
+                    </ul>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -368,18 +376,18 @@ function Details() {
                 <div className={cardStyle.tableContainer}>
                   <Card className={cardStyle.mycard}>
                     <img src={stock3} />
-                    homepage
+                    categories - {coinAllInfo.categories.length}
                     <div className="emptycontainer">
-                      {coinAllInfo.links.homepage[0]
-                        ? coinAllInfo.links.homepage[0]
-                        : ""}
+                      {coinAllInfo.categories.length > 1 ? (
+                        <ul>
+                          {coinAllInfo.categories.map((coincategory) => (
+                            <li key={coincategory.index}> {coincategory}</li>
+                          ))}
+                        </ul>
+                      ) : (
+                        coinAllInfo.categories
+                      )}
                     </div>
-                    {/* {coinAllInfo.links.homepage[1] ?  <div className="emptycontainer">
-                      {coinAllInfo.links.homepage[1]}
-                    </div> : ""}
-                    {coinAllInfo.links.homepage[2] ?  <div className="emptycontainer">
-                      {coinAllInfo.links.homepage[2]}
-                    </div> : ""} */}
                     official forum
                     <div className="emptycontainer">
                       {coinAllInfo.links.official_forum_url
@@ -429,7 +437,7 @@ function Details() {
                 
               </Readmore> */}
 
-              <details style={{ color: "#CCC" }}>
+              <details style={{ color: "rgb(57,133,197)" }}>
                 <summary className={cardStyle.infotext}>
                   More info {coinAllInfo.id}
                 </summary>

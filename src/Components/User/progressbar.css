@@ -28,6 +28,7 @@
 
 .emptycontainer {
   background-color: rgba(54, 162, 235, 1);
+  font-size: medium;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,5 +41,12 @@
   min-width: 5rem;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  overflow: hidden;
+  overflow: auto;
+  text-align: center;
+  padding-top: 0;
+}
+.emptycontainer > ul ,li{
+  /* font-size: small; */
+  list-style: none;
+  margin: auto;
 }

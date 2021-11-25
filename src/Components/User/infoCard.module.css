@@ -52,7 +52,7 @@
 }
 
 meter::-webkit-meter-bar {
-  background: antiquewhite;
+  background: rgb(57,133,197);
   border: none;
 }
 
@@ -61,12 +61,12 @@ meter::-webkit-meter-optimum-value {
 }
 
 .infotext {
-  color: antiquewhite;
+  color: rgb(57,133,197);
   font-weight: 600;
   text-align: justify;
 }
 .infotext a {
-  color: rgba(54, 162, 235, 1);
+  color: rgb(183, 225, 253);
   text-align: justify;
   font-weight: 600;
 }
