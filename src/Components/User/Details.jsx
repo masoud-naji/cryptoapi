@@ -380,8 +380,8 @@ function Details() {
                     <div className="emptycontainer">
                       {coinAllInfo.categories.length > 1 ? (
                         <ul>
-                          {coinAllInfo.categories.map((coincategory) => (
-                            <li key={coincategory.index}> {coincategory}</li>
+                          {coinAllInfo.categories.map((coincategory,index) => (
+                            <li key={index}> {coincategory}</li>
                           ))}
                         </ul>
                       ) : (

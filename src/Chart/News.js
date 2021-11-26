@@ -11,7 +11,7 @@ import CoinContext from "../contexts/coinContext";
 
 function Chart() {
   const coinCTX = useContext(CoinContext);
-  // console.log(coinCTX.Chartdata);
+  console.log(coinCTX.Chartdata);
 
   // const data = [
   //   { name: "Page A", uv: 62389.05373707468 },
@@ -23,14 +23,14 @@ function Chart() {
   // console.log(data);
 
   const mydata = coinCTX.Chartdata;
-  // console.log(mydata);
+  console.log(mydata);
 
   const newD = mydata.map((mdata) => ({
     name: new Date(mdata[0]).toLocaleDateString("en-US"),
     price: mdata[1],
   }));
 
-  // console.log(newD);
+  console.log(newD);
 
   const renderLineChart = (
     <LineChart

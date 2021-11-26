@@ -91,7 +91,7 @@ export default function App() {
   useEffect(() => {
     const search = async () => {
       const res = await axios.get("https://api.coingecko.com/api/v3/global");
-      console.log(res.data.data.market_cap_percentage);
+      // console.log(res.data.data.market_cap_percentage);
       const result = res.data.data.market_cap_percentage;
       setGlobaldata(result);
     };

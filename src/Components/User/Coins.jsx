@@ -9,7 +9,8 @@ import CoinContext from "../../contexts/coinContext";
 import PieChart from "../../Chart/pieChart";
 
 import { useNavigate } from "react-router-dom";
-import BasicTable from "./Table/BasicTable";
+import { LineChart, Line } from "recharts";
+// import BasicTable from "./Table/BasicTable";
 
 function Coins() {
   const coinCTX = useContext(CoinContext);
@@ -57,17 +58,13 @@ function Coins() {
     console.log(typeof foundCoins);
     console.log(`sorting clickon ${col}`);
     if (order === "ASC") {
-      const sorted = [...foundCoins].sort((a, b) =>
-        a[col].toLocaleLowerCase() > b[col].toLocaleLowerCase() ? 1 : -1
-      );
+      const sorted = [...foundCoins].sort((a, b) => (a[col] > b[col] ? 1 : -1));
       setFoundCoins(sorted);
       setOrder("DSC");
       console.log(foundCoins);
     }
     if (order === "DSC") {
-      const sorted = [...foundCoins].sort((a, b) =>
-        a[col].toLocaleLowerCase() < b[col].toLocaleLowerCase() ? 1 : -1
-      );
+      const sorted = [...foundCoins].sort((a, b) => (a[col] < b[col] ? 1 : -1));
       setFoundCoins(sorted);
       setOrder("ASC");
       console.log(foundCoins);
@@ -89,6 +86,23 @@ function Coins() {
     navigate("/Details");
     console.log(coinCTX.selectedCoin);
   };
+
+  // console.log(paginatedFilteredCoins);
+
+  // ///////////////////////////////chartinfo maker////////////////
+
+  // const rawDatas = paginatedFilteredCoins.map((rawData) => ({
+  //   coins: Object.values(rawData.sparkline_in_7d.price),
+  // }));
+  // console.log(rawDatas);
+
+  // const render7DayChart = (
+  //   <LineChart width={200} height={50} data={rawDatas}>
+  //     <Line type="monotone" dataKey="coins" stroke="#8884d8" strokeWidth={2} />
+  //   </LineChart>
+  // );
+
+  ////////////////////////////////////////////////////////////////
 
   return (
     <Card className={classes.card}>
@@ -121,7 +135,102 @@ function Coins() {
               id={style.myInput}
               onChange={filter}
               placeholder="Search for names.."
+              list="suggestions"
             />
+            <datalist id="suggestions">
+              <option value="bitcoin">btc</option>
+              <option value="avalanche">AVAX</option>
+              <option value="shiba">shib</option>
+              <option value="Cardano">ada</option>
+              <option value="crypto">cro</option>
+              <option value="terra">luna</option>
+              <option value="wrapped">wbtc</option>
+              <option value="litecoin">ltc</option>
+              <option value="binance">busd</option>
+              <option value="matic">matic</option>
+              <option value="chainlink">link</option>
+              <option value="bitcoin">bch</option>
+              <option value="algorand">algo</option>
+              <option value="uniswap">uni</option>
+              <option value="dai">dai</option>
+              <option value="axie">axs</option>
+              <option value="stellar">xlm</option>
+              <option value="elrond">egld</option>
+              <option value="cosmos">atom</option>
+              <option value="vechain">vet</option>
+              <option value="terrausd">ust</option>
+              <option value="internet">icp</option>
+              <option value="filecoin">fil</option>
+              <option value="compound">ceth</option>
+              <option value="ftx">ftt</option>
+              <option value="tron">trx</option>
+              <option value="theta">theta</option>
+              <option value="the">sand</option>
+              <option value="decentraland">mana</option>
+              <option value="okb">okb</option>
+              <option value="ethereum">etc</option>
+              <option value="staked">steth</option>
+              <option value="hedera">hbar</option>
+              <option value="gala">gala</option>
+              <option value="fantom">ftm</option>
+              <option value="near">near</option>
+              <option value="cdai">cdai</option>
+              <option value="the">grt</option>
+              <option value="helium">hnt</option>
+              <option value="tezos">xtz</option>
+              <option value="monero">xmr</option>
+              <option value="compound">cusdc</option>
+              <option value="iota">miota</option>
+              <option value="radix">xrd</option>
+              <option value="eos">eos</option>
+              <option value="enjincoin">enj</option>
+              <option value="flow">flow</option>
+              <option value="olympus">ohm</option>
+              <option value="loopring">lrc</option>
+              <option value="klay">klay</option>
+              <option value="magic">mim</option>
+              <option value="thorchain">rune</option>
+              <option value="pancakeswap">cake</option>
+              <option value="aave">aave</option>
+              <option value="zcash">zec</option>
+              <option value="leo">leo</option>
+              <option value="harmony">one</option>
+              <option value="ecash">xec</option>
+              <option value="kusama">ksm</option>
+              <option value="amp">amp</option>
+              <option value="maker">mkr</option>
+              <option value="arweave">ar</option>
+              <option value="kadena">kda</option>
+              <option value="bitcoin">bsv</option>
+              <option value="quant">qnt</option>
+              <option value="neo">neo</option>
+              <option value="chiliz">chz</option>
+              <option value="bitcoin">bcha</option>
+              <option value="holotoken">hot</option>
+              <option value="huobi">hbtc</option>
+              <option value="basic">bat</option>
+              <option value="bittorrent">btt</option>
+              <option value="curve">crv</option>
+              <option value="blockstack">stx</option>
+              <option value="waves">waves</option>
+              <option value="dash">dash</option>
+              <option value="theta">tfuel</option>
+              <option value="kucoin">kcs</option>
+              <option value="safemoon">safemoon</option>
+              <option value="wonderland">time</option>
+              <option value="celsius">cel</option>
+              <option value="celo">celo</option>
+              <option value="compound">comp</option>
+              <option value="immutable">imx</option>
+              <option value="iotex">iotx</option>
+              <option value="e">exrd</option>
+              <option value="link">ln</option>
+              <option value="qtum">qtum</option>
+              <option value="huobi">ht</option>
+              <option value="nem">xem</option>
+              <option value="havven">snx</option>
+              <option value="mina">mina</option>
+            </datalist>
           </div>
           {/* /////////////DropDown/////////////////// */}
           <div className={style.toptable_childM}>
@@ -162,6 +271,7 @@ function Coins() {
                 <th onClick={() => sorting("price_change_percentage_24h")}>
                   price change24h
                 </th>
+                {/* <th>7Days Change</th> */}
               </tr>
             </thead>
             <tbody>
@@ -206,6 +316,10 @@ function Coins() {
                           >
                             {coin.price_change_percentage_24h}%
                           </td>
+                          {/* <td> */}
+
+                          {/* {render7DayChart} */}
+                          {/* </td> */}
                         </tr>
                       )
                   )
