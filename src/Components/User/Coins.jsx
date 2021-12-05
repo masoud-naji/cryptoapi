@@ -7,8 +7,9 @@ import Paginate from "../CustomHooks/Paginate";
 import Select from "react-select";
 import CoinContext from "../../contexts/coinContext";
 import PieChart from "../../Chart/pieChart";
-
+import cardStyle from "./infoCard.module.css";
 import { useNavigate } from "react-router-dom";
+import GoogleTrends from "../GoogleTrend/GoogleTrends";
 import { LineChart, Line } from "recharts";
 // import BasicTable from "./Table/BasicTable";
 
@@ -120,10 +121,56 @@ function Coins() {
             {foundCoins && foundCoins.length > 0 ? (
               <PieChart />
             ) : (
-              <h2>{error}</h2>
+              <div className={style.toptable}>
+                <div>
+                  <img
+                    src="https://alternative.me/crypto/fear-and-greed-index.png"
+                    alt="Latest Crypto Fear & Greed Index"
+                    className={style.fearimg}
+                    // style={{
+                    //   height: "18rem",
+                    //   // opacity: "0.5",
+                    //   filter: "hue-rotate(180deg)",
+                    // }}
+                  />
+                </div>
+                <div className={style.errorMessage}>
+                  There is an Error with server or
+                  <br />
+                  No Coin Found With This Name
+                </div>
+              </div>
             )}
           </Card>
         </div>
+        <hr />
+          
+        <details style={{ color: "rgb(57,133,197)" }}>
+                <summary className={cardStyle.infotext}>
+                  Trends Infograph
+                </summary>
+               
+        <div className={cardStyle.container2}>
+                <div className={cardStyle.tableContainer2}>
+                  <Card className={cardStyle.mycard2}>
+                    <div id="widget">
+                      <GoogleTrends
+                        type="RELATED_TOPICS"
+                        keyword="crypto Currency"
+                        url="https://ssl.gstatic.com/trends_nrtr/2051_RC11/embed_loader.js"
+                      />
+                    </div>
+                    <div id="widget">
+                      <GoogleTrends
+                        type="TIMESERIES"
+                        keyword="crypto Currency"
+                        url="https://ssl.gstatic.com/trends_nrtr/2051_RC11/embed_loader.js"
+                      />
+                    </div>
+                  </Card>
+                </div>
+              </div>
+        </details>
         <hr />
 
         {/* ///////////////Search///////////////// */}
@@ -137,7 +184,7 @@ function Coins() {
               placeholder="Search for names.."
               list="suggestions"
             />
-            <datalist id="suggestions">
+            <datalist id="suggestions" style={{ width: "100%" }}>
               <option value="bitcoin">btc</option>
               <option value="avalanche">AVAX</option>
               <option value="shiba">shib</option>
@@ -254,18 +301,22 @@ function Coins() {
           </div>
         </div>
 
+      
+        
+
+
         <form>
           <table className={style.userTable}>
             <thead>
               <tr>
                 <th>image</th>
+                <th onClick={() => sorting("market_cap_rank")}>
+                  Rank
+                </th>
                 <th onClick={() => sorting("name")}>Name</th>
                 <th onClick={() => sorting("symbol")}>symbol</th>
                 <th onClick={() => sorting("current_price")}>current price</th>
                 <th onClick={() => sorting("total_volume")}>total volume</th>
-                <th onClick={() => sorting("market_cap_rank")}>
-                  market cap rank
-                </th>
                 <th onClick={() => sorting("low_24h")}>low 24h</th>
                 <th onClick={() => sorting("high_24h")}>high 24h</th>
                 <th onClick={() => sorting("price_change_percentage_24h")}>
@@ -289,20 +340,15 @@ function Coins() {
                               alt={coin.image}
                             ></img>
                           </td>
+                          <td data-label="market_cap_rank">
+                            {coin.market_cap_rank}
+                          </td>
                           <td data-label="Name"> {coin.name}</td>
                           <td data-label="symbol"> {coin.symbol}</td>
                           <td data-label="current_price">
-                            {" "}
                             {coin.current_price}
                           </td>
-                          <td data-label="total_volume">
-                            {" "}
-                            {coin.total_volume}
-                          </td>
-                          <td data-label="market_cap_rank">
-                            {" "}
-                            {coin.market_cap_rank}
-                          </td>
+                          <td data-label="total_volume">{coin.total_volume}</td>
                           <td data-label="low_24h">{coin.low_24h} $</td>
                           <td data-label="high_24h">{coin.high_24h} $</td>
                           <td

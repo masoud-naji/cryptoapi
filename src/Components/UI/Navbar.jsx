@@ -17,17 +17,17 @@ const Navbar = () => {
             Home
           </Link>
           <Link className={classes.nvbbtn} to="./Details">
-            Details
+            Info
           </Link>
-          {/* <Link className={classes.nvbbtn} to="./News"> */}
+          <Link className={classes.nvbbtn} to="./About">
             {/* {keytoggle !== true ? ( */}
-            {/* <button className={classes.cta}>News</button> */}
+            <button className={classes.cta}>About</button>
             {/* ) : (
             <button onClick={() => onShowForm()} className={classes.cta}>
               New User
             </button>
           )} */}
-          {/* </Link> */}
+          </Link>
         </div>
       </div>
     </nav>

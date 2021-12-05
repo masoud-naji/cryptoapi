@@ -4,27 +4,32 @@ import classes from "../UI/Card.module.css";
 import cardStyle from "./infoCard.module.css";
 import progStyle from "./progressbar.css";
 import Card from "../UI/Card";
-import Select from "react-select";
+// import Select from "react-select";
 import axios from "axios";
 import CoinContext from "../../contexts/coinContext";
 import _uniqueId from "lodash/uniqueId";
-import Readmore from "../UI/ReadMore";
+// import Readmore from "../UI/ReadMore";
 import Chart from "../../Chart/News";
 import parse from "html-react-parser";
 import stock from "../../Images/stock.png";
 import stock2 from "../../Images/stock2.png";
 import stock3 from "../../Images/stock3.png";
 import stock4 from "../../Images/stock4.png";
-import bussines from "../../Images/Business_SVG.svg"
+
+// import googleTrendShow from "../GoogleTrend/GoogleTrendShow";
+// import Script from "react-load-script";
 
 function Details() {
   const coinCTX = useContext(CoinContext);
   const [foundCoins, setFoundCoins] = useState(coinCTX.selectedCoin);
-  const [name, setName] = useState(coinCTX.selectedCoin ?  coinCTX.selectedCoin  : "cardano" );
+  const [name, setName] = useState(
+    coinCTX.selectedCoin ? coinCTX.selectedCoin : "cardano"
+  );
   const [error, setError] = useState();
   const [isItLoading, setIsItLoading] = useState(true);
   const [isItLoadingCoinDetail, setIsItLoadingCoinDetail] = useState(true);
   const [coinAllInfo, setCoinAllInfo] = useState([]);
+
   ////////////////////////////////////////////////duration Cotrol maker/////////////////////////////////////////
   const [startTime, setStartTime] = useState(
     (new Date(Date.now()).getTime() / 1000 - 86400).toFixed(0)
@@ -33,6 +38,8 @@ function Details() {
     (new Date(Date.now()).getTime() / 1000).toFixed(0)
   );
   const timeController = [
+    // { value: new Date().setHours(new Date().getHours() - 1), label: "1H" },
+    // { value: new Date().setHours(new Date().getHours() - 4), label: "4H" },
     { value: new Date().setDate(new Date().getDate() - 1), label: "1D" },
     { value: new Date().setDate(new Date().getDate() - 7), label: "7D" },
     { value: new Date().setMonth(new Date().getMonth() - 1), label: "1M" },
@@ -66,7 +73,8 @@ function Details() {
           if (res.status !== 200) return;
           setIsItLoadingCoinDetail(false);
           setCoinAllInfo(res.data);
-          console.log(res.data);
+
+          // console.log(res.data);
           // console.log(res.data.description.en);
         })
         .catch((error) => {
@@ -133,7 +141,6 @@ function Details() {
           console.log(error.config);
         });
 
-    //////////////////////////////////////////
     getCoinNews();
     search();
   }, [name, startTime, endTime]);
@@ -145,20 +152,6 @@ function Details() {
       </div>
     </div>
   );
-
-  // console.log(Object.keys(coinAllInfo).length);
-  // console.log(foundCoins);
-  // console.log(foundCoins.length);
-  // console.log(coinAllInfo.status_updates[0].description);
-
-  // const Coindescription = () => {
-  //   // if (coinAllInfo.status_updates) {
-  //   coinAllInfo.status_updates.map((descript) => {
-  //      <p>descript[descript.index]</p>;
-  //     //   });
-  //     // } else {
-  //     //   return <p>Not Any StatusUpdates</p>
-  //   }
 
   if (isItLoading) {
     return (
@@ -186,8 +179,8 @@ function Details() {
     !isItLoadingCoinDetail &&
     Object.keys(coinAllInfo).length > 0
   ) {
-    console.log(coinAllInfo.links);
-    console.log(coinCTX.selectedCoin);
+    // console.log(coinAllInfo.links);
+    // console.log(coinCTX.selectedCoin);
     return (
       <Card className={classes.card}>
         <div className={style.tableContainer}>
@@ -252,17 +245,19 @@ function Details() {
                         )}
                       </select>
                     </div>
-                    {foundCoins && (
-                      <h3 className={style.tableTitle}>
-                        Found {foundCoins.length} Records
-                      </h3>
-                    )}
-
-                    {/* ? coinAllInfo.description.en.replace(/<[^>]+>/g, "") */}
                   </div>
+                  {foundCoins && (
+                    <div>
+                      <h3 className={style.tableTitle}>
+                        {foundCoins.length} Records Show on chart
+                      </h3>
+                    </div>
+                  )}
+
+                  {/* ? coinAllInfo.description.en.replace(/<[^>]+>/g, "") */}
                   <div className={style.toptablestatus}>
                     <ul>
-                      {coinAllInfo.status_updates.length > 0 ?
+                      {coinAllInfo.status_updates.length > 0 ? (
                         coinAllInfo.status_updates.map((descript) => (
                           <li
                             key={descript.created_at}
@@ -274,10 +269,13 @@ function Details() {
                             </p>
                             {descript.description}--
                           </li>
-                        )) :
-                        <img src={bussines} style={{width: "10rem", height: "10rem" ,  objectFit:"scale-down" , margin:"3rem 3rem 0 0" }
-                         }/>
-                        }
+                        ))
+                      ) : (
+                        <div className={style.errorMessage}>
+                          Any Event will show here if its available , we
+                          coulden't found anything for this Coin
+                        </div>
+                      )}
                     </ul>
                   </div>
                 </div>
@@ -286,22 +284,33 @@ function Details() {
               <h2>{error}</h2>
             )}
           </Card>
+
           <hr />
 
           {/* ///////////////////////////////////////table/////////////////////////////// */}
           <Card className={`${classes.input} ${classes.topchartdetail}`}>
             <hr />
             <p className={cardStyle.infotext}>
-              <img
-                src={coinAllInfo.image.small ? coinAllInfo.image.small : "#"}
-              />
+              <span title="Click to open Google Trend">
+                <a
+                  href={`https://trends.google.com/trends/explore?q=${coinAllInfo.id}&geo=US`}
+                  target="_blank"
+                >
+                  <img
+                    src={
+                      coinAllInfo.image.small ? coinAllInfo.image.small : "#"
+                    }
+                    alt="click to open Google Trend"
+                  />
+                </a>
+              </span>
               <details style={{ color: "#CCC" }}>
                 <summary className={cardStyle.infotext}>
                   {coinAllInfo.links.blockchain_site
                     ? coinAllInfo.links.blockchain_site.filter(
                         (sites) => sites !== ""
                       ).length
-                    : null}{" "}
+                    : null}
                   - Official WebSites
                 </summary>
                 {coinAllInfo.links.blockchain_site
@@ -321,7 +330,7 @@ function Details() {
                   : null}
               </details>
               <hr />
-
+              {/* ////////////////////////////////////////first line of detail///////////////////////////////////////// */}
               <div className={cardStyle.container}>
                 <div className={cardStyle.tableContainer}>
                   <Card className={cardStyle.mycard}>
@@ -380,7 +389,7 @@ function Details() {
                     <div className="emptycontainer">
                       {coinAllInfo.categories.length > 1 ? (
                         <ul>
-                          {coinAllInfo.categories.map((coincategory,index) => (
+                          {coinAllInfo.categories.map((coincategory, index) => (
                             <li key={index}> {coincategory}</li>
                           ))}
                         </ul>
@@ -430,12 +439,26 @@ function Details() {
                   </Card>
                 </div>
               </div>
+              {/* ////////////////////////////////////////second line of detail///////////////////////////////////////// */}
+
+              {/* {googleTrendShow(coinAllInfo.name)} */}
+              {/* ///////////////////////////////iframe approuch/////////////// */}
+              {/* <iframe
+              id="trends-widget-1"
+              title="trends-widget-1"
+              src="https://trends.google.com:443/trends/embed/explore/TIMESERIES?req=%7B%22comparisonItem%22%3A%5B%7B%22keyword%22%3A%22%5B'crypto%20currency'%5D%22%2C%22geo%22%3A%22%22%2C%22time%22%3A%222009-01-01%202021-12-02%22%7D%5D%2C%22category%22%3A0%2C%22property%22%3A%22%22%7D&amp;tz=480&amp;eq=q%3D'bitcoin'%26date%3Dall%26geo%3D"
+              width="100%"
+              height="500rem"
+              frameborder="0"
+              scrolling="0"
+              
+            ></iframe> */}
+              {/* ///////////////////////////////////////////////////////////GoogleTrend////////////////////////////////////////////////////////////////////// */}
               {/* <Readmore maxCharecterCount={100}>
                 {coinAllInfo.description.en
                   ? coinAllInfo.description.en.replace(/<[^>]+>/g, "")
                   : ""}
-                
-              </Readmore> */}
+                              </Readmore> */}
 
               <details style={{ color: "rgb(57,133,197)" }}>
                 <summary className={cardStyle.infotext}>

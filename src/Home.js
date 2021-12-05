@@ -41,3 +41,5 @@ export default Home;
 //npm install -S react-router-dom
 //npm i react-select
 // npm install html-to-text
+//npm i react-load-script
+//npm i react-scripts

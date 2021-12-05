@@ -8,6 +8,7 @@ import styles from "./App.module.css";
 import CoinContext from "./contexts/coinContext";
 import axios from "axios";
 import Chart from "./Chart/News";
+import About from "./About";
 
 function App() {
   const [isPending, setIsPending] = useState(false);
@@ -32,7 +33,7 @@ function App() {
       });
   }, []);
 
-  console.log(coins);
+  // console.log(coins);
 
   return (
     <BrowserRouter>
@@ -62,6 +63,7 @@ function App() {
               ></Route>
               <Route path="/Details" element={<Details />}></Route>
               <Route path="/News" element={<Chart />}></Route>
+              <Route path="/About" element={<About />}></Route>
               <Route path="*" element={<NotFound />}></Route>
             </Routes>
           </div>
@@ -72,8 +74,6 @@ function App() {
 }
 
 export default App;
-
-
 
 //npx json-server --watch Post/db.json --port 8000
 //npm install react-confirm-alert --save
