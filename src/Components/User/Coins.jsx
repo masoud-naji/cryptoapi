@@ -144,32 +144,30 @@ function Coins() {
           </Card>
         </div>
         <hr />
-          
+
         <details style={{ color: "rgb(57,133,197)" }}>
-                <summary className={cardStyle.infotext}>
-                  Trends Infograph
-                </summary>
-               
-        <div className={cardStyle.container2}>
-                <div className={cardStyle.tableContainer2}>
-                  <Card className={cardStyle.mycard2}>
-                    <div id="widget">
-                      <GoogleTrends
-                        type="RELATED_TOPICS"
-                        keyword="crypto Currency"
-                        url="https://ssl.gstatic.com/trends_nrtr/2051_RC11/embed_loader.js"
-                      />
-                    </div>
-                    <div id="widget">
-                      <GoogleTrends
-                        type="TIMESERIES"
-                        keyword="crypto Currency"
-                        url="https://ssl.gstatic.com/trends_nrtr/2051_RC11/embed_loader.js"
-                      />
-                    </div>
-                  </Card>
+          <summary className={cardStyle.infotext}>Trends Infograph</summary>
+
+          <div className={cardStyle.container2}>
+            <div className={cardStyle.tableContainer2}>
+              <Card className={cardStyle.mycard2}>
+                <div id="widget">
+                  <GoogleTrends
+                    type="RELATED_TOPICS"
+                    keyword="crypto Currency"
+                    url="https://ssl.gstatic.com/trends_nrtr/2051_RC11/embed_loader.js"
+                  />
                 </div>
-              </div>
+                <div id="widget">
+                  <GoogleTrends
+                    type="TIMESERIES"
+                    keyword="crypto Currency"
+                    url="https://ssl.gstatic.com/trends_nrtr/2051_RC11/embed_loader.js"
+                  />
+                </div>
+              </Card>
+            </div>
+          </div>
         </details>
         <hr />
 
@@ -301,18 +299,12 @@ function Coins() {
           </div>
         </div>
 
-      
-        
-
-
         <form>
           <table className={style.userTable}>
             <thead>
               <tr>
                 <th>image</th>
-                <th onClick={() => sorting("market_cap_rank")}>
-                  Rank
-                </th>
+                <th onClick={() => sorting("market_cap_rank")}>Rank</th>
                 <th onClick={() => sorting("name")}>Name</th>
                 <th onClick={() => sorting("symbol")}>symbol</th>
                 <th onClick={() => sorting("current_price")}>current price</th>

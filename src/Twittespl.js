@@ -1,46 +1,157 @@
 import React from "react";
+import { shuffle } from "lodash";
+import { useEffect, useState } from "react";
 import classes from "./Components/UI/Card.module.css";
 import Card from "./Components/UI/Card";
 import style from "./about.module.css";
-import { Link } from "react-router-dom";
-import linkclasses from "./Components/UI/Navbar.module.css";
+import InputEmoji from "react-input-emoji";
 
-const About = () => {
+const Twittespl = () => {
+  const [tweet, setTweet] = useState("");
+  const [Stweet, setSTweet] = useState([]);
+  const [endChar, setEndChar] = useState("");
+  const [divDirection, setDivDirection] = useState(true);
+  const [isCopied, setIsCopied] = useState(false);
+  const [clipArtforshow, setClipArtforshow] = useState("");
+
+  useEffect(() => {
+    var s = tweet;
+    const size = 280 - endChar.length;
+    // console.log(size);
+    const regex = new RegExp(String.raw`\S.{1,${size - 2}}\S(?= |$)`, "g");
+    var chunk = s.match(regex);
+    chunk && setSTweet(chunk);
+  }, [tweet, endChar]);
+
+  async function copyTextToClipboard(text) {
+    if ("clipboard" in navigator) {
+      return await navigator.clipboard.writeText(text);
+    } else {
+      return document.execCommand("copy", true, text);
+    }
+  }
+  const handleCopyClick = (tweets, key, endChar) => {
+    // Asynchronously call copyTextToClipboard
+    copyTextToClipboard(tweets, key, endChar)
+      .then(() => {
+        // If successful, update the isCopied state value
+        setIsCopied(true);
+        //linebelow just for show in page clipart is already fill and no need this usestate
+        setClipArtforshow([tweets, key, endChar]);
+        setTimeout(() => {
+          setIsCopied(false);
+        }, 1500);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  console.log(clipArtforshow);
   return (
     <div className={style.container}>
       <Card
         style={{ height: "18rem" }}
         className={`${classes.clipboardinside} ${classes.topchart}`}
       >
-        <div
-          className={`${classes.inputinside} ${style.container} `}
-          style={{ height: "16rem" }}
-        >
-          <center style={{ color: "white" }}>
-            <strong style={{ color: "white" }}>
-              <a href="mailto:Masoud.Naji@outlook.com?subject=Resume from webSite">
-                mailto:Masoud.Naji@outlook.com
-              </a>
-              <hr />
-              <a href="https://www.linkedin.com/in/masoud-naji/">
-                https://www.linkedin.com/in/masoud-naji/
-              </a>
-              <br />
-              California – Los Angeles
-              <br />
-              747-333-2870
-            </strong>
+        {clipArtforshow.length ? (
+          <div
+            dir={divDirection ? "ltr" : "rtl"}
+            className={`${classes.inputinside} ${style.container} `}
+            style={{ height: "16rem" }}
+          >
+            <center style={{ color: "white" }}>
+              This is in your ClipBoard now ➡️ Part Number{" "}
+              {+clipArtforshow[1] + 1}
+            </center>
             <hr />
-            List Of Sample Projects ➡️ {" "}
-            
-            <Link className={linkclasses.nvbbtn} to="../Twittespl">
-              <button className={linkclasses.cta}>Twitte spl</button>
-            </Link>
 
-          </center>
-        </div>
+            {clipArtforshow[0]}
+          </div>
+        ) : null}
       </Card>
+      <div className={style.twitterdiv} dir={divDirection ? "ltr" : "rtl"}>
+        <button
+          className={style.languagebtn}
+          onClick={(e) => setDivDirection(!divDirection)}
+        >
+          Click To Change the Direction (Right to left / Left to Right) ➡️{" "}
+          {divDirection ? "LTR" : "RTL"}
+        </button>
 
+        <InputEmoji
+          value={tweet}
+          onChange={setTweet}
+          // onEnter={() => }
+          fontSize={20}
+          placeholder="Type a message "
+          style={{ whiteSpace: "pre-line" }}
+        />
+
+        {/* <textarea
+          value={tweet}
+          onChange={(e) => setTweet(e.target.value)}
+          placeholder="Type a message "
+          style={{ width:"100%" }}
+        ></textarea> */}
+
+        <InputEmoji
+          value={endChar}
+          onChange={setEndChar}
+          onEnter={setEndChar}
+          placeholder="Type next indicator 15Chr Max"
+          maxLength={15}
+        />
+
+        <hr />
+        <div className={classes.inputinside}>
+          <ul>
+            {Stweet !== null && Stweet.length
+              ? Object.entries(Stweet).map(([key, tweets]) => (
+                  <li
+                    key={tweets.index}
+                    className={style.litweet}
+                    onClick={(e) => handleCopyClick(tweets, key, endChar)}
+                  >
+                    {/* {key} */}
+                    {tweets}
+                    {endChar}
+                    <br />
+                    <button
+                      className={style.languagebtn}
+                      onClick={(e) => {
+                        handleCopyClick(tweets, key, endChar);
+                      }}
+                    >
+                      <span>
+                        ({tweets.length} Charecter )
+                        {isCopied ? " Copied! " : " Copy "}
+                      </span>
+                    </button>
+                    <hr />
+                  </li>
+                ))
+              : ""}
+          </ul>
+        </div>
+      </div>
+      {/* 		  
+      <p>
+        <strong>
+          <a href="mailto:Masoud.Naji@outlook.com?subject=Resume from webSite">
+            mailto:Masoud.Naji@outlook.com
+          </a>
+        </strong>
+        <br />
+        <a href="https://www.linkedin.com/in/masoud-naji/">
+          <strong>https://www.linkedin.com/in/masoud-naji/</strong>
+        </a>
+        <br />
+        California – Los Angeles
+      </p>
+      <p>747-333-2870</p>
+
+      <p />
       <h2>
         <strong>Front End Developer</strong>
       </h2>
@@ -50,8 +161,8 @@ const About = () => {
           in Web design and development of ERP application.
         </li>
         <li>
-          <strong>Overall 4+ years</strong>of extensive experience as a 
-          <strong>Front-End UI Developer</strong> with solid understanding of
+          <strong>Overall 4+ years</strong>of extensive experience as a 
+          <strong>Front-End UI Developer</strong> with solid understanding of
           database designing, development, and installation of different
           modules.
         </li>
@@ -61,12 +172,12 @@ const About = () => {
           XML, DHTML, XHTML, JSON
         </li>
         <li>
-          Excellent Understanding of 
-          <strong>Document Object Model (DOM) </strong>and
+          Excellent Understanding of 
+          <strong>Document Object Model (DOM) </strong>and
           <strong>DOM Functions.</strong>
         </li>
         <li>
-          Excellent experience in developing web pages complying with 
+          Excellent experience in developing web pages complying with 
           <strong>W3C web standards. </strong>
         </li>
         <li>
@@ -83,8 +194,8 @@ const About = () => {
           Interfaces, Layouts and Flow of Future Pages.
         </li>
         <li>
-          Experience in designing <strong>UI</strong>
-          <strong>patterns</strong> and <strong>UI applications</strong> with
+          Experience in designing <strong>UI</strong>
+          <strong>patterns</strong> and <strong>UI applications</strong> with
           the help of Adobe products like{" "}
           <strong>Adobe Photoshop, Adobe XD and Adobe Illustrator.</strong>
         </li>
@@ -97,7 +208,7 @@ const About = () => {
           improvised those pages using CSS3
         </li>
         <li>
-          Experience in Version Control tools like <strong>GIT</strong>
+          Experience in Version Control tools like <strong>GIT</strong>
         </li>
         <li>
           Experience in using Mgmt. Software like JIRA Agile, Scrum works and
@@ -123,7 +234,7 @@ const About = () => {
           <strong>IBM watson</strong>
         </li>
         <li>
-          Experienced in using Video Sharing and video subscription service with
+          Experienced in using Video Sharing and video subscription service with
           a Video API like YouTube and Vimeo.
         </li>
         <li>
@@ -144,7 +255,7 @@ const About = () => {
       <p></p>
       <strong>
         <h2>Education</h2>
-        <h4> </h4>
+        <h4> </h4>
         <h4>
           Azad University -<em> Bachelor </em>
         </h4>
@@ -328,9 +439,9 @@ const About = () => {
           costs, personnel productivity, inventory levels, data accuracy and
           stocking strategies.
         </li>
-      </ul>
+      </ul> */}
     </div>
   );
 };
 
-export default About;
+export default Twittespl;

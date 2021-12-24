@@ -43,3 +43,4 @@ export default Home;
 // npm install html-to-text
 //npm i react-load-script
 //npm i react-scripts
+//npm install react-input-emoji --save

@@ -9,6 +9,7 @@ import CoinContext from "./contexts/coinContext";
 import axios from "axios";
 import Chart from "./Chart/News";
 import About from "./About";
+import Twittespl from "./Twittespl";
 
 function App() {
   const [isPending, setIsPending] = useState(false);
@@ -64,6 +65,7 @@ function App() {
               <Route path="/Details" element={<Details />}></Route>
               <Route path="/News" element={<Chart />}></Route>
               <Route path="/About" element={<About />}></Route>
+              <Route path="/Twittespl" element={<Twittespl />}></Route>
               <Route path="*" element={<NotFound />}></Route>
             </Routes>
           </div>
