@@ -3,7 +3,7 @@ import classes from "./Components/UI/Card.module.css";
 import Card from "./Components/UI/Card";
 import style from "./about.module.css";
 import { Link } from "react-router-dom";
-import linkclasses from "./Components/UI/Navbar.module.css";
+
 
 const About = () => {
   return (
@@ -33,8 +33,8 @@ const About = () => {
             <hr />
             List Of Sample Projects ➡️ {" "}
             
-            <Link className={linkclasses.nvbbtn} to="../Twittespl">
-              <button className={linkclasses.cta}>Twitte spl</button>
+            <Link className={style.nvbbtn} to="../Twittespl">
+              <button className={style.cta}>Twitte Splitter</button>
             </Link>
 
           </center>
@@ -44,7 +44,7 @@ const About = () => {
       <h2>
         <strong>Front End Developer</strong>
       </h2>
-      <ul>
+      <ul className={style.ulabout}>
         <li>
           <strong>Overall 8+</strong> years of Information Technology experience
           in Web design and development of ERP application.

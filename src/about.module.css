@@ -19,7 +19,7 @@
   /* padding-bottom: 30rem!important; */
 }
 
-li {
+.ulabout {
   list-style-type: square;
 }
 
@@ -57,7 +57,6 @@ a {
   border-radius: 1.5rem;
   transition: color 250ms ease-in, background 250ms ease-in;
   min-width: 3rem;
-  
 }
 
 .languagebtn:hover,
@@ -70,7 +69,38 @@ a {
   outline: none;
 }
 
-@media only screen and (max-width: 965px) {
+.nvbbtn {
+  flex: 1 1 inherit;
+  color: rgb(37, 53, 104, 1);
+  text-transform: capitalize;
+  font-weight: 800;
+}
+.nvbbtn:hover {
+  color: #8c50ff !important;
+}
+
+.cta {
+  font: inherit;
+  font-weight: 500;
+  border: 1px solid rgba(54, 162, 235, 1);
+  background: rgb(37, 53, 104, 0.5);
+  color: rgb(251, 251, 251);
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: color 250ms ease-in, background 250ms ease-in;
+  min-width: 8rem;
+  align-items: right;
+  
+}
+
+.cta:hover,
+.button:active {
+  background: rgba(54, 162, 235, 0.5);
+  color: black;
+}
+
+@media only screen and (max-width: 50rem) {
   .languagebtn {
     right: 0;
     overflow: visible;

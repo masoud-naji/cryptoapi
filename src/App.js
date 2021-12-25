@@ -11,6 +11,7 @@ import Chart from "./Chart/News";
 import About from "./About";
 import Twittespl from "./Twittespl";
 
+
 function App() {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState();
@@ -50,10 +51,12 @@ function App() {
         }}
       >
         <div>
-          <section className={styles.myNavbar}>
+          <section>
+          {/* <section className={classes.Navbar}>*/}
+          {/* <section> */}
             <Navbar />
           </section>
-          <div>
+          <div className={styles.mainfram}>
             <Routes>
               <Route
                 path="/"

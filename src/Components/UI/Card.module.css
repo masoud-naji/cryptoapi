@@ -75,6 +75,7 @@
   overflow: hidden;
 }
 @media (min-width: 50rem) {
+
   .HeroPlace {
     grid-auto-flow: column;
   }
