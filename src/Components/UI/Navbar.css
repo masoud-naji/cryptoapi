@@ -67,18 +67,18 @@ nav {
   transition: transform 400ms ease-in-out;
 }
 
-nav ul {
+nav .navul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-nav li {
+nav .navli {
   margin-bottom: 1em;
   margin-left: 1em;
 }
 
-nav a {
+nav .navlink {
   color: white;
   text-decoration: none;
   font-size: 1.2rem;
@@ -100,96 +100,6 @@ nav a :hover {
   transition: opacity 250ms ease-in-out 250ms;
 }
 
-@media screen and (min-width: 800px) {
-  .nav-toggle-label {
-    display: none;
-  }
-
-  header {
-    display: grid;
-    grid-template-columns: 2fr auto minmax(40rem, 3fr) 1fr;
-  }
-
-  .logo {
-    grid-column: 2 / span 1;
-  }
-
-  nav {
-    /* all: unset; */
-
-    position: relative;
-    text-align: left;
-    transition: none;
-    transform: scale(1, 1);
-    background: none;
-    top: initial;
-    left: initial;
-
-    grid-column: 3/4;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  nav a {
-    opacity: 1;
-    position: relative;
-  }
-
-  nav a::before {
-    content: "";
-    display: block;
-    height: 5px;
-    background: rgb(37, 53, 104);
-    position: absolute;
-    top: -0.75em;
-    left: 0;
-    right: 0;
-    transform: scale(0, 1);
-    transition: transform ease-in-out 250ms;
-  }
-
-  nav a:hover::before {
-    transform: scale(1, 1);
-  }
-
-  nav ul {
-    display: flex;
-  }
-  nav li {
-    margin-left: 3em;
-    margin-bottom: 0;
-  }
-}
-
-/* 
-.navbar .links {
-  margin-left: auto;
-}
-
-.navbar a {
-  margin-left: 1rem;
-  margin-right: 1rem;
-  text-decoration: none;
-  padding: 6px;
-  font-weight: 800;
-}
-.navbar a:hover {
-  color: #f1356d;
-  cursor: pointer;
-  font-weight: 800;
-}
-
-.nvbbtn {
-  flex: 1 1 inherit;
-  color: rgba(54, 162, 235, 1);
-  text-transform: capitalize;
-  font-weight: 800;
-}
-.nvbbtn:hover {
-  color: #8c50ff !important;
-}
-} */
 .cta {
   font: inherit;
   font-weight: 500;
@@ -215,7 +125,7 @@ nav a :hover {
   font-weight: 400;
   text-decoration: none;
   text-transform: capitalize;
-  color: rgb(37,53,104)!important;
+  color: rgb(37, 53, 104) !important;
   position: relative;
 }
 
@@ -247,4 +157,82 @@ nav a :hover {
   max-width: 600px;
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
+}
+
+@media screen and (min-width: 50rem) {
+  .nav-toggle-label {
+    display: none;
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: auto minmax(20rem, 2fr) 1fr;
+  }
+
+  .logo {
+    grid-column: 1 / 2;
+  }
+
+  nav {
+    /* all: unset; */
+    position: relative;
+    text-align: left;
+    transition: none;
+    transform: scale(1, 1);
+    background: none;
+    top: initial;
+    left: initial;
+
+    grid-column: 2/3;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  nav .navlink {
+    opacity: 1;
+    position: relative;
+  }
+
+  nav .navlink::before {
+    content: "";
+    display: block;
+    height: 5px;
+    background: rgb(37, 53, 104);
+    position: absolute;
+    top: -0.75em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+  }
+
+  nav .navlink:hover::before {
+    transform: scale(1, 1);
+  }
+
+  nav .navul {
+    display: flex;
+  }
+  nav .navli {
+    margin-left: 3em;
+    margin-bottom: 0;
+  }
+  .fancy_link {
+    font-size: 2rem;
+    font-weight: 400;
+    text-decoration: none;
+    text-transform: capitalize;
+    color: rgb(37, 53, 104) !important;
+    position: relative;
+    white-space: nowrap;
+  }
+}
+
+@media screen and (max-width: 27rem) {
+  .fancy_link {
+    font-size: 1.5rem;
+    font-weight: 400;
+    white-space: nowrap;
+  }
 }

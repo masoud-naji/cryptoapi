@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route,HashRouter  } from "react-router-dom";
 import Details from "./Components/User/Details";
 import Navbar from "./Components/UI/Navbar";
 import NotFound from "./Components/UI/NotFound";
@@ -38,7 +38,7 @@ function App() {
   // console.log(coins);
 
   return (
-    <BrowserRouter>
+    <HashRouter >
       <CoinContext.Provider
         value={{
           coins: coins,
@@ -74,7 +74,7 @@ function App() {
           </div>
         </div>
       </CoinContext.Provider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

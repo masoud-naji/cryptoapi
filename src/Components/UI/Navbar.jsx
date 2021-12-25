@@ -13,19 +13,19 @@ const Navbar = () => {
       </Link>
       <input type="checkbox" id="nav-toggle" className="nav-toggle"></input>
       <nav>
-        <ul>
-          <li>
-            <Link to="./">Home</Link>
+        <ul className="navul">
+          <li className="navli">
+            <Link className="navlink" to="./">Home</Link>
           </li>
-          <li>
-            <Link to="./Details">Info</Link>
+          <li className="navli">
+            <Link className="navlink" to="./Details">Info</Link>
           </li>
-          <li>
-            <Link to="./About">About</Link>
+          <li className="navli">
+            <Link className="navlink" to="./About">About</Link>
           </li>
         </ul>
       </nav>
-      <label for="nav-toggle" class="nav-toggle-label">
+      <label for="nav-toggle" className="nav-toggle-label">
         <span></span>
       </label>
     </header>
