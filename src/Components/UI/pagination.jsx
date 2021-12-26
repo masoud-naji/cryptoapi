@@ -16,7 +16,7 @@ const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
         pageCount={pagesCount}
         breakLabel={"..."}
         nextLabel={"»"}
-        containerClassName={"pagination  ${pgclasses.mypagination}"}
+        containerClassName={"pagination"}
         previousClassName={"page-item"}
         pageClassName={"page-item"}
         breakClassName={"page-item"}

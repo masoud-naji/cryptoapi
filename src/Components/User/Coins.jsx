@@ -10,7 +10,7 @@ import PieChart from "../../Chart/pieChart";
 import cardStyle from "./infoCard.module.css";
 import { useNavigate } from "react-router-dom";
 import GoogleTrends from "../GoogleTrend/GoogleTrends";
-import { LineChart, Line } from "recharts";
+// import { LineChart, Line } from "recharts";
 // import BasicTable from "./Table/BasicTable";
 
 function Coins() {
@@ -19,7 +19,7 @@ function Coins() {
   const [order, setOrder] = useState("ASC");
   // const [sortedCoins, setSortedCoins] = useState(coinCTX.coins);
   const navigate = useNavigate();
-  const [error, setError] = useState();
+  // const [error, setError] = useState();
   const [name, setName] = useState("");
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);

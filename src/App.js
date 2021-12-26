@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route,HashRouter  } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import Details from "./Components/User/Details";
 import Navbar from "./Components/UI/Navbar";
 import NotFound from "./Components/UI/NotFound";
@@ -10,7 +10,6 @@ import axios from "axios";
 import Chart from "./Chart/News";
 import About from "./About";
 import Twittespl from "./Twittespl";
-
 
 function App() {
   const [isPending, setIsPending] = useState(false);
@@ -38,7 +37,7 @@ function App() {
   // console.log(coins);
 
   return (
-    <HashRouter >
+    <HashRouter>
       <CoinContext.Provider
         value={{
           coins: coins,
@@ -52,19 +51,14 @@ function App() {
       >
         <div>
           <section>
-          {/* <section className={classes.Navbar}>*/}
-          {/* <section> */}
+            {/* <section className={classes.Navbar}>*/}
+            {/* <section> */}
             <Navbar />
           </section>
           <div className={styles.mainfram}>
+              {/* // <Home coins={coins} error={error} isPending={isPending} /> */}
             <Routes>
-              <Route
-                path="/"
-                element={
-                  <Home />
-                  // <Home coins={coins} error={error} isPending={isPending} />
-                }
-              ></Route>
+              <Route path="/" element={<Home />}></Route>
               <Route path="/Details" element={<Details />}></Route>
               <Route path="/News" element={<Chart />}></Route>
               <Route path="/About" element={<About />}></Route>

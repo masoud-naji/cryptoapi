@@ -36,7 +36,7 @@
   max-width: 80%;
   color: rgba(54, 162, 235, 1);
   width: 70rem;
- 
+
   max-width: 100%;
   min-width: 100%;
 }
@@ -110,26 +110,25 @@
 
 .toptable {
   margin: auto;
-  display: flex;
-  flex-grow: 4;
-  flex-direction: row;
-  flex-wrap: wrap;
+  /* width: min(90%,75rem); */
+  display: grid;
+  grid-auto-flow: column;
+
   justify-content: space-around;
-  align-items: center;
-  gap: 1rem;
 }
 
 .toptable_childL {
-  flex: 1 1 max-content;
-  justify-content: left;
+  /* flex: 1 1 max-content;
+  justify-content: left; */
+  
 }
 .toptable_childM {
-  flex: 1 1 max-content;
-  justify-content: center;
+  /* flex: 1 1 max-content;
+  justify-content: center; */
 }
 .toptable_childR {
-  flex: 1 1 inherit;
-  justify-content: right;
+  /* flex: 1 1 inherit;
+  justify-content: right; */
 }
 
 .dropdown {
@@ -143,13 +142,14 @@
 
 .dropdownsmall {
   width: 100%;
+  min-width: 4rem;
   height: 2rem;
   margin: 0 0 0.7rem 0;
   color: #000000;
   border-radius: 5px;
   padding: 0;
   background-color: rgb(102, 192, 252);
-  
+
   /* border: 1px solid rgba(54, 162, 235, 1); */
 }
 
@@ -159,7 +159,15 @@
 }
 
 /* Responsive layout - makes a one column layout (100%) instead of a two-column layout (50%) */
-@media (max-width: 965px) {
+@media screen and (max-width: 50rem) {
+  .toptable {
+    width: min(90%,75rem);
+    margin: auto;
+    display: grid;
+    grid-auto-flow: row;
+    width: 100%;
+  }
+
   .ftoptable-right,
   .ftoptable-Middle,
   .toptable-left {
@@ -250,5 +258,4 @@ iframe {
   border-radius: 10px !important;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 2px 0px,
     rgba(0, 0, 0, 0.24) 0px 2px 2px 0px;
-    
 }

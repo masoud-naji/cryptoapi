@@ -2,13 +2,13 @@ import React, { useEffect, useState, useContext } from "react";
 import style from "./UsersList.module.css";
 import classes from "../UI/Card.module.css";
 import cardStyle from "./infoCard.module.css";
-import progStyle from "./progressbar.css";
 import Card from "../UI/Card";
 // import Select from "react-select";
+import  "./progressbar.css";
 import axios from "axios";
 import CoinContext from "../../contexts/coinContext";
-import _uniqueId from "lodash/uniqueId";
-// import Readmore from "../UI/ReadMore";
+// import _uniqueId from "lodash/uniqueId";
+import infostyle from "../../about.module.css";
 import Chart from "../../Chart/News";
 import parse from "html-react-parser";
 import stock from "../../Images/stock.png";
@@ -193,90 +193,86 @@ function Details() {
                   <Chart data={foundCoins} />
                 </div>
                 <div className={classes.infodisplay}>
-                  <div className={style.toptable}>
-                    {/* ///////////////////////////////////////////////// coinselect DropDown//////////////////////////////// */}
-                    <div className={style.toptable_childL}>
-                      <select
-                        className={style.dropdownsmall}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Select Coin"
-                        value={name}
-                        // options={coinNameList}
-                      >
-                        {typeof coinCTX.coins !== "undefined" ? (
-                          coinCTX.coins.map((coin) => (
-                            <option key={coin.id} value={coin.id}>
-                              {coin.symbol}
-                            </option>
-                          ))
-                        ) : (
-                          <option value="btc">btc</option>
-                        )}
-                      </select>
-                    </div>
+                  <div
+                    style={{ background: "rgb(37, 54, 106)" }}
+                    className={classes.insidetitle}
+                  >
+                    <div className={infostyle.flextbtn}>
+                      {/* ///////////////////////////////////////////////// coinselect DropDown//////////////////////////////// */}
+                      <div>
+                        <select
+                          className={style.dropdownsmall}
+                          onChange={(e) => setName(e.target.value)}
+                          placeholder="Select Coin"
+                          value={name}
+                          // options={coinNameList}
+                        >
+                          {typeof coinCTX.coins !== "undefined" ? (
+                            coinCTX.coins.map((coin) => (
+                              <option key={coin.id} value={coin.id}>
+                                {coin.symbol}
+                              </option>
+                            ))
+                          ) : (
+                            <option value="btc">btc</option>
+                          )}
+                        </select>
+                      </div>
 
-                    {/* ///////////////////////////////////////// TimeControler DropDown////////////////////////////////////////// */}
-                    <div className={style.toptable_childM}>
-                      {/* <Select
-                        className={style.dropdown}
-                        options={timeController}
-                        onChange={setStarthandler}
-                        placeholder="Select Duration ..."
-                        defaultValue={{
-                          value: new Date().setDate(new Date().getDate() - 1),
-                          label: "1D",
-                        }}
-                      /> */}
-
-                      <select
-                        className={style.dropdownsmall}
-                        onChange={setStarthandler}
-                        placeholder="Select Duration ..."
-                        value={name}
-                      >
-                        {typeof coinCTX.coins !== "undefined" ? (
-                          timeController.map((timeC) => (
-                            <option key={timeC.value} value={timeC.value}>
-                              {timeC.label}
-                            </option>
-                          ))
-                        ) : (
-                          <option value="1D">1D</option>
-                        )}
-                      </select>
+                      {/* ///////////////////////////////////////// TimeControler DropDown////////////////////////////////////////// */}
+                      <div>
+                        <select
+                          className={style.dropdownsmall}
+                          onChange={setStarthandler}
+                          placeholder="Select Duration ..."
+                          value={name}
+                        >
+                          {typeof coinCTX.coins !== "undefined" ? (
+                            timeController.map((timeC) => (
+                              <option key={timeC.value} value={timeC.value}>
+                                {timeC.label}
+                              </option>
+                            ))
+                          ) : (
+                            <option value="1D">1D</option>
+                          )}
+                        </select>
+                      </div>
                     </div>
                   </div>
-                  {foundCoins && (
-                    <div>
-                      <h3 className={style.tableTitle}>
-                        {foundCoins.length} Records Show on chart
-                      </h3>
-                    </div>
-                  )}
+                  <div className={classes.insidecontent}>
+                    {foundCoins && (
+                      <div>
+                        <h3 className={style.tableTitle}>
+                          {foundCoins.length} Records Show on chart
+                        </h3>
+                      </div>
+                    )}
 
-                  {/* ? coinAllInfo.description.en.replace(/<[^>]+>/g, "") */}
-                  <div className={style.toptablestatus}>
-                    <ul>
-                      {coinAllInfo.status_updates.length > 0 ? (
-                        coinAllInfo.status_updates.map((descript) => (
-                          <li
-                            key={descript.created_at}
-                            className={style.tableTitle}
-                          >
-                            <p className={cardStyle.infotext}>
-                              Date: {descript.created_at} <br />
-                              Category: {descript.category}
-                            </p>
-                            {descript.description}--
-                          </li>
-                        ))
-                      ) : (
-                        <div className={style.errorMessage}>
-                          Any Event will show here if its available , we
-                          coulden't found anything for this Coin
-                        </div>
-                      )}
-                    </ul>
+                    {/* ? coinAllInfo.description.en.replace(/<[^>]+>/g, "") */}
+                    <div className={style.toptablestatus}>
+                      <ul>
+                        {coinAllInfo.status_updates.length > 0 ? (
+                          coinAllInfo.status_updates.map((descript) => (
+                            <li
+                              key={descript.created_at}
+                              className={style.tableTitle}
+                            >
+                              <p className={cardStyle.infotext}>
+                                Date: {descript.created_at} <br />
+                                Category: {descript.category}
+                              </p>
+                              {descript.description}--
+                            </li>
+                          ))
+                        ) : (
+                          <div className={style.errorMessage}>
+                            Any Event will show here if its available , we
+                            coulden't found anything for this Coin
+                          </div>
+                        )}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -290,7 +286,7 @@ function Details() {
           {/* ///////////////////////////////////////table/////////////////////////////// */}
           <Card className={`${classes.input} ${classes.topchartdetail}`}>
             <hr />
-            <p className={cardStyle.infotext}>
+            <div className={cardStyle.infotext}>
               <span title="Click to open Google Trend">
                 <a
                   href={`https://trends.google.com/trends/explore?q=${coinAllInfo.id}&geo=US`}
@@ -317,7 +313,7 @@ function Details() {
                   ? coinAllInfo.links.blockchain_site
                       .filter((sites) => sites !== "")
                       .map((site) => (
-                        <li className={cardStyle.infotext}>
+                        <li key={site} className={cardStyle.infotext}>
                           <a
                             className={cardStyle.infotext}
                             href={site}
@@ -470,7 +466,7 @@ function Details() {
                   }`
                 )}
               </details>
-            </p>
+            </div>
           </Card>
         </div>
       </Card>

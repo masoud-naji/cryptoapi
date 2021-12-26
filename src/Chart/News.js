@@ -32,10 +32,26 @@ function Chart() {
 
   // console.log(newD);
 
+  const getInnerWidth = () => {
+    const InnerWidth = 0;
+    switch (InnerWidth) {
+      case window.innerWidth < 800:
+      return  window.innerWidth / 1.4;
+      case window.innerWidth < 400:
+        return window.innerWidth / 1.8;
+      default:
+        return window.innerWidth / 2;
+    }
+  };
+
+  console.log(getInnerWidth())
+  
+  const InnerHeight = window.innerWidth / 4;
+
   const renderLineChart = (
     <LineChart
-      width={600}
-      height={300}
+      width={getInnerWidth()}
+      height={InnerHeight}
       data={newD}
       margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
     >

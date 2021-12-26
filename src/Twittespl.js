@@ -16,10 +16,9 @@ const Twittespl = () => {
   const [counterlenght, setCounterlenght] = useState("");
 
   useEffect(() => {
-    
     var Counter = "";
     if (addCounter) {
-      Counter = counterlenght+1;
+      Counter = counterlenght + 1;
     } else {
       Counter = 0;
     }
@@ -33,7 +32,7 @@ const Twittespl = () => {
     const regex = new RegExp(String.raw`\S.{1,${size - 2}}\S(?= |$)`, "g");
     var chunk = s.match(regex);
     chunk && setSTweet(chunk);
-  }, [tweet, endChar,addCounter]);
+  }, [tweet, endChar, addCounter]);
 
   async function copyTextToClipboard(text) {
     if ("clipboard" in navigator) {
@@ -79,12 +78,14 @@ const Twittespl = () => {
             dir={divDirection ? "ltr" : "rtl"}
             className={classes.clipboardinsidetext}
           >
-            <center style={{ color: "white", fontSize: "0.8rem" }}>
+            <div className={classes.insidetitle}>
               ClipBoard ➡️ Part {+clipArtforshow[1] + 1}
-            </center>
             <hr style={{ margin: "5px" }} />
+            </div>
+            <div className={classes.insidecontent}>
 
             {clipArtforshow[0]}
+            </div>
           </div>
         ) : null}
       </Card>

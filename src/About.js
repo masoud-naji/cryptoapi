@@ -4,40 +4,37 @@ import Card from "./Components/UI/Card";
 import style from "./about.module.css";
 import { Link } from "react-router-dom";
 
-
 const About = () => {
   return (
     <div className={style.container}>
       <Card
         style={{ height: "18rem" }}
         className={`${classes.clipboardinside} ${classes.topchart}`}
+        // className={`${classes.clipboardinside} ${classes.topchart}`}
       >
-        <div
-          className={`${classes.inputinside} ${style.container} `}
-          style={{ height: "16rem" }}
-        >
-          <center style={{ color: "white" }}>
-            <strong style={{ color: "white" }}>
+        <div className={classes.clipboardinsidetext}>
+          <center>
+            <strong>
               <a href="mailto:Masoud.Naji@outlook.com?subject=Resume from webSite">
-                mailto:Masoud.Naji@outlook.com
+                Masoud.Naji@outlook.com
               </a>
-              <hr />
-              <a href="https://www.linkedin.com/in/masoud-naji/">
-                https://www.linkedin.com/in/masoud-naji/
-              </a>
+              <br />
+              <a href="https://www.linkedin.com/in/masoud-naji/">linkedin</a>
               <br />
               California – Los Angeles
               <br />
               747-333-2870
             </strong>
-            <hr />
-            List Of Sample Projects ➡️ {" "}
-            
-            <Link className={style.nvbbtn} to="../Twittespl">
-              <button className={style.cta}>Twitte Splitter</button>
-            </Link>
-
           </center>
+          <hr />
+          <div className={style.flextbtn}>
+            <div>List Of Sample Projects ➡️</div>
+            <div>
+              <Link className={style.nvbbtn} to="../Twittespl">
+                <button className={style.cta}>Twitte Splitter</button>
+              </Link>
+            </div>
+          </div>
         </div>
       </Card>
 
@@ -50,7 +47,7 @@ const About = () => {
           in Web design and development of ERP application.
         </li>
         <li>
-          <strong>Overall 4+ years</strong>of extensive experience as a 
+          <strong>Overall 4+ years</strong>of extensive experience as a
           <strong>Front-End UI Developer</strong> with solid understanding of
           database designing, development, and installation of different
           modules.
@@ -61,12 +58,12 @@ const About = () => {
           XML, DHTML, XHTML, JSON
         </li>
         <li>
-          Excellent Understanding of 
+          Excellent Understanding of
           <strong>Document Object Model (DOM) </strong>and
           <strong>DOM Functions.</strong>
         </li>
         <li>
-          Excellent experience in developing web pages complying with 
+          Excellent experience in developing web pages complying with
           <strong>W3C web standards. </strong>
         </li>
         <li>

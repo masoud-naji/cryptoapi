@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useCallback } from "react";
 import { PieChart, Pie, Sector } from "recharts";
 import style from "./Chart.module.css";
-import { Link } from "react-router-dom";
+
 
 function MyPieChart(props) {
   const RADIAN = Math.PI / 180;
@@ -16,7 +16,7 @@ function MyPieChart(props) {
     endAngle,
     fill,
     payload,
-    percent,
+    // percent,
     value,
   } = props;
   const sin = Math.sin(-RADIAN * midAngle);

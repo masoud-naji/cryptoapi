@@ -55,7 +55,7 @@ header {
   top: 7px;
 }
 
-nav {
+.mainnavbar {
   position: absolute;
   text-align: left;
   top: 100%;
@@ -67,18 +67,18 @@ nav {
   transition: transform 400ms ease-in-out;
 }
 
-nav .navul {
+.mainnavbar .navul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-nav .navli {
+.mainnavbar .navli {
   margin-bottom: 1em;
   margin-left: 1em;
 }
 
-nav .navlink {
+.mainnavbar .navlink {
   color: white;
   text-decoration: none;
   font-size: 1.2rem;
@@ -173,7 +173,7 @@ nav a :hover {
     grid-column: 1 / 2;
   }
 
-  nav {
+  .mainnavbar {
     /* all: unset; */
     position: relative;
     text-align: left;
@@ -189,12 +189,12 @@ nav a :hover {
     align-items: center;
   }
 
-  nav .navlink {
+  .mainnavbar .navlink {
     opacity: 1;
     position: relative;
   }
 
-  nav .navlink::before {
+  .mainnavbar .navlink::before {
     content: "";
     display: block;
     height: 5px;
@@ -207,14 +207,14 @@ nav a :hover {
     transition: transform ease-in-out 250ms;
   }
 
-  nav .navlink:hover::before {
+  .mainnavbar .navlink:hover::before {
     transform: scale(1, 1);
   }
 
-  nav .navul {
+  .mainnavbar .navul {
     display: flex;
   }
-  nav .navli {
+  .mainnavbar .navli {
     margin-left: 3em;
     margin-bottom: 0;
   }
