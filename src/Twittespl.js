@@ -80,16 +80,13 @@ const Twittespl = () => {
           >
             <div className={classes.insidetitle}>
               ClipBoard ➡️ Part {+clipArtforshow[1] + 1}
-            <hr style={{ margin: "5px" }} />
+              <hr style={{ margin: "5px" }} />
             </div>
-            <div className={classes.insidecontent}>
-
-            {clipArtforshow[0]}
-            </div>
+            <div className={classes.insidecontent}>{clipArtforshow[0]}</div>
           </div>
         ) : null}
       </Card>
-      <div className={style.twitterdiv} dir={divDirection ? "ltr" : "rtl"}>
+      <div className={style.twitterdiv}>
         <div className={style.flextbtn}>
           <button
             className={style.languagebtn}
@@ -102,67 +99,76 @@ const Twittespl = () => {
             className={style.languagebtn}
             onClick={(e) => setAddCounter(!addCounter)}
           >
-            {!addCounter ? "Add Counter 🔢" : "Del Counter 🔠"}
+            {!addCounter ? " Add Counter  🔢 " : " Del Counter  🔠 "}
+          </button>
+          <button
+            className={style.languagebtn}
+            onClick={() => (tweet !== "" ? setTweet("") : setEndChar(""))}
+          >
+            Clear Boxes 🆑
           </button>
         </div>
-        <InputEmoji
-          value={tweet}
-          onChange={setTweet}
-          placeholder="Type a message "
-          style={{ whiteSpace: "pre-line" }}
-        />
+        <form dir={divDirection ? "ltr" : "rtl"}>
+          {/* <InputEmoji
+            value={tweet}
+            onChange={setTweet}
+            placeholder="Type a message "
+            style={{ whiteSpace: "pre-line" }}
+          /> */}
 
-        {/* <textarea
+          <textarea
           value={tweet}
           onChange={(e) => setTweet(e.target.value)}
           placeholder="Type a message "
-          style={{ width:"100%" }}
-        ></textarea> */}
+            // style={{ width: "100%" }}
+            className={style.textareamain}
+        ></textarea>
 
-        <InputEmoji
-          value={endChar}
-          onChange={setEndChar}
-          onEnter={setEndChar}
-          placeholder="Type next indicator 15Chr Max"
-          maxLength={15}
-        />
+          <InputEmoji
+            value={endChar}
+            onChange={setEndChar}
+            onEnter={setEndChar}
+            placeholder="Type next indicator 15Chr Max"
+            maxLength={15}
+          />
 
-        <hr />
-        <div className={classes.inputinside}>
-          <ul>
-            {Stweet !== null && Stweet.length
-              ? Object.entries(Stweet).map(([key, tweets]) => (
-                  <li
-                    key={tweets.index}
-                    className={style.litweet}
-                    style={
-                      addCounter
-                        ? { listStyleType: "none" }
-                        : { listStyleType: "decimal" }
-                    }
-                    onClick={(e) => handleCopyClick(tweets, key, endChar)}
-                  >
-                    {addCounter ? +key + 1 + "." : ""}
-                    {tweets}
-                    {endChar}
-                    <br />
-                    <button
-                      className={style.languagebtn}
-                      onClick={(e) => {
-                        handleCopyClick(tweets, key, endChar);
-                      }}
+          <hr />
+          <div className={classes.inputinside}>
+            <ul>
+              {Stweet !== null && Stweet.length
+                ? Object.entries(Stweet).map(([key, tweets]) => (
+                    <li
+                      key={tweets.index}
+                      className={style.litweet}
+                      style={
+                        addCounter
+                          ? { listStyleType: "none" }
+                          : { listStyleType: "decimal" }
+                      }
+                      onClick={(e) => handleCopyClick(tweets, key, endChar)}
                     >
-                      <span>
-                        ({tweets.length} Charecter )
-                        {isCopied ? " Copied! " : " Copy "}
-                      </span>
-                    </button>
-                    <hr />
-                  </li>
-                ))
-              : ""}
-          </ul>
-        </div>
+                      {addCounter ? +key + 1 + "." : ""}
+                      {tweets}
+                      {endChar}
+                      <br />
+                      <button
+                        className={style.languagebtn}
+                        onClick={(e) => {
+                          handleCopyClick(tweets, key, endChar);
+                        }}
+                      >
+                        <span>
+                          ({tweets.length} Charecter )
+                          {isCopied ? " Copied! " : " Copy "}
+                        </span>
+                      </button>
+                      <hr />
+                    </li>
+                  ))
+                : ""}
+            </ul>
+          </div>
+        </form>
       </div>
     </div>
   );

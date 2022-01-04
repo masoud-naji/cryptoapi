@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import Card from "./Components/UI/Card";
 import classes from "./Components/User/AddUser.module.css";
+import Coins from "./Components/User/Coins";
+import CoinContext from "./contexts/coinContext";
 // import { useHistory } from "react-router";
 // import ShowWithAnimation from "./Components/CustomHooks/ShowWithDelay";
 // import heroimage from "./Images/Business_SVG.svg";
-import Coins from "./Components/User/Coins";
-import CoinContext from "./contexts/coinContext";
 
 const Home = () => {
   const coinCTX = useContext(CoinContext);
@@ -44,3 +44,4 @@ export default Home;
 //npm i react-load-script
 //npm i react-scripts
 //npm install react-input-emoji --save
+//npm install browser-image-compression --save

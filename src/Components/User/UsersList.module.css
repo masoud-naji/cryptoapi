@@ -26,6 +26,8 @@
   font-size: small;
   max-width: 80%;
   color: rgba(54, 162, 235, 1);
+  overflow-x: hidden;
+white-space: pre-line;
 }
 .toptablestatus {
   text-align: center;

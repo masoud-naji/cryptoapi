@@ -40,11 +40,17 @@ a {
 .flextbtn {
   display: flex;
   top: 0;
-  margin: 0 atuo auto auto;
+  margin: 0 auto auto auto;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   width: 80%;
+}
+.textareamain {
+  border-radius: 0.5rem;
+  width: 100%;
+  resize: initial;
+  height: 6rem;
 }
 
 .languagebtn {
@@ -103,10 +109,23 @@ a {
   color: black;
 }
 
+
+
 @media only screen and (max-width: 50rem) {
   .languagebtn {
-    right: 0;
-    overflow: visible;
+    margin: 1rem 0 1rem 0;
     width: 100%;
+    font: inherit;
+    font-size: 0.5rem;
+    font-weight: 600;
+    border: 1px solid rgba(54, 162, 235, 1);
+    border-radius: 0.5rem;
+    background: rgba(54, 162, 235, 0.2);
+    color: rgb(32, 49, 100);
+    padding: 0.25rem 1rem;
+    cursor: pointer;
+    transition: color 250ms ease-in, background 250ms ease-in;
+    min-width: 3rem;
+    height: 3rem;
   }
 }
