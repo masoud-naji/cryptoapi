@@ -24,6 +24,13 @@ const About = () => {
               California – Los Angeles
               <br />
               747-333-2870
+              <br />
+              <a href="./needs/Masoud_Naji.pdf" download>
+                <button className={style.cta}>Download PDF Resume</button>
+              </a>
+              <a href="./needs/Masoud_Naji.docx" download>
+                <button className={style.cta}>Download Word Resume</button>
+              </a>
             </strong>
           </center>
           <hr />
@@ -33,6 +40,7 @@ const About = () => {
               <Link className={style.nvbbtn} to="../Twittespl">
                 <button className={style.cta}>Twitte Splitter</button>
               </Link>
+              <br />
               <Link className={style.nvbbtn} to="../inventory">
                 <button className={style.cta}>inventory</button>
               </Link>
@@ -45,6 +53,7 @@ const About = () => {
         <h2>
           <strong>Front End Developer</strong>
         </h2>
+
         <ul className={style.ulabout}>
           <li>
             <strong>Overall 8+</strong> years of Information Technology

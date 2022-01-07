@@ -15,10 +15,10 @@ export default function InventoryCHart(props) {
   const numbertwo = props.items[1];
   const numberthree = props.items[2];
 
-  console.log(props.items);
-  console.log(numberone);
-  console.log(numbertwo);
-  console.log(numberthree);
+  // console.log(props.items);
+  // console.log(numberone);
+  // console.log(numbertwo);
+  // console.log(numberthree);
 
   if (data.length <= 0 || typeof data === undefined) {
     console.log(data);

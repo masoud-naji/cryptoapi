@@ -54,9 +54,9 @@ function Chart() {
   const InnerWidth = getInnerWidth();
   const InnerHeight = getInnerWidth() / 2;
 
-  console.log(window.innerWidth);
-  console.log(InnerWidth);
-  console.log(InnerHeight);
+  // console.log(window.innerWidth);
+  // console.log(InnerWidth);
+  // console.log(InnerHeight);
 
   const renderLineChart = (
     <LineChart

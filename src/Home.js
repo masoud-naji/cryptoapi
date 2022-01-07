@@ -45,3 +45,5 @@ export default Home;
 //npm i react-scripts
 //npm install react-input-emoji --save
 //npm install browser-image-compression --save
+//npm i xlsx
+//npm i json-as-xlsx

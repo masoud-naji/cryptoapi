@@ -4,7 +4,7 @@ import classes from "../UI/Card.module.css";
 import cardStyle from "./infoCard.module.css";
 import Card from "../UI/Card";
 // import Select from "react-select";
-import  "./progressbar.css";
+import "./progressbar.css";
 import axios from "axios";
 import CoinContext from "../../contexts/coinContext";
 // import _uniqueId from "lodash/uniqueId";
@@ -15,6 +15,8 @@ import stock from "../../Images/stock.png";
 import stock2 from "../../Images/stock2.png";
 import stock3 from "../../Images/stock3.png";
 import stock4 from "../../Images/stock4.png";
+import { split } from "lodash";
+// import { stream } from "xlsx";
 
 // import googleTrendShow from "../GoogleTrend/GoogleTrendShow";
 // import Script from "react-load-script";
@@ -29,7 +31,7 @@ function Details() {
   const [isItLoading, setIsItLoading] = useState(true);
   const [isItLoadingCoinDetail, setIsItLoadingCoinDetail] = useState(true);
   const [coinAllInfo, setCoinAllInfo] = useState([]);
-
+  const [timeLabale, settimeLabale] = useState("");
   ////////////////////////////////////////////////duration Cotrol maker/////////////////////////////////////////
   const [startTime, setStartTime] = useState(
     (new Date(Date.now()).getTime() / 1000 - 86400).toFixed(0)
@@ -38,8 +40,7 @@ function Details() {
     (new Date(Date.now()).getTime() / 1000).toFixed(0)
   );
   const timeController = [
-    // { value: new Date().setHours(new Date().getHours() - 1), label: "1H" },
-    // { value: new Date().setHours(new Date().getHours() - 4), label: "4H" },
+    { value: new Date().setHours(new Date().getHours() - 4), label: "4H" },
     { value: new Date().setDate(new Date().getDate() - 1), label: "1D" },
     { value: new Date().setDate(new Date().getDate() - 7), label: "7D" },
     { value: new Date().setMonth(new Date().getMonth() - 1), label: "1M" },
@@ -54,16 +55,16 @@ function Details() {
     },
   ];
   const setStarthandler = (event) => {
-    setStartTime(Math.round(event.target.value / 1000));
+    const alldata = event.target.value;
+    const alldatavalue = split(alldata, ",")[0];
+    const alldataLabel = split(alldata, ",")[1];
+
+    console.log(alldatavalue);
+    console.log(alldataLabel);
+    setStartTime(Math.round(+alldatavalue / 1000));
+    settimeLabale(alldataLabel);
   };
   ////////////////////////////////////////////////////////////////////////////////////////////////
-
-  // const handleKeyDown = (e) => {
-  //   const keyword = e.target.value;
-  //   if (e.key === "Enter") {
-  //     setName(keyword);
-  //   }
-  // };
 
   useEffect(() => {
     const getCoinNews = () =>
@@ -153,6 +154,8 @@ function Details() {
     </div>
   );
 
+  // console.log(startTime);
+
   if (isItLoading) {
     return (
       <Card className={classes.card}>
@@ -223,21 +226,47 @@ function Details() {
                       <div>
                         <select
                           className={style.dropdownsmall}
-                          onChange={setStarthandler}
+                          onChange={(e) => setStarthandler(e)}
+                          // onChange={(e) => alert(e.target.value)}
                           placeholder="Select Duration ..."
-                          value={name}
+                          // value={startTime}
                         >
-                          {typeof coinCTX.coins !== "undefined" ? (
-                            timeController.map((timeC) => (
-                              <option key={timeC.value} value={timeC.value}>
-                                {timeC.label}
-                              </option>
-                            ))
-                          ) : (
-                            <option value="1D">1D</option>
-                          )}
+                          <>
+                            <option value={Object.values(timeController[0])}>
+                              4H
+                            </option>
+                            <option value={Object.values(timeController[1])}>
+                              1D
+                            </option>
+                            <option value={Object.values(timeController[2])}>
+                              7D
+                            </option>
+                            <option value={Object.values(timeController[3])}>
+                              1M
+                            </option>
+                            <option value={Object.values(timeController[4])}>
+                              3M
+                            </option>
+                            <option value={Object.values(timeController[5])}>
+                              1Y
+                            </option>
+                            <option value={Object.values(timeController[6])}>
+                              5Y
+                            </option>
+                                                      
+                            {/* {typeof coinCTX.coins !== "undefined" ? (
+                              timeController.map((timeC) => (
+                                <option key={timeC.value} value={Object.values(timeC)}>
+                                  {timeC.label}
+                                </option>
+                              ))
+                            ) : (
+                              <option value="1D">1D</option>
+                            )} */}
+                          </>
                         </select>
                       </div>
+                      {/* ///////////////////////////////////////// ////////////////////////////////////////// */}
                     </div>
                   </div>
                   <div className={classes.insidecontent}>
@@ -435,26 +464,6 @@ function Details() {
                   </Card>
                 </div>
               </div>
-              {/* ////////////////////////////////////////second line of detail///////////////////////////////////////// */}
-
-              {/* {googleTrendShow(coinAllInfo.name)} */}
-              {/* ///////////////////////////////iframe approuch/////////////// */}
-              {/* <iframe
-              id="trends-widget-1"
-              title="trends-widget-1"
-              src="https://trends.google.com:443/trends/embed/explore/TIMESERIES?req=%7B%22comparisonItem%22%3A%5B%7B%22keyword%22%3A%22%5B'crypto%20currency'%5D%22%2C%22geo%22%3A%22%22%2C%22time%22%3A%222009-01-01%202021-12-02%22%7D%5D%2C%22category%22%3A0%2C%22property%22%3A%22%22%7D&amp;tz=480&amp;eq=q%3D'bitcoin'%26date%3Dall%26geo%3D"
-              width="100%"
-              height="500rem"
-              frameborder="0"
-              scrolling="0"
-              
-            ></iframe> */}
-              {/* ///////////////////////////////////////////////////////////GoogleTrend////////////////////////////////////////////////////////////////////// */}
-              {/* <Readmore maxCharecterCount={100}>
-                {coinAllInfo.description.en
-                  ? coinAllInfo.description.en.replace(/<[^>]+>/g, "")
-                  : ""}
-                              </Readmore> */}
 
               <details style={{ color: "rgb(57,133,197)" }}>
                 <summary className={cardStyle.infotext}>

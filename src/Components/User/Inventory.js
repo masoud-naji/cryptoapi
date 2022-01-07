@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./inventory.css";
 import * as XLSX from "xlsx";
+import xlsx from "json-as-xlsx";
 import classes from "../UI/Card.module.css";
 import cardStyle from "./infoCard.module.css";
 import Card from "../UI/Card";
 import InventoryCHart from "../../Chart/inventoryChart";
-// import infostyle from "../../about.module.css";
 import Svgimage from "../../Images/Business_SVG.svg";
+// import MOCK_DATA from "./MOCK_DATA.json";
 
 const Inventory = () => {
   const [items, setItems] = useState([]);
@@ -14,40 +15,64 @@ const Inventory = () => {
   const [filterValue, setFilterValue] = useState("");
   const [filterdList, setfilterdList] = useState([]);
   const [checkedState, setCheckedState] = useState([]);
-
+  const [errorData, setErrorData] = useState("");
   useEffect(() => {
-    // console.log(chartElemet.length);
-    items.length > 0 && console.log(Object.keys(items[0]).length);
-
     items.length > 0 &&
       setCheckedState(Array(Object.keys(items[0]).length).fill(false));
-
-    // console.log("new check lenght is " + checkedState.length);
   }, [items]);
 
   const readExcel = (file) => {
-    const promise = new Promise((resolve, reject) => {
+    if (!file || file.length === 0) {
+      return;
+    }
+    console.log(typeof file);
+    var resultFile = {};
+    console.log(typeof resultFile);
+    const name = file.name;
+    const lastDot = name.lastIndexOf(".");
+    const fileName = name.substring(0, lastDot);
+    const ext = name.substring(lastDot + 1);
+    console.log(`this is the ${ext}`);
+    // Reading JSON from input
+    if (ext === "json") {
       const fileReader = new FileReader();
-      fileReader.readAsArrayBuffer(file);
-
-      fileReader.onload = (e) => {
-        const bufferArray = e.target.result;
-        const wb = XLSX.read(bufferArray, { type: "buffer" });
-        const wsname = wb.SheetNames[0];
-        const ws = wb.Sheets[wsname];
-        const data = XLSX.utils.sheet_to_json(ws);
-        resolve(data);
+      fileReader.onloadend = () => {
+        try {
+          setItems(JSON.parse(fileReader.result));
+          setfilterdList(JSON.parse(fileReader.result));
+          setChartElemet([]);
+          console.log(JSON.parse(fileReader.result));
+          setErrorData(null);
+        } catch (e) {
+          setErrorData("**Not valid JSON file!**");
+        }
       };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
+      if (file !== undefined) fileReader.readAsText(file, "UTF-8");
+    } else {
+      resultFile = file; // Reading all Other formates as well
+      const promise = new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.readAsArrayBuffer(resultFile);
 
-    promise.then((d) => {
-      setItems(d);
-      setfilterdList(d);
-      setChartElemet([]);
-    });
+        fileReader.onload = (e) => {
+          const bufferArray = e.target.result;
+          const wb = XLSX.read(bufferArray, { type: "buffer" });
+          const wsname = wb.SheetNames[0];
+          const ws = wb.Sheets[wsname];
+          const data = XLSX.utils.sheet_to_json(ws);
+          resolve(data);
+        };
+        fileReader.onerror = (error) => {
+          reject(error);
+        };
+      });
+
+      promise.then((d) => {
+        setItems(d);
+        setfilterdList(d);
+        setChartElemet([]);
+      });
+    }
   };
 
   // chekbox add or remove item check if its more than 3 check this https://www.freecodecamp.org/news/how-to-work-with-multiple-checkboxes-in-react/
@@ -82,24 +107,30 @@ const Inventory = () => {
 
   const filterHandler = (e) => {
     const filterWord = e.target.value;
-
-    if (filterWord !== "") {
-      const newlist = items.filter((nlist) => {
-        return Object.values(nlist)[0]
-          .toLowerCase()
-          .includes(filterWord.toLowerCase());
-      });
-      setfilterdList(newlist);
-    } else {
-      setfilterdList(items);
+    console.log(items.length);
+    try {
+      if (filterWord !== "" && items.length > 0) {
+        console.log(items);
+        const newlist = items.filter((nlist) => {
+          return Object.values(nlist)
+            .toString()
+            .toLowerCase()
+            .includes(filterWord.toString().toLowerCase());
+        });
+        setfilterdList(newlist);
+      } else {
+        setfilterdList(items);
+      }
+      setFilterValue(filterWord);
+    } catch (error) {
+      alert("Something wnt wrong with Search " + error);
     }
-    setFilterValue(filterWord);
   };
 
-  console.log(checkedState);
-  console.log(checkedState.length);
-  console.log(checkedState.filter(Boolean).length);
-  console.log(chartElemet);
+  // console.log(checkedState);
+  // console.log(checkedState.length);
+  // console.log(checkedState.filter(Boolean).length);
+  // console.log(chartElemet);
 
   return (
     <div>
@@ -113,7 +144,7 @@ const Inventory = () => {
             <div>
               <img
                 src={Svgimage}
-                style={{ width: "60%", marginLeft: "2rem" }}
+                style={{ width: "40%", marginLeft: "2rem" }}
               />
             </div>
           )}
@@ -123,10 +154,11 @@ const Inventory = () => {
               className={cardStyle.container}
               className={classes.card}
             >
-              {/* ////////////////////////////  Browose file //////////////////////////////// */}
+              {/* ////////////////////////////  Browose resultFile //////////////////////////////// */}
               <div class={cardStyle.tableContainer}>
                 <input
                   type="file"
+                  accept=".xlsx,.xlsm,.xlsb,.xls,xlw,.xlr,.csv,.json,.JSON"
                   onChange={(e) => {
                     const file = e.target.files[0];
                     readExcel(file);
@@ -159,12 +191,12 @@ const Inventory = () => {
               {/* ////////////////////////////  Chart List //////////////////////////////// */}
               <div class={cardStyle.tableContainer}>
                 {chartElemet && (
-                  <>                   
+                  <>
                     {
                       <ul>
-                        <li>1-X-axis ➡️  {chartElemet[0]} </li>
-                        <li>2-Y-axis ➡️  {chartElemet[1]} </li>
-                        <li>3-Items  ➡️  {chartElemet[2]} </li>
+                        <li>1-X-axis ➡️ {chartElemet[0]} </li>
+                        <li>2-Y-axis ➡️ {chartElemet[1]} </li>
+                        <li>3-Items ➡️ {chartElemet[2]} </li>
                       </ul>
                     }
                   </>

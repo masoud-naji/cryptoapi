@@ -16,6 +16,8 @@
     "google-trends-api": "^4.9.2",
     "html-react-parser": "^1.4.0",
     "html-to-text": "^8.1.0",
+    "json-as-xlsx": "^2.3.10",
+    "load-json-file": "^7.0.1",
     "lodash": "^4.17.21",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
