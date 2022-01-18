@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./inventory.css";
 import * as XLSX from "xlsx";
-import xlsx from "json-as-xlsx";
+// import xlsx from "json-as-xlsx";
 import classes from "../UI/Card.module.css";
 import cardStyle from "./infoCard.module.css";
 import Card from "../UI/Card";
@@ -25,14 +25,14 @@ const Inventory = () => {
     if (!file || file.length === 0) {
       return;
     }
-    console.log(typeof file);
+    // console.log(typeof file);
     var resultFile = {};
-    console.log(typeof resultFile);
+    // console.log(typeof resultFile);
     const name = file.name;
     const lastDot = name.lastIndexOf(".");
     const fileName = name.substring(0, lastDot);
     const ext = name.substring(lastDot + 1);
-    console.log(`this is the ${ext}`);
+    // console.log(`this is the ${ext}`);
     // Reading JSON from input
     if (ext === "json") {
       const fileReader = new FileReader();
@@ -62,8 +62,8 @@ const Inventory = () => {
           const data = XLSX.utils.sheet_to_json(ws);
           resolve(data);
         };
-        fileReader.onerror = (error) => {
-          reject(error);
+        fileReader.onerror = (errorData) => {
+          reject(errorData);
         };
       });
 
@@ -78,7 +78,7 @@ const Inventory = () => {
   // chekbox add or remove item check if its more than 3 check this https://www.freecodecamp.org/news/how-to-work-with-multiple-checkboxes-in-react/
 
   const checkHandler = (e, position, item) => {
-    console.log(checkedState[position]);
+    // console.log(checkedState[position]);
     if (checkedState[position] == false) {
       if (checkedState.filter(Boolean).length < 3) {
         const updatedCheckedState = checkedState.map((chItem, index) => {
@@ -155,7 +155,7 @@ const Inventory = () => {
               className={classes.card}
             >
               {/* ////////////////////////////  Browose resultFile //////////////////////////////// */}
-              <div class={cardStyle.tableContainer}>
+              <div className={cardStyle.tableContainer}>
                 <input
                   type="file"
                   accept=".xlsx,.xlsm,.xlsb,.xls,xlw,.xlr,.csv,.json,.JSON"
@@ -166,7 +166,7 @@ const Inventory = () => {
                 />
               </div>
               {/* ///////////////////////////////////////// info////////////////////////////////////////// */}
-              <div class={cardStyle.tableContainer}>
+              <div className={cardStyle.tableContainer}>
                 {filterdList && (
                   <div>
                     <br />
@@ -179,7 +179,7 @@ const Inventory = () => {
                 )}
               </div>
               {/* ////////////////////////////  filter //////////////////////////////// */}
-              <div class={cardStyle.tableContainer}>
+              <div className={cardStyle.tableContainer}>
                 <input
                   style={{ width: "fit-content" }}
                   type="text"
@@ -189,7 +189,7 @@ const Inventory = () => {
                 />
               </div>
               {/* ////////////////////////////  Chart List //////////////////////////////// */}
-              <div class={cardStyle.tableContainer}>
+              <div className={cardStyle.tableContainer}>
                 {chartElemet && (
                   <>
                     {
@@ -209,7 +209,7 @@ const Inventory = () => {
         </div>
       </Card>
 
-      <table class="table container">
+      <table className="table container">
         <thead>
           <tr>
             {items.length > 0 ? (
@@ -249,7 +249,7 @@ const Inventory = () => {
             {items.length > 0  ? <th scope="col">{Object.keys(items[0])[6]}</th>: <th scope="col"></th>} */}
         </thead>
         <tbody>
-          <rowsinfo />
+          {/* <rowsinfo /> */}
 
           {items &&
             filterdList.map((d) => (

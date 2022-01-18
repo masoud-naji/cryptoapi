@@ -81,3 +81,10 @@
     width: 100%;
   }
 }
+
+.homebackground{
+  background-image: url("../../Images/galaxy.webp")!important;
+  width: 100vw!important;
+  height: 80vh!important;
+  
+}

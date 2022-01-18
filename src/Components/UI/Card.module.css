@@ -1,6 +1,6 @@
 .card {
   border: 1px solid rgba(54, 162, 235, 1);
-  background: rgba(54, 162, 235, 0.2);
+  background: rgba(54, 162, 235, 0.6);
   color: rgb(50, 4, 255);
 
   /* cursor: pointer; */
@@ -15,14 +15,14 @@
 }
 
 .clipboardinside {
-  height: 18rem;
-  min-height: 18rem;
-  max-height: 18rem;
+  height: fit-content;
+  min-height: 8rem;
+  /* max-height: fit-content; */
 }
 .clipboardinsidetext {
   color: rgb(37, 54, 106) !important;
-  height: 16rem;
-  min-height: 10rem;
+  height: fit-content;
+  /* min-height: 10rem; */
   overflow-y: scroll;
   font-weight: 600;
   font-size: 0.8rem;
@@ -130,14 +130,12 @@
 
 @media screen and (max-width: 50rem) {
   .clipboardinside {
-    height: 10rem;
-    min-height: 10rem;
-    max-height: 10rem;
+    /* height: 10rem; */
   }
   .clipboardinsidetext {
     color: rgb(37, 54, 106) !important;
-    height: 8rem;
-    min-height: 8rem;
+    /* height: 8rem; */
+    min-height: 100%;
     overflow-y: scroll;
     font-weight: 600;
     font-size: 0.88rem;

@@ -4,6 +4,7 @@ import classes from "./Components/UI/Card.module.css";
 import Card from "./Components/UI/Card";
 import style from "./about.module.css";
 import InputEmoji from "react-input-emoji";
+import LoremMaker from "./Components/UI/LoremMaker";
 
 const Twittespl = () => {
   const [tweet, setTweet] = useState("");
@@ -25,9 +26,9 @@ const Twittespl = () => {
     var s = tweet;
 
     const size = 280 - endChar.length - Counter;
-    console.log(size);
-    console.log(endChar.length);
-    console.log(Counter);
+    // console.log(size);
+    // console.log(endChar.length);
+    // console.log(Counter);
 
     const regex = new RegExp(String.raw`\S.{1,${size - 2}}\S(?= |$)`, "g");
     var chunk = s.match(regex);
@@ -65,7 +66,9 @@ const Twittespl = () => {
       });
   };
 
-  // console.log(clipArtforshow[0].length);
+  const setlorem = (newValue) => {
+    setTweet(newValue);
+  };
 
   return (
     <div className={style.container}>
@@ -82,7 +85,7 @@ const Twittespl = () => {
               ClipBoard ➡️ Part {+clipArtforshow[1] + 1}
               <hr style={{ margin: "5px" }} />
             </div>
-            <div className={classes.insidecontent}>{clipArtforshow[0]}</div>
+            <div className={classes.insidecontent} >{clipArtforshow[0]}</div>
           </div>
         ) : null}
       </Card>
@@ -103,26 +106,26 @@ const Twittespl = () => {
           </button>
           <button
             className={style.languagebtn}
-            onClick={() => (tweet !== "" ? setTweet("") : setEndChar(""))}
+            onClick={() => (tweet !== "" ? (setTweet("") ,setSTweet(""))  : setEndChar(""))}
           >
             Clear Boxes 🆑
           </button>
         </div>
+        <button className={style.languagebtn} style={{ color: "#CCC" ,height:"fit-content"}}>
+          <details style={{ color: "#CCC" }}>
+            <summary>- Lorem Maker</summary>
+            <div>
+               <LoremMaker onChange={setlorem} />
+            </div>
+          </details>
+        </button>
         <form dir={divDirection ? "ltr" : "rtl"}>
-          {/* <InputEmoji
-            value={tweet}
-            onChange={setTweet}
-            placeholder="Type a message "
-            style={{ whiteSpace: "pre-line" }}
-          /> */}
-
           <textarea
-          value={tweet}
-          onChange={(e) => setTweet(e.target.value)}
-          placeholder="Type a message "
-            // style={{ width: "100%" }}
+            value={tweet}
+            onChange={(e) => setTweet(e.target.value)}
+            placeholder="Type a message "
             className={style.textareamain}
-        ></textarea>
+          ></textarea>
 
           <InputEmoji
             value={endChar}

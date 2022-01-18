@@ -145,32 +145,18 @@ function Coins() {
         </div>
         <hr />
 
-        <details style={{ color: "rgb(57,133,197)" }}>
+        {/* <details style={{ color: "rgb(57,133,197)" }}>
           <summary className={cardStyle.infotext}>Trends Infograph</summary>
-
           <div className={cardStyle.container2}>
             <div className={cardStyle.tableContainer2}>
               <Card className={cardStyle.mycard2}>
-                <div id="widget">
-                  <GoogleTrends
-                    type="RELATED_TOPICS"
-                    keyword="crypto Currency"
-                    url="https://ssl.gstatic.com/trends_nrtr/2051_RC11/embed_loader.js"
-                  />
-                </div>
-                <div id="widget">
-                  <GoogleTrends
-                    type="TIMESERIES"
-                    keyword="crypto Currency"
-                    url="https://ssl.gstatic.com/trends_nrtr/2051_RC11/embed_loader.js"
-                  />
-                </div>
+                <div id="widget"></div>
+                <div id="widget"></div>
               </Card>
             </div>
           </div>
         </details>
-        <hr />
-
+        <hr /> */}
         {/* ///////////////Search///////////////// */}
         <div className={style.toptable}>
           <div className={style.toptable_childL}>

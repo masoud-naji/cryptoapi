@@ -1,6 +1,6 @@
-* {
+/* * {
   box-sizing: border-box;
-}
+} */
 
 .users {
   margin: 2rem auto;
@@ -27,7 +27,7 @@
   max-width: 80%;
   color: rgba(54, 162, 235, 1);
   overflow-x: hidden;
-white-space: pre-line;
+  white-space: pre-line;
 }
 .toptablestatus {
   text-align: center;
@@ -122,7 +122,6 @@ white-space: pre-line;
 .toptable_childL {
   /* flex: 1 1 max-content;
   justify-content: left; */
-  
 }
 .toptable_childM {
   /* flex: 1 1 max-content;
@@ -163,7 +162,7 @@ white-space: pre-line;
 /* Responsive layout - makes a one column layout (100%) instead of a two-column layout (50%) */
 @media screen and (max-width: 50rem) {
   .toptable {
-    width: min(90%,75rem);
+    width: min(90%, 75rem);
     margin: auto;
     display: grid;
     grid-auto-flow: row;
@@ -260,4 +259,72 @@ iframe {
   border-radius: 10px !important;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 2px 0px,
     rgba(0, 0, 0, 0.24) 0px 2px 2px 0px;
+}
+
+.cover {
+  z-index: 99;
+  background-color: rgb(1, 2, 8);
+  margin-top: -2rem;
+  width: 100vw;
+  height: 200vh;
+}
+
+.homebackground {
+  background-image: url("../../Images/galaxy.webp") !important;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.grid {
+  padding: 2rem;
+  height: 80vh;
+  color: white;
+  font-size: medium;
+  font-weight: 400;
+  display: grid;
+  gap: 2rem;
+}
+.gridInside {
+  color: white !important;
+  font-size: medium;
+  font-weight: 400;
+  /* border: #0f0 2px solid; */
+}
+.gridInside * {
+  color: white !important;
+  list-style-type: square !important;
+}
+
+.gridInside img,
+.minilist {
+  border-width: 3px;
+  border-style: solid;
+  border-image: linear-gradient(to bottom, rgb(238, 134, 234), rgba(0, 0, 0, 0))
+    1 100%;
+}
+
+.imageslider {
+  width: 100vw;
+}
+
+@media (min-width: 50rem) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .gridInside:last-child {
+    grid-column-start: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+  .gridColSpan2 {
+    grid-column: span 2;
+  }
+  .imageslider {
+    width: 100vw;
+    height: 40rem;
+    min-height: 40rem;
+    max-height: 40rem;
+  }
 }

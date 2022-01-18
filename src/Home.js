@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Card from "./Components/UI/Card";
 import classes from "./Components/User/AddUser.module.css";
-import Coins from "./Components/User/Coins";
+import First from "./Components/User/First";
 import CoinContext from "./contexts/coinContext";
 // import { useHistory } from "react-router";
 // import ShowWithAnimation from "./Components/CustomHooks/ShowWithDelay";
@@ -10,7 +10,8 @@ import CoinContext from "./contexts/coinContext";
 const Home = () => {
   const coinCTX = useContext(CoinContext);
   return (
-    <div>
+
+    <div >
        {coinCTX.error && (
         <Card className={classes.input}>
           <h2>{coinCTX.error}</h2>
@@ -23,7 +24,8 @@ const Home = () => {
       )}
       {coinCTX.coins && (
         <div>
-          <Coins />
+          {/* <Coins /> */}
+          <First/>
         </div>
       )}
     </div>
@@ -40,10 +42,14 @@ export default Home;
 //npm i react-router
 //npm install -S react-router-dom
 //npm i react-select
-// npm install html-to-text
+//npm install html-to-text
 //npm i react-load-script
 //npm i react-scripts
 //npm install react-input-emoji --save
 //npm install browser-image-compression --save
 //npm i xlsx
 //npm i json-as-xlsx
+//npm i react-lorem-ipsum
+//npm i react-alice-carousel --save
+// npm i sass
+//npm install node-sass

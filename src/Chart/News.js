@@ -36,7 +36,7 @@ function Chart() {
     var WindowWidth = window.innerWidth;
     switch (true) {
       case WindowWidth < 400:
-        WindowWidth = WindowWidth;
+        WindowWidth = window.innerWidth;
         break;
       case WindowWidth < 800:
         WindowWidth = 500;

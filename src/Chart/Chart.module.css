@@ -1,13 +1,13 @@
-* {
+/* * {
   box-sizing: border-box;
-}
+} */
 
 .App {
   font-family: sans-serif;
   text-align: center;
 }
 
-a:link {
+/* a:link {
   text-decoration: none;
   color: rgb(183, 225, 253);
   font-family: "Quicksand";
@@ -29,13 +29,13 @@ a:active {
   text-decoration: none;
   color: rgb(183, 225, 253);
   font-family: "Quicksand";
-}
+} */
 .users {
   margin: 2rem auto;
   width: 80%;
   max-width: 80%;
 }
-
+/* 
 .users ul {
   list-style: none;
   padding: 1rem;
@@ -45,7 +45,7 @@ a:active {
   border: 1px solid #ccc;
   margin: 0.5rem 0;
   padding: 0.5rem;
-}
+} */
 .tableTitle {
   text-align: center;
   align-items: center;

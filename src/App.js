@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
 import Details from "./Components/User/Details";
-import Navbar from "./Components/UI/Navbar";
+import MyNavbar from "./Components/UI/Navbar";
 import NotFound from "./Components/UI/NotFound";
 import Home from "./Home";
 import styles from "./App.module.css";
@@ -9,8 +9,10 @@ import CoinContext from "./contexts/coinContext";
 import axios from "axios";
 import Chart from "./Chart/News";
 import About from "./About";
+import Coins from "./Components/User/Coins";
 import Twittespl from "./Twittespl";
 import Inventory from "./Components/User/Inventory";
+
 
 function App() {
   const [isPending, setIsPending] = useState(false);
@@ -54,17 +56,19 @@ function App() {
           <section>
             {/* <section className={classes.Navbar}>*/}
             {/* <section> */}
-            <Navbar />
+            <MyNavbar />
           </section>
           <div className={styles.mainfram}>
-              {/* // <Home coins={coins} error={error} isPending={isPending} /> */}
+            {/* // <Home coins={coins} error={error} isPending={isPending} /> */}
             <Routes>
               <Route path="/" element={<Home />}></Route>
               <Route path="/Details" element={<Details />}></Route>
+              <Route path="/Coins" element={<Coins />}></Route>
               <Route path="/News" element={<Chart />}></Route>
               <Route path="/About" element={<About />}></Route>
               <Route path="/Twittespl" element={<Twittespl />}></Route>
               <Route path="/Inventory" element={<Inventory />}></Route>
+              <Route path="/needs/*" element={<NotFound />}></Route>
               <Route path="*" element={<NotFound />}></Route>
             </Routes>
           </div>

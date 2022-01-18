@@ -1,12 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
 :root {
-  --background: rgb(86, 127, 179, 0.9);
+  --background: rgb(33, 37, 41);
 }
+
 * {
   margin: 0;
   font-family: "Quicksand";
-  color: #333;
+  color: rgb(0, 0, 0);
 }
 
 header {
@@ -15,6 +16,7 @@ header {
   position: fixed;
   z-index: 999;
   width: 100%;
+  border-bottom: #f2f2f2 4px solid;
 }
 
 .nav-toggle {
@@ -215,7 +217,7 @@ nav a :hover {
     display: flex;
   }
   .mainnavbar .navli {
-    margin-left: 3em;
+    margin-left: 1em;
     margin-bottom: 0;
   }
   .fancy_link {
@@ -236,3 +238,5 @@ nav a :hover {
     white-space: nowrap;
   }
 }
+
+

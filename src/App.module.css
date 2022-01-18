@@ -5,7 +5,8 @@
 }
 .mainfram {
   width: 100%;
-  padding-top: 4rem;
+  padding-top: 5rem;
+  overflow: hidden;
   /* position: fixed; */
 }
 
@@ -16,4 +17,9 @@
   .myNavbar {
     display: none;
   }
+}
+
+a {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
 }
