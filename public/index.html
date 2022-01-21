@@ -24,6 +24,36 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+   
+    <!-- stonly-widget - copy into the head -->
+    <script>
+      window.STONLY_WID = "292c9b71-7966-11ec-82f1-064cee365e5a";
+    </script>
+    <script>
+      !(function (s, t, o, n, l, y, w, g) {
+        s.StonlyWidget ||
+          (((w = s.StonlyWidget =
+            function () {
+              w._api ? w._api.apply(w, arguments) : w.queue.push(arguments);
+            }).scriptPath = n),
+          (w.queue = []),
+          ((y = t.createElement(o)).async = !0),
+          (g = new XMLHttpRequest()).open(
+            "GET",
+            n + "version?v=" + Date.now(),
+            !0
+          ),
+          (g.onreadystatechange = function () {
+            4 === g.readyState &&
+              ((y.src =
+                n +
+                "stonly-widget.js?v=" +
+                (200 === g.status ? g.responseText : Date.now())),
+              (l = t.getElementsByTagName(o)[0]).parentNode.insertBefore(y, l));
+          }),
+          g.send());
+      })(window, document, "script", "https://stonly.com/js/widget/v2/");
+    </script>
     <title>Masoud Naji</title>
   </head>
   <body>

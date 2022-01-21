@@ -4,6 +4,7 @@ import * as XLSX from "xlsx";
 // import xlsx from "json-as-xlsx";
 import classes from "../UI/Card.module.css";
 import cardStyle from "./infoCard.module.css";
+import tablestyle from './UsersList.module.css';
 import Card from "../UI/Card";
 import InventoryCHart from "../../Chart/inventoryChart";
 import Svgimage from "../../Images/Business_SVG.svg";
@@ -194,9 +195,9 @@ const Inventory = () => {
                   <>
                     {
                       <ul>
-                        <li>1-X-axis ➡️ {chartElemet[0]} </li>
-                        <li>2-Y-axis ➡️ {chartElemet[1]} </li>
-                        <li>3-Items ➡️ {chartElemet[2]} </li>
+                        <li>1-Items ➡️ {chartElemet[0]} </li>
+                        <li>2-X-axis ➡️ {chartElemet[1]} </li>
+                        <li>3-Y-axis ➡️ {chartElemet[2]} </li>
                       </ul>
                     }
                   </>
@@ -208,8 +209,9 @@ const Inventory = () => {
           </div>
         </div>
       </Card>
-
-      <table className="table container">
+      <Card className={`${classes.input} ${classes.topchartdetail}`}>
+      
+        <table className={`{table container} ${tablestyle.userTable}`} >
         <thead>
           <tr>
             {items.length > 0 ? (
@@ -271,7 +273,8 @@ const Inventory = () => {
             </tr>
           ))} */}
         </tbody>
-      </table>
+        </table>
+        </Card>
     </div>
   );
 };

@@ -15,6 +15,11 @@ const Twittespl = () => {
   const [clipArtforshow, setClipArtforshow] = useState("");
   const [addCounter, setAddCounter] = useState(false);
   const [counterlenght, setCounterlenght] = useState("");
+  const [waterMark, setWaterMark] = useState("");
+  const [ColorWater, setColorWater] = useState("#ff0000");
+  const [posWatermark, setposWatermark] = useState("24");
+  const [posverWatermark, setposverWatermark] = useState("22");
+  const [detailElement, setDetailElement] = useState(false);
 
   useEffect(() => {
     var Counter = "";
@@ -70,6 +75,8 @@ const Twittespl = () => {
     setTweet(newValue);
   };
 
+  console.log(detailElement);
+
   return (
     <div className={style.container}>
       <Card
@@ -85,40 +92,64 @@ const Twittespl = () => {
               ClipBoard ➡️ Part {+clipArtforshow[1] + 1}
               <hr style={{ margin: "5px" }} />
             </div>
-            <div className={classes.insidecontent} >{clipArtforshow[0]}</div>
+            <div
+                        style={{
+                          position: "absolute",
+                          color: `${ColorWater}`,
+                          top: `${posverWatermark}%`,
+                          left: `${posWatermark}%`,
+                          opacity: "0.5",
+                          transform: "rotate(-45deg)",
+                          whiteSpace: "break-spaces",
+                        }}
+                      >
+                        {waterMark}
+                      </div>
+            <div className={classes.insidecontent}>{clipArtforshow[0]}</div>
           </div>
         ) : null}
       </Card>
       <div className={style.twitterdiv}>
-        <div className={style.flextbtn}>
+        {/* <div className={style.flextbtn}>
           <button
             className={style.languagebtn}
             onClick={(e) => setDivDirection(!divDirection)}
           >
-            (RTl / LTR) {divDirection ? "➡️" : "⬅️"}{" "}
-            {divDirection ? "LTR" : "RTL"}
+            {divDirection ? "➡️" : "⬅️"} {divDirection ? "LTR" : "RTL"}
           </button>
           <button
             className={style.languagebtn}
             onClick={(e) => setAddCounter(!addCounter)}
           >
-            {!addCounter ? " Add Counter  🔢 " : " Del Counter  🔠 "}
+            {!addCounter ? " Count  🔢 " : "NoCount 🔠 "}
           </button>
           <button
             className={style.languagebtn}
-            onClick={() => (tweet !== "" ? (setTweet("") ,setSTweet(""))  : setEndChar(""))}
+            onClick={() =>
+              tweet !== "" ? (setTweet(""), setSTweet("")) : setEndChar("")
+            }
           >
-            Clear Boxes 🆑
+            Clear 🆑
           </button>
-        </div>
-        <button className={style.languagebtn} style={{ color: "#CCC" ,height:"fit-content"}}>
-          <details style={{ color: "#CCC" }}>
+        </div> */}
+        <div
+          className={style.lorembox}
+          style={{ color: "#CCC", height: "fit-content" }}
+        >
+          <details
+            style={{ color: "#CCC" }}
+            open={detailElement}
+            onToggle={(e) => setDetailElement(e.currentTarget.open)}
+          >
             <summary>- Lorem Maker</summary>
             <div>
-               <LoremMaker onChange={setlorem} />
+              <LoremMaker
+                onChange={setlorem}
+                openDetails={(e) => setDetailElement(e)}
+              />
             </div>
           </details>
-        </button>
+        </div>
         <form dir={divDirection ? "ltr" : "rtl"}>
           <textarea
             value={tweet}
@@ -126,15 +157,88 @@ const Twittespl = () => {
             placeholder="Type a message "
             className={style.textareamain}
           ></textarea>
-
+          {/* Next Indicator */}
           <InputEmoji
             value={endChar}
             onChange={setEndChar}
             onEnter={setEndChar}
-            placeholder="Type next indicator 15Chr Max"
+            placeholder="Write next indicator 20Chr Max"
             maxLength={15}
           />
-
+          <InputEmoji
+            value={waterMark}
+            onChange={setWaterMark}
+            onEnter={setWaterMark}
+            placeholder="Write WaterMark for show on page 50Chr Max"
+            maxLength={50}
+          />
+          {/* Watermark */}
+          <div
+            className={style.watermarkdiv}
+            onClick={(e) => detailElement !== false && setDetailElement(false)}
+          >
+            <div className={style.watermatkchilds}>
+              <input
+                style={{ padding: "10px" }}
+                className={style.languagebtn}
+                type="color"
+                value={ColorWater}
+                onChange={(e) => setColorWater(e.target.value)}
+              />
+            </div>
+            <div
+              className={style.watermatkchilds}
+              style={{ marginTop: "10px" }}
+            >
+              ↔️ &nbsp;{posWatermark}&nbsp;
+              <input
+                type="range"
+                min={1}
+                max={100}
+                step={1}
+                value={posWatermark}
+                onChange={(e) => {
+                  setposWatermark(e.target.value);
+                }}
+                className={style.rangeselector}
+              />
+              <input
+                type="range"
+                min={1}
+                max={100}
+                step={1}
+                value={posverWatermark}
+                onChange={(e) => {
+                  setposverWatermark(e.target.value);
+                }}
+                style={{ transform: "rotate(90deg)" }}
+                className={style.rangeselector}
+              />
+              ↕️ &nbsp;{posverWatermark}
+            </div>
+            <button
+              className={(style.watermatkchilds, style.languagebtn)}
+              onClick={(e) => setDivDirection(!divDirection)}
+            >
+              {divDirection ? "➡️" : "⬅️"} {divDirection ? "LTR" : "RTL"}
+            </button>
+            <button
+              className={(style.watermatkchilds, style.languagebtn)}
+              onClick={(e) => setAddCounter(!addCounter)}
+            >
+              {!addCounter ? " Count  🔢 " : "NoCount 🔠 "}
+            </button>
+            <button
+              className={(style.watermatkchilds, style.languagebtn)}
+              onClick={() =>
+                tweet !== "" ? (setTweet(""), setSTweet(""),setWaterMark(""))  : setEndChar("")
+              }
+            >
+              Clear 🆑
+            </button>
+          </div>
+          <br />
+          <br />
           <hr />
           <div className={classes.inputinside}>
             <ul>
@@ -154,6 +258,19 @@ const Twittespl = () => {
                       {tweets}
                       {endChar}
                       <br />
+                      <div
+                        style={{
+                          position: "absolute",
+                          color: `${ColorWater}`,
+                          top: `${posverWatermark}%`,
+                          left: `${posWatermark}%`,
+                          opacity: "0.5",
+                          transform: "rotate(-45deg)",
+                          whiteSpace: "break-spaces",
+                        }}
+                      >
+                        {waterMark}
+                      </div>
                       <button
                         className={style.languagebtn}
                         onClick={(e) => {
@@ -161,8 +278,8 @@ const Twittespl = () => {
                         }}
                       >
                         <span>
-                          ({tweets.length} Charecter )
-                          {isCopied ? " Copied! " : " Copy "}
+                          ({tweets.length} Charecter)
+                          {isCopied ? " Copied!" : " Copy"}
                         </span>
                       </button>
                       <hr />

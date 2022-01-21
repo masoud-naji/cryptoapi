@@ -28,6 +28,7 @@ export default function LoremMaker(props) {
 
   const handelChange = (e) => {
     props.onChange(e.target.value);
+    props.openDetails(false);
     // console.log(lorem);
   };
 
@@ -65,9 +66,13 @@ export default function LoremMaker(props) {
         checked={randomiz}
         onChange={(e) => setrandomiz(!randomiz)}
       />
-       &nbsp; Random Text
+      &nbsp; Random Text
       <br />
-      <button className={style.languagebtn} onClick={handelChange} value={lorem}>
+      <button
+        className={style.languagebtn}
+        onClick={handelChange}
+        value={lorem}
+      >
         Send
       </button>
       {/* <hr />

@@ -13,7 +13,7 @@ import cam from "../../Images/cam.webp";
 import social from "../../Images/social.webp";
 import cryptocurrency from "../../Images/cryptocurrency.webp";
 import music from "../../Images/music.webp";
-import Coding from "../../Images/cam.webp";
+import Coding from "../../Images/Coding.webp";
 import Light from "../../Images/light.webp";
 
 function Coins() {
@@ -84,6 +84,7 @@ function Coins() {
               <li> json-as-xlsx</li>
               <li> react-lorem-ipsum</li>
               <li> react-alice-carousel</li>
+              <li> sass node-sass</li>
             </ol>
           </div>
           <div className={`${style.gridInside} , ${style.gridColSpan2}`}>
@@ -93,9 +94,10 @@ function Coins() {
               <Carousel.Item>
                 <img className="d-block w-100 " src={cam} alt="First slide" />
                 <Carousel.Caption>
-                  <h3>First slide label</h3>
+                  <h3>Front-End</h3>
                   <p>
-                    Nulla vitae elit libero, a pharetra augue mollis interdum.
+                    years of Information Technology experience in Web design and
+                    development of ERP application.
                   </p>
                 </Carousel.Caption>
               </Carousel.Item>
@@ -107,9 +109,10 @@ function Coins() {
                   alt="Second slide"
                 />
                 <Carousel.Caption>
-                  <h3>Second slide label</h3>
+                  <h3> UI Developer</h3>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    database designing, development, and installation of
+                    different modules.
                   </p>
                 </Carousel.Caption>
               </Carousel.Item>
@@ -121,10 +124,10 @@ function Coins() {
                   alt="Third slide"
                 />
                 <Carousel.Caption>
-                  <h3>Third slide label</h3>
+                  <h3>API</h3>
                   <p>
-                    Praesent commodo cursus magna, vel scelerisque nisl
-                    consectetur.
+                    Experience on various Charting/UI tools - High Charts,
+                    Google API , IBM Watson , YouTube , Spotify
                   </p>
                 </Carousel.Caption>
               </Carousel.Item>
@@ -132,21 +135,25 @@ function Coins() {
               <Carousel.Item>
                 <img className="d-block w-100 " src={music} alt="Third slide" />
                 <Carousel.Caption>
-                  <h3>Third slide label</h3>
+                  <h3>UI web applications</h3>
                   <p>
-                    Praesent commodo cursus magna, vel scelerisque nisl
-                    consectetur.
+                    technologies like HTML5, CSS3, JavaScript, reactJS, XML,
+                    DHTML, XHTML, JSON
                   </p>
                 </Carousel.Caption>
               </Carousel.Item>
 
               <Carousel.Item>
-                <img className="d-block w-100 " src={Coding} alt="Third slide" />
+                <img
+                  className="d-block w-100 "
+                  src={Coding}
+                  alt="Third slide"
+                />
                 <Carousel.Caption>
-                  <h3>Third slide label</h3>
+                  <h3>Document Object Model (DOM)</h3>
                   <p>
-                    Praesent commodo cursus magna, vel scelerisque nisl
-                    consectetur.
+                    Excellent Understanding ofDocument Object Model (DOM) andDOM
+                    Functions.
                   </p>
                 </Carousel.Caption>
               </Carousel.Item>
@@ -154,53 +161,15 @@ function Coins() {
               <Carousel.Item>
                 <img className="d-block w-100 " src={Light} alt="Third slide" />
                 <Carousel.Caption>
-                  <h3>Third slide label</h3>
+                  <h3>UIpatterns and UI applications</h3>
                   <p>
-                    Praesent commodo cursus magna, vel scelerisque nisl
-                    consectetur.
+                    Experience in designing UIpatterns and UI applications with
+                    the help of Adobe products like Adobe Photoshop, Adobe XD
+                    and Adobe Illustrator.
                   </p>
                 </Carousel.Caption>
               </Carousel.Item>
             </Carousel>
-
-            {/* ///////////////////////////////////////////////////// */}
-            {/* <AliceCarousel autoPlay autoPlayInterval="3000">
-              <img
-                src={cam}
-                alt="light"
-                style={{ width: "100%",height:"100%", padding: "0" }}
-              />
-              <img
-                src={social}
-                alt="social"
-                classname="sliderimg"
-                style={{ width: "100%",height:"100%", padding: "0" }}
-              />
-              <img
-                src={cryptocurrency}
-                alt="cryptocurrency"
-                classname="sliderimg"
-                style={{ width: "100%",height:"100%", padding: "0" }}
-              />
-              <img
-                src={music}
-                alt="music"
-                classname="sliderimg"
-                style={{ width: "100%",height:"100%", padding: "0" }}
-              />
-              <img
-                src={Coding}
-                alt="Coding"
-                classname="sliderimg"
-                style={{ width: "100%",height:"100%", padding: "0" }}
-              />
-              <img
-                src={Light}
-                alt="light"
-                classname="sliderimg"
-                style={{ width: "100%",height:"100%", padding: "0" }}
-              />
-            </AliceCarousel> */}
           </div>
           <div className={style.gridInside}>
             {/* <h2>

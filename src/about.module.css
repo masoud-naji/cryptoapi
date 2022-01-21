@@ -28,7 +28,50 @@ a {
 
 .litweet {
   list-style-type: decimal;
+  position: relative;
 }
+
+/* .litweet::before {
+  content: "test of watermark";
+  position: absolute;
+  color: red;
+  top: 10%;
+  left: 50%;
+  opacity: 0.5;
+  transform: rotate(-45deg);
+} */
+
+.watermatkchilds:nth-child(1) {
+  grid-area: one;
+}
+.watermatkchilds:nth-child(2) {
+  grid-area: two;
+}
+.watermatkchilds:nth-child(3) {
+  grid-area: three;
+}
+.watermatkchilds:nth-child(4) {
+  grid-area: four;
+}
+.watermatkchilds:nth-child(5) {
+  grid-area: five;
+}
+.watermatkchilds:nth-child(6) {
+  grid-area: six;
+}
+
+.watermarkdiv {
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    "two two"
+    "one three"
+    "four five ";
+  height: 12rem;
+  align-content: space-around;
+  padding-top: 5rem;
+}
+
 .bkgimage {
   width: 100%;
   border-radius: 1rem;
@@ -56,6 +99,7 @@ a {
 .languagebtn {
   margin: 1rem 0 1rem 0;
   width: 100%;
+  min-height: 3rem;
   font: inherit;
   font-size: 0.88rem;
   font-weight: 500;
@@ -63,10 +107,13 @@ a {
   border-radius: 0.5rem;
   background: rgba(54, 162, 235, 0.2);
   color: rgb(32, 49, 100);
-  padding: 0.25rem 1rem;
+  padding: 0.25rem 1rem 0.25rem 0.6rem;
   cursor: pointer;
   transition: color 250ms ease-in, background 250ms ease-in;
-  min-width: 3rem;
+  overflow: hidden;
+  text-align: center;
+  min-width: 8rem;
+  max-width: 10rem;
 }
 
 .languagebtn:hover,
@@ -76,6 +123,34 @@ a {
 }
 
 .languagebtn:focus {
+  outline: none;
+}
+.lorembox {
+  margin: 1rem 0 1rem 0;
+  width: 100%;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 500;
+  border: 1px solid rgba(54, 162, 235, 1);
+  border-radius: 0.5rem;
+  background: rgba(54, 162, 235, 0.2);
+  color: rgb(32, 49, 100);
+  padding: 0.25rem 1rem 0.25rem 0.6rem;
+  cursor: pointer;
+  transition: color 250ms ease-in, background 250ms ease-in;
+  min-width: 4rem;
+  overflow: hidden;
+  text-align: center;
+  min-height: 3rem;
+}
+
+.lorembox:hover,
+.lorembox:active {
+  background: rgba(54, 162, 235, 0.5);
+  color: black;
+}
+
+.lorembox:focus {
   outline: none;
 }
 
@@ -92,7 +167,7 @@ a {
 .cta {
   font: inherit;
   font-weight: 500;
-  border: 1px solid rgba(54, 162, 235, 1);
+  border: 1px solid rgb(54, 162, 235);
   background: rgb(37, 53, 104, 0.5);
   color: rgb(251, 251, 251);
   padding: 0.25rem 1rem;
@@ -105,31 +180,50 @@ a {
 
 .cta:hover,
 .button:active {
-  background: rgba(54, 162, 235, 0.5);
+  background: rgba(54, 162, 235, 0.502);
   color: black;
 }
 
+.rangeselector {
+  width: 80px;
+}
 
-
-@media only screen and (max-width: 50rem) {
+@media (min-width: 50rem) {
   .languagebtn {
     margin: 1rem 0 1rem 0;
     width: 100%;
     font: inherit;
-    font-size: 0.5rem;
+    font-size: 0.88rem;
     font-weight: 600;
     border: 1px solid rgba(54, 162, 235, 1);
     border-radius: 0.5rem;
     background: rgba(54, 162, 235, 0.2);
     color: rgb(32, 49, 100);
-    padding: 0.25rem 1rem;
+    padding: 0.25rem 0rem;
     cursor: pointer;
     transition: color 250ms ease-in, background 250ms ease-in;
-    min-width: 3rem;
+    min-width: 8rem;
+    max-width: 10rem;
     height: 3rem;
   }
+  .watermarkdiv {
+    grid-template-areas: "four five six one two three ";
+    /* justify-content: space-evenly;
+    justify-items: center; */
+    align-content: space-evenly;
+    align-items: center;
+    height: 100px;
+    padding-top: 3rem;
+  }
+
+  .watermatkchilds:nth-child(1) {
+    justify-self: center;
+    width: 1fr;
+  }
+  .watermatkchilds:nth-child(2) {
+    width: 1fr;
+  }
+  .watermatkchilds:nth-child(3) {
+    width: 2fr;
+  }
 }
-
-
-
-

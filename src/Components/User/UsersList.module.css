@@ -266,7 +266,7 @@ iframe {
   background-color: rgb(1, 2, 8);
   margin-top: -2rem;
   width: 100vw;
-  height: 200vh;
+  /* height: 100vh; */
 }
 
 .homebackground {
@@ -279,7 +279,7 @@ iframe {
 
 .grid {
   padding: 2rem;
-  height: 80vh;
+  /* height: 80vh; */
   color: white;
   font-size: medium;
   font-weight: 400;
