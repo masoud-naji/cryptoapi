@@ -1,31 +1,31 @@
 {
   "files": {
-    "main.css": "/static/css/main.9351f7aa.chunk.css",
-    "main.js": "/static/js/main.cf8c88c0.chunk.js",
-    "main.js.map": "/static/js/main.cf8c88c0.chunk.js.map",
+    "main.css": "/static/css/main.232194b5.chunk.css",
+    "main.js": "/static/js/main.cfff2c52.chunk.js",
+    "main.js.map": "/static/js/main.cfff2c52.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.dc6584d2.js",
     "runtime-main.js.map": "/static/js/runtime-main.dc6584d2.js.map",
-    "static/js/2.1918efb1.chunk.js": "/static/js/2.1918efb1.chunk.js",
-    "static/js/2.1918efb1.chunk.js.map": "/static/js/2.1918efb1.chunk.js.map",
+    "static/js/2.b4666d70.chunk.js": "/static/js/2.b4666d70.chunk.js",
+    "static/js/2.b4666d70.chunk.js.map": "/static/js/2.b4666d70.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.9351f7aa.chunk.css.map": "/static/css/main.9351f7aa.chunk.css.map",
-    "static/js/2.1918efb1.chunk.js.LICENSE.txt": "/static/js/2.1918efb1.chunk.js.LICENSE.txt",
+    "static/css/main.232194b5.chunk.css.map": "/static/css/main.232194b5.chunk.css.map",
+    "static/js/2.b4666d70.chunk.js.LICENSE.txt": "/static/js/2.b4666d70.chunk.js.LICENSE.txt",
     "static/media/Business_SVG.f27f82ed.svg": "/static/media/Business_SVG.f27f82ed.svg",
-    "static/media/Coding.67074fa4.webp": "/static/media/Coding.67074fa4.webp",
+    "static/media/Coding.4edba9a4.webp": "/static/media/Coding.4edba9a4.webp",
     "static/media/PDF.1ae7f5b6.png": "/static/media/PDF.1ae7f5b6.png",
-    "static/media/cam.59a30a8c.webp": "/static/media/cam.59a30a8c.webp",
-    "static/media/cryptocurrency.70c247ac.webp": "/static/media/cryptocurrency.70c247ac.webp",
+    "static/media/cam.8aa7f7f3.webp": "/static/media/cam.8aa7f7f3.webp",
+    "static/media/cryptocurrency.194412bc.webp": "/static/media/cryptocurrency.194412bc.webp",
     "static/media/index.css": "/static/media/galaxy.373bd580.webp",
-    "static/media/light.68610f21.webp": "/static/media/light.68610f21.webp",
-    "static/media/music.408652c2.webp": "/static/media/music.408652c2.webp",
+    "static/media/light.5059f8eb.webp": "/static/media/light.5059f8eb.webp",
+    "static/media/music.93e40457.webp": "/static/media/music.93e40457.webp",
     "static/media/sandbox.e8ac2ad6.png": "/static/media/sandbox.e8ac2ad6.png",
-    "static/media/social.6c5408b9.webp": "/static/media/social.6c5408b9.webp",
-    "static/media/Card.module.css": "/static/media/wwwvecteezycom.ef31a093.jpg"
+    "static/media/social.114f7475.webp": "/static/media/social.114f7475.webp",
+    "static/media/Card.module.css": "/static/media/wwwvecteezycom.9f9984a1.webp"
   },
   "entrypoints": [
     "static/js/runtime-main.dc6584d2.js",
-    "static/js/2.1918efb1.chunk.js",
-    "static/css/main.9351f7aa.chunk.css",
-    "static/js/main.cf8c88c0.chunk.js"
+    "static/js/2.b4666d70.chunk.js",
+    "static/css/main.232194b5.chunk.css",
+    "static/js/main.cfff2c52.chunk.js"
   ]
 }

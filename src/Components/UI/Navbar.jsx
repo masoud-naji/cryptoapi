@@ -16,7 +16,7 @@ const MyNavbar = () => {
         <h1 style={{ marginLeft: "1rem" }}>Masoud Naji</h1>
       </Link> */}
 
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="./">Masoud Naji</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -25,10 +25,7 @@ const MyNavbar = () => {
               <Nav.Link href="#">
                 <Link to="./">Home</Link>
               </Nav.Link>
-              <NavDropdown
-                title="Crypto"
-                id="collasible-nav-dropdown"
-              >
+              <NavDropdown title="Crypto" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#">
                   <Link className="navlink" to="./Coins">
                     Crypto
@@ -54,6 +51,12 @@ const MyNavbar = () => {
                     Inventory
                   </Link>
                 </NavDropdown.Item>
+
+                <NavDropdown.Item href="#">
+                  <Link className="navlink" to="./Regextest">
+                    Regex Test
+                  </Link>
+                </NavDropdown.Item>
               </NavDropdown>
 
               <NavDropdown title="About" id="collasible-nav-dropdown">
@@ -68,9 +71,7 @@ const MyNavbar = () => {
                     href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&amp;resid=4CA8BFEFFFE61AB8%21397104&amp;authkey=AA1uxVivZIR3duU&amp;em=2"
                     download=""
                   >
-                    <button class="about_cta__RaiiB">
-                      PDF Resume&nbsp;&nbsp;
-                    </button>
+                    <button class="about_cta__RaiiB">Pdf Resume</button>
                   </a>
                 </NavDropdown.Item>
                 <NavDropdown.Item href="#">
@@ -78,7 +79,7 @@ const MyNavbar = () => {
                     href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&amp;resid=4CA8BFEFFFE61AB8%21397100&amp;authkey=ABpz3ESHdwNSzEQ&amp;em=2"
                     download=""
                   >
-                    <button class="about_cta__RaiiB">Word Resume</button>
+                    <button class="about_cta__RaiiB">Doc Resume</button>
                   </a>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />

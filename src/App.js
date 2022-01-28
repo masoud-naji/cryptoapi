@@ -12,6 +12,7 @@ import About from "./About";
 import Coins from "./Components/User/Coins";
 import Twittespl from "./Twittespl";
 import Inventory from "./Components/User/Inventory";
+import Regextest from "./Components/User/Regextest";
 
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
               <Route path="/About" element={<About />}></Route>
               <Route path="/Twittespl" element={<Twittespl />}></Route>
               <Route path="/Inventory" element={<Inventory />}></Route>
+              <Route path="/Regextest" element={<Regextest />}></Route>
               <Route path="/needs/*" element={<NotFound />}></Route>
               <Route path="*" element={<NotFound />}></Route>
             </Routes>

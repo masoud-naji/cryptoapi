@@ -53,3 +53,4 @@ export default Home;
 //npm i react-alice-carousel --save
 // npm i sass
 //npm install node-sass
+//npm install --save react-highlight-within-textarea

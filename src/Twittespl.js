@@ -93,18 +93,18 @@ const Twittespl = () => {
               <hr style={{ margin: "5px" }} />
             </div>
             <div
-                        style={{
-                          position: "absolute",
-                          color: `${ColorWater}`,
-                          top: `${posverWatermark}%`,
-                          left: `${posWatermark}%`,
-                          opacity: "0.5",
-                          transform: "rotate(-45deg)",
-                          whiteSpace: "break-spaces",
-                        }}
-                      >
-                        {waterMark}
-                      </div>
+              style={{
+                position: "absolute",
+                color: `${ColorWater}`,
+                top: `${posverWatermark}%`,
+                left: `${posWatermark}%`,
+                opacity: "0.5",
+                transform: "rotate(-45deg)",
+                whiteSpace: "break-spaces",
+              }}
+            >
+              {waterMark}
+            </div>
             <div className={classes.insidecontent}>{clipArtforshow[0]}</div>
           </div>
         ) : null}
@@ -176,6 +176,7 @@ const Twittespl = () => {
           <div
             className={style.watermarkdiv}
             onClick={(e) => detailElement !== false && setDetailElement(false)}
+            dir="ltr"
           >
             <div className={style.watermatkchilds}>
               <input
@@ -231,7 +232,9 @@ const Twittespl = () => {
             <button
               className={(style.watermatkchilds, style.languagebtn)}
               onClick={() =>
-                tweet !== "" ? (setTweet(""), setSTweet(""),setWaterMark(""))  : setEndChar("")
+                tweet !== ""
+                  ? (setTweet(""), setSTweet(""), setWaterMark(""))
+                  : setEndChar("")
               }
             >
               Clear 🆑

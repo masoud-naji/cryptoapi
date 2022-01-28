@@ -21,7 +21,9 @@ function Coins() {
     <div className={style.cover}>
       <div className={style.homebackground}>
         <div className={style.grid}>
-          <div className={`${style.gridInside} , ${style.gridColSpan2}`}></div>
+          <div className={`${style.gridInside} , ${style.gridColSpan2}`}>
+            
+          </div>
           <div className={style.gridInside}>
             Some Sources For Start
             <br />
