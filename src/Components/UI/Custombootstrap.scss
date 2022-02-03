@@ -1,5 +1,13 @@
+$dropdown-bg: rgb(33, 37, 41);
 
-$dropdown-bg:rgb(33,37,41);
+$accordion-bg: rgb(33, 37, 41);
+$accordion-color: rgb(255, 255, 255);
+$accordion-button-color: rgb(255, 255, 255);
 
+$accordion-button-active-bg: rgb(33, 37, 41);
+$accordion-button-active-color: rgb(255, 255, 255);
 
-@import '~bootstrap/scss/bootstrap.scss';
+// $accordion-item: rgb(0, 115, 255);
+// $accordion-button-bg: rgb(0, 207, 17);
+
+@import "~bootstrap/scss/bootstrap.scss";

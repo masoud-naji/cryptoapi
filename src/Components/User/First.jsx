@@ -1,25 +1,69 @@
 import style from "./UsersList.module.css";
-// import classes from "../UI/Card.module.css";
-// import Card from "../UI/Card";
-// import GoogleTrends from "../GoogleTrend/GoogleTrends";
-// import Script from "react-load-script";
-
-// import AliceCarousel from "react-alice-carousel";
-// import "react-alice-carousel/lib/alice-carousel.css";
 import "../UI/Custombootstrap.scss";
 import { Carousel } from "react-bootstrap";
-
 import cam from "../../Images/cam.webp";
 import social from "../../Images/social.webp";
 import cryptocurrency from "../../Images/cryptocurrency.webp";
 import music from "../../Images/music.webp";
 import Coding from "../../Images/Coding.webp";
 import Light from "../../Images/light.webp";
+import galaxy from "../../Images/galaxy.webp";
+import Daco from "../../Images/Daco.png";
+
+// import classes from "../UI/Card.module.css";
+// import Card from "../UI/Card";
+// import GoogleTrends from "../GoogleTrend/GoogleTrends";
+// import Script from "react-load-script";
+// import AliceCarousel from "react-alice-carousel";
+// import "react-alice-carousel/lib/alice-carousel.css";
 
 function Coins() {
   return (
     <div className={style.cover}>
       <div className={style.homebackground}>
+        <img src={galaxy} className={style.background} />
+        <img src={Daco} className={style.foreground} />
+
+        <h1 className={style.title}>Masoud Naji</h1>
+      </div>
+      {/* <section className={style.section}>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae,
+          aspernatur enim atque odio, fugiat qui architecto reprehenderit
+          maiores voluptatibus deserunt, repudiandae harum aliquid. Sequi
+          impedit asperiores eaque, vero ratione expedita voluptate possimus
+          modi rem id, quae necessitatibus qui accusantium eius hic repellendus,
+          quasi molestiae aspernatur laudantium? Ut non molestias esse numquam
+          perspiciatis, amet delectus ex sint laudantium nam et laboriosam?
+          Perferendis laborum officiis eligendi unde odit vitae aperiam facere,
+          doloribus architecto veniam accusamus ratione. Deserunt atque in
+          voluptate unde, repudiandae sequi nihil aspernatur minus corporis
+          laborum saepe a hic ullam quaerat modi, quam quae! Alias cupiditate
+          delectus dolorem omnis eaque aliquam impedit inventore. Laudantium
+          itaque neque ex a? Quam inventore dolore iste ullam vero cumque
+          consequatur, ut quae quibusdam magnam nemo, voluptas pariatur
+          veritatis assumenda quos, repellat nulla similique dolores dolorum
+          ratione ab hic ipsam? Unde velit quasi officia quo nam assumenda nobis
+          quibusdam ex. Sint quod nostrum iusto incidunt iste harum totam.
+          Voluptate ad neque quia explicabo ipsum, sit, dolorum ipsam id veniam
+          aut harum? Atque soluta odit magnam? Repellat distinctio perspiciatis
+          perferendis earum fugiat quas nulla officiis ut praesentium facere
+          quisquam omnis accusamus deleniti, sit blanditiis architecto commodi
+          veniam possimus tempora quia necessitatibus magni impedit aut.
+          Provident, libero consequatur! Qui nam doloribus culpa minus facere
+          pariatur ipsam assumenda similique debitis rem dicta reprehenderit,
+          esse suscipit repellendus libero aspernatur provident? Molestias qui,
+          error aliquid asperiores illum, voluptatibus nobis accusantium
+          inventore provident, odit nulla rem temporibus libero! Possimus,
+          incidunt veritatis? Officia dolorum error impedit iure, aperiam vero
+          laudantium necessitatibus sed nulla voluptates porro, ullam optio eius
+          in maiores dignissimos accusamus aliquid asperiores doloribus! Labore
+          incidunt laudantium ipsam ipsum sunt architecto modi, in placeat sint
+          dignissimos natus voluptatem perferendis adipisci! Dolor dolorum iusto
+          aspernatur saepe molestias. Reprehenderit amet harum labore aperiam
+          mollitia quam! Quisquam iure tenetur dolor eius aliquam doloremque
+          odit.
+        </section> */}
+
         <div className={style.grid}>
           <div className={`${style.gridInside} , ${style.gridColSpan2}`}>
             
@@ -73,6 +117,7 @@ function Coins() {
               <li> react-confirm-alert</li>
               <li> bootstrap react-bootstrap</li>
               <li> lodash</li>
+              <li> xlsx</li>
               <li> react-chartjs-2 chart.js</li>
               <li> react-router</li>
               <li> react-router-dom</li>
@@ -82,16 +127,14 @@ function Coins() {
               <li> react-scripts</li>
               <li> react-input-emoji</li>
               <li> browser-image-compression</li>
-              <li> xlsx</li>
               <li> json-as-xlsx</li>
               <li> react-lorem-ipsum</li>
               <li> react-alice-carousel</li>
               <li> sass node-sass</li>
+              <li> react-highlight-within-textarea</li>
             </ol>
           </div>
           <div className={`${style.gridInside} , ${style.gridColSpan2}`}>
-            {/* ///////////////////////////////////////////////////// */}
-
             <Carousel>
               <Carousel.Item>
                 <img className="d-block w-100 " src={cam} alt="First slide" />
@@ -174,9 +217,7 @@ function Coins() {
             </Carousel>
           </div>
           <div className={style.gridInside}>
-            {/* <h2>
-              <strong>Front End Developer</strong>
-            </h2> */}
+          
 
             <ul className={style.ulabout}>
               <li>
@@ -278,7 +319,8 @@ function Coins() {
             </ul>
           </div>
         </div>
-      </div>
+    
+
     </div>
   );
 }

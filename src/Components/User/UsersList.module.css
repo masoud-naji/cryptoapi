@@ -262,21 +262,61 @@ iframe {
 }
 
 .cover {
-  z-index: 99;
-  background-color: rgb(1, 2, 8);
-  margin-top: -2rem;
-  width: 100vw;
-  /* height: 100vh; */
+  margin-top: -1rem;
+  /* width: 100vw; */
+  height: 100vh;
+  overflow-y: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  overflow-x: hidden;
+  perspective: 10px;
+}
+.cover::-webkit-scrollbar {
+  display: none;
 }
 
 .homebackground {
-  background-image: url("../../Images/galaxy.webp") !important;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  transform-style: preserve-3d;
+  z-index: -1;
+}
+.background {
+  transform: translateZ(-65px) scale(7.5);
+}
+.foreground {
+  transform: translateZ(-5px) scale(1.5);
+}
+.background {
+  position: absolute;
+  height: 150%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+.foreground {
+  position: absolute;
+  /* height: 100%; */
+  width: 50%;
+  object-fit: cover;
+  z-index: -1;
 }
 
+.title {
+  font-size: 4rem;
+  color: white;
+  text-shadow: 0 0 5px black;
+}
+
+.section {
+  font-size: 2rem;
+  padding: 2rem;
+  background-color: #333;
+  color: white;
+}
 .grid {
   padding: 2rem;
   /* height: 80vh; */
@@ -326,5 +366,11 @@ iframe {
     height: 40rem;
     min-height: 40rem;
     max-height: 40rem;
+  }
+
+  .title {
+    font-size: 7rem;
+    color: white;
+    text-shadow: 0 0 5px black;
   }
 }

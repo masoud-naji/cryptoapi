@@ -103,6 +103,14 @@ meter::-webkit-meter-optimum-value {
   max-width: 100%;
   min-width: 100%;
 }
+
+.regextexandhelp {
+  /* display: flex; */
+  gap: 1rem;
+  overflow: hidden;
+}
+
+
 @media (min-width: 50rem) {
   .mycard {
     min-width: 100%;
@@ -110,5 +118,10 @@ meter::-webkit-meter-optimum-value {
     width: 100%;
     height: fit-content;
     min-height: 25rem;
+  }
+  .regextexandhelp {
+    display: flex;
+    gap: 1rem;
+    grid-template-columns: 6fr 1fr;
   }
 }

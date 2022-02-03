@@ -147,7 +147,7 @@ function Details() {
   }, [name, startTime, endTime]);
 
   const Progress = ({ done }) => (
-    <div className="progress">
+    <div className="MyProgress">
       <div className="progress-done" style={{ opacity: 1, width: `${done}%` }}>
         {done}%
       </div>

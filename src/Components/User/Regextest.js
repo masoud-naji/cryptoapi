@@ -5,6 +5,20 @@ import cardStyle from "./infoCard.module.css";
 import Card from "../UI/Card";
 import HighlightWithinTextarea from "react-highlight-within-textarea";
 import _ from "lodash";
+// import "bootstrap/dist/css/bootstrap.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
+import "../UI/Custombootstrap.scss";
+import Accordion from "react-bootstrap/Accordion";
+import CommonToken from "../../Components/Accordions/CommonToken";
+import GeneralToken from "../../Components/Accordions/GeneralToken";
+import MetaSeq from "../../Components/Accordions/MetaSeq";
+import Anchors from "../../Components/Accordions/Anchors";
+import Quantifiers from "../../Components/Accordions/Quantifiers";
+import GroupConst from "../../Components/Accordions/GroupConst";
+import Characters from "../../Components/Accordions/Characters";
+import FlagsModifiers from "../../Components/Accordions/FlagModifiers";
+import Substitutions from "../../Components/Accordions/Substitutions";
+import AllRegexes from "../Accordions/AllRegexes";
 
 const RegexTest = () => {
   const [value, setValue] = useState(
@@ -16,6 +30,7 @@ const RegexTest = () => {
   const [errormsg, setErrormsg] = useState("");
   const [OpendivFlag, setOpendivFlag] = useState(true);
   const [OpenFlag, setOpenFlag] = useState("i");
+  const [clickToken, setClickToken] = useState("");
   const [checkedState, setCheckedState] = useState([
     true,
     false,
@@ -24,6 +39,7 @@ const RegexTest = () => {
     false,
   ]);
   const onChange = (value) => setValue(value);
+
   const checkboxflag = [
     // {
     //   name: "g",
@@ -60,10 +76,11 @@ const RegexTest = () => {
     let regExp = "";
 
     if (
+      inputValue.slice(-1) === "|" ||
       (inputValue[0] === "^" && inputValue.length < 2) ||
       (inputValue[0] === "$" && inputValue.length < 2)
     ) {
-      console.log("starts with ^ or $");
+      console.log("starts with ^ or $ or | in the text");
       try {
         regExp = new RegExp(RegExp.quote("lo[rtyu]em"));
         setErrormsg("Empty");
@@ -115,14 +132,24 @@ const RegexTest = () => {
     setOpenFlag(totalflag);
   };
 
+  const AddToken = (e) => {
+    setClickToken(e);
+    setSearchValue(searchValue + e);
+    setSearchShowValue(searchShowValue + e);
+  };
+
   useEffect(() => {
-    console.log(searchValue);
-    console.log(searchShowValue);
-    console.log(errormsg);
-    console.log(OpenFlag);
-    console.log(checkedState);
+    //   console.log(searchValue);
+    // console.log(searchShowValue);
+    // console.log(errormsg);
+    // console.log(OpenFlag);
+    // console.log(checkedState);
     setHighlightValue(searchValue);
   }, [searchValue, OpenFlag, errormsg]);
+
+  useEffect(() => {
+    searchHandler();
+  }, []);
 
   return (
     <div>
@@ -167,6 +194,7 @@ const RegexTest = () => {
                 style={{ color: "red" }}
               >
                 <hr />
+                {/* {clickToken} */}
                 {errormsg ? (
                   errormsg
                 ) : (
@@ -174,6 +202,7 @@ const RegexTest = () => {
                 )}
               </div>
               {/* ///////////////////////////////////////// flags////////////////////// */}
+
               <div
                 className={cardStyle.tableContainer}
                 style={{ display: OpendivFlag !== true ? "none" : "block" }}
@@ -202,19 +231,113 @@ const RegexTest = () => {
               </div>
               {/* ////////////////////////////  free //////////////////////////////// */}
               <div className={cardStyle.tableContainer}></div>
+
               {/* ////////////////////////////   //////////////////////////////// */}
             </div>
           </div>
         </div>
-      </Card>
+        {/* </Card>
+
       <Card
         className={`${classes.input} ${classes.topchartdetail} ${classes.area} `}
-      >
-        <HighlightWithinTextarea
+      > */}
+        <hr />
+        <div className={cardStyle.regextexandhelp}>
+          {/* ////////////////////////////  accordion //////////////////////////////// */}
+          <div className={cardStyle.tableContainer}>
+            <Accordion>
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Common Tokens</Accordion.Header>
+                <Accordion.Body>
+                  <CommonToken setClickToken={AddToken} />
+                </Accordion.Body>
+              </Accordion.Item>
+
+              <Accordion.Item eventKey="1">
+                <Accordion.Header>General Token</Accordion.Header>
+                <Accordion.Body>
+                  <GeneralToken setClickToken={AddToken} />
+                </Accordion.Body>
+              </Accordion.Item>
+
+              <Accordion.Item eventKey="2">
+                <Accordion.Header>Anchors</Accordion.Header>
+                <Accordion.Body>
+                  <Anchors setClickToken={AddToken} />
+                </Accordion.Body>
+              </Accordion.Item>
+
+              <Accordion.Item eventKey="3">
+                <Accordion.Header>Meta Sequences</Accordion.Header>
+                <Accordion.Body>
+                  <MetaSeq setClickToken={AddToken} />
+                </Accordion.Body>
+              </Accordion.Item>
+
+              <Accordion.Item eventKey="4">
+                <Accordion.Header>Quantifiers</Accordion.Header>
+
+                <Accordion.Body>
+                  <Quantifiers setClickToken={AddToken} />
+                </Accordion.Body>
+              </Accordion.Item>
+
+              <Accordion.Item eventKey="5">
+                <Accordion.Header>Group Constructs</Accordion.Header>
+                <Accordion.Body>
+                  <GroupConst setClickToken={AddToken} />
+                </Accordion.Body>
+              </Accordion.Item>
+
+              <Accordion.Item eventKey="6">
+                <Accordion.Header>characters Classes</Accordion.Header>
+                <Accordion.Body>
+                  <Characters setClickToken={AddToken} />
+                </Accordion.Body>
+              </Accordion.Item>
+
+              <Accordion.Item eventKey="7">
+                <Accordion.Header>Flags/Modifiers</Accordion.Header>
+                <Accordion.Body>
+                  <FlagsModifiers setClickToken={AddToken} />
+                </Accordion.Body>
+              </Accordion.Item>
+
+              <Accordion.Item eventKey="8">
+                <Accordion.Header>Substitutions</Accordion.Header>
+                <Accordion.Body>
+                  <Substitutions setClickToken={AddToken} />
+                </Accordion.Body>
+              </Accordion.Item>
+
+              <Accordion.Item eventKey="9">
+                <Accordion.Header>All Regex Tokens</Accordion.Header>
+                <Accordion.Body>
+                  <AllRegexes setClickToken={AddToken} />
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          </div>
+          <div style={{ width: "60%" ,textAlign: "justify",
+                textJustify: "inter-word", }}>
+            <HighlightWithinTextarea
+              value={value}
+              onChange={onChange}
+              highlight={highlightValue}
+              style={{
+                width: "600px",
+                textAlign: "justify",
+                textJustify: "inter-word",
+              }}
+            />
+          </div>
+        </div>
+
+        {/* <HighlightWithinTextarea
           value={value}
           onChange={onChange}
           highlight={highlightValue}
-        />
+        /> */}
       </Card>
     </div>
   );

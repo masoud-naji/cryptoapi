@@ -53,7 +53,7 @@ function App() {
           setSelectedCoin: setSelectedCoin,
         }}
       >
-        <div>
+        <div style={{ overflow: "hidden" }}>
           <section>
             {/* <section className={classes.Navbar}>*/}
             {/* <section> */}
@@ -62,6 +62,7 @@ function App() {
           <div className={styles.mainfram}>
             {/* // <Home coins={coins} error={error} isPending={isPending} /> */}
             <Routes>
+          
               <Route path="/" element={<Home />}></Route>
               <Route path="/Details" element={<Details />}></Route>
               <Route path="/Coins" element={<Coins />}></Route>

@@ -4,7 +4,7 @@ import * as XLSX from "xlsx";
 // import xlsx from "json-as-xlsx";
 import classes from "../UI/Card.module.css";
 import cardStyle from "./infoCard.module.css";
-import tablestyle from './UsersList.module.css';
+import tablestyle from "./UsersList.module.css";
 import Card from "../UI/Card";
 import InventoryCHart from "../../Chart/inventoryChart";
 import Svgimage from "../../Images/Business_SVG.svg";
@@ -67,7 +67,7 @@ const Inventory = () => {
           reject(errorData);
         };
       });
-
+      console.log(filterdList);
       promise.then((d) => {
         setItems(d);
         setfilterdList(d);
@@ -210,38 +210,37 @@ const Inventory = () => {
         </div>
       </Card>
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
-      
-        <table className={`{table container} ${tablestyle.userTable}`} >
-        <thead>
-          <tr>
-            {items.length > 0 ? (
-              Object.keys(items[0]).map((item, index) => (
-                <th scope="col" key={index}>
-                  {item}
-                  &nbsp;
-                  <input
-                    type="checkbox"
-                    value={item}
-                    name={item}
-                    checked={checkedState[index]}
-                    id={`custom-checkbox-${index}`}
-                    onChange={(e) => {
-                      checkHandler(e, index, item);
-                    }}
-                  />
-                </th>
-              ))
-            ) : (
-              <th scope="col"></th>
-            )}
-          </tr>
+        <table className={`{table container} ${tablestyle.userTable}`}>
+          <thead>
+            <tr>
+              {items.length > 0 ? (
+                Object.keys(items[0]).map((item, index) => (
+                  <th scope="col" key={index}>
+                    {item}
+                    &nbsp;
+                    <input
+                      type="checkbox"
+                      value={item}
+                      name={item}
+                      checked={checkedState[index]}
+                      id={`custom-checkbox-${index}`}
+                      onChange={(e) => {
+                        checkHandler(e, index, item);
+                      }}
+                    />
+                  </th>
+                ))
+              ) : (
+                <th scope="col"></th>
+              )}
+            </tr>
 
-          {/* <select>
+            {/* <select>
             {items.map((item) => (
               <option>{Object.values(item)[1]}</option>
             ))}
           </select> */}
-          {/* 
+            {/* 
             {items.length > 0 ? <th scope="col">{Object.keys(items[0])[0]}</th>: <th scope="col"></th>}
             {items.length > 0  ? <th scope="col">{Object.keys(items[0])[1]}</th>: <th scope="col"></th>}
             {items.length > 0  ? <th scope="col">{Object.keys(items[0])[2]}</th>: <th scope="col"></th>}
@@ -249,19 +248,19 @@ const Inventory = () => {
             {items.length > 0  ? <th scope="col">{Object.keys(items[0])[4]}</th>: <th scope="col"></th>}
             {items.length > 0  ? <th scope="col">{Object.keys(items[0])[5]}</th>: <th scope="col"></th>}
             {items.length > 0  ? <th scope="col">{Object.keys(items[0])[6]}</th>: <th scope="col"></th>} */}
-        </thead>
-        <tbody>
-          {/* <rowsinfo /> */}
+          </thead>
+          <tbody>
+            {/* <rowsinfo /> */}
 
-          {items &&
-            filterdList.map((d) => (
-              <tr key={d.id}>
-                {d &&
-                  Object.values(d).map((item) => <th scope="col">{item}</th>)}
-              </tr>
-            ))}
+            {items &&
+              filterdList.map((d) => (
+                <tr key={d.id}>
+                  {d &&
+                    Object.values(d).map((item) => <th scope="col">{item}</th>)}
+                </tr>
+              ))}
 
-          {/* {items.map((d) => (
+            {/* {items.map((d) => (
             <tr key={d.id}>
               <th>{d[Object.keys(d)[0]]}</th>
               <td>{d[Object.keys(d)[1]]}</td>
@@ -272,9 +271,9 @@ const Inventory = () => {
               <td>{d[Object.keys(d)[6]]}</td>
             </tr>
           ))} */}
-        </tbody>
+          </tbody>
         </table>
-        </Card>
+      </Card>
     </div>
   );
 };
