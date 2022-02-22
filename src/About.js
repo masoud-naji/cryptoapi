@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Components/UI/Card.module.css";
 import Card from "./Components/UI/Card";
-import cardStyle from "./Components/User/infoCard.module.css";
+import cardStyle from "./Components/SubPages/infoCard.module.css";
 import style from "./about.module.css";
-import { Link } from "react-router-dom";
 import pdficon from "./Images/PDF.png";
+// import { Link } from "react-router-dom";
 
 const About = () => {
   const initialURL =

@@ -80,7 +80,7 @@ const Inventory = () => {
 
   const checkHandler = (e, position, item) => {
     // console.log(checkedState[position]);
-    if (checkedState[position] == false) {
+    if (checkedState[position] === false) {
       if (checkedState.filter(Boolean).length < 3) {
         const updatedCheckedState = checkedState.map((chItem, index) => {
           return position === index ? !chItem : chItem;
@@ -144,6 +144,7 @@ const Inventory = () => {
           ) : (
             <div>
               <img
+                alt="stock"
                 src={Svgimage}
                 style={{ width: "40%", marginLeft: "2rem" }}
               />
@@ -152,8 +153,7 @@ const Inventory = () => {
           <div className={classes.infodisplay}>
             <div
               style={{ background: "rgba(54, 162, 235, 1)" }}
-              className={cardStyle.container}
-              className={classes.card}
+              className={(cardStyle.container, classes.card)}
             >
               {/* ////////////////////////////  Browose resultFile //////////////////////////////// */}
               <div className={cardStyle.tableContainer}>

@@ -320,6 +320,7 @@ function Details() {
                 <a
                   href={`https://trends.google.com/trends/explore?q=${coinAllInfo.id}&geo=US`}
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <img
                     src={
@@ -347,6 +348,7 @@ function Details() {
                             className={cardStyle.infotext}
                             href={site}
                             target="_blank"
+                            rel="noreferrer"
                           >
                             {site}
                           </a>
@@ -359,7 +361,7 @@ function Details() {
               <div className={cardStyle.container}>
                 <div className={cardStyle.tableContainer}>
                   <Card className={cardStyle.mycard}>
-                    <img src={stock} />
+                    <img src={stock} alt="stock"/>
                     community score
                     <Progress
                       done={
@@ -409,7 +411,7 @@ function Details() {
                 </div>
                 <div className={cardStyle.tableContainer}>
                   <Card className={cardStyle.mycard}>
-                    <img src={stock3} />
+                    <img src={stock3} alt="stock"/>
                     categories - {coinAllInfo.categories.length}
                     <div className="emptycontainer">
                       {coinAllInfo.categories.length > 1 ? (
@@ -438,7 +440,7 @@ function Details() {
                 </div>
                 <div className={cardStyle.tableContainer}>
                   <Card className={cardStyle.mycard}>
-                    <img src={stock4} />
+                    <img src={stock4} alt="stock"/>
                     public interest stats
                     <div className="emptycontainer">
                       {coinAllInfo.public_interest_stats.alexa_rank

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
+import classes from "./Components/SubPages/AddUser.module.css";
+import First from "./Components/SubPages/First";
 import Card from "./Components/UI/Card";
-import classes from "./Components/User/AddUser.module.css";
-import First from "./Components/User/First";
 import CoinContext from "./contexts/coinContext";
 // import { useHistory } from "react-router";
 // import ShowWithAnimation from "./Components/CustomHooks/ShowWithDelay";

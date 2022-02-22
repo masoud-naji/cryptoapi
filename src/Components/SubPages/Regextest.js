@@ -4,7 +4,7 @@ import classes from "../UI/Card.module.css";
 import cardStyle from "./infoCard.module.css";
 import Card from "../UI/Card";
 import HighlightWithinTextarea from "react-highlight-within-textarea";
-import _ from "lodash";
+// import _ from "lodash";
 // import "bootstrap/dist/css/bootstrap.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "../UI/Custombootstrap.scss";

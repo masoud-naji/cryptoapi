@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
-import Details from "./Components/User/Details";
+import Details from "./Components/SubPages/Details";
+import Coins from "./Components/SubPages/Coins";
+import Inventory from "./Components/SubPages/Inventory";
+import Regextest from "./Components/SubPages/Regextest";
 import MyNavbar from "./Components/UI/Navbar";
 import NotFound from "./Components/UI/NotFound";
 import Home from "./Home";
@@ -9,10 +12,7 @@ import CoinContext from "./contexts/coinContext";
 import axios from "axios";
 import Chart from "./Chart/News";
 import About from "./About";
-import Coins from "./Components/User/Coins";
-import Twittespl from "./Twittespl";
-import Inventory from "./Components/User/Inventory";
-import Regextest from "./Components/User/Regextest";
+import Twittespl from "./Components/SubPages/Twittespl";
 
 
 function App() {

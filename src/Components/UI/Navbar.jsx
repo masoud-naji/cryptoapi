@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import linkedin from "../../Images/linkedin.png";
 import Github from "../../Images/Github.png";
 import sandbox from "../../Images/sandbox.png";
+import Emails from "../../Images/Emails.png";
 
 import "./Custombootstrap.scss";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
@@ -66,50 +67,62 @@ const MyNavbar = () => {
                   </Link>
                 </NavDropdown.Item>
 
-                <NavDropdown.Item href="#">
+                <NavDropdown.Item href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397104&authkey=AA1uxVivZIR3duU&em=2">
                   <a
-                    href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&amp;resid=4CA8BFEFFFE61AB8%21397104&amp;authkey=AA1uxVivZIR3duU&amp;em=2"
+                    href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397104&authkey=AA1uxVivZIR3duU&em=2"
                     download=""
                   >
                     <button class="about_cta__RaiiB">Pdf Resume</button>
                   </a>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#">
+                <NavDropdown.Item href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397100&authkey=ABpz3ESHdwNSzEQ&em=2">
                   <a
-                    href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&amp;resid=4CA8BFEFFFE61AB8%21397100&amp;authkey=ABpz3ESHdwNSzEQ&amp;em=2"
+                    href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397100&authkey=ABpz3ESHdwNSzEQ&em=2"
                     download=""
                   >
                     <button class="about_cta__RaiiB">Doc Resume</button>
                   </a>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#">
+                <NavDropdown.Item href="mailto:info@masoudnaji.com?subject=Mail From WebSite&body=...">
+                  <img
+                    src={Emails}
+                    style={{ width: "2rem", height: "100%", padding: "0" }}
+                    alt="Emails"
+                  />
+                  &nbsp;
+                  <a href="mailto:info@masoudnaji.com?subject=Mail From WebSite&body=...">
+                    Email
+                  </a>
+                </NavDropdown.Item>
+                <NavDropdown.Item href="https://www.linkedin.com/in/masoud-naji/">
                   <img
                     src={linkedin}
                     style={{ width: "2rem", height: "100%", padding: "0" }}
+                    alt="linkedin"
                   />
                   &nbsp;
                   <a href="https://www.linkedin.com/in/masoud-naji/">
                     linkedin
                   </a>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#">
+                <NavDropdown.Item href="https://github.com/masoud-naji">
                   <img
                     src={Github}
                     style={{ width: "2rem", height: "100%", padding: "0" }}
+                    alt="Github"
                   />
                   &nbsp;
-                  <a href="https://github.com/masoud-naji">Github</a>{" "}
+                  <a href="https://github.com/masoud-naji">Github</a>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/5.4">
+                <NavDropdown.Item href="https://codesandbox.io/u/masoud-naji">
                   <img
                     src={sandbox}
                     style={{ width: "2rem", height: "100%", padding: "0" }}
+                    alt="sandbox"
                   />
                   &nbsp;
-                  <a href="https://codesandbox.io/u/masoud-naji">
-                    sandbox
-                  </a>{" "}
+                  <a href="https://codesandbox.io/u/masoud-naji">sandbox</a>
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { loremIpsum, LoremIpsum } from "react-lorem-ipsum";
+import { loremIpsum } from "react-lorem-ipsum";
 import style from "../../about.module.css";
 
 export default function LoremMaker(props) {

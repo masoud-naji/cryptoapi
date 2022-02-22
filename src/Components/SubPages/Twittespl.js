@@ -1,10 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import classes from "./Components/UI/Card.module.css";
-import Card from "./Components/UI/Card";
-import style from "./about.module.css";
+import classes from "../UI/Card.module.css";
+import Card from "../UI/Card";
+import style from "../../about.module.css";
 import InputEmoji from "react-input-emoji";
-import LoremMaker from "./Components/UI/LoremMaker";
+import LoremMaker from "../UI/LoremMaker";
 
 const Twittespl = () => {
   const [tweet, setTweet] = useState("");

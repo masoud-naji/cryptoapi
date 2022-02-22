@@ -7,9 +7,9 @@ import Paginate from "../CustomHooks/Paginate";
 import Select from "react-select";
 import CoinContext from "../../contexts/coinContext";
 import PieChart from "../../Chart/pieChart";
-import cardStyle from "./infoCard.module.css";
 import { useNavigate } from "react-router-dom";
-import GoogleTrends from "../GoogleTrend/GoogleTrends";
+// import cardStyle from "./infoCard.module.css";
+// import GoogleTrends from "../GoogleTrend/GoogleTrends";
 // import { LineChart, Line } from "recharts";
 // import BasicTable from "./Table/BasicTable";
 
