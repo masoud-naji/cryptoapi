@@ -115,6 +115,7 @@ function Details() {
           setIsItLoading(false);
           setFoundCoins(res.data.prices);
           coinCTX.setChartData(res.data.prices);
+          
         })
         .catch((error) => {
           setError(error);
@@ -144,6 +145,7 @@ function Details() {
 
     getCoinNews();
     search();
+    
   }, [name, startTime, endTime]);
 
   const Progress = ({ done }) => (

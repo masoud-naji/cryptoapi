@@ -8,7 +8,7 @@ import tablestyle from "./UsersList.module.css";
 import Card from "../UI/Card";
 import InventoryCHart from "../../Chart/inventoryChart";
 import Svgimage from "../../Images/Business_SVG.svg";
-// import MOCK_DATA from "./MOCK_DATA.json";
+
 
 const Inventory = () => {
   const [items, setItems] = useState([]);
@@ -157,6 +157,12 @@ const Inventory = () => {
             >
               {/* ////////////////////////////  Browose resultFile //////////////////////////////// */}
               <div className={cardStyle.tableContainer}>
+                Choos a file that you want to check the parameters on chart
+                <br />
+                File should be in one of listed format:
+                <br />
+                .xlsx,.xlsm,.xlsb,.xls,xlw,.xlr,.csv,.json,.JSON
+                <br />
                 <input
                   type="file"
                   accept=".xlsx,.xlsm,.xlsb,.xls,xlw,.xlr,.csv,.json,.JSON"

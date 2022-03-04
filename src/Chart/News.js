@@ -11,7 +11,8 @@ import CoinContext from "../contexts/coinContext";
 
 function Chart() {
   const coinCTX = useContext(CoinContext);
-  // console.log(coinCTX.Chartdata);
+  console.log(coinCTX);
+  // console.log(coinCTX.Chartdata2);
 
   // const data = [
   //   { name: "Page A", uv: 62389.05373707468 },
@@ -20,17 +21,26 @@ function Chart() {
   //   { name: "Page B", uv: 50962.814229250136 },
   //   { name: "Page B", uv: 61999.57837579247 },
   // ];
-  // console.log(data);
 
   const mydata = coinCTX.Chartdata;
-  // console.log(mydata);
+  const mydata2 = coinCTX.Chartdata2;
 
   const newD = mydata.map((mdata) => ({
-    name: new Date(mdata[0]).toLocaleDateString("en-US"),
+    date: new Date(mdata[0]).toLocaleDateString("en-US"),
     price: mdata[1],
   }));
 
-  // console.log(newD);
+  const newD2 = mydata2.map((mdata) => ({
+    price2: mdata[1],
+  }));
+
+  for (const key in newD) {
+    try {
+      newD[key].price2 = newD2[key].price2;
+    } catch (error) {}
+  }
+
+  console.log(newD);
 
   const getInnerWidth = () => {
     var WindowWidth = window.innerWidth;
@@ -57,6 +67,8 @@ function Chart() {
   // console.log(window.innerWidth);
   // console.log(InnerWidth);
   // console.log(InnerHeight);
+  // console.log(newD2)
+  // console.log(newD);
 
   const renderLineChart = (
     <LineChart
@@ -65,11 +77,12 @@ function Chart() {
       data={newD}
       margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
     >
-      <Line type="monotone" dataKey="price" stroke="#8884d8" dot={false} />
-      <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-      <XAxis dataKey="name" />
-      <YAxis />
       <Tooltip />
+      <Line type="monotone" dataKey="price" stroke="white" dot={false} />
+      <Line type="monotone" dataKey="price2" stroke="red" dot={false} />
+      <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+      <XAxis dataKey="date" />
+      <YAxis />
     </LineChart>
   );
   return (

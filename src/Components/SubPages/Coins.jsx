@@ -85,7 +85,7 @@ function Coins() {
   const onRowClick = (coinname) => {
     coinCTX.setSelectedCoin(coinname);
     navigate("/Details");
-    console.log(coinCTX.selectedCoin);
+    // console.log(coinCTX.selectedCoin);
   };
 
   // console.log(paginatedFilteredCoins);

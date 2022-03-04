@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
 import Details from "./Components/SubPages/Details";
+import Compare from "./Components/SubPages/Compare";
 import Coins from "./Components/SubPages/Coins";
 import Inventory from "./Components/SubPages/Inventory";
 import Regextest from "./Components/SubPages/Regextest";
@@ -20,6 +21,7 @@ function App() {
   const [error, setError] = useState();
   const [coins, setCoins] = useState();
   const [Chartdata, setChartData] = useState([]);
+  const [Chartdata2, setChartData2] = useState([]);
   const [selectedCoin, setSelectedCoin] = useState("bitcoin");
 
   useEffect(() => {
@@ -49,6 +51,8 @@ function App() {
           isPending: isPending,
           Chartdata: Chartdata,
           setChartData: setChartData,
+          Chartdata2: Chartdata2,
+          setChartData2: setChartData2,
           selectedCoin: selectedCoin,
           setSelectedCoin: setSelectedCoin,
         }}
@@ -65,6 +69,7 @@ function App() {
           
               <Route path="/" element={<Home />}></Route>
               <Route path="/Details" element={<Details />}></Route>
+              <Route path="/Compare" element={<Compare />}></Route>
               <Route path="/Coins" element={<Coins />}></Route>
               <Route path="/News" element={<Chart />}></Route>
               <Route path="/About" element={<About />}></Route>

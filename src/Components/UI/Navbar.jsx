@@ -6,6 +6,8 @@ import Github from "../../Images/Github.png";
 import sandbox from "../../Images/sandbox.png";
 import Emails from "../../Images/Emails.png";
 
+
+
 import "./Custombootstrap.scss";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -26,16 +28,23 @@ const MyNavbar = () => {
               <Nav.Link href="#">
                 <Link to="./">Home</Link>
               </Nav.Link>
-              <NavDropdown title="Crypto" id="collasible-nav-dropdown">
+              <NavDropdown title="Cryptocurrency" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#">
                   <Link className="navlink" to="./Coins">
-                    Crypto
+                  Cryptocurrency
                   </Link>
                 </NavDropdown.Item>
 
                 <NavDropdown.Item href="#">
                   <Link className="navlink" to="./Details">
-                    Info
+                    Details
+                  </Link>
+                </NavDropdown.Item>
+             
+           
+              <NavDropdown.Item href="#">
+                  <Link className="navlink" to="./Compare">
+                  Compare
                   </Link>
                 </NavDropdown.Item>
               </NavDropdown>
@@ -49,7 +58,7 @@ const MyNavbar = () => {
 
                 <NavDropdown.Item href="#">
                   <Link className="navlink" to="./Inventory">
-                    Inventory
+                  Document Viewer
                   </Link>
                 </NavDropdown.Item>
 

@@ -16,9 +16,10 @@ export default function InventoryCHart(props) {
   const numberthree = props.items[2];
 
   // console.log(props.items);
-  // console.log(numberone);
-  // console.log(numbertwo);
-  // console.log(numberthree);
+  console.log("numberone",numberone);
+  console.log("numbertwo",numbertwo);
+  console.log("numberthree",numberthree);
+  console.log("data",data);
 
   if (data.length <= 0 || typeof data === undefined) {
     console.log(data);
@@ -47,7 +48,10 @@ export default function InventoryCHart(props) {
           stroke="#8884d8"
           activeDot={{ r: 8 }}
         />
-        <Line type="monotone" dataKey={numberthree} stroke="#82ca9d" />
+        <Line
+          type="monotone"
+          dataKey={numberthree}
+          stroke="#82ca9d" />
       </LineChart>
     );
   }
