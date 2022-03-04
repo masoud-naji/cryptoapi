@@ -318,8 +318,7 @@ const RegexTest = () => {
               </Accordion.Item>
             </Accordion>
           </div>
-          <div style={{ width: "60%" ,textAlign: "justify",
-                textJustify: "inter-word", }}>
+          <div className={classes.regixText} >
             <HighlightWithinTextarea
               value={value}
               onChange={onChange}

@@ -320,10 +320,11 @@ function Compare() {
                       src="https://alternative.me/crypto/fear-and-greed-index.png"
                       alt="Latest Crypto Fear & Greed Index"
                       style={{
-                        width: "60%",
+                        width: "70%",
 
                         borderRadius: ".6rem",
                         filter: "hue-rotate(180deg)",
+                        border: "4px rgb(252, 125, 22) solid",
                       }}
                     />
                   </div>
@@ -438,88 +439,86 @@ function Compare() {
               {/* ////////////////////////////marketCAp//////////////////////////////// */}
               <div className={cardStyle.tableContainer}>
                 <Card className={cardStyle.mycard}>
-                  <img src={stock3} />
-                  <div className="emptybigcontainer">
-                    <Firstcoinimage />
-                    Market Cap : $&nbsp;
-                    {coinAllInfo.market_data.market_cap.usd
-                      ? coinAllInfo.market_data.market_cap.usd.toLocaleString(
-                          "en-US"
-                        )
-                      : ""}
-                    <br />
-                    Price : $&nbsp;
-                    {coinAllInfo.market_data.current_price.usd
-                      ? coinAllInfo.market_data.current_price.usd.toLocaleString(
-                          "en-US"
-                        )
-                      : ""}
-                  </div>
-                  <div className="emptybigcontainer">
-                    <Secondcoinimage />
-                    Market Cap : $&nbsp;
-                    {coinAllInfo2.market_data.market_cap.usd
-                      ? coinAllInfo2.market_data.market_cap.usd.toLocaleString(
-                          "en-US"
-                        )
-                      : ""}
-                    <br />
-                    Price : $&nbsp;
-                    {coinAllInfo2.market_data.current_price.usd
-                      ? coinAllInfo2.market_data.current_price.usd.toLocaleString(
-                          "en-US"
-                        )
-                      : ""}
-                  </div>
-                  <div
-                    className="emptybigcontainer"
-                    style={{
-                      height: "9rem",
-                      // fontVariantNumeric: "tabular-nums",
-                    }}
-                  >
-                    Mrket Cap of the {coinAllInfo2.id} is &nbsp;
-                    {coinAllInfo.market_data.market_cap.usd
-                      ? (
-                          (coinAllInfo2.market_data.market_cap.usd /
-                            coinAllInfo.market_data.market_cap.usd) *
-                          100
-                        ).toFixed(2)
-                      : ""}
-                    % of the {coinAllInfo.id}
-                    <br />
-                    {coinAllInfo.id} with the market cap of {coinAllInfo2.id} is
-                    should be ~ $&nbsp;
-                    {coinAllInfo.market_data.market_cap.usd
-                      ? (
-                          coinAllInfo2.market_data.market_cap.usd /
-                          (coinAllInfo.market_data.market_cap.usd /
-                            coinAllInfo.market_data.current_price.usd)
-                        ).toLocaleString("en-US")
-                      : ""}
-                  </div>
+                  <section className="infoandpichrt">
+                    <img src={stock3} />
+                    <div className="emptybigcontainer">
+                      <Firstcoinimage />
+                      Market Cap : $&nbsp;
+                      {coinAllInfo.market_data.market_cap.usd
+                        ? coinAllInfo.market_data.market_cap.usd.toLocaleString(
+                            "en-US"
+                          )
+                        : ""}
+                      <br />
+                      Price : $&nbsp;
+                      {coinAllInfo.market_data.current_price.usd
+                        ? coinAllInfo.market_data.current_price.usd.toLocaleString(
+                            "en-US"
+                          )
+                        : ""}
+                    </div>
+                    <div className="emptybigcontainer">
+                      <Secondcoinimage />
+                      Market Cap : $&nbsp;
+                      {coinAllInfo2.market_data.market_cap.usd
+                        ? coinAllInfo2.market_data.market_cap.usd.toLocaleString(
+                            "en-US"
+                          )
+                        : ""}
+                      <br />
+                      Price : $&nbsp;
+                      {coinAllInfo2.market_data.current_price.usd
+                        ? coinAllInfo2.market_data.current_price.usd.toLocaleString(
+                            "en-US"
+                          )
+                        : ""}
+                    </div>
+                    <div
+                      className="emptybigcontainer test2"
+                      style={{
+                        height: "9rem",
+                        // fontVariantNumeric: "tabular-nums",
+                      }}
+                    >
+                      Mrket Cap of the {coinAllInfo2.id} is &nbsp;
+                      {coinAllInfo.market_data.market_cap.usd
+                        ? (
+                            (coinAllInfo2.market_data.market_cap.usd /
+                              coinAllInfo.market_data.market_cap.usd) *
+                            100
+                          ).toFixed(2)
+                        : ""}
+                      % of the {coinAllInfo.id}
+                      <br />
+                      {coinAllInfo.id} with the market cap of {coinAllInfo2.id}{" "}
+                      is should be ~ $&nbsp;
+                      {coinAllInfo.market_data.market_cap.usd
+                        ? (
+                            coinAllInfo2.market_data.market_cap.usd /
+                            (coinAllInfo.market_data.market_cap.usd /
+                              coinAllInfo.market_data.current_price.usd)
+                          ).toLocaleString("en-US")
+                        : ""}
+                    </div>
 
-                  {/* ///////////////////////////////////////////////////////////////////////////////////////// */}
+                    {/* ///////////////////////////////////////////////////////////////////////////////////////// */}
 
-                  <div
-                    style={{
-                      width: "400px",
-                      height: "400px",
-                      backgroundImage:
-                        `conic-gradient(blue  ${coinAllInfo.market_data.market_cap.usd
-                          ? (
-                              (coinAllInfo2.market_data.market_cap.usd /
-                                coinAllInfo.market_data.market_cap.usd) *
-                              100
-                            ).toFixed(2)
-                          : ""}%, skyblue 0%, white)`,
-                      borderRadius: "50%",
-                      border:"2px"
-                    }}
-                    
-                  ></div>
+                    <div
+                      style={{
+                        backgroundImage: `conic-gradient(blue  ${
+                          coinAllInfo.market_data.market_cap.usd
+                            ? (
+                                (coinAllInfo2.market_data.market_cap.usd /
+                                  coinAllInfo.market_data.market_cap.usd) *
+                                100
+                              ).toFixed(2)
+                            : ""
+                        }%, skyblue 0%, rgb(22, 160, 252))`,
+                      }}
+                    ></div>
 
-                  {/* ///////////////////////////////////////////////////////////////////////////////////////// */}
+                    {/* ///////////////////////////////////////////////////////////////////////////////////////// */}
+                  </section>
                 </Card>
               </div>
               {/* //////////////////////////////////////////////////////////// */}
