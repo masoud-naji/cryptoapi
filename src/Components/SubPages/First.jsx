@@ -8,7 +8,7 @@ import music from "../../Images/music.webp";
 import Coding from "../../Images/Coding.webp";
 import Light from "../../Images/light.webp";
 import galaxy from "../../Images/galaxy.webp";
-import Daco from "../../Images/Daco.png";
+import Daco from "../../Images/Daco.webp";
 
 // import classes from "../UI/Card.module.css";
 // import Card from "../UI/Card";

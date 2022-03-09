@@ -159,34 +159,6 @@ const About = () => {
             </div>
 
             {/* //////////////////////////////////////// */}
-
-            {/* <div className={cardStyle.tableContainer}>
-              <div className={style.flextbtn}></div>
-                
-              <div>
-                <Link className={style.nvbbtn} to="../Twittespl">
-                  <button className={style.cta}>Twitte Splitter</button>
-                </Link>
-                <br />
-                <Link className={style.nvbbtn} to="../inventory">
-                  <button className={style.cta}>inventory</button>
-                </Link>
-                <br />
-                <a className={style.nvbbtn} to="https://github.com/masoud-naji">
-                  <button
-                    className={style.cta}
-                    onClick={() =>
-                      window.open(
-                        "https://github.com/masoud-naji?tab=repositories"
-                      )
-                    }
-                  >
-                    GitHub
-                  </button>
-                </a>
-              </div>
-            </div> */}
-
             <div>
               {/* List Of Sample Projects ➡️ */}
               <div
@@ -198,16 +170,7 @@ const About = () => {
               ></div>
             </div>
             {/* //////////////////////////////////////// */}
-            {/* <div className={cardStyle.tableContainer}>
-              <div
-                className="github-card"
-                data-github="masoud-naji"
-                data-width="400"
-                data-height=""
-                data-theme="default"
-              ></div>
-            </div> */}
-            {/* /////////////////////////////////////// */}
+          
           </div>
         </div>
       </Card>
@@ -242,6 +205,7 @@ const About = () => {
                 &nbsp;
                 {Object.keys(urls)}
               </button>
+            
             ))}
           </div>
         </div>

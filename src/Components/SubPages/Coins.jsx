@@ -335,7 +335,7 @@ function Coins() {
                               color:
                                 Math.sign(coin.price_change_percentage_24h) < 0
                                   ? "red"
-                                  : "green",
+                                  : "#6adc6a",
                             }}
                           >
                             {coin.price_change_percentage_24h}%
