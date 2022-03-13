@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, HashRouter ,BrowserRouter } from "react-router-dom";
+import MyNavbar from "./Components/UI/Navbar";
+import Home from "./Home";
 import Details from "./Components/SubPages/Details";
 import Compare from "./Components/SubPages/Compare";
+import Whatif from "./Components/SubPages/Whatif";
 import Coins from "./Components/SubPages/Coins";
+import Twittespl from "./Components/SubPages/Twittespl";
 import Inventory from "./Components/SubPages/Inventory";
 import Regextest from "./Components/SubPages/Regextest";
-import MyNavbar from "./Components/UI/Navbar";
+import CompareText from "./Components/SubPages/CompareText";
 import NotFound from "./Components/UI/NotFound";
-import Home from "./Home";
-import styles from "./App.module.css";
 import CoinContext from "./contexts/coinContext";
+import styles from "./App.module.css";
 import axios from "axios";
 import Chart from "./Chart/News";
 import About from "./About";
-import Twittespl from "./Components/SubPages/Twittespl";
 
 
 function App() {
@@ -43,7 +45,8 @@ function App() {
   // console.log(coins);
 
   return (
-    <HashRouter>
+    // <HashRouter>
+       <BrowserRouter>
       <CoinContext.Provider
         value={{
           coins: coins,
@@ -70,19 +73,22 @@ function App() {
               <Route path="/" element={<Home />}></Route>
               <Route path="/Details" element={<Details />}></Route>
               <Route path="/Compare" element={<Compare />}></Route>
+              <Route path="/Whatif" element={<Whatif />}></Route>
               <Route path="/Coins" element={<Coins />}></Route>
               <Route path="/News" element={<Chart />}></Route>
               <Route path="/About" element={<About />}></Route>
               <Route path="/Twittespl" element={<Twittespl />}></Route>
               <Route path="/Inventory" element={<Inventory />}></Route>
               <Route path="/Regextest" element={<Regextest />}></Route>
+              <Route path="/CompareText" element={<CompareText />}></Route>
               <Route path="/needs/*" element={<NotFound />}></Route>
               <Route path="*" element={<NotFound />}></Route>
             </Routes>
           </div>
         </div>
-      </CoinContext.Provider>
-    </HashRouter>
+        </CoinContext.Provider>
+        </BrowserRouter>
+    //</HashRouter> 
   );
 }
 

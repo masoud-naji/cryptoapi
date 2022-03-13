@@ -9,7 +9,6 @@ import Card from "../UI/Card";
 import InventoryCHart from "../../Chart/inventoryChart";
 import Svgimage from "../../Images/Business_SVG.svg";
 
-
 const Inventory = () => {
   const [items, setItems] = useState([]);
   const [chartElemet, setChartElemet] = useState([]);

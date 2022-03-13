@@ -92,8 +92,24 @@
   max-height: 22rem;
   min-height: 22rem;
 }
+.HeroPlaceWif {
+  display: -ms-grid;
+  display: grid;
+  grid-auto-flow: row;
+  gap: 1rem;
+  align-content: center;
+  /* height: 22rem;
+  max-height: 22rem;
+  min-height: 22rem; */
+  height: minmax(22rem,fit-content);
+}
 
 .chartdisplay {
+  overflow: hidden;
+  display: block;
+  z-index: 999;
+}
+.chartdisplayWif {
   overflow: hidden;
   display: block;
   z-index: 999;
@@ -101,23 +117,6 @@
 
 .infodisplay {
   overflow: scroll;
-}
-@media (min-width: 50rem) {
-  .HeroPlace {
-    grid-auto-flow: column;
-    align-content: center;
-    gap: 1rem;
-  }
-  .chartdisplay {
-    overflow: visible;
-    display: block;
-    z-index: 999;
-    margin-left: 0;
-  }
-
-  .infodisplay {
-    overflow: auto;
-  }
 }
 
 .App {
@@ -168,7 +167,42 @@
     padding-left: 0px;
     margin-left: -30px;
   }
+  .chartdisplayWif {
+    font-size: 10px;
+    padding-left: 0px;
+    margin-left:0px;
+  }
   .regixText {
     width: fit-content;
+  }
+}
+
+@media (min-width: 50rem) {
+  .HeroPlace {
+    grid-auto-flow: column;
+    align-content: center;
+    gap: 1rem;
+  }
+  .HeroPlaceWif {
+    grid-auto-flow: column;
+    align-content: center;
+    gap: 1rem;
+    grid-template-columns: 2fr 1fr;
+  }
+  .chartdisplay {
+    overflow: visible;
+    display: block;
+    z-index: 999;
+    margin-left: 0;
+  }
+  .chartdisplayWif {
+    overflow: visible;
+    display: block;
+    z-index: 999;
+    margin-left: 0;
+  }
+
+  .infodisplay {
+    overflow: auto;
   }
 }

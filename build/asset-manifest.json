@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/static/css/main.681aff95.chunk.css",
+    "main.js": "/static/js/main.27682fab.chunk.js",
+    "main.js.map": "/static/js/main.27682fab.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.dc6584d2.js",
+    "runtime-main.js.map": "/static/js/runtime-main.dc6584d2.js.map",
+    "static/css/2.b36d5338.chunk.css": "/static/css/2.b36d5338.chunk.css",
+    "static/js/2.cfb1ff14.chunk.js": "/static/js/2.cfb1ff14.chunk.js",
+    "static/js/2.cfb1ff14.chunk.js.map": "/static/js/2.cfb1ff14.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.b36d5338.chunk.css.map": "/static/css/2.b36d5338.chunk.css.map",
+    "static/css/main.681aff95.chunk.css.map": "/static/css/main.681aff95.chunk.css.map",
+    "static/js/2.cfb1ff14.chunk.js.LICENSE.txt": "/static/js/2.cfb1ff14.chunk.js.LICENSE.txt",
+    "static/media/Business_SVG.f27f82ed.svg": "/static/media/Business_SVG.f27f82ed.svg",
+    "static/media/Coding.4edba9a4.webp": "/static/media/Coding.4edba9a4.webp",
+    "static/media/Daco.be35b8fa.webp": "/static/media/Daco.be35b8fa.webp",
+    "static/media/Emails.d66c7d29.png": "/static/media/Emails.d66c7d29.png",
+    "static/media/PDF.1ae7f5b6.png": "/static/media/PDF.1ae7f5b6.png",
+    "static/media/cam.8aa7f7f3.webp": "/static/media/cam.8aa7f7f3.webp",
+    "static/media/cryptocurrency.194412bc.webp": "/static/media/cryptocurrency.194412bc.webp",
+    "static/media/index.css": "/static/media/galaxy.373bd580.webp",
+    "static/media/light.5059f8eb.webp": "/static/media/light.5059f8eb.webp",
+    "static/media/music.93e40457.webp": "/static/media/music.93e40457.webp",
+    "static/media/pngaaa.com-719740.ade1b3d5.png": "/static/media/pngaaa.com-719740.ade1b3d5.png",
+    "static/media/sandbox.e8ac2ad6.png": "/static/media/sandbox.e8ac2ad6.png",
+    "static/media/social.114f7475.webp": "/static/media/social.114f7475.webp",
+    "static/media/Card.module.css": "/static/media/wwwvecteezycom.9f9984a1.webp"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dc6584d2.js",
+    "static/css/2.b36d5338.chunk.css",
+    "static/js/2.cfb1ff14.chunk.js",
+    "static/css/main.681aff95.chunk.css",
+    "static/js/main.27682fab.chunk.js"
+  ]
+}

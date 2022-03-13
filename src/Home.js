@@ -54,3 +54,11 @@ export default Home;
 // npm i sass
 //npm install node-sass
 //npm install --save react-highlight-within-textarea
+//require('dotenv').config({ path: require('find-config')('.env') })
+//npm info name-of-module peerDependencies
+//npm config set legacy-peer-deps true
+//npm install --legacy-peer-deps
+//npm install --save react-tinder-card --legacy-peer-deps
+//npm i react-diff-viewer
+//npm install --save prismjs
+//npm install --save-dev babel-plugin-prismjs

@@ -11,7 +11,7 @@ import CoinContext from "../contexts/coinContext";
 
 function Chart() {
   const coinCTX = useContext(CoinContext);
-  console.log(coinCTX);
+  // console.log(coinCTX);
   // console.log(coinCTX.Chartdata2);
 
   // const data = [
@@ -40,7 +40,7 @@ function Chart() {
     } catch (error) {}
   }
 
-  console.log(newD);
+  // console.log(newD);
 
   const getInnerWidth = () => {
     var WindowWidth = window.innerWidth;

@@ -47,6 +47,11 @@ const MyNavbar = () => {
                   Compare
                   </Link>
                 </NavDropdown.Item>
+              <NavDropdown.Item href="#">
+                  <Link className="navlink" to="./Whatif">
+                  What if
+                  </Link>
+                </NavDropdown.Item>
               </NavDropdown>
 
               <NavDropdown title="Projrcts" id="collasible-nav-dropdown">
@@ -65,6 +70,12 @@ const MyNavbar = () => {
                 <NavDropdown.Item href="#">
                   <Link className="navlink" to="./Regextest">
                     Regex Test
+                  </Link>
+                </NavDropdown.Item>
+               
+                <NavDropdown.Item href="#">
+                  <Link className="navlink" to="./CompareText">
+                  Compare Text
                   </Link>
                 </NavDropdown.Item>
               </NavDropdown>

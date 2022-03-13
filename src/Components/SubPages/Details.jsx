@@ -59,8 +59,8 @@ function Details() {
     const alldatavalue = split(alldata, ",")[0];
     const alldataLabel = split(alldata, ",")[1];
 
-    console.log(alldatavalue);
-    console.log(alldataLabel);
+    // console.log(alldatavalue);
+    // console.log(alldataLabel);
     setStartTime(Math.round(+alldatavalue / 1000));
     settimeLabale(alldataLabel);
   };
@@ -104,6 +104,8 @@ function Details() {
           console.log(error.config);
         });
     //////////////////////////////////////////////////////////
+    //https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=5&interval=daily
+    // marketchart
     const search = () =>
       axios
         .get(
