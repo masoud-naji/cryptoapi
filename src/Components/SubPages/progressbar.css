@@ -90,6 +90,15 @@ li {
   align-items: center;
   width: min(100%);
 }
+.tablecontrol{
+ 
+ display: grid;
+  gap: 5px;
+  justify-items: center;
+  align-items: center;
+  width: min(100%);
+}
+
 .infoandpichrt {
   display: grid;
   gap: 5px;
@@ -155,5 +164,13 @@ section { width: 80%;}
   .infoWhatif {
     grid-template-columns:repeat(1,1fr 3fr);
   }
+.tablecontrol{
+  display:flex;
+  gap:1rem;
+  justify-content:space-evenly;
+  width:fit-content;
+}
+
+
 }
 

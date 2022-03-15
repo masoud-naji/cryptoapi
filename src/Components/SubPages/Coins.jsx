@@ -62,7 +62,7 @@ function Coins() {
       const sorted = [...foundCoins].sort((a, b) => (a[col] > b[col] ? 1 : -1));
       setFoundCoins(sorted);
       setOrder("DSC");
-      console.log(foundCoins);
+      // console.log(foundCoins);
     }
     if (order === "DSC") {
       const sorted = [...foundCoins].sort((a, b) => (a[col] < b[col] ? 1 : -1));

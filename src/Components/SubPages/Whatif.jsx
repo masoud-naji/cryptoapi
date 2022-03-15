@@ -8,17 +8,19 @@ import "./progressbar.css";
 import axios from "axios";
 import CoinContext from "../../contexts/coinContext";
 import stock from "../../Images/stock.png";
-import stock2 from "../../Images/stock2.png";
-import stock3 from "../../Images/stock3.png";
-import stock4 from "../../Images/stock4.png";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Pagination from "../UI/pagination";
+import Paginate from "../CustomHooks/Paginate";
+import Select from "react-select";
+import { useNavigate } from "react-router-dom";
 // require("dotenv").config();
 // require('dotenv').config({ path: require('find-config')('.env') })
 
 function Details() {
   const coinCTX = useContext(CoinContext);
   const [foundCoins, setFoundCoins] = useState();
+  const [order, setOrder] = useState("ASC");
   const [name, setName] = useState(
     "BTC"
     // coinCTX.selectedCoin ? coinCTX.selectedCoin : "BTC"
@@ -28,6 +30,22 @@ function Details() {
   const [Invest, setInvest] = useState("100");
   const [LowMiss, setLowMiss] = useState("0");
   const [HighMiss, setHighMiss] = useState("0");
+
+  /////////////////page and pagination system
+  const navigate = useNavigate();
+  const [pageSize, setPageSize] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const paginatedFilteredCoins = Paginate(
+    foundCoins ? foundCoins : "",
+    currentPage,
+    pageSize
+  );
+  const paginationOptions = [
+    { value: 10, label: "10" },
+    { value: 15, label: "15" },
+    { value: 20, label: "20" },
+    { value: 50, label: "50" },
+  ];
   ////////////////////////////////////////////////duration Cotrol maker/////////////////////////////////////////
   const [startDay, setStartDay] = useState();
   const [endDay, setEndDay] = useState();
@@ -48,7 +66,16 @@ function Details() {
     return defaultValue;
   };
 
+  const yesterday = new Date();
+  const pastDate = yesterday.getDate() - 1;
+  yesterday.setDate(pastDate);
+  // console.log(yesterday);
+
   const getNumberOfDays = (startDay, endDay) => {
+    if (endDay === new Date()) {
+      console.log("end", endDay);
+      return;
+    }
     if (startDay === undefined) {
       startDay = getToday();
     }
@@ -60,6 +87,40 @@ function Details() {
     const onDay = 1000 * 60 * 60 * 24;
     const diffreantTime = Math.round((Date1 - Date2) / onDay);
     return diffreantTime;
+  };
+
+  const PageChangeHandler = (page) => {
+    setCurrentPage(page);
+  };
+
+  const optionSelectHandler = (event) => {
+    setPageSize(event.value);
+    setCurrentPage(1);
+  };
+
+  const onRowClick = (coinname) => {
+    coinCTX.setSelectedCoin(coinname);
+    navigate("/Details");
+    // console.log(coinCTX.selectedCoin);
+  };
+
+  const sorting = (col) => {
+    console.log(col);
+    console.log(foundCoins);
+    console.log(typeof foundCoins);
+    console.log(`sorting clickon ${col}`);
+    if (order === "ASC") {
+      const sorted = [...foundCoins].sort((a, b) => (a[col] > b[col] ? 1 : -1));
+      setFoundCoins(sorted);
+      setOrder("DSC");
+      console.log(foundCoins);
+    }
+    if (order === "DSC") {
+      const sorted = [...foundCoins].sort((a, b) => (a[col] < b[col] ? 1 : -1));
+      setFoundCoins(sorted);
+      setOrder("ASC");
+      console.log(foundCoins);
+    }
   };
 
   ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -79,8 +140,9 @@ function Details() {
           if (res.status !== 200) return;
           // console.log(res.data);
           setIsItLoading(false);
-          setFoundCoins(res.data.Data);
+          setFoundCoins(res.data.Data.Data);
           coinCTX.setChartData(res.data.prices);
+          // console.log(res.data.Data.Data)
         })
         .catch((error) => {
           setError(error);
@@ -111,17 +173,7 @@ function Details() {
     search();
   }, [name, startDay, endDay]);
 
-  const Progress = ({ done }) => (
-    <div className="MyProgress">
-      <div className="progress-done" style={{ opacity: 1, width: `${done}%` }}>
-        {done}%
-      </div>
-    </div>
-  );
-
-  // console.log(foundCoins.Data !== undefined && foundCoins.Data[1].time);
-  // const timenewtest = foundCoins.Data !== undefined && foundCoins.Data[1].time;
-  // console.log(new Date(timenewtest * 1000).toLocaleDateString("en-US"));
+  // console.log(paginatedFilteredCoins);
 
   if (isItLoading) {
     return (
@@ -178,9 +230,9 @@ function Details() {
                       <section>
                         <DatePicker
                           className={style.dropdownsmall}
-                          selected={endDay || new Date()}
+                          selected={endDay || yesterday}
                           minDate="2000-01-01"
-                          maxDate={new Date()}
+                          maxDate={yesterday}
                           onChange={(date) => setEndDay(date)}
                           showYearDropdown
                           scrollableMonthYearDropdown
@@ -248,10 +300,10 @@ function Details() {
                   <div className={classes.insidecontent}>
                     {foundCoins && (
                       <div>
-                        <h3 className={style.tableTitle}>
+                        {/* <h3 className={style.tableTitle}>
                           {getNumberOfDays(startDay, endDay)} Records Show on
                           chart
-                        </h3>
+                        </h3> */}
                       </div>
                     )}
 
@@ -263,10 +315,9 @@ function Details() {
                   style={{
                     color: "white",
                     textAlign: "justify",
-                    padding: "2rem 1rem 2rem 1rem",
+                    padding: "0rem 1rem 2rem 1rem",
                   }}
                 >
-                  {/* <div className={classes.chartdisplay}> */}
                   Imagine we have a time machine!
                   <br /> This is the difference between low and high regardless
                   of priority and you can guess usually there are some delays
@@ -292,70 +343,107 @@ function Details() {
           >
             <hr />
             <div className={cardStyle.infotext}>
-              <span title="Click to open Google Trend"></span>
-              {/* <details style={{ color: "#CCC" }}>
-                <summary className={cardStyle.infotext}> */}
-                  - Table With {getNumberOfDays(startDay, endDay)}
-                  &nbsp;Record/s
-                {/* </summary> */}
-                <div className={cardStyle.tableContainer}>
-                  <Card className={cardStyle.mycard}>
-                    <img src={stock} alt="stock" />
-                    {/* className="tg" */}
-                    <table
-                      className={`{table container} ${tablestyle.userTable}`}
-                    >
-                      <thead>
-                        <tr>
-                          <th
-                            className="tg-yuap"
-                            style={{ overflowWrap: "break-word", width: "10%" }}
-                          >
-                            Time
-                          </th>
-                          <th
-                            className="tg-0pky"
-                            style={{ overflowWrap: "break-word", width: "20%" }}
-                          >
-                            Low $
-                          </th>
-                          <th
-                            className="tg-0pky"
-                            style={{ overflowWrap: "break-word", width: "20%" }}
-                          >
-                            Hight $
-                          </th>
-                          <th
-                            className="tg-0pky"
-                            style={{ overflowWrap: "break-word", width: "10%" }}
-                          >
-                            Tolerance %
-                          </th>
-                          <th
-                            className="tg-0pky"
-                            style={{ overflowWrap: "break-word", width: "15%" }}
-                          >
-                            Low with {LowMiss}% Missed
-                          </th>
-                          <th
-                            className="tg-0pky"
-                            style={{ overflowWrap: "break-word", width: "15%" }}
-                          >
-                            High with {HighMiss}% Missed
-                          </th>
-                          <th
-                            className="tg-0lax"
-                            style={{ overflowWrap: "break-word", width: "15%" }}
-                          >
-                            Gain $
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {foundCoins.Data !== "undefined" &&
-                          foundCoins.Data.map((coin) => (
+              <div className={cardStyle.tableContainer}>
+                <Card className={cardStyle.mycard}>
+                  <img src={stock} alt="stock" />
+                  {/* className="tg" */}
+                  {/* /////////////DropDown/////////////////// */}
+
+                  <div className="tablecontrol">
+                    <input
+                      type="text"
+                      className={style.dropdown}
+                      style={{
+                        width: "100%",
+                        textAlign: "center",
+                        fontWeight: "600",
+                        color: "#000",
+                        border: "none",
+                      }}
+                      value={`${getNumberOfDays(startDay, endDay)}  Records `}
+                    />
+
+                    <Select
+                      className={style.dropdown}
+                      options={paginationOptions}
+                      onChange={optionSelectHandler}
+                      placeholder="Select Duration ..."
+                      defaultValue={{ value: 10, label: "10" }}
+                    />
+                    <Pagination
+                      itemsCount={foundCoins.length}
+                      pageSize={pageSize}
+                      onPageChange={PageChangeHandler}
+                      currentPage={currentPage}
+                    />
+                  </div>
+
+                  <table
+                    className={`${tablestyle.container} ${tablestyle.userTable}`}
+                  >
+                    <thead>
+                      <tr>
+                        <th
+                          onClick={() => sorting("Time")}
+                          className="tg-yuap"
+                          style={{ overflowWrap: "break-word", width: "10%" }}
+                        >
+                          Time
+                        </th>
+                        <th
+                          onClick={() => sorting("Low $")}
+                          className="tg-0pky"
+                          style={{ overflowWrap: "break-word", width: "20%" }}
+                        >
+                          Low $
+                        </th>
+                        <th
+                          onClick={() => sorting("Hight $")}
+                          className="tg-0pky"
+                          style={{ overflowWrap: "break-word", width: "20%" }}
+                        >
+                          Hight $
+                        </th>
+                        <th
+                          onClick={() => sorting("Tolerance %")}
+                          className="tg-0pky"
+                          style={{ overflowWrap: "break-word", width: "10%" }}
+                        >
+                          Tolerance %
+                        </th>
+                        <th
+                          onClick={() => sorting("Low with {LowMiss}% Missed")}
+                          className="tg-0pky"
+                          style={{ overflowWrap: "break-word", width: "15%" }}
+                        >
+                          Low with {LowMiss}% Missed
+                        </th>
+                        <th
+                          onClick={() =>
+                            sorting("High with {HighMiss}% Missed")
+                          }
+                          className="tg-0pky"
+                          style={{ overflowWrap: "break-word", width: "15%" }}
+                        >
+                          High with {HighMiss}% Missed
+                        </th>
+                        <th
+                          onClick={() => sorting("Gain $")}
+                          className="tg-0lax"
+                          style={{ overflowWrap: "break-word", width: "15%" }}
+                        >
+                          Gain $
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {foundCoins !== "undefined" &&
+                        // foundCoins.Data.map((coin) => (
+                        paginatedFilteredCoins
+                          .filter((coin) => coin !== null)
+                          .map((coin) => (
                             <tr key={coin.time}>
-                                {/* Time */}
+                              {/* Time */}
                               <td className="tg-c3ow">
                                 {new Date(coin.time * 1000).toLocaleDateString(
                                   "en-US"
@@ -363,13 +451,13 @@ function Details() {
                               </td>
                               {/* Low */}
                               <td className="tg-0pky">
-                              $  {coin.low.toLocaleString("en-US")}
+                                $ {coin.low.toLocaleString("en-US")}
                               </td>
                               {/* High */}
                               <td className="tg-0pky">
-                             $   {coin.high.toLocaleString("en-US")}
+                                $ {coin.high.toLocaleString("en-US")}
                               </td>
-                                {/* Tolerance */}
+                              {/* Tolerance */}
                               <td className="tg-0pky">
                                 {(
                                   ((coin.high - coin.low) /
@@ -377,14 +465,14 @@ function Details() {
                                   100
                                 ).toLocaleString("en-US")}
                               </td>
-                                {/* Low With 0% Missed */}
+                              {/* Low With 0% Missed */}
                               <td className="tg-0pky">
                                 {(
                                   Invest /
                                   (coin.low + (coin.low * LowMiss) / 100)
                                 ).toLocaleString("en-US")}
                               </td>
-                                {/* High With 0% Missed */}
+                              {/* High With 0% Missed */}
                               <td className="tg-0pky">
                                 $
                                 {(
@@ -410,7 +498,6 @@ function Details() {
                                       : "red",
                                 }}
                               >
-                                
                                 {(
                                   (Invest /
                                     (coin.low + (coin.low * LowMiss) / 100)) *
@@ -420,10 +507,10 @@ function Details() {
                               </td>
                             </tr>
                           ))}
-                      </tbody>
-                    </table>
-                  </Card>
-                </div>
+                    </tbody>
+                  </table>
+                </Card>
+              </div>
               {/* </details> */}
               <hr />
               {/* ////////////////////////////////////////first line of detail///////////////////////////////////////// */}
