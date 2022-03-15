@@ -31,20 +31,19 @@ const CompareText = () => {
   // );
   const newStyles = {
     diffContainer: {
-      
-      borderRadius: '1rem',
+      borderRadius: "1rem",
     },
-    
+
     variables: {
       dark: {
-        highlightBackground: '#fefed5',
-        highlightGutterBackground: '#ffcd3c',
+        highlightBackground: "#fefed5",
+        highlightGutterBackground: "#ffcd3c",
       },
     },
     line: {
-      padding: '10px 2px',
-      '&:hover': {
-        background: '#a26ea1',
+      padding: "10px 2px",
+      "&:hover": {
+        background: "#a26ea1",
       },
     },
   };
@@ -131,6 +130,7 @@ const CompareText = () => {
     <div>
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
         <div className={classes.infodisplay}>
+          <h1 className={tablestyle.title}>Text Compare</h1>
           <div className={classes.HeroPlace}>
             {/* ////////////////////////////  file 1 //////////////////////////////// */}
             <div

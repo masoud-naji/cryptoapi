@@ -4,6 +4,7 @@ import classes from "../UI/Card.module.css";
 import cardStyle from "./infoCard.module.css";
 import Card from "../UI/Card";
 import HighlightWithinTextarea from "react-highlight-within-textarea";
+import tablestyle from "./UsersList.module.css";
 // import _ from "lodash";
 // import "bootstrap/dist/css/bootstrap.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -157,13 +158,15 @@ const RegexTest = () => {
         <div className={classes.HeroPlace}>
           {/* ///////////////////////////////////test left/////////////// */}
           <div className={classes.infodisplay}>
+            <h1 className={tablestyle.title}>Regex Test</h1>
             <div
               style={{ background: "rgba(54, 162, 235, 1)" }}
-              className={cardStyle.container}
+              // className={`${cardStyle.container} $`}
               className={classes.card}
             >
               {/* ////////////////////////////  regex //////////////////////////////// */}
               <div className={cardStyle.tableContainer}>
+              
                 <input
                   type="text"
                   value={searchShowValue}

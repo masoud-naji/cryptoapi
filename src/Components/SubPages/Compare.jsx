@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, Fragment } from "react";
 import style from "./UsersList.module.css";
 import classes from "../UI/Card.module.css";
 import cardStyle from "./infoCard.module.css";
@@ -237,7 +237,7 @@ function Compare() {
           src={coinNumber}
           alt={coinNumber}
         />
-        {done}%
+        <p>{done}%</p>
       </div>
     </div>
   );
@@ -320,7 +320,7 @@ function Compare() {
                       src="https://alternative.me/crypto/fear-and-greed-index.png"
                       alt="Latest Crypto Fear & Greed Index"
                       style={{
-                        width: "70%",
+                        width: "65%",
 
                         borderRadius: ".6rem",
                         filter: "hue-rotate(180deg)",
@@ -480,7 +480,7 @@ function Compare() {
                         // fontVariantNumeric: "tabular-nums",
                       }}
                     >
-                      Mrket Cap of the {coinAllInfo2.id} is &nbsp;
+                      Market Cap of the {coinAllInfo2.id} is &nbsp;
                       {coinAllInfo.market_data.market_cap.usd
                         ? (
                             (coinAllInfo2.market_data.market_cap.usd /
@@ -490,8 +490,8 @@ function Compare() {
                         : ""}
                       % of the {coinAllInfo.id}
                       <br />
-                      {coinAllInfo.id} with the market cap of {coinAllInfo2.id}{" "}
-                      is should be ~ $&nbsp;
+                      {coinAllInfo.id} with the market cap of {coinAllInfo2.id}
+                      is should be approximately <br /> ~ $&nbsp;
                       {coinAllInfo.market_data.market_cap.usd
                         ? (
                             coinAllInfo2.market_data.market_cap.usd /
@@ -590,7 +590,6 @@ function Compare() {
                 <div className={cardStyle.tableContainer}>
                   <Card className={cardStyle.mycard}>
                     <img src={stock4} alt="stock" />
-                    {/* ////////////////////// */}
                     public interest stats
                     <div
                       className="emptycontainer"
@@ -602,9 +601,17 @@ function Compare() {
                       }}
                     >
                       <Firstcoinimage />
-                      {coinAllInfo.public_interest_stats.alexa_rank
-                        ? coinAllInfo.public_interest_stats.alexa_rank
-                        : ""}
+                      <p
+                        style={{
+                          position: "absolute",
+                          left: "5rem",
+                          top: ".2rem",
+                        }}
+                      >
+                        {coinAllInfo.public_interest_stats.alexa_rank
+                          ? coinAllInfo.public_interest_stats.alexa_rank
+                          : ""}
+                      </p>
                     </div>
                     <div
                       className="emptycontainer"
@@ -616,9 +623,18 @@ function Compare() {
                       }}
                     >
                       <Secondcoinimage />
-                      {coinAllInfo2.public_interest_stats.alexa_rank
-                        ? coinAllInfo2.public_interest_stats.alexa_rank
-                        : ""}
+                      <p
+                        style={{
+                          position: "absolute",
+                          left: "5rem",
+                          top: ".2rem",
+                        }}
+                      >
+                        {" "}
+                        {coinAllInfo2.public_interest_stats.alexa_rank
+                          ? coinAllInfo2.public_interest_stats.alexa_rank
+                          : ""}
+                      </p>
                     </div>
                     {/* ////////////////////// */}
                     sentiment votes down

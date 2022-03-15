@@ -88,9 +88,9 @@
   grid-auto-flow: row;
   gap: 1rem;
   align-content: center;
-  height: 22rem;
-  max-height: 22rem;
-  min-height: 22rem;
+  height: 24rem;
+  max-height: 24rem;
+  min-height: 24rem;
 }
 .HeroPlaceWif {
   display: -ms-grid;

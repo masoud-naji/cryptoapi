@@ -17,18 +17,23 @@ import Daco from "../../Images/Daco.webp";
 // import AliceCarousel from "react-alice-carousel";
 // import "react-alice-carousel/lib/alice-carousel.css";
 
+
+
+
 function Coins() {
   return (
     <div className={style.cover}>
       <div className={style.homebackground}>
         <img src={galaxy} className={style.background} alt="galaxy" />
         <img src={Daco} className={style.foreground} alt="Daco" />
+        <h2 className={style.title} >“Yesterday I was clever, so I wanted to change the world.<br/> Today,
+          I am wise so I am changing myself.” -Rumi</h2><p/>
 
-        <h1 className={style.title}>Masoud Naji</h1>
       </div>
       <div className={style.grid}>
         <div className={`${style.gridInside} , ${style.gridColSpan2}`}></div>
         <div className={style.gridInside}>
+        <h1 className={style.title} style={{fontSize:"1.5rem"}}>Masoud Naji</h1>
           Some Sources For Start
           <br />
           <br />

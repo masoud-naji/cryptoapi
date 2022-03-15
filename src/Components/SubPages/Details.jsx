@@ -24,6 +24,7 @@ import { split } from "lodash";
 function Details() {
   const coinCTX = useContext(CoinContext);
   const [foundCoins, setFoundCoins] = useState(coinCTX.selectedCoin);
+  const [foundCoins2, setFoundCoins2] = useState("USD Coin");
   const [name, setName] = useState(
     coinCTX.selectedCoin ? coinCTX.selectedCoin : "cardano"
   );
@@ -67,6 +68,7 @@ function Details() {
   ////////////////////////////////////////////////////////////////////////////////////////////////
 
   useEffect(() => {
+    coinCTX.setChartData2([]);
     const getCoinNews = () =>
       axios
         .get(`https://api.coingecko.com/api/v3/coins/${name}`)
@@ -117,7 +119,6 @@ function Details() {
           setIsItLoading(false);
           setFoundCoins(res.data.prices);
           coinCTX.setChartData(res.data.prices);
-          
         })
         .catch((error) => {
           setError(error);
@@ -147,13 +148,12 @@ function Details() {
 
     getCoinNews();
     search();
-    
   }, [name, startTime, endTime]);
 
   const Progress = ({ done }) => (
     <div className="MyProgress">
       <div className="progress-done" style={{ opacity: 1, width: `${done}%` }}>
-        {done}%
+        <p>{done}%</p>
       </div>
     </div>
   );
@@ -197,7 +197,7 @@ function Details() {
             {foundCoins && foundCoins.length > 0 ? (
               <div className={classes.HeroPlace}>
                 <div className={classes.chartdisplay}>
-                  <Chart data={foundCoins} />
+                  <Chart data={foundCoins} data2={"USD Coin"} />
                 </div>
                 <div className={classes.infodisplay}>
                   <div
@@ -257,7 +257,7 @@ function Details() {
                             <option value={Object.values(timeController[6])}>
                               5Y
                             </option>
-                                                      
+
                             {/* {typeof coinCTX.coins !== "undefined" ? (
                               timeController.map((timeC) => (
                                 <option key={timeC.value} value={Object.values(timeC)}>
@@ -365,7 +365,7 @@ function Details() {
               <div className={cardStyle.container}>
                 <div className={cardStyle.tableContainer}>
                   <Card className={cardStyle.mycard}>
-                    <img src={stock} alt="stock"/>
+                    <img src={stock} alt="stock" />
                     community score
                     <Progress
                       done={
@@ -415,7 +415,7 @@ function Details() {
                 </div>
                 <div className={cardStyle.tableContainer}>
                   <Card className={cardStyle.mycard}>
-                    <img src={stock3} alt="stock"/>
+                    <img src={stock3} alt="stock" />
                     categories - {coinAllInfo.categories.length}
                     <div className="emptycontainer">
                       {coinAllInfo.categories.length > 1 ? (
@@ -444,7 +444,7 @@ function Details() {
                 </div>
                 <div className={cardStyle.tableContainer}>
                   <Card className={cardStyle.mycard}>
-                    <img src={stock4} alt="stock"/>
+                    <img src={stock4} alt="stock" />
                     public interest stats
                     <div className="emptycontainer">
                       {coinAllInfo.public_interest_stats.alexa_rank

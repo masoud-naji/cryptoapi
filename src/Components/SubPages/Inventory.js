@@ -141,7 +141,8 @@ const Inventory = () => {
               <InventoryCHart data={filterdList} items={chartElemet} />
             </div>
           ) : (
-            <div>
+              <div>
+                <h1 className={tablestyle.title}>Document Viewer</h1>
               <img
                 alt="stock"
                 src={Svgimage}

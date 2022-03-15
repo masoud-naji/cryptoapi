@@ -293,11 +293,11 @@ function Details() {
             <hr />
             <div className={cardStyle.infotext}>
               <span title="Click to open Google Trend"></span>
-              <details style={{ color: "#CCC" }}>
-                <summary className={cardStyle.infotext}>
-                  - Show Table With {getNumberOfDays(startDay, endDay)}
+              {/* <details style={{ color: "#CCC" }}>
+                <summary className={cardStyle.infotext}> */}
+                  - Table With {getNumberOfDays(startDay, endDay)}
                   &nbsp;Record/s
-                </summary>
+                {/* </summary> */}
                 <div className={cardStyle.tableContainer}>
                   <Card className={cardStyle.mycard}>
                     <img src={stock} alt="stock" />
@@ -424,7 +424,7 @@ function Details() {
                     </table>
                   </Card>
                 </div>
-              </details>
+              {/* </details> */}
               <hr />
               {/* ////////////////////////////////////////first line of detail///////////////////////////////////////// */}
               {/* <div className={cardStyle.container}>

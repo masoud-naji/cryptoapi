@@ -5,6 +5,7 @@ import Card from "../UI/Card";
 import style from "../../about.module.css";
 import InputEmoji from "react-input-emoji";
 import LoremMaker from "../UI/LoremMaker";
+import style2 from "./UsersList.module.css"
 
 const Twittespl = () => {
   const [tweet, setTweet] = useState("");
@@ -79,6 +80,7 @@ const Twittespl = () => {
 
   return (
     <div className={style.container}>
+      <h1 className={style2.title}>Twitte Splitter</h1>
       <Card
         style={{ height: "18rem" }}
         className={`${classes.clipboardinside} ${classes.topchart}`}

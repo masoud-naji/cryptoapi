@@ -1,5 +1,5 @@
 .MyProgress {
-  background-color: #d8d8d8;
+  background-color: #ffffff;
   border-radius: 20px;
   position: relative;
   margin: 15px 0;
@@ -16,7 +16,7 @@
   box-shadow: 0 3px 3px -5px rgba(54, 162, 235, 0.8),
     0 2px 5px rgba(54, 162, 235, 0.5);
   border-radius: 20px;
-  color: #fff;
+  color: rgb(0, 0, 0);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,6 +24,13 @@
   width: 0;
   opacity: 0;
   transition: 1s ease 0.3s;
+}
+
+.progress-done p{
+position: absolute;
+left:5rem;
+top:.2rem;
+
 }
 
 .emptycontainer {
