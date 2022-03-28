@@ -8,6 +8,8 @@ import tablestyle from "./UsersList.module.css";
 import Card from "../UI/Card";
 import InventoryCHart from "../../Chart/inventoryChart";
 import Svgimage from "../../Images/Business_SVG.svg";
+import AnchorLink from "react-anchor-link-smooth-scroll";
+import TopPage from "../../Images/TopPage.png";
 
 const Inventory = () => {
   const [items, setItems] = useState([]);
@@ -15,6 +17,9 @@ const Inventory = () => {
   const [filterValue, setFilterValue] = useState("");
   const [filterdList, setfilterdList] = useState([]);
   const [checkedState, setCheckedState] = useState([]);
+  const [FileDetail, setFileDetail] = useState(false);
+  const [TableDetail, setTableDetail] = useState(false);
+  // const [checkedState, setCheckedState] = useState([]);
   const [errorData, setErrorData] = useState("");
   useEffect(() => {
     items.length > 0 &&
@@ -22,32 +27,38 @@ const Inventory = () => {
   }, [items]);
 
   const readExcel = (file) => {
-    if (!file || file.length === 0) {
+    if (!file || file.length === 0 || file === undefined) {
       return;
     }
     // console.log(typeof file);
     var resultFile = {};
-    // console.log(typeof resultFile);
     const name = file.name;
     const lastDot = name.lastIndexOf(".");
     const fileName = name.substring(0, lastDot);
     const ext = name.substring(lastDot + 1);
     // console.log(`this is the ${ext}`);
+    // console.dir(fileName);
     // Reading JSON from input
     if (ext === "json") {
       const fileReader = new FileReader();
-      fileReader.onloadend = () => {
+      fileReader.readAsText(file, "UTF-8");
+      fileReader.onload = (e) => {
+        const result = JSON.parse(e.target.result);
+        if (!result.length) {
+          setErrorData("**Not valid JSON file!**");
+          setfilterdList([]);
+          return;
+        }
         try {
-          setItems(JSON.parse(fileReader.result));
-          setfilterdList(JSON.parse(fileReader.result));
+          console.log(typeof result[0]);
           setChartElemet([]);
-          console.log(JSON.parse(fileReader.result));
           setErrorData(null);
+          setItems(result);
+          setfilterdList(result);
         } catch (e) {
           setErrorData("**Not valid JSON file!**");
         }
       };
-      if (file !== undefined) fileReader.readAsText(file, "UTF-8");
     } else {
       resultFile = file; // Reading all Other formates as well
       const promise = new Promise((resolve, reject) => {
@@ -131,6 +142,7 @@ const Inventory = () => {
   // console.log(checkedState.length);
   // console.log(checkedState.filter(Boolean).length);
   // console.log(chartElemet);
+  console.log(FileDetail);
 
   return (
     <div>
@@ -141,8 +153,8 @@ const Inventory = () => {
               <InventoryCHart data={filterdList} items={chartElemet} />
             </div>
           ) : (
-              <div>
-                <h1 className={tablestyle.title}>Document Viewer</h1>
+            <div>
+              <h1 className={tablestyle.title}>Document Viewer</h1>
               <img
                 alt="stock"
                 src={Svgimage}
@@ -209,44 +221,76 @@ const Inventory = () => {
                   </>
                 )}
               </div>
+              {errorData && <div style={{ color: "red" }}>{errorData}</div>}
               {/* ////////////////////////////   //////////////////////////////// */}
             </div>
             {/* ? coinAllInfo.description.en.replace(/<[^>]+>/g, "") */}
           </div>
         </div>
+        <AnchorLink
+          href="#File_View"
+          offset="100"
+          className="anchorBtn"
+          onClick={() => {
+            setFileDetail(true);
+            setTableDetail(false);
+          }}
+        >
+          File View
+        </AnchorLink>{" "}
+        &nbsp;
+        <AnchorLink
+          href="#Top_Page"
+          offset="100"
+          className="anchorBtn"
+          onClick={() => {
+            setFileDetail(false);
+            setTableDetail(true);
+          }}
+        >
+          Table View
+        </AnchorLink>
+        <AnchorLink href="#Top_Page" offset="150" className="Top_key">
+          Top
+          <br />
+          <img src={TopPage} alt="TopPage" />
+        </AnchorLink>
       </Card>
+      <section id="Top_Page"></section>
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
-        <table className={`{table container} ${tablestyle.userTable}`}>
-          <thead>
-            <tr>
-              {items.length > 0 ? (
-                Object.keys(items[0]).map((item, index) => (
-                  <th scope="col" key={index}>
-                    {item}
-                    &nbsp;
-                    <input
-                      type="checkbox"
-                      value={item}
-                      name={item}
-                      checked={checkedState[index]}
-                      id={`custom-checkbox-${index}`}
-                      onChange={(e) => {
-                        checkHandler(e, index, item);
-                      }}
-                    />
-                  </th>
-                ))
-              ) : (
-                <th scope="col"></th>
-              )}
-            </tr>
+        <details id="DetailTable" open={TableDetail}>
+          <summary>Table Preview</summary>
+          <table className={`{table container} ${tablestyle.userTable}`}>
+            <thead>
+              <tr>
+                {items.length > 0 ? (
+                  Object.keys(items[0]).map((item, index) => (
+                    <th scope="col" key={index}>
+                      {item}
+                      &nbsp;
+                      <input
+                        type="checkbox"
+                        value={item}
+                        name={item}
+                        checked={checkedState[index]}
+                        id={`custom-checkbox-${index}`}
+                        onChange={(e) => {
+                          checkHandler(e, index, item);
+                        }}
+                      />
+                    </th>
+                  ))
+                ) : (
+                  <th scope="col"></th>
+                )}
+              </tr>
 
-            {/* <select>
+              {/* <select>
             {items.map((item) => (
               <option>{Object.values(item)[1]}</option>
             ))}
           </select> */}
-            {/* 
+              {/* 
             {items.length > 0 ? <th scope="col">{Object.keys(items[0])[0]}</th>: <th scope="col"></th>}
             {items.length > 0  ? <th scope="col">{Object.keys(items[0])[1]}</th>: <th scope="col"></th>}
             {items.length > 0  ? <th scope="col">{Object.keys(items[0])[2]}</th>: <th scope="col"></th>}
@@ -254,19 +298,24 @@ const Inventory = () => {
             {items.length > 0  ? <th scope="col">{Object.keys(items[0])[4]}</th>: <th scope="col"></th>}
             {items.length > 0  ? <th scope="col">{Object.keys(items[0])[5]}</th>: <th scope="col"></th>}
             {items.length > 0  ? <th scope="col">{Object.keys(items[0])[6]}</th>: <th scope="col"></th>} */}
-          </thead>
-          <tbody>
-            {/* <rowsinfo /> */}
+            </thead>
+            <tbody>
+              {/* <rowsinfo /> */}
 
-            {items &&
-              filterdList.map((d) => (
-                <tr key={d.id}>
-                  {d &&
-                    Object.values(d).map((item) => <th scope="col">{item}</th>)}
-                </tr>
-              ))}
+              {items &&
+                filterdList &&
+                filterdList
+                  .filter(Boolean)
+                  .map((d) => (
+                    <tr key={d.id}>
+                      {d &&
+                        Object.values(d).map((item) => (
+                          <th scope="col">{item}</th>
+                        ))}
+                    </tr>
+                  ))}
 
-            {/* {items.map((d) => (
+              {/* {items.map((d) => (
             <tr key={d.id}>
               <th>{d[Object.keys(d)[0]]}</th>
               <td>{d[Object.keys(d)[1]]}</td>
@@ -277,8 +326,26 @@ const Inventory = () => {
               <td>{d[Object.keys(d)[6]]}</td>
             </tr>
           ))} */}
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </details>
+      </Card>
+      <Card className={`${classes.input} ${classes.topchartdetail}`}>
+        <section id="File_View"></section>
+        <details open={FileDetail}>
+          <summary> File preview {FileDetail}</summary>
+          {filterdList && (
+            <textarea
+              style={{
+                width: "100%",
+                height: `${(filterdList.length)+1}rem`,
+                borderRadius: "10px",
+              }}
+              value={filterdList.map((e) => JSON.stringify(e), undefined, 2)}
+              defaultValue="File Preview ..."
+            />
+          )}
+        </details>
       </Card>
     </div>
   );

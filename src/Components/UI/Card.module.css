@@ -136,11 +136,27 @@
 }
 
 .regixText {
-  width: fit-content;
   width: 60%;
   text-align: justify;
   text-justify: inter-word;
 }
+
+.OtherText ul,
+.OtherText {
+  width: 70%;
+  text-align: justify;
+  text-justify: inter-word;
+  color: white;
+  list-style: circle;
+}
+
+.OtherText li{
+  color: white;
+  list-style: circle;
+}
+
+
+
 
 @media screen and (max-width: 50rem) {
   .clipboardinside {

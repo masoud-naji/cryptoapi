@@ -63,3 +63,4 @@ export default Home;
 //npm install --save prismjs
 //npm install --save-dev babel-plugin-prismjs
 //npm install --save rss-parser
+//npm i react-anchor-link-smooth-scroll

@@ -21,15 +21,16 @@ function Details() {
   const coinCTX = useContext(CoinContext);
   const [foundCoins, setFoundCoins] = useState();
   const [order, setOrder] = useState("ASC");
-  const [name, setName] = useState(
-    "BTC"
-    // coinCTX.selectedCoin ? coinCTX.selectedCoin : "BTC"
-  );
+  const [name, setName] = useState("BTC");
   const [error, setError] = useState();
   const [isItLoading, setIsItLoading] = useState(true);
   const [Invest, setInvest] = useState("100");
   const [LowMiss, setLowMiss] = useState("0");
   const [HighMiss, setHighMiss] = useState("0");
+
+  const yesterday = new Date();
+  const pastDate = yesterday.getDate() - 1;
+  yesterday.setDate(pastDate);
 
   /////////////////page and pagination system
   const navigate = useNavigate();
@@ -66,11 +67,6 @@ function Details() {
     return defaultValue;
   };
 
-  const yesterday = new Date();
-  const pastDate = yesterday.getDate() - 1;
-  yesterday.setDate(pastDate);
-  // console.log(yesterday);
-
   const getNumberOfDays = (startDay, endDay) => {
     if (endDay === new Date()) {
       console.log("end", endDay);
@@ -89,6 +85,52 @@ function Details() {
     return diffreantTime;
   };
 
+  const Highest = foundCoins
+    ? foundCoins.reduce(
+        (max, coin) => (coin.high > max ? coin.high : max),
+        foundCoins[0].high
+      )
+    : 0;
+  const Lowest = foundCoins
+    ? foundCoins.reduce(
+        (min, coin) => (coin.low < min ? coin.low : min),
+        foundCoins[0].low
+      )
+    : 0;
+  const LowestPriceDate = foundCoins
+    ? foundCoins.reduce(
+        (min, coin) => (coin.Low < min ? coin.time : min),
+        foundCoins[0].time
+      )
+    : "";
+
+  const loWToHigh = (Invest, lowest, Highest) => {
+    const number = Invest / lowest;
+    const inHigh = number * Highest;
+    return inHigh;
+  };
+
+  const priceInEndDay =
+    foundCoins && foundCoins[foundCoins.length - 1].high - foundCoins[0].low;
+
+  // foundCoins.find(pind=> pind.time =(new Date(endDay).getTime()/1000))
+  // : 0;
+
+  console.log(priceInEndDay);
+  // console.log(new Date(endDay).getTime()/1000)
+  // let date = foundCoins ? new Date(foundCoins[0].time * 1000) : new Date();
+  // let checkDate =
+  //   date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
+  // let checkEndSelect = endDay && endDay.toLocaleDateString("en-US");
+  // console.log("checkDate", checkDate, `\n`, "checkEndSelect", checkEndSelect);
+
+  // console.log(LowestPriceDate);
+
+  // console.log(foundCoins);
+  // console.log("foundCoins");
+  // const relut = foundCoins.find((c) => c.low ==32990.72);
+  // console.log(relut.time);
+
   const PageChangeHandler = (page) => {
     setCurrentPage(page);
   };
@@ -105,10 +147,6 @@ function Details() {
   };
 
   const sorting = (col) => {
-    console.log(col);
-    console.log(foundCoins);
-    console.log(typeof foundCoins);
-    console.log(`sorting clickon ${col}`);
     if (order === "ASC") {
       const sorted = [...foundCoins].sort((a, b) => (a[col] > b[col] ? 1 : -1));
       setFoundCoins(sorted);
@@ -172,8 +210,6 @@ function Details() {
 
     search();
   }, [name, startDay, endDay]);
-
-  // console.log(paginatedFilteredCoins);
 
   if (isItLoading) {
     return (
@@ -318,15 +354,21 @@ function Details() {
                     padding: "0rem 1rem 2rem 1rem",
                   }}
                 >
-                  Imagine we have a time machine!
-                  <br /> This is the difference between low and high regardless
-                  of priority and you can guess usually there are some delays
-                  for finding those points. So, give it some tolerance in
-                  percent then check each of the days. It does not mean you
-                  could always sell or buy, but it is good to know by missing a
-                  small percent of high or low you could lose your money or make
-                  some! It is just a simple sample of the opportunities that we
-                  missed every day!
+                  <br /> Some Fun Facts around the low and high regardless of
+                  priority.
+                  <br />
+                  and you can guess usually there are some delays for finding
+                  those points. So, give it some tolerance in percent then check
+                  each of the days.
+                  <br />- Highest $ {Highest.toLocaleString("en-US")}
+                  <br />- Lowest $ {Lowest.toLocaleString("en-US")}
+                  <br />
+                  - Price difference between Start & today
+                  <br />$ {priceInEndDay.toLocaleString("en-US")}
+                  <br />- Price difference between Lowest & Highest with ${" "}
+                  {Invest.toLocaleString("en-US")} at start makes: &nbsp;${" "}
+                  {loWToHigh(Invest, Lowest, Highest).toLocaleString("en-US")}
+                  <br />
                 </div>
               </div>
             ) : (
@@ -360,7 +402,10 @@ function Details() {
                         color: "#000",
                         border: "none",
                       }}
-                      value={`${getNumberOfDays(startDay, endDay)}  Records `}
+                      onChange={() => console.log()}
+                      value={`${
+                        getNumberOfDays(startDay, endDay) + 1
+                      }  Records `}
                     />
 
                     <Select
@@ -384,51 +429,45 @@ function Details() {
                     <thead>
                       <tr>
                         <th
-                          onClick={() => sorting("Time")}
+                          onClick={() => sorting("time")}
                           className="tg-yuap"
                           style={{ overflowWrap: "break-word", width: "10%" }}
                         >
                           Time
                         </th>
                         <th
-                          onClick={() => sorting("Low $")}
+                          onClick={() => sorting("low")}
                           className="tg-0pky"
                           style={{ overflowWrap: "break-word", width: "20%" }}
                         >
                           Low $
                         </th>
                         <th
-                          onClick={() => sorting("Hight $")}
+                          onClick={() => sorting("high")}
                           className="tg-0pky"
                           style={{ overflowWrap: "break-word", width: "20%" }}
                         >
                           Hight $
                         </th>
                         <th
-                          onClick={() => sorting("Tolerance %")}
                           className="tg-0pky"
                           style={{ overflowWrap: "break-word", width: "10%" }}
                         >
                           Tolerance %
                         </th>
                         <th
-                          onClick={() => sorting("Low with {LowMiss}% Missed")}
                           className="tg-0pky"
                           style={{ overflowWrap: "break-word", width: "15%" }}
                         >
                           Low with {LowMiss}% Missed
                         </th>
                         <th
-                          onClick={() =>
-                            sorting("High with {HighMiss}% Missed")
-                          }
                           className="tg-0pky"
                           style={{ overflowWrap: "break-word", width: "15%" }}
                         >
                           High with {HighMiss}% Missed
                         </th>
                         <th
-                          onClick={() => sorting("Gain $")}
                           className="tg-0lax"
                           style={{ overflowWrap: "break-word", width: "15%" }}
                         >
@@ -450,11 +489,29 @@ function Details() {
                                 )}
                               </td>
                               {/* Low */}
-                              <td className="tg-0pky">
+                              <td
+                                className="tg-0pky"
+                                style={{
+                                  color:
+                                    coin.low.toLocaleString("en-US") ==
+                                    Lowest.toLocaleString("en-US")
+                                      ? "red"
+                                      : "black",
+                                }}
+                              >
                                 $ {coin.low.toLocaleString("en-US")}
                               </td>
                               {/* High */}
-                              <td className="tg-0pky">
+                              <td
+                                className="tg-0pky"
+                                style={{
+                                  color:
+                                    coin.high.toLocaleString("en-US") ==
+                                    Highest.toLocaleString("en-US")
+                                      ? "green"
+                                      : "black",
+                                }}
+                              >
                                 $ {coin.high.toLocaleString("en-US")}
                               </td>
                               {/* Tolerance */}
@@ -511,53 +568,8 @@ function Details() {
                   </table>
                 </Card>
               </div>
-              {/* </details> */}
-              <hr />
-              {/* ////////////////////////////////////////first line of detail///////////////////////////////////////// */}
-              {/* <div className={cardStyle.container}>
-                <div className={cardStyle.tableContainer}>
-                  <Card className={cardStyle.mycard}>
-                    <img src={stock} alt="stock" />
-                    community score developer score liquidity score
-                  </Card>
-                </div>
-                <div className={cardStyle.tableContainer}>
-                  <Card className={cardStyle.mycard}>
-                    <img src={stock2} />
-                    genesis date
-                    <div className="emptycontainer"></div>
-                    hashing algorithm
-                    <div className="emptycontainer"></div>
-                    block time in minutes
-                    <div className="emptycontainer"></div>
-                  </Card>
-                </div>
-                <div className={cardStyle.tableContainer}>
-                  <Card className={cardStyle.mycard}>
-                    <img src={stock3} alt="stock" />
-                    <div className="emptycontainer"></div>
-                    official forum
-                    <div className="emptycontainer"></div>
-                    twitter
-                    <div className="emptycontainer"></div>
-                  </Card>
-                </div>
-                <div className={cardStyle.tableContainer}>
-                  <Card className={cardStyle.mycard}>
-                    <img src={stock4} alt="stock" />
-                    public interest stats
-                    <div className="emptycontainer"></div>
-                    sentiment votes down
-                    <Progress />
-                    sentiment votes up
-                    <Progress />
-                  </Card>
-                </div>
-              </div>
 
-              <details style={{ color: "rgb(57,133,197)" }}>
-                <summary className={cardStyle.infotext}></summary>
-              </details> */}
+              <hr />
             </div>
           </Card>
         </div>

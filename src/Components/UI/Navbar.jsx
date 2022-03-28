@@ -14,7 +14,7 @@ import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 
 const MyNavbar = () => {
   return (
-    <header center>
+    <header>
       {/* <Link className="fancy_link" to="/">
         <h1 style={{ marginLeft: "1rem" }}>Masoud Naji</h1>
       </Link> */}
@@ -29,20 +29,20 @@ const MyNavbar = () => {
                 <Link to="./">Home</Link>
               </Nav.Link>
               <NavDropdown title="Cryptocurrency" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#">
+                <NavDropdown.Item href="./Coins">
                   <Link className="navlink" to="./Coins">
                   Cryptocurrency
                   </Link>
                 </NavDropdown.Item>
 
-                <NavDropdown.Item href="#">
+                <NavDropdown.Item href="./Details">
                   <Link className="navlink" to="./Details">
                     Details
                   </Link>
                 </NavDropdown.Item>
              
            
-              <NavDropdown.Item href="#">
+              <NavDropdown.Item href="./Compare">
                   <Link className="navlink" to="./Compare">
                   Compare
                   </Link>
@@ -55,34 +55,41 @@ const MyNavbar = () => {
               </NavDropdown>
 
               <NavDropdown title="Projrcts" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#">
+                <NavDropdown.Item href="./Twittespl">
                   <Link className="navlink" to="./Twittespl">
                     Twitte Splitter
                   </Link>
                 </NavDropdown.Item>
 
-                <NavDropdown.Item href="#">
+                <NavDropdown.Item href="./Inventory">
                   <Link className="navlink" to="./Inventory">
                   Document Viewer
                   </Link>
                 </NavDropdown.Item>
 
-                <NavDropdown.Item href="#">
+                <NavDropdown.Item href="./Regextest">
                   <Link className="navlink" to="./Regextest">
                     Regex Test
                   </Link>
                 </NavDropdown.Item>
                
-                <NavDropdown.Item href="#">
+                <NavDropdown.Item href="./CompareText">
                   <Link className="navlink" to="./CompareText">
                   Compare Text
                   </Link>
                 </NavDropdown.Item>
+            
+                <NavDropdown.Item href="./Other_projects">
+                  <Link className="navlink" to="./Other_projects">
+                  Other Projects
+                  </Link>
+                </NavDropdown.Item>
+
               </NavDropdown>
 
               <NavDropdown title="About" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#">
-                  <Link className="navlink" to="./About">
+                <NavDropdown.Item href="./About" for="Aboutid">
+                  <Link className="navlink" to="./About" id="Aboutid">
                     About
                   </Link>
                 </NavDropdown.Item>
@@ -92,7 +99,9 @@ const MyNavbar = () => {
                     href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397104&authkey=AA1uxVivZIR3duU&em=2"
                     download=""
                   >
-                    <button class="about_cta__RaiiB">Pdf Resume</button>
+                    <button class="cta" style={{color:"black" , padding:0}}>
+                      Pdf Resume
+                    </button>
                   </a>
                 </NavDropdown.Item>
                 <NavDropdown.Item href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397100&authkey=ABpz3ESHdwNSzEQ&em=2">
@@ -100,7 +109,9 @@ const MyNavbar = () => {
                     href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397100&authkey=ABpz3ESHdwNSzEQ&em=2"
                     download=""
                   >
-                    <button class="about_cta__RaiiB">Doc Resume</button>
+                    <button class="cta" style={{color:"black" , padding:0}}>
+                      Doc Resume
+                    </button>
                   </a>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />

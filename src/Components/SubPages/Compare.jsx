@@ -491,7 +491,7 @@ function Compare() {
                       % of the {coinAllInfo.id}
                       <br />
                       {coinAllInfo.id} with the market cap of {coinAllInfo2.id}
-                      is should be approximately <br /> ~ $&nbsp;
+                      &nbsp; is should be approximately <br /> ~ $&nbsp;
                       {coinAllInfo.market_data.market_cap.usd
                         ? (
                             coinAllInfo2.market_data.market_cap.usd /

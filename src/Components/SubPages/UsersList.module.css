@@ -148,8 +148,9 @@
   margin: 0 0 0.7rem 0;
   color: #000000;
   border-radius: 5px;
-  padding: 0;
+  padding: 0 0 0 1rem;
   background-color: rgb(102, 192, 252);
+  font-weight: 600;
 
   /* border: 1px solid rgba(54, 162, 235, 1); */
 }
@@ -309,7 +310,7 @@ iframe {
   font-size: 1.8rem;
   color: white;
   text-shadow: 0 0 5px black;
-  padding:.5rem;
+  padding: 0.5rem;
 }
 
 .section {
@@ -373,6 +374,5 @@ iframe {
     font-size: 2rem;
     color: white;
     text-shadow: 0 0 5px black;
-
   }
 }

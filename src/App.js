@@ -10,6 +10,7 @@ import Twittespl from "./Components/SubPages/Twittespl";
 import Inventory from "./Components/SubPages/Inventory";
 import Regextest from "./Components/SubPages/Regextest";
 import CompareText from "./Components/SubPages/CompareText";
+import Other_projects from "./Components/SubPages/Other_projects";
 import NotFound from "./Components/UI/NotFound";
 import CoinContext from "./contexts/coinContext";
 import styles from "./App.module.css";
@@ -45,8 +46,8 @@ function App() {
   // console.log(coins);
 
   return (
-    // <HashRouter>
-       <BrowserRouter>
+    <HashRouter>
+       {/* <BrowserRouter> */}
       <CoinContext.Provider
         value={{
           coins: coins,
@@ -81,14 +82,15 @@ function App() {
               <Route path="/Inventory" element={<Inventory />}></Route>
               <Route path="/Regextest" element={<Regextest />}></Route>
               <Route path="/CompareText" element={<CompareText />}></Route>
+              <Route path="/Other_projects" element={<Other_projects />}></Route>
               <Route path="/needs/*" element={<NotFound />}></Route>
               <Route path="*" element={<NotFound />}></Route>
             </Routes>
           </div>
         </div>
         </CoinContext.Provider>
-        </BrowserRouter>
-    //</HashRouter> 
+        {/* </BrowserRouter> */}
+    </HashRouter> 
   );
 }
 
