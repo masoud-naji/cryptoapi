@@ -480,7 +480,7 @@ function Compare() {
                         // fontVariantNumeric: "tabular-nums",
                       }}
                     >
-                      Market Cap of the {coinAllInfo2.id} is &nbsp;
+                      - Market Cap of the {coinAllInfo2.id} is &nbsp;
                       {coinAllInfo.market_data.market_cap.usd
                         ? (
                             (coinAllInfo2.market_data.market_cap.usd /
@@ -488,15 +488,27 @@ function Compare() {
                             100
                           ).toFixed(2)
                         : ""}
-                      % of the {coinAllInfo.id}
-                      <br />
-                      {coinAllInfo.id} with the market cap of {coinAllInfo2.id}
-                      &nbsp; is should be approximately <br /> ~ $&nbsp;
+                      % of the {coinAllInfo.id}.
+                      <br />- {coinAllInfo.id} with the market cap of&nbsp;
+                      {coinAllInfo2.id}
+                      &nbsp;should be roughly $&nbsp;
                       {coinAllInfo.market_data.market_cap.usd
                         ? (
                             coinAllInfo2.market_data.market_cap.usd /
                             (coinAllInfo.market_data.market_cap.usd /
                               coinAllInfo.market_data.current_price.usd)
+                          ).toLocaleString("en-US")
+                        : ""}
+                      
+                      <br />
+                      - {coinAllInfo2.id} with the market cap of&nbsp;
+                      {coinAllInfo.id}
+                      &nbsp;should be roughly $&nbsp;
+                      {coinAllInfo.market_data.market_cap.usd
+                        ? (
+                            coinAllInfo.market_data.market_cap.usd /
+                            (coinAllInfo2.market_data.market_cap.usd /
+                              coinAllInfo2.market_data.current_price.usd)
                           ).toLocaleString("en-US")
                         : ""}
                     </div>
@@ -515,7 +527,27 @@ function Compare() {
                             : ""
                         }%, skyblue 0%, rgb(22, 160, 252))`,
                       }}
-                    ></div>
+                    >
+                      <span
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          border: "0px solid black",
+                          backgroundColor: "transparent",
+                          fontWeight: "bold",
+                          color: "white",
+                        }}
+                      >
+                        {coinAllInfo.market_data.market_cap.usd
+                        ? (
+                            (coinAllInfo2.market_data.market_cap.usd /
+                              coinAllInfo.market_data.market_cap.usd) *
+                            100
+                          ).toFixed(2)
+                        : ""} %
+                      </span>
+                    </div>
 
                     {/* ///////////////////////////////////////////////////////////////////////////////////////// */}
                   </section>

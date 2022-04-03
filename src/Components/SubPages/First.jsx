@@ -9,38 +9,154 @@ import Coding from "../../Images/Coding.webp";
 import Light from "../../Images/light.webp";
 import galaxy from "../../Images/galaxy.webp";
 import Daco from "../../Images/Daco.webp";
+import eberhard from "../../Images/pexels-eberhard-grossgasteiger-8389189.webp";
+import adrien from "../../Images/pexels-adrien-olichon-2387428.webp";
+import james from "../../Images/pexels-james-sebastian-5857655.webp";
+import { Link } from "react-router-dom";
 
-// import classes from "../UI/Card.module.css";
-// import Card from "../UI/Card";
-// import GoogleTrends from "../GoogleTrend/GoogleTrends";
-// import Script from "react-load-script";
-// import AliceCarousel from "react-alice-carousel";
-// import "react-alice-carousel/lib/alice-carousel.css";
-
-function Coins() {
+function First() {
   return (
     <div className={style.cover}>
       <div className={style.homebackground}>
-        <img src={galaxy} className={style.background} alt="galaxy" />
+        {/* <video autoPlay loop muted className={style.videoBg}>
+          <source src={video} type="video/mp4" />
+        </video> */}
+        <img src={adrien} className={style.background} alt="galaxy" />
         <img src={Daco} className={style.foreground} alt="Daco" />
-        <h2 className={style.title}>
+        <h2 className={style.Maintitle}>
           “Yesterday I was clever, so I wanted to change the world.
           <br /> Today, I am wise so I am changing myself.”
           <section
             style={{ color: "white", fontSize: "small", textAlign: "right" }}
           >
             -Rumi
-          </section>{" "}
+          </section>
+          &nbsp;
         </h2>
         <p />
       </div>
+
       <div className={style.grid}>
         <div className={`${style.gridInside} , ${style.gridColSpan2}`}></div>
         <div className={style.gridInside}>
-          <h1 className={style.title} style={{ fontSize: "1.5rem" }}>
-            Masoud Naji
-          </h1>
-          Some Sources For Start
+          <h1 className={style.subtitle}>Masoud Naji</h1>
+          <ol>
+            <li>
+              <Link className="navlink" to="./Coins">
+                CryptoCurrency 100 first list and updates
+              </Link>
+            </li>
+            <ol>
+              <li> duration</li>
+              <li> Table </li>
+              <li> 24 hour changes </li>
+            </ol>
+            <li>
+              <Link className="navlink" to="./Details">
+                Details about the specified Coin
+              </Link>
+            </li>
+            <ol>
+              <li> Chart </li>
+              <li> Table </li>
+              <li> Community Score / Developer Score /Liquidity Score</li>
+              <li>
+                Official WebSites /Hashing Algorithm /Block Time In Minutes
+              </li>
+            </ol>
+            <li>
+              <Link className="navlink" to="./Compare">
+                Compare two coin in detail
+              </Link>
+            </li>
+            <ol>
+              <li> Chart compare</li>
+              <li> duration compare</li>
+              <li> Market Cap Compare</li>
+              <li>
+                The price of one currency compared to the price of other
+                currencies is set by market cap
+              </li>
+            </ol>
+            <li>
+              <Link className="navlink" to="./Whatif">
+                Some Fun Facts around the low and high prices regardless of
+                priority.
+              </Link>
+            </li>
+            <ol>
+              <li>Highest </li>
+              <li>Lowest </li>
+              <li>Difference </li>
+              <li>Difference on sort sequence of our choice </li>
+              <li>Money approximately could make </li>
+            </ol>
+            <li>
+              &nbsp;
+              <Link className="navlink" to="./Twittespl">
+                Twitte Splitter
+              </Link>
+            </li>
+            <li>
+              &nbsp;
+              <Link className="navlink" to="./Inventory">
+                Document Viewer
+              </Link>
+            </li>
+            <li>
+              &nbsp;
+              <Link className="navlink" to="./Regextest">
+                Regex Test
+              </Link>
+            </li>
+            <li>
+              <Link className="navlink" to="./CompareText">
+                Compare Text
+              </Link>
+            </li>
+            <li>
+              <Link className="navlink" to="./CompareImage">
+                Compare Image
+              </Link>
+            </li>
+            <li>
+              &nbsp;
+              <Link className="navlink" to="./Other_projects">
+                Other Projects
+              </Link>
+            </li>
+          </ol>
+        </div>
+        <div className={style.gridInside}>
+          <h3 className={style.subtitle}>Libraries used at this Site</h3>
+          <br />
+          <ol>
+            <li> react-confirm-alert</li>
+            <li> bootstrap react-bootstrap</li>
+            <li> lodash</li>
+            <li> xlsx</li>
+            <li> react-chartjs-2 chart.js</li>
+            <li> react-router</li>
+            <li> react-router-dom</li>
+            <li> react-select</li>
+            <li> html-to-text</li>
+            <li> react-load-script</li>
+            <li> react-scripts</li>
+            <li> react-input-emoji</li>
+            <li> browser-image-compression</li>
+            <li> json-as-xlsx</li>
+            <li> react-lorem-ipsum</li>
+            <li> react-alice-carousel</li>
+            <li> sass node-sass</li>
+            <li> dotenv</li>
+            <li> react-diff-viewer</li>
+            <li> save rss-parser</li>
+            <li> react-highlight-within-textarea</li>
+          </ol>
+        </div>
+
+        <div className={style.gridInside}>
+          <h3 className={style.subtitle}>Some Sources to start</h3>
           <br />
           <br />
           <ul style={{ textTransform: "uppercase" }} className={style.minilist}>
@@ -76,35 +192,12 @@ function Coins() {
             <li>
               <a href="https://linguinecode.com/">Linguine code</a>
             </li>
+            <li>
+              <a href="https://www.geeksforgeeks.org/">geeks for geeks</a>
+            </li>
           </ul>
         </div>
-        <div className={style.gridInside}>
-          Libraries Used In This Site <br />
-          <br />
-          <ol>
-            <li> react-confirm-alert</li>
-            <li> bootstrap react-bootstrap</li>
-            <li> lodash</li>
-            <li> xlsx</li>
-            <li> react-chartjs-2 chart.js</li>
-            <li> react-router</li>
-            <li> react-router-dom</li>
-            <li> react-select</li>
-            <li> html-to-text</li>
-            <li> react-load-script</li>
-            <li> react-scripts</li>
-            <li> react-input-emoji</li>
-            <li> browser-image-compression</li>
-            <li> json-as-xlsx</li>
-            <li> react-lorem-ipsum</li>
-            <li> react-alice-carousel</li>
-            <li> sass node-sass</li>
-            <li> dotenv</li>
-            <li> react-diff-viewer</li>
-            <li> save rss-parser</li>
-            <li> react-highlight-within-textarea</li>
-          </ol>
-        </div>
+
         <div className={`${style.gridInside} , ${style.gridColSpan2}`}>
           <Carousel>
             <Carousel.Item>
@@ -182,28 +275,29 @@ function Coins() {
         <div className={style.gridInside}>
           <ul className={style.ulabout}>
             <li>
-              <strong>Overall 8+</strong> years of Information Technology
+              <strong>Overall 8+</strong>&nbsp;years of Information Technology
               experience in Web design and development of ERP application.
             </li>
             <li>
-              <strong>Overall 4+ years</strong>of extensive experience as a
-              <strong>Front-End UI Developer</strong> with solid understanding
-              of database designing, development, and installation of different
-              modules.
+              <strong>Overall 4+ years</strong>&nbsp;of extensive experience as
+              a<strong> Front-End UI Developer</strong>&nbsp;with solid
+              understanding of database designing, development, and installation
+              of different modules.
             </li>
             <li>
-              Extensive experience in designing professional UI web applications
-              using front-end technologies like HTML5, CSS3, JavaScript,
-              reactJS, XML, DHTML, XHTML, JSON
+              Extensive experience in
+              <strong> Designing professional UI </strong>web applications using
+              front-end technologies like HTML5, CSS3, JavaScript, reactJS, XML,
+              DHTML, XHTML, JSON
             </li>
             <li>
               Excellent Understanding of
-              <strong>Document Object Model (DOM) </strong>and
-              <strong>DOM Functions.</strong>
+              <strong> Document Object Model (DOM) </strong>and
+              <strong> DOM Functions.</strong>
             </li>
             <li>
               Excellent experience in developing web pages complying with
-              <strong>W3C web standards. </strong>
+              <strong> W3C web standards. </strong>
             </li>
             <li>
               Extensive experiences in
@@ -219,35 +313,41 @@ function Coins() {
             </li>
             <li>
               Experience in designing <strong>UI</strong>
-              <strong>patterns</strong> and <strong>UI applications</strong>{" "}
-              with the help of Adobe products like{" "}
-              <strong>Adobe Photoshop, Adobe XD and Adobe Illustrator.</strong>
+              <strong>patterns</strong>&nbsp;and&nbsp;
+              <strong> UI applications</strong>
+              with the help of Adobe products like
+              <strong> Adobe Photoshop, Adobe XD and Adobe Illustrator.</strong>
             </li>
             <li>
-              Expertise in creating Templates, Web Interfaces, Layouts, and Flow
-              of Future Pages.
+              Expertise in creating&nbsp;
+              <strong>
+                Templates, Web Interfaces, Layouts, and Flow of Future Pages.
+              </strong>
             </li>
             <li>
-              Optimized the page load time for the pages that had heavy traffic
-              and improvised those pages using CSS3
+              Optimized the page<strong> load time</strong>&nbsp;for the pages
+              that had heavy traffic and improvised those pages using CSS3
             </li>
             <li>
               Experience in Version Control tools like <strong>GIT</strong>
             </li>
             <li>
-              Experience in using Mgmt. Software like JIRA Agile, Scrum works
-              and bug tracking system - JIRA, Asana, Slack.
+              Experience in using Mgmt. Software like&nbsp;
+              <strong>
+                JIRA Agile, Scrum works and bug tracking system - Asana, Slack.
+              </strong>
             </li>
             <li>
-              Experience on various Charting/UI tools like High Charts, Google
-              API,
+              Experience on various Charting/UI tools like
+              <strong> High Charts, Google API</strong>
             </li>
             <li>
               Experience on monitoring, and analyzing machine-generated data via
               a Web-style interface with <strong>Splunk</strong>
             </li>
             <li>
-              Experience with Object Oriented Concepts, Object Oriented
+              Experience with Object Oriented Concepts,
+              <strong> Object Oriented</strong>
               JavaScript, Object Oriented Design, and Implementation.
             </li>
             <li>
@@ -255,16 +355,12 @@ function Coins() {
               integration testing.
             </li>
             <li>
-              Involved in working the Google <strong>Firebase</strong> and{" "}
-              <strong>IBM watson</strong>
+              Involved in working the Google <strong>Firebase</strong>&nbsp;and
+              <strong>IBM watson </strong>
             </li>
             <li>
               Experienced in using Video Sharing and video subscription service
               with a Video API like YouTube and Vimeo.
-            </li>
-            <li>
-              Optimized the page load time for the pages that had heavy traffic
-              and improvised those pages
             </li>
             <li>
               Skilled at analyzing and solving browser compatibility challenges
@@ -272,14 +368,44 @@ function Coins() {
               HTML and CSS markup.
             </li>
             <li>
-              Experience of working on Data Modeling applications{" "}
-              <strong>Excel, Power Bi , Tableau Software and Dax </strong>
+              Experience of working on Data Modeling applications like
+              <strong>
+                Excel, Power Tool, Power Bi, Tableau Software and Dax&nbsp;
+              </strong>
             </li>
           </ul>
         </div>
       </div>
+      <section
+        style={{
+          bottom: "-220vh",
+          color: "gray",
+          position: "relative",
+          textAlign: "center",
+        }}
+      >
+        So You Come This far to know me.
+        <br />
+        <a href="https://buymeacoffee.com/maxnajiO" target="_blank">
+          buymeacoffee ☕
+        </a>
+        <br />
+      </section>
+      <section
+        style={{
+          bottom: "-420vh",
+          color: "red",
+          position: "relative",
+          textAlign: "center",
+          fontWeight: "bold",
+          stroke: "black",
+          background: "black",
+        }}
+      >
+        R U Kidding me??? where is my cofee?  😉😉
+      </section>
     </div>
   );
 }
 
-export default Coins;
+export default First;

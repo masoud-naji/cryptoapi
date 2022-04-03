@@ -16,7 +16,6 @@
   border: 0.15em solid rgba(54, 162, 235, 0.5);
 }
 
-
 @supports (scrollbar-color: red blue) {
   * {
     scrollbar-color: rgba(54, 162, 235, 0.5) rgba(54, 162, 235, 0.2);
@@ -35,11 +34,14 @@ html {
 }
 
 body {
-  margin: 0;
-  background-image: url(./Images/galaxy.webp);
-  /* background-image: url(./Images/pattern-randomized.svg); */
+  margin: 0 0 -50 0;
+  background: rgb(6, 6, 6) !important;
+   background-image: url(./Images/pexels-james-sebastian-5857655.webp)!important ;
+  background-size: cover!important;
+   background-repeat: no-repeat; 
+ /* background-image: url(./Images/pattern-randomized.svg); */
 }
 
-a{
-  color: rgba(57,133,197,0.5);
+a {
+  color: rgba(57, 133, 197, 0.5);
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, PureComponent } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import classes from "../UI/Card.module.css";
 import cardStyle from "./infoCard.module.css";
 import tablestyle from "./UsersList.module.css";
@@ -7,11 +7,40 @@ import * as XLSX from "xlsx";
 import Card from "../UI/Card";
 import "./progressbar.css";
 import "react-datepicker/dist/react-datepicker.css";
-// import Prism from "prismjs"
 import ReactDiffViewer, { DiffMethod } from "react-diff-viewer";
-import eclipse from "../../Images/eclipse.gif";
-import Line from "../../Images/Line.gif";
-import network from "../../Images/network.gif";
+import { useDropzone } from "react-dropzone";
+// import Prism from "prismjs"
+// import eclipse from "../../Images/eclipse.gif";
+// import Line from "../../Images/Line.gif";
+// import network from "../../Images/network.gif";
+
+const baseStyle = {
+  flex: 1,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  padding: "20px",
+  borderWidth: 2,
+  borderRadius: 10,
+  borderColor: "#eeeeee",
+  borderStyle: "dashed",
+  backgroundColor: "#fafafa",
+  color: "#bdbdbd",
+  outline: "none",
+  transition: "border .24s ease-in-out",
+};
+
+const focusedStyle = {
+  borderColor: "#2196f3",
+};
+
+const acceptStyle = {
+  borderColor: "#00e676",
+};
+
+const rejectStyle = {
+  borderColor: "#ff1744",
+};
 
 const CompareText = () => {
   const [File1, setFile1] = useState("");
@@ -19,16 +48,14 @@ const CompareText = () => {
   const [Split, setSplit] = useState(true);
   const [Darkthm, setDarkthm] = useState(false);
   const [LineNumbers, setLineNumbers] = useState(true);
-  // const [PrismEN, setPrismEN] = useState(false);
 
-  // const highlightSyntax = str => (
-  //   <pre
-  //     style={{ display: 'inline' }}
-  //     dangerouslySetInnerHTML={{
-  //       __html: Prism.highlight(str, Prism.languages.javascript),
-  //     }}
-  //   />
-  // );
+  const [errorDataFile1, setErrorDataFile1] = useState("");
+  const [errorDataFile2, setErrorDataFile2] = useState("");
+  const [Orientation, setOrientation] = useState(false);
+  const [aspectRatio, setaspectRatio] = useState("wider");
+  const [File1path, setFile1path] = useState("");
+  const [File2path, setFile2path] = useState("");
+
   const newStyles = {
     diffContainer: {
       borderRadius: "1rem",
@@ -67,9 +94,6 @@ const CompareText = () => {
     console.log('bar')
   }
   `;
-
-  useEffect(() => {}, []);
-
   const frmtarry = [
     ".csv",
     ".json",
@@ -81,46 +105,99 @@ const CompareText = () => {
     ".css",
     ".scss",
   ];
+
+  useEffect(() => {}, []);
+
+  ////Left side
+  const {
+    getRootProps: getRootPropsFile1,
+    getInputProps: getInputPropsFile1,
+    isFocused: isFocusedFile1,
+    isDragAccept: isDragAcceptFile1,
+    isDragReject: isDragRejectFile1,
+  } = useDropzone({
+    onDrop: (acceptedFile) => {
+      showFile1(acceptedFile[0]);
+    },
+    accept:
+      ".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/xml,text/xml,application/json,text/json,text/plain",
+  });
+
+  const stylefile1 = useMemo(
+    () => ({
+      ...baseStyle,
+      ...(isFocusedFile1 ? focusedStyle : {}),
+      ...(isDragAcceptFile1 ? acceptStyle : {}),
+      ...(isDragRejectFile1 ? rejectStyle : {}),
+    }),
+    [isFocusedFile1, isDragAcceptFile1, isDragRejectFile1]
+  );
+
   const showFile1 = async (e) => {
-    const name = e.target.files[0].name;
+    // console.log(e);
+    const name = e.name;
     const lastDot = name.lastIndexOf(".");
     const ext = name.slice(lastDot);
-    console.log(ext);
+    // console.log(ext);
     if (!frmtarry.includes(ext)) {
       alert("File Format is Wrong!");
       return;
     }
-    console.log("Go");
+    // console.log("Go", e.name);
     try {
-      e.preventDefault();
+      setFile1path(e.name);
       const reader = new FileReader();
       reader.onload = async (e) => {
-        const text = e.target.result;
-        setFile1(text);
+        setFile1(e.target.result);
       };
-      reader.readAsText(e.target.files[0]);
+      reader.readAsText(e);
     } catch (error) {
       console.error(error);
     }
   };
+  ////Right side
+  const {
+    getRootProps: getRootPropsFile2,
+    getInputProps: getInputPropsFile2,
+    isFocused: isFocusedFile2,
+    isDragAccept: isDragAcceptFile2,
+    isDragReject: isDragRejectFile2,
+  } = useDropzone({
+    onDrop: (acceptedFile) => {
+      showFile2(acceptedFile[0]);
+    },
+    accept:
+      ".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/xml,text/xml,application/json,text/json,text/plain",
+  });
+
+  const stylefile2 = useMemo(
+    () => ({
+      ...baseStyle,
+      ...(isFocusedFile2 ? focusedStyle : {}),
+      ...(isDragAcceptFile2 ? acceptStyle : {}),
+      ...(isDragRejectFile2 ? rejectStyle : {}),
+    }),
+    [isFocusedFile2, isDragAcceptFile2, isDragRejectFile2]
+  );
 
   const showFile2 = async (e) => {
-    const name = e.target.files[0].name;
+    // console.log(e);
+    const name = e.name;
     const lastDot = name.lastIndexOf(".");
     const ext = name.slice(lastDot);
-    console.log(ext);
+    // console.log(ext);
     if (!frmtarry.includes(ext)) {
       alert("File Format is Wrong!");
       return;
     }
+    // console.log("Go", e.name);
     try {
-      e.preventDefault();
+      setFile2path(e.name);
       const reader = new FileReader();
       reader.onload = async (e) => {
-        const text = e.target.result;
-        setFile2(text);
+        setFile2(e.target.result);
       };
-      reader.readAsText(e.target.files[0]);
+      reader.readAsText(e);
     } catch (error) {
       console.error(error);
     }
@@ -133,36 +210,38 @@ const CompareText = () => {
           <h1 className={tablestyle.title}>Text Compare</h1>
           <div className={classes.HeroPlace}>
             {/* ////////////////////////////  file 1 //////////////////////////////// */}
-            <div
+            {/* <div
               style={{ background: "rgba(54, 162, 235, 1)" }}
               className={(cardStyle.container, classes.card)}
             >
               <div className={cardStyle.tableContainer}>
-                Choos a file that you want to check
-                <br />
-                File should be in one of listed format:
-                <br />
-                .txt .json .JSON .js .ts
-                <br />
-                <input
-                  type="file"
-                  accept=".csv,.json,.JSON,.txt,.js,.ts,.jsx,.css,.scss"
-                  onChange={(e) => {
-                    showFile1(e);
-                  }}
-                />
-              </div>
-              {/* ///////////////////////////////////////// info////////////////////////////////////////// */}
-              <div className={cardStyle.tableContainer}>File1</div>
-            </div>
+                <div className="container">
+                  Choose a file that you want to check
+                  <br />
+                  File should be in one of listed format:
+                  <br />
+                  .txt .json .JSON .js .ts
+                  <br />
+                  <input
+                    type="file"
+                    accept=".csv,.json,.JSON,.txt,.js,.ts,.jsx,.css,.scss"
+                    onChange={(e) => {
+                      showFile1(e);
+                    }}
+                  />
+                </div>
+              </div> */}
+            {/* ///////////////////////////////////////// info////////////////////////////////////////// */}
+            {/* <div className={cardStyle.tableContainer}>File1</div>
+            </div> */}
 
             {/* ////////////////////////////  File 2 //////////////////////////////// */}
-            <div
+            {/* <div
               style={{ background: "rgba(54, 162, 235, 1)" }}
               className={(cardStyle.container, classes.card)}
             >
               <div className={cardStyle.tableContainer}>
-                Choos a file that you want to check
+                Choose a file that you want to check
                 <br />
                 File should be in one of listed format:
                 <br />
@@ -175,11 +254,53 @@ const CompareText = () => {
                     showFile2(e);
                   }}
                 />
-              </div>
-              {/* ///////////////////////////////////////// info////////////////////////////////////////// */}
-              <div className={cardStyle.tableContainer}>File2</div>
-            </div>
+              </div> */}
+            {/* ///////////////////////////////////////// info////////////////////////////////////////// */}
+            {/* <div className={cardStyle.tableContainer}>File2</div>
+            </div> */}
             {/* ? coinAllInfo.description.en.replace(/<[^>]+>/g, "") */}
+
+            <div
+              style={{ background: "rgba(54, 162, 235, 1)" }}
+              className={(cardStyle.container, classes.card)}
+              {...getRootPropsFile1({ stylefile1 })}
+            >
+              <input {...getInputPropsFile1()} />
+              <div className={cardStyle.tableContainer}>
+                Drag 'n' drop some files here, or click to select files
+              </div>
+              <div className="container">
+                <br />
+                File should be in one of listed format:
+                <br />
+                .txt .json .JSON .js .ts
+                <br />
+              </div>
+              {errorDataFile1 ? errorDataFile1 : File1path}
+            </div>
+
+            {/* ////////////////////////////  File 2 //////////////////////////////// */}
+
+            <div
+              style={{ background: "rgba(54, 162, 235, 1)" }}
+              className={(cardStyle.container, classes.card)}
+              {...getRootPropsFile2({ stylefile2 })}
+            >
+              <input {...getInputPropsFile2()} />
+              <div className={cardStyle.tableContainer}>
+                Drag 'n' drop some files here, or click to select files
+              </div>
+              <div className="container">
+                <br />
+                File should be in one of listed format:
+                <br />
+                .txt .json .JSON .js .ts
+                <br />
+              </div>
+              {errorDataFile2 ? errorDataFile2 : File2path}
+            </div>
+
+            {/* //////////////////// */}
           </div>
         </div>
       </Card>
@@ -193,58 +314,16 @@ const CompareText = () => {
               minHeight: "fit-content",
             }}
           >
-            <button
-              className={(style.watermatkchilds, style.languagebtn)}
-              onClick={() => setSplit(!Split)}
-            >
-              <img
-                src={network}
-                alt=""
-                style={{
-                  marginLeft: "0",
-                  width: "2.5rem",
-                  borderRadius: ".5rem",
-                  filter: "hue-rotate(180deg)",
-                  // border: "4px rgb(252, 125, 22) solid",
-                }}
-              />
-              &nbsp;
+            <button className="anchorBtn" onClick={() => setSplit(!Split)}>
               {Split ? "unified" : "Split"}
             </button>
-            <button
-              className={(style.watermatkchilds, style.languagebtn)}
-              onClick={() => setDarkthm(!Darkthm)}
-            >
-              <img
-                src={eclipse}
-                alt=""
-                style={{
-                  marginLeft: "0",
-                  width: "2.5rem",
-                  borderRadius: ".5rem",
-                  filter: "hue-rotate(180deg)",
-                  // border: "4px rgb(252, 125, 22) solid",
-                }}
-              />
-              &nbsp;
+            <button className="anchorBtn" onClick={() => setDarkthm(!Darkthm)}>
               {Darkthm ? "Light" : "Dark"}
             </button>
             <button
-              className={(style.watermatkchilds, style.languagebtn)}
+              className="anchorBtn"
               onClick={() => setLineNumbers(!LineNumbers)}
             >
-              <img
-                src={Line}
-                alt=""
-                style={{
-                  marginLeft: "0",
-                  width: "2.5rem",
-                  borderRadius: ".5rem",
-                  filter: "hue-rotate(180deg)",
-                  // border: "4px rgb(252, 125, 22) solid",
-                }}
-              />
-              &nbsp;
               {LineNumbers ? "Line #" : "No line #"}
             </button>
           </div>
@@ -280,7 +359,6 @@ const CompareText = () => {
           </div>
         </div>
       </Card>
-      <Card className={`${classes.input} ${classes.topchartdetail}`}></Card>
     </div>
   );
 };

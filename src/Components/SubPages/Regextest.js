@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import "./inventory.css";
 import classes from "../UI/Card.module.css";
 import cardStyle from "./infoCard.module.css";
 import Card from "../UI/Card";
 import HighlightWithinTextarea from "react-highlight-within-textarea";
 import tablestyle from "./UsersList.module.css";
-// import _ from "lodash";
-// import "bootstrap/dist/css/bootstrap.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import ReactTooltip from "react-tooltip";
 import "../UI/Custombootstrap.scss";
 import Accordion from "react-bootstrap/Accordion";
 import CommonToken from "../../Components/Accordions/CommonToken";
@@ -20,10 +18,43 @@ import Characters from "../../Components/Accordions/Characters";
 import FlagsModifiers from "../../Components/Accordions/FlagModifiers";
 import Substitutions from "../../Components/Accordions/Substitutions";
 import AllRegexes from "../Accordions/AllRegexes";
+import { useDropzone } from "react-dropzone";
+import { conformsTo } from "lodash";
+
+///////////////////////////dropzone style/////////////////////////////
+const baseStyle = {
+  flex: 1,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  padding: "20px",
+  borderWidth: 2,
+  borderRadius: 10,
+  borderColor: "#eeeeee",
+  borderStyle: "dashed",
+  backgroundColor: "#fafafa",
+  color: "#bdbdbd",
+  outline: "none",
+  transition: "border .24s ease-in-out",
+};
+
+const focusedStyle = {
+  borderColor: "#2196f3",
+};
+
+const acceptStyle = {
+  borderColor: "#00e676",
+};
+
+const rejectStyle = {
+  borderColor: "#ff1744",
+};
+
+/////////////////regex test /////////////////////////////
 
 const RegexTest = () => {
   const [value, setValue] = useState(
-    `Lorem ipsum dolor, sit amet consectetur adipisicing elit.1 2 3 4 5 6 7 8 9 10 Ipsa goose repellendus itaque reiciendis ab explicabo quasi, dicta temporibus quod tempore quis saepe fugit ut autem dolorem eos incidunt voluptates et veritatis fugiat at. Voluptatem nulla, libero magni architecto tempore laudantium dolorum quam impedit placeat aliquid, et similique, quos consectetur veritatis eligendi id iure quia. Recusandae, ullam quidem vero deserunt perspiciatis eligendi voluptates corporis molestiae ab nesciunt non aperiam necessitatibus nemo nam repellendus provident, fugit iure nobis obcaecati cupiditate quos, libero sequi autem! Dolorem adipisci nesciunt repellat, libero quam cumque aliquid expedita, ipsum illo, numquam autem quos voluptates accusantium? Ex ut fugit, mollitia libero hic optio veniam saepe. Ipsam reprehenderit placeat perspiciatis numquam consequatur? Quaerat deserunt quos aut velit iusto a, doloremque veritatis id tempore. Obcaecati nobis accusamus unde, vel necessitatibus ipsa aspernatur iure ducimus maxime labore a repellendus perferendis ullam. Dignissimos rerum aliquid similique unde, rem numquam tempore minus est sed iste provident quasi sit, veritatis sapiente a repudiandae explicabo consequuntur autem asperiores debitis molestiae? Quam in, aliquam a sapiente ducimus odit? Nemo facilis voluptates officia vel animi alias! Quaerat vel architecto voluptas obcaecati, exercitationem, laborum, minus earum consequatur dignissimos fuga qui corporis veritatis quod molestiae a eius perspiciatis voluptatibus sequi!`
+    `Lorem ipsum dolor, sit amet consectetur adipisicing elit.1 2 3 4 5 6 7 8 9 10 Ipsa goose repellendus itaque reiciendis ab explicabo quasi, dicta temporibus quod tempore quis saepe fugit ut autem dolorem eos incidunt voluptates et veritatis fugiat at. Voluptatem nulla, libero magni architecto tempore laudantium dolorum quam impedit placeat aliquid, et similique, quos consectetur veritatis eligendi id iure quia. Recusandae, ullam quidem vero deserunt perspiciatis eligendi voluptates corporis molestiae ab nesciunt non aperiam necessitatibus nemo nam repellendus provident, fugit iure nobis obcaecati cupiditate quos, libero sequi autem! Dolorem adipisci nesciunt repellat, libero quam cumque aliquid expedita, ipsum illo, numquam autem quos voluptates accusantium? Ex ut fugit, mollitia libero hic optio veniam saepe. Ipsam reprehenderit placeat perspiciatis numquam consequatur? Quaerat deserunt quos aut velit iusto a, doloremque veritatis id tempore. Obcaecati nobis accusamus unde, vel necessitatibus ipsa aspernatur iure ducimus maxime labore a repellendus perferendis ullam. Dignissimos rerum aliquid similique unde, rem numquam tempore minus est sed iste provident quasi sit, veritatis sapiente a repudiandae explicabo consequuntur autem asperiores debitis molestiae? Quam in, aliquam a sapiente ducimus odit? Nemo facilis voluptates officia vel animi alias! Quaerat vel architecto voluptas obcaecati, exercitationem, laborum, minus earum consequatur`
   );
   const [searchValue, setSearchValue] = useState("lo[rtyu]em");
   const [searchShowValue, setSearchShowValue] = useState("lo[rtyu]em");
@@ -64,6 +95,89 @@ const RegexTest = () => {
       text: "dot all make . match newline too. (s) Dot metacharacter matches all characters, including newlines",
     },
   ];
+
+  /////////////////////////drag and drop file upload/////////////////////////////
+  const onDrop = useCallback((acceptedFiles) => {
+    console.log(acceptedFiles);
+    showFile(acceptedFiles[0]);
+  }, []);
+  const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } =
+    useDropzone({
+      onDrop,
+      accept:
+        ".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/xml,text/xml,application/json,text/json,text/plain",
+    });
+
+  const style = useMemo(
+    () => ({
+      ...baseStyle,
+      ...(isFocused ? focusedStyle : {}),
+      ...(isDragAccept ? acceptStyle : {}),
+      ...(isDragReject ? rejectStyle : {}),
+    }),
+    [isFocused, isDragAccept, isDragReject]
+  );
+
+  ////////////////////////////////read file////////////////////////
+  // const showFile = async (textFile) => {
+  //   console.log(textFile);
+  //   const reader = new FileReader();
+  //   reader.onloaded = () => {
+  //     const textResult  = reader.result;
+  //     console.log(textResult.length);
+  //     if (!textResult.length) {
+  //       setErrormsg("**Not valid Image file!**");
+  //       setValue("");
+  //       return;
+  //     }
+  //     try {
+  //       setValue(textResult);
+  //       setUploadedvalue(textResult);
+  //     } catch (error) {
+  //       setErrormsg("**Not valid Image file!**");
+  //       setValue("");
+  //       return;
+  //     }
+  //   };
+  //   reader.readAsText(textFile);
+  // };
+
+  const frmtarry = [
+    ".csv",
+    ".json",
+    ".JSON",
+    ".txt",
+    ".js",
+    ".ts",
+    ".jsx",
+    ".css",
+    ".scss",
+  ];
+  const showFile = async (e) => {
+    console.log(e);
+    const name = e.name;
+    const lastDot = name.lastIndexOf(".");
+    const ext = name.slice(lastDot);
+    console.log(ext);
+    if (!frmtarry.includes(ext)) {
+      alert("File Format is Wrong!");
+      return;
+    }
+    console.log("Go", e.name);
+    try {
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        // const text = e;
+        console.log(e.target.result);
+        setValue(e.target.result);
+      };
+      reader.readAsText(e);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  ///////////////////////////////////////////////////////////
 
   RegExp.quote = function (str) {
     return str.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
@@ -140,11 +254,6 @@ const RegexTest = () => {
   };
 
   useEffect(() => {
-    //   console.log(searchValue);
-    // console.log(searchShowValue);
-    // console.log(errormsg);
-    // console.log(OpenFlag);
-    // console.log(checkedState);
     setHighlightValue(searchValue);
   }, [searchValue, OpenFlag, errormsg]);
 
@@ -166,7 +275,6 @@ const RegexTest = () => {
             >
               {/* ////////////////////////////  regex //////////////////////////////// */}
               <div className={cardStyle.tableContainer}>
-              
                 <input
                   type="text"
                   value={searchShowValue}
@@ -207,18 +315,18 @@ const RegexTest = () => {
               {/* ///////////////////////////////////////// flags////////////////////// */}
 
               <div
-                className={cardStyle.tableContainer}
+                className={classes.tableContainer}
                 style={{ display: OpendivFlag !== true ? "none" : "block" }}
               >
                 <hr />
                 <ul>
-                  <li>
+                  <li key={1}>
                     <input type="checkbox" checked disabled /> global search (g)
                     Finds all the correspondences rather than stopping after the
                     first match
                   </li>
                   {checkboxflag.map(({ name, text }, index) => (
-                    <li keys={index}>
+                    <li key={index}>
                       <input
                         type="checkbox"
                         name={name}
@@ -239,11 +347,9 @@ const RegexTest = () => {
             </div>
           </div>
         </div>
-        {/* </Card>
 
-      <Card
-        className={`${classes.input} ${classes.topchartdetail} ${classes.area} `}
-      > */}
+        {/* ////////////////////////////  Browose resultFile //////////////////////////////// */}
+
         <hr />
         <div className={cardStyle.regextexandhelp}>
           {/* ////////////////////////////  accordion //////////////////////////////// */}
@@ -321,7 +427,22 @@ const RegexTest = () => {
               </Accordion.Item>
             </Accordion>
           </div>
-          <div className={classes.regixText} >
+          <div
+            className={classes.regixText}
+            // data-for="main"
+            // data-tip="Drag 'n' drop some files here, or click to select files or  write or copy your text here then you can check the regex on it"
+          >
+            <hr />
+            <div className={cardStyle.tableContainer}>
+              <div {...getRootProps({ style })}>
+                <input {...getInputProps()} />
+                <p>Drag 'n' drop a file here, or click to select file</p>
+                <p>.xlsx,.xlsm,.xlsb,.xls,xlw,.xlr,.csv,.json,doc,.docx,.xml</p>
+                Text Below is editable and could write or copy your text here
+                then you can check the regex on it
+              </div>
+            </div>
+            <hr />
             <HighlightWithinTextarea
               value={value}
               onChange={onChange}
@@ -335,11 +456,14 @@ const RegexTest = () => {
           </div>
         </div>
 
-        {/* <HighlightWithinTextarea
-          value={value}
-          onChange={onChange}
-          highlight={highlightValue}
-        /> */}
+        <ReactTooltip
+          id="main"
+          multiline={true}
+          place="bottom"
+          type="info"
+          effect="float"
+          className="customeTheme"
+        />
       </Card>
     </div>
   );

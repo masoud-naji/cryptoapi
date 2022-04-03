@@ -8,6 +8,8 @@ import Select from "react-select";
 import CoinContext from "../../contexts/coinContext";
 import PieChart from "../../Chart/pieChart";
 import { useNavigate } from "react-router-dom";
+import "./progressbar.css";
+import { reduce } from "lodash";
 // import cardStyle from "./infoCard.module.css";
 // import GoogleTrends from "../GoogleTrend/GoogleTrends";
 // import { LineChart, Line } from "recharts";
@@ -55,20 +57,20 @@ function Coins() {
   };
   ////////////////////////////////////  Sorting ////////////////////////////////////////////////////////////
   const sorting = (col) => {
-    console.log(col);
-    console.log(typeof foundCoins);
-    console.log(`sorting clickon ${col}`);
+    // console.log(col);
+    // console.log(typeof foundCoins);
+    // console.log(`sorting clickon ${col}`);
     if (order === "ASC") {
       const sorted = [...foundCoins].sort((a, b) => (a[col] > b[col] ? 1 : -1));
       setFoundCoins(sorted);
       setOrder("DSC");
-      console.log(foundCoins);
+      // console.log(foundCoins);
     }
     if (order === "DSC") {
       const sorted = [...foundCoins].sort((a, b) => (a[col] < b[col] ? 1 : -1));
       setFoundCoins(sorted);
       setOrder("ASC");
-      console.log(foundCoins);
+      // console.log(foundCoins);
     }
   };
 
@@ -90,32 +92,51 @@ function Coins() {
 
   // console.log(paginatedFilteredCoins);
 
-  // ///////////////////////////////chartinfo maker////////////////
+  // ///////////////////////////////Tops gainer and loser Finder////////////////
+  coinCTX.coins ? console.log(coinCTX.coins) : console.log("loading");
+  const TopGainer = coinCTX.coins
+    ? coinCTX.coins.reduce(
+        (max, coin) =>
+          coin.price_change_percentage_24h > max
+            ? coin.price_change_percentage_24h
+            : max,
+        coinCTX.coins[0].price_change_percentage_24h
+      )
+    : 0;
 
-  // const rawDatas = paginatedFilteredCoins.map((rawData) => ({
-  //   coins: Object.values(rawData.sparkline_in_7d.price),
-  // }));
-  // console.log(rawDatas);
+  console.log("TopGainer", TopGainer);
 
-  // const render7DayChart = (
-  //   <LineChart width={200} height={50} data={rawDatas}>
-  //     <Line type="monotone" dataKey="coins" stroke="#8884d8" strokeWidth={2} />
-  //   </LineChart>
-  // );
+  const TopGainerID = coinCTX.coins
+    ? coinCTX.coins.filter(
+        (coin) => coin.price_change_percentage_24h === TopGainer
+      )[0].id
+    : "Nist Gainer";
+  console.log("TopGainerID", TopGainerID);
 
+  const TopLoser = coinCTX.coins
+    ? coinCTX.coins.reduce(
+        (min, coin) =>
+          coin.price_change_percentage_24h < min
+            ? coin.price_change_percentage_24h
+            : min,
+        coinCTX.coins[0].price_change_percentage_24h
+      )
+    : 0;
+
+  console.log("TopLoser", TopLoser);
+
+  const TopLoserID = coinCTX.coins
+    ? coinCTX.coins.filter(
+        (coin) => coin.price_change_percentage_24h === TopLoser
+      )[0].id
+    : "Nist loser";
+  console.log("TopLoserID", TopLoserID);
   ////////////////////////////////////////////////////////////////
 
   return (
     <Card className={classes.card}>
       <div className={style.tableContainer}>
-        {/* {foundCoins && (
-          <h3 className={style.tableTitle}>
-            Currently Table Contain {foundCoins.length} Records
-          </h3>
-        )} */}
-
         {/* /////////////////////////////////////////////////////Chart////////////////////////////////////////////////////// */}
-
         <div>
           <Card className={`${classes.input} ${classes.topchart}`}>
             {foundCoins && foundCoins.length > 0 ? (
@@ -127,11 +148,6 @@ function Coins() {
                     src="https://alternative.me/crypto/fear-and-greed-index.png"
                     alt="Latest Crypto Fear & Greed Index"
                     className={style.fearimg}
-                    // style={{
-                    //   height: "18rem",
-                    //   // opacity: "0.5",
-                    //   filter: "hue-rotate(180deg)",
-                    // }}
                   />
                 </div>
                 <div className={style.errorMessage}>
@@ -158,7 +174,8 @@ function Coins() {
         </details>
         <hr /> */}
         {/* ///////////////Search///////////////// */}
-        <div className={style.toptable}>
+        {/* <div className={style.toptable}> */}
+        <div className="tablecontrol">
           <div className={style.toptable_childL}>
             <input
               type="search"
@@ -273,15 +290,54 @@ function Coins() {
               defaultValue={{ value: 10, label: "10" }}
             />
           </div>
-
           {/* ///////////////Pagination///////////////// */}
           <div className={style.toptable_childR}>
             <Pagination
-              itemsCount={foundCoins.length}
+              itemsCount={foundCoins ? foundCoins.length : 0}
               pageSize={pageSize}
               onPageChange={PageChangeHandler}
               currentPage={currentPage}
             />
+          </div>
+          {/* //////////////////Tops/////////////////////// */}
+          <div className={style.toptable_childR}>
+            <section
+              type="text"
+              className={style.dropdown}
+              style={{
+                display: "grid",
+                width: "fit-content",
+                textAlign: "center",
+                alignItems: "center",
+                fontWeight: "600",
+                color: "#000",
+                border: "none",
+                background: "white",
+                padding: "0 0.5rem",
+              }}
+            >
+              TopGainer | {TopGainerID} {TopGainer} %
+            </section>
+          </div>
+          &nbsp;
+          <div>
+            <section
+              type="text"
+              className={style.dropdown}
+              style={{
+                display: "grid",
+                width: "fit-content",
+                textAlign: "center",
+                alignItems: "center",
+                fontWeight: "600",
+                color: "#000",
+                border: "none",
+                background: "white",
+                padding: "0 0.5rem",
+              }}
+            >
+              TopLoser | {TopLoserID} {TopLoser} %
+            </section>
           </div>
         </div>
 
@@ -348,7 +404,11 @@ function Coins() {
                       )
                   )
               ) : (
-                <h3>No results found!</h3>
+                <tr>
+                  <td style={{ textAlign: "center", padding: "auto" }}>
+                    <h3>No results found!</h3>
+                  </td>
+                </tr>
               )}
             </tbody>
           </table>

@@ -447,9 +447,17 @@ function Details() {
                     <img src={stock4} alt="stock" />
                     public interest stats
                     <div className="emptycontainer">
-                      {coinAllInfo.public_interest_stats.alexa_rank
-                        ? coinAllInfo.public_interest_stats.alexa_rank
-                        : ""}
+                      <p
+                        style={{
+                          position: "absolute",
+                          left: "5rem",
+                          top: ".2rem",
+                        }}
+                      >
+                        {coinAllInfo.public_interest_stats.alexa_rank
+                          ? coinAllInfo.public_interest_stats.alexa_rank
+                          : ""}
+                      </p>
                     </div>
                     sentiment votes down
                     <Progress

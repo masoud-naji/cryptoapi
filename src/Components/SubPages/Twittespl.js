@@ -5,7 +5,9 @@ import Card from "../UI/Card";
 import style from "../../about.module.css";
 import InputEmoji from "react-input-emoji";
 import LoremMaker from "../UI/LoremMaker";
-import style2 from "./UsersList.module.css"
+import style2 from "./UsersList.module.css";
+import ReactTooltip from "react-tooltip";
+import "./inventory.css";
 
 const Twittespl = () => {
   const [tweet, setTweet] = useState("");
@@ -76,87 +78,75 @@ const Twittespl = () => {
     setTweet(newValue);
   };
 
-  console.log(detailElement);
+  // console.log(detailElement);
 
   return (
-    <div className={style.container}>
-      <h1 className={style2.title}>Twitte Splitter</h1>
-      <Card
-        style={{ height: "18rem" }}
-        className={`${classes.clipboardinside} ${classes.topchart}`}
-      >
-        {clipArtforshow.length ? (
-          <div
-            dir={divDirection ? "ltr" : "rtl"}
-            className={classes.clipboardinsidetext}
-          >
-            <div className={classes.insidetitle}>
-              ClipBoard ➡️ Part {+clipArtforshow[1] + 1}
-              <hr style={{ margin: "5px" }} />
-            </div>
-            <div
-              style={{
-                position: "absolute",
-                color: `${ColorWater}`,
-                top: `${posverWatermark}%`,
-                left: `${posWatermark}%`,
-                opacity: "0.5",
-                transform: "rotate(-45deg)",
-                whiteSpace: "break-spaces",
-              }}
-            >
-              {waterMark}
-            </div>
-            <div className={classes.insidecontent}>{clipArtforshow[0]}</div>
-          </div>
-        ) : null}
-      </Card>
-      <div className={style.twitterdiv}>
-        {/* <div className={style.flextbtn}>
-          <button
-            className={style.languagebtn}
-            onClick={(e) => setDivDirection(!divDirection)}
-          >
-            {divDirection ? "➡️" : "⬅️"} {divDirection ? "LTR" : "RTL"}
-          </button>
-          <button
-            className={style.languagebtn}
-            onClick={(e) => setAddCounter(!addCounter)}
-          >
-            {!addCounter ? " Count  🔢 " : "NoCount 🔠 "}
-          </button>
-          <button
-            className={style.languagebtn}
-            onClick={() =>
-              tweet !== "" ? (setTweet(""), setSTweet("")) : setEndChar("")
-            }
-          >
-            Clear 🆑
-          </button>
-        </div> */}
-        <div
-          className={style.lorembox}
-          style={{ color: "#CCC", height: "fit-content" }}
+    <Card className={`${classes.input} ${classes.topchartdetail}`}>
+      <div className={style.container}>
+        <h1
+          className={style2.title}
+          data-for="main"
+          data-tip="long story on twitter? try this tool.<br/> you can use this tool to create multiple tweets<br/> with different text and different end char<br/> even with counter"
         >
-          <details
-            style={{ color: "#CCC" }}
-            open={detailElement}
-            onToggle={(e) => setDetailElement(e.currentTarget.open)}
-          >
-            <summary>- Lorem Maker</summary>
-            <div>
-              <LoremMaker
-                onChange={setlorem}
-                openDetails={(e) => setDetailElement(e)}
-              />
+          Twitte Splitter
+        </h1>
+
+        <Card
+          // style={{ height: "18rem" }}
+          className={`${classes.clipboardinside} ${classes.topTwitter}`}
+        >
+          {clipArtforshow.length ? (
+            <div
+              dir={divDirection ? "ltr" : "rtl"}
+              className={classes.clipboardinsidetext}
+            >
+              <div className={classes.insidetitle}>
+                What is in Your ClipBoard Now ➡️ Part {+clipArtforshow[1] + 1}
+                <hr style={{ margin: "5px" }} />
+              </div>
+              <div
+                style={{
+                  position: "absolute",
+                  color: `${ColorWater}`,
+                  top: `${posverWatermark - 2}%`,
+                  left: `${posWatermark}%`,
+                  opacity: "0.5",
+                  transform: "rotate(-45deg)",
+                  whiteSpace: "break-spaces",
+                }}
+              >
+                {waterMark}
+              </div>
+              <div className={classes.insidecontent}>{clipArtforshow[0]}</div>
             </div>
-          </details>
+          ) : null}
+        </Card>
+        <div className={style.twitterdiv}>
+          <div
+            className={style.lorembox}
+            style={{ color: "#CCC", height: "fit-content" }}
+          >
+            <details
+              style={{ color: "#CCC" }}
+              open={detailElement}
+              onToggle={(e) => setDetailElement(e.currentTarget.open)}
+            >
+              <summary>- Lorem Maker</summary>
+              <div>
+                <LoremMaker
+                  onChange={setlorem}
+                  openDetails={(e) => setDetailElement(e)}
+                />
+              </div>
+            </details>
+          </div>
         </div>
+
         <form dir={divDirection ? "ltr" : "rtl"}>
           <textarea
             value={tweet}
             onChange={(e) => setTweet(e.target.value)}
-            placeholder="Type a message "
+            placeholder="write your long tweet here"
             className={style.textareamain}
           ></textarea>
           {/* Next Indicator */}
@@ -164,138 +154,162 @@ const Twittespl = () => {
             value={endChar}
             onChange={setEndChar}
             onEnter={setEndChar}
-            placeholder="Write next indicator 20Chr Max"
+            placeholder="Write next indicator 20Chr Max , if you want to add some indicator  like ⬇️,👇 Next  you can write it here"
             maxLength={15}
           />
           <InputEmoji
             value={waterMark}
             onChange={setWaterMark}
             onEnter={setWaterMark}
-            placeholder="Write WaterMark for show on page 50Chr Max"
+            placeholder="Write WaterMark for show on page 50Chr Max, watermark is just for show and take screenshot if you want to share picture as tweet"
             maxLength={50}
           />
           {/* Watermark */}
-          <div
-            className={style.watermarkdiv}
-            onClick={(e) => detailElement !== false && setDetailElement(false)}
-            dir="ltr"
-          >
-            <div className={style.watermatkchilds}>
-              <input
-                style={{ padding: "10px" }}
-                className={style.languagebtn}
-                type="color"
-                value={ColorWater}
-                onChange={(e) => setColorWater(e.target.value)}
-              />
-            </div>
-            <div
-              className={style.watermatkchilds}
-              style={{ marginTop: "10px" }}
-            >
-              ↔️ &nbsp;{posWatermark}&nbsp;
-              <input
-                type="range"
-                min={1}
-                max={100}
-                step={1}
-                value={posWatermark}
-                onChange={(e) => {
-                  setposWatermark(e.target.value);
-                }}
-                className={style.rangeselector}
-              />
-              <input
-                type="range"
-                min={1}
-                max={100}
-                step={1}
-                value={posverWatermark}
-                onChange={(e) => {
-                  setposverWatermark(e.target.value);
-                }}
-                style={{ transform: "rotate(90deg)" }}
-                className={style.rangeselector}
-              />
-              ↕️ &nbsp;{posverWatermark}
-            </div>
-            <button
-              className={(style.watermatkchilds, style.languagebtn)}
-              onClick={(e) => setDivDirection(!divDirection)}
-            >
-              {divDirection ? "➡️" : "⬅️"} {divDirection ? "LTR" : "RTL"}
-            </button>
-            <button
-              className={(style.watermatkchilds, style.languagebtn)}
-              onClick={(e) => setAddCounter(!addCounter)}
-            >
-              {!addCounter ? " Count  🔢 " : "NoCount 🔠 "}
-            </button>
-            <button
-              className={(style.watermatkchilds, style.languagebtn)}
-              onClick={() =>
-                tweet !== ""
-                  ? (setTweet(""), setSTweet(""), setWaterMark(""))
-                  : setEndChar("")
-              }
-            >
-              Clear 🆑
-            </button>
-          </div>
+
           <br />
           <br />
           <hr />
-          <div className={classes.inputinside}>
-            <ul>
-              {Stweet !== null && Stweet.length
-                ? Object.entries(Stweet).map(([key, tweets]) => (
-                    <li
-                      key={tweets.index}
-                      className={style.litweet}
-                      style={
-                        addCounter
-                          ? { listStyleType: "none" }
-                          : { listStyleType: "decimal" }
-                      }
-                      onClick={(e) => handleCopyClick(tweets, key, endChar)}
-                    >
-                      {addCounter ? +key + 1 + "." : ""}
-                      {tweets}
-                      {endChar}
-                      <br />
-                      <div
-                        style={{
-                          position: "absolute",
-                          color: `${ColorWater}`,
-                          top: `${posverWatermark}%`,
-                          left: `${posWatermark}%`,
-                          opacity: "0.5",
-                          transform: "rotate(-45deg)",
-                          whiteSpace: "break-spaces",
-                        }}
-                      >
-                        {waterMark}
-                      </div>
-                      <button
-                        className={style.languagebtn}
-                        onClick={(e) => {
-                          handleCopyClick(tweets, key, endChar);
-                        }}
-                      >
-                        <span>
-                          ({tweets.length} Charecter)
-                          {isCopied ? " Copied!" : " Copy"}
-                        </span>
-                      </button>
-                      <hr />
-                    </li>
-                  ))
-                : ""}
-            </ul>
-          </div>
         </form>
       </div>
-    </div>
+      <div className={style.container} style={{paddingBottom:"3rem"}}>
+        <div
+          className={style.watermarkdiv}
+          onClick={(e) => detailElement !== false && setDetailElement(false)}
+          dir="ltr"
+        >
+          <div className={style.watermatkchilds}>
+            <input
+              style={{ padding: "10px" }}
+              className={style.languagebtn}
+              type="color"
+              value={ColorWater}
+              onChange={(e) => setColorWater(e.target.value)}
+              data-for="main"
+              data-tip="Chose Color for watermark"
+            />
+          </div>
+          <div className={style.watermatkchilds} style={{ marginTop: "10px" }}>
+            ↔️ &nbsp;{posWatermark}&nbsp;
+            <input
+              type="range"
+              min={1}
+              max={100}
+              step={1}
+              value={posWatermark}
+              onChange={(e) => {
+                setposWatermark(e.target.value);
+              }}
+              className={style.rangeselector}
+              data-for="main"
+              data-tip="Change the WaterMark Position"
+            />
+            <input
+              type="range"
+              min={1}
+              max={100}
+              step={1}
+              value={posverWatermark}
+              onChange={(e) => {
+                setposverWatermark(e.target.value);
+              }}
+              style={{ transform: "rotate(90deg)" }}
+              className={style.rangeselector}
+              data-for="main"
+              data-tip="Change the WaterMark Position"
+            />
+            ↕️ &nbsp;{posverWatermark}
+          </div>
+          <button
+            className={(style.watermatkchilds, style.languagebtn)}
+            onClick={(e) => setDivDirection(!divDirection)}
+            data-for="main"
+            data-tip="Change Direction <br /> (LTR/RTL)"
+          >
+            {divDirection ? "➡️" : "⬅️"} {divDirection ? "LTR" : "RTL"}
+          </button>
+          <button
+            className={(style.watermatkchilds, style.languagebtn)}
+            onClick={(e) => setAddCounter(!addCounter)}
+            data-for="main"
+            data-tip="Add Counter <br /> to tweets <br/> it will be like 1-tweet"
+          >
+            {!addCounter ? " Count  🔢 " : "NoCount 🔠 "}
+          </button>
+          <button
+            className={(style.watermatkchilds, style.languagebtn)}
+            onClick={() =>
+              tweet !== ""
+                ? (setTweet(""), setSTweet(""), setWaterMark(""))
+                : setEndChar("")
+            }
+            data-for="main"
+            data-tip="Clear everything <br/>"
+          >
+            Clear 🆑
+          </button>
+        </div>
+      </div>
+      <div className={style.container}>
+        <div className={classes.inputinside}>
+          <ul>
+            {Stweet !== null && Stweet.length
+              ? Object.entries(Stweet).map(([key, tweets]) => (
+                  <li
+                    key={tweets.index}
+                    className={style.litweet}
+                    style={
+                      addCounter
+                        ? { listStyleType: "none" }
+                        : { listStyleType: "decimal" }
+                    }
+                    onClick={(e) => handleCopyClick(tweets, key, endChar)}
+                  >
+                    {addCounter ? +key + 1 + "." : ""}
+                    {tweets}
+                    {endChar}
+                    <br />
+                    <div
+                      style={{
+                        position: "absolute",
+                        color: `${ColorWater}`,
+                        top: `${posverWatermark}%`,
+                        left: `${posWatermark}%`,
+                        opacity: "0.5",
+                        transform: "rotate(-45deg)",
+                        whiteSpace: "break-spaces",
+                      }}
+                    >
+                      {waterMark}
+                    </div>
+                    <button
+                      className={style.languagebtn}
+                      onClick={(e) => {
+                        handleCopyClick(tweets, key, endChar);
+                      }}
+                    >
+                      <span>
+                        ({tweets.length} Charecter)
+                        {isCopied ? " Copied!" : " Copy"}
+                      </span>
+                    </button>
+                    <hr />
+                  </li>
+                ))
+              : ""}
+          </ul>
+        </div>
+
+        <ReactTooltip
+          id="main"
+          multiline={true}
+          place="bottom"
+          type="info"
+          effect="float"
+          className="customeTheme"
+          delayHide={800}
+        />
+      </div>
+    </Card>
   );
 };
 

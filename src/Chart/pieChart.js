@@ -3,7 +3,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import { PieChart, Pie, Sector } from "recharts";
 import style from "./Chart.module.css";
 
-
 function MyPieChart(props) {
   const RADIAN = Math.PI / 180;
   const {
@@ -154,8 +153,7 @@ export default function App() {
                       },
                     }}
                   > */}
-                    {coin.marketCap.toFixed(2)} %
-                  {/* </Link> */}
+                  {coin.marketCap.toFixed(2)} %{/* </Link> */}
                 </td>
               </tr>
             ))}

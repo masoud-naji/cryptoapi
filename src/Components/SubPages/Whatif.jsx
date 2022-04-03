@@ -91,12 +91,14 @@ function Details() {
         foundCoins[0].high
       )
     : 0;
+
   const Lowest = foundCoins
     ? foundCoins.reduce(
         (min, coin) => (coin.low < min ? coin.low : min),
         foundCoins[0].low
       )
     : 0;
+
   const LowestPriceDate = foundCoins
     ? foundCoins.reduce(
         (min, coin) => (coin.Low < min ? coin.time : min),
@@ -104,32 +106,21 @@ function Details() {
       )
     : "";
 
-  const loWToHigh = (Invest, lowest, Highest) => {
-    const number = Invest / lowest;
+  const loWToHigh = (Invest, Lowest, Highest) => {
+    const number = Invest / Lowest;
     const inHigh = number * Highest;
-    return inHigh;
+    const deffrencePrices = Highest - Lowest;
+    const deffrencePricesPersent = (
+      ((Highest - Lowest) / ((Highest + Lowest) / 2)) *
+      100
+    ).toLocaleString("en-US");
+
+    return { inHigh, deffrencePrices, deffrencePricesPersent };
   };
+  console.log(loWToHigh(Invest, Lowest, Highest));
 
   const priceInEndDay =
     foundCoins && foundCoins[foundCoins.length - 1].high - foundCoins[0].low;
-
-  // foundCoins.find(pind=> pind.time =(new Date(endDay).getTime()/1000))
-  // : 0;
-
-  console.log(priceInEndDay);
-  // console.log(new Date(endDay).getTime()/1000)
-  // let date = foundCoins ? new Date(foundCoins[0].time * 1000) : new Date();
-  // let checkDate =
-  //   date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
-  // let checkEndSelect = endDay && endDay.toLocaleDateString("en-US");
-  // console.log("checkDate", checkDate, `\n`, "checkEndSelect", checkEndSelect);
-
-  // console.log(LowestPriceDate);
-
-  // console.log(foundCoins);
-  // console.log("foundCoins");
-  // const relut = foundCoins.find((c) => c.low ==32990.72);
-  // console.log(relut.time);
 
   const PageChangeHandler = (page) => {
     setCurrentPage(page);
@@ -346,28 +337,44 @@ function Details() {
                     <div className={style.toptablestatus}></div>
                   </div>
                 </div>
-                <div
-                  className={classes.chartdisplayWif}
-                  style={{
-                    color: "white",
-                    textAlign: "justify",
-                    padding: "0rem 1rem 2rem 1rem",
-                  }}
-                >
-                  <br /> Some Fun Facts around the low and high regardless of
-                  priority.
+                <div className={classes.chartdisplayWif}>
+                  <br /> Some Fun Facts around the low and high prices
+                  regardless of priority.
                   <br />
-                  and you can guess usually there are some delays for finding
-                  those points. So, give it some tolerance in percent then check
-                  each of the days.
-                  <br />- Highest $ {Highest.toLocaleString("en-US")}
-                  <br />- Lowest $ {Lowest.toLocaleString("en-US")}
-                  <br />
-                  - Price difference between Start & today
-                  <br />$ {priceInEndDay.toLocaleString("en-US")}
-                  <br />- Price difference between Lowest & Highest with ${" "}
-                  {Invest.toLocaleString("en-US")} at start makes: &nbsp;${" "}
-                  {loWToHigh(Invest, Lowest, Highest).toLocaleString("en-US")}
+                  You guess usually there are some delays for finding those
+                  points.just for our knowledge.check if you invest $ $&nbsp;
+                  {Invest.toLocaleString("en-US")}  at the lowest price point.
+                  when...
+                  <ul>
+                    <li>- Highest $ {Highest.toLocaleString("en-US")}</li>
+                    <li>- Lowest $ {Lowest.toLocaleString("en-US")}</li>
+                    <li>
+                      - Difference: $&nbsp;
+                      {loWToHigh(
+                        Invest,
+                        Lowest,
+                        Highest
+                      ).deffrencePrices.toLocaleString("en-US")}
+                      &nbsp; ~ %&nbsp;
+                      {loWToHigh(
+                        Invest,
+                        Lowest,
+                        Highest
+                      ).deffrencePricesPersent.toLocaleString("en-US")}
+                    </li>
+                    <li>
+                      - Difference on sort sequence of Table: $&nbsp;
+                      {priceInEndDay.toLocaleString("en-US")}
+                    </li>
+                    <li>
+                      - Difference between Lowest & Highest with $&nbsp;
+                      {Invest.toLocaleString("en-US")} at start comes: 
+                      &nbsp;$&nbsp;
+                      {loWToHigh(Invest, Lowest, Highest).inHigh.toLocaleString(
+                        "en-US"
+                      )}&nbsp; at the end.
+                    </li>
+                  </ul>
                   <br />
                 </div>
               </div>
@@ -403,9 +410,7 @@ function Details() {
                         border: "none",
                       }}
                       onChange={() => console.log()}
-                      value={`${
-                        getNumberOfDays(startDay, endDay) + 1
-                      }  Records `}
+                      value={`${getNumberOfDays(startDay, endDay) + 1}  Days `}
                     />
 
                     <Select
@@ -516,6 +521,7 @@ function Details() {
                               </td>
                               {/* Tolerance */}
                               <td className="tg-0pky">
+                                %{" "}
                                 {(
                                   ((coin.high - coin.low) /
                                     ((coin.high + coin.low) / 2)) *
@@ -524,6 +530,7 @@ function Details() {
                               </td>
                               {/* Low With 0% Missed */}
                               <td className="tg-0pky">
+                                %{" "}
                                 {(
                                   Invest /
                                   (coin.low + (coin.low * LowMiss) / 100)
@@ -543,18 +550,17 @@ function Details() {
                                 className="tg-0lax"
                                 style={{
                                   color:
-                                    (
-                                      (Invest /
-                                        (coin.low +
-                                          (coin.low * LowMiss) / 100)) *
-                                        (coin.high -
-                                          (coin.high * HighMiss) / 100) -
-                                      Invest
-                                    ).toLocaleString("en-US") > 0
+                                    (Invest /
+                                      (coin.low + (coin.low * LowMiss) / 100)) *
+                                      (coin.high -
+                                        (coin.high * HighMiss) / 100) -
+                                      Invest >=
+                                    0
                                       ? "green"
                                       : "red",
                                 }}
                               >
+                                ${" "}
                                 {(
                                   (Invest /
                                     (coin.low + (coin.low * LowMiss) / 100)) *

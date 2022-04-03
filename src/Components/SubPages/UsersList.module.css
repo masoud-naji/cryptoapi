@@ -279,19 +279,26 @@ iframe {
 .homebackground {
   position: relative;
   display: flex;
-  justify-content: center;
+  /* justify-content: space-around; */
   align-items: center;
-  height: 100%;
+  height: 100vh;
+  max-height: 100vh;
   transform-style: preserve-3d;
   z-index: -1;
 }
+/* .videoBg {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center;
+} */
 .background {
   transform: translateZ(-65px) scale(7.5);
-}
-.foreground {
-  transform: translateZ(-5px) scale(1.5);
-}
-.background {
   position: absolute;
   height: 150%;
   width: 100%;
@@ -299,6 +306,7 @@ iframe {
   z-index: -1;
 }
 .foreground {
+  transform: translateZ(-5px) scale(1.5);
   position: absolute;
   /* height: 100%; */
   width: 50%;
@@ -306,11 +314,31 @@ iframe {
   z-index: -1;
 }
 
+
+.Maintitle {
+  font-size: 2rem;
+  color: white;
+  text-shadow: 0 0 5px black;
+  padding: 0.5rem;
+  text-align: center;
+  margin: auto;
+}
 .title {
   font-size: 1.8rem;
   color: white;
   text-shadow: 0 0 5px black;
   padding: 0.5rem;
+  text-align: left;
+  margin: auto;
+}
+.subtitle{
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 0 0 5px black;
+  padding: 0.5rem;
+  text-align: left;
+  margin: auto;
+
 }
 
 .section {
@@ -336,15 +364,25 @@ iframe {
 }
 .gridInside * {
   color: white !important;
-  list-style-type: square !important;
 }
 
 .gridInside img,
 .minilist {
   border-width: 3px;
   border-style: solid;
-  border-image: linear-gradient(to bottom, rgb(238, 134, 234), rgba(0, 0, 0, 0))
+  border-image: linear-gradient(to bottom, rgb(250, 230, 250), rgba(0, 0, 0, 0))
     1 100%;
+}
+
+.gridInside li {
+  transition: all 0.5s ease-in-out !important;
+  list-style-type: square !important;
+}
+.gridInside li:hover {
+  color: rgb(250, 230, 250) !important;
+  cursor: context-menu !important;
+  transform: scale(1.1) !important;
+  transform-origin: left;
 }
 
 .imageslider {
@@ -355,6 +393,17 @@ iframe {
   .grid {
     grid-template-columns: repeat(4, 1fr);
   }
+
+  .gridInside:nth-child(2) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+  }
+  .gridInside:nth-child(3) {
+    grid-column-start: 3;
+    grid-row-start: 2;
+  }
+
   .gridInside:last-child {
     grid-column-start: 4;
     grid-row-start: 1;

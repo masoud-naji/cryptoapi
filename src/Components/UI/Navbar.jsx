@@ -6,8 +6,6 @@ import Github from "../../Images/Github.png";
 import sandbox from "../../Images/sandbox.png";
 import Emails from "../../Images/Emails.png";
 
-
-
 import "./Custombootstrap.scss";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -25,70 +23,80 @@ const MyNavbar = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#">
+              {/* <Nav.Link href="#">
                 <Link to="./">Home</Link>
-              </Nav.Link>
+              </Nav.Link> */}
               <NavDropdown title="Cryptocurrency" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="./Coins">
+                <NavDropdown.Item href="./#/Coins">
                   <Link className="navlink" to="./Coins">
-                  Cryptocurrency
+                    Cryptocurrency
                   </Link>
                 </NavDropdown.Item>
 
-                <NavDropdown.Item href="./Details">
+                <NavDropdown.Item href="./#/Details">
                   <Link className="navlink" to="./Details">
                     Details
                   </Link>
                 </NavDropdown.Item>
-             
-           
-              <NavDropdown.Item href="./Compare">
+
+                <NavDropdown.Item href="./#/Compare">
                   <Link className="navlink" to="./Compare">
-                  Compare
+                    Compare
                   </Link>
                 </NavDropdown.Item>
-              <NavDropdown.Item href="#">
+                <NavDropdown.Item href="./#/Whatif">
                   <Link className="navlink" to="./Whatif">
-                  What if
+                    What if
                   </Link>
                 </NavDropdown.Item>
               </NavDropdown>
 
               <NavDropdown title="Projrcts" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="./Twittespl">
+                <NavDropdown.Item href="./#/Twittespl">
                   <Link className="navlink" to="./Twittespl">
                     Twitte Splitter
                   </Link>
                 </NavDropdown.Item>
 
-                <NavDropdown.Item href="./Inventory">
-                  <Link className="navlink" to="./Inventory">
-                  Document Viewer
+                <NavDropdown.Item href="./#/DocumentView">
+                  <Link className="navlink" to="./DocumentView">
+                    Document Viewer
                   </Link>
                 </NavDropdown.Item>
 
-                <NavDropdown.Item href="./Regextest">
+                <NavDropdown.Item href="./#/Regextest">
                   <Link className="navlink" to="./Regextest">
                     Regex Test
                   </Link>
                 </NavDropdown.Item>
-               
-                <NavDropdown.Item href="./CompareText">
+
+                <NavDropdown.Item href="./#/CompareText">
                   <Link className="navlink" to="./CompareText">
-                  Compare Text
-                  </Link>
-                </NavDropdown.Item>
-            
-                <NavDropdown.Item href="./Other_projects">
-                  <Link className="navlink" to="./Other_projects">
-                  Other Projects
+                    Compare Text
                   </Link>
                 </NavDropdown.Item>
 
+                <NavDropdown.Item href="./#/CompareImage">
+                  <Link className="navlink" to="./CompareImage">
+                    Compare Image
+                  </Link>
+                </NavDropdown.Item>
+
+                {/* <NavDropdown.Item href="./#/CompareImage">
+                  <Link className="navlink" to="./SimplePaint">
+                  Simple Paint
+                  </Link>
+                </NavDropdown.Item> */}
+
+                <NavDropdown.Item href="./#/Other_projects">
+                  <Link className="navlink" to="./Other_projects">
+                    Other Projects
+                  </Link>
+                </NavDropdown.Item>
               </NavDropdown>
 
               <NavDropdown title="About" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="./About" for="Aboutid">
+                <NavDropdown.Item href="./#/About" for="Aboutid">
                   <Link className="navlink" to="./About" id="Aboutid">
                     About
                   </Link>
@@ -99,7 +107,7 @@ const MyNavbar = () => {
                     href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397104&authkey=AA1uxVivZIR3duU&em=2"
                     download=""
                   >
-                    <button class="cta" style={{color:"black" , padding:0}}>
+                    <button class="cta" style={{ color: "black", padding: 0 }}>
                       Pdf Resume
                     </button>
                   </a>
@@ -109,7 +117,7 @@ const MyNavbar = () => {
                     href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397100&authkey=ABpz3ESHdwNSzEQ&em=2"
                     download=""
                   >
-                    <button class="cta" style={{color:"black" , padding:0}}>
+                    <button class="cta" style={{ color: "black", padding: 0 }}>
                       Doc Resume
                     </button>
                   </a>
@@ -178,6 +186,7 @@ const MyNavbar = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+          
 
       {/* <input type="checkbox" id="nav-toggle" className="nav-toggle"></input>
       <nav className="mainnavbar">
@@ -229,7 +238,7 @@ const MyNavbar = () => {
         </ul>
       </nav> */}
       <label htmlFor="nav-toggle" className="nav-toggle-label">
-        <span></span>
+        {/* <span>test</span> */}
       </label>
     </header>
   );
