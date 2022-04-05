@@ -161,7 +161,7 @@ const Twittespl = () => {
             value={waterMark}
             onChange={setWaterMark}
             onEnter={setWaterMark}
-            placeholder="Write WaterMark for show on page 50Chr Max, watermark is just for show and take screenshot if you want to share picture as tweet"
+            placeholder="Write WaterMark for show on page 50Chr Max, watermark is just for show and take screenshot"
             maxLength={50}
           />
           {/* Watermark */}
@@ -171,7 +171,18 @@ const Twittespl = () => {
           <hr />
         </form>
       </div>
-      <div className={style.container} style={{paddingBottom:"3rem"}}>
+      <div
+        className={style.container}
+        style={{
+          paddingTop: "0",
+          minHeight: "20rem",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          alignContent: "flex-start",
+          alignSelf: "flex-start",
+        }}
+      >
         <div
           className={style.watermarkdiv}
           onClick={(e) => detailElement !== false && setDetailElement(false)}
@@ -249,6 +260,7 @@ const Twittespl = () => {
           </button>
         </div>
       </div>
+
       <div className={style.container}>
         <div className={classes.inputinside}>
           <ul>

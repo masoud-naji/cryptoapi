@@ -7,12 +7,13 @@ import cryptocurrency from "../../Images/cryptocurrency.webp";
 import music from "../../Images/music.webp";
 import Coding from "../../Images/Coding.webp";
 import Light from "../../Images/light.webp";
-import galaxy from "../../Images/galaxy.webp";
 import Daco from "../../Images/Daco.webp";
-import eberhard from "../../Images/pexels-eberhard-grossgasteiger-8389189.webp";
 import adrien from "../../Images/pexels-adrien-olichon-2387428.webp";
-import james from "../../Images/pexels-james-sebastian-5857655.webp";
 import { Link } from "react-router-dom";
+import linkedin from "../../Images/linkedin.png";
+import Github from "../../Images/Github.png";
+import sandbox from "../../Images/sandbox.png";
+import Emails from "../../Images/Emails.png";
 
 function First() {
   return (
@@ -40,6 +41,30 @@ function First() {
         <div className={`${style.gridInside} , ${style.gridColSpan2}`}></div>
         <div className={style.gridInside}>
           <h1 className={style.subtitle}>Masoud Naji</h1>
+          <h2 className={style.subtitle} style={{fontSize:"small"}}>
+            <img
+              src={Github}
+              style={{ width: "2rem", height: "100%", padding: "0" , border: "none",filter:"invert(100%)" }}
+              alt="Github"
+            />
+            &nbsp;
+            <a href="https://github.com/masoud-naji" >Github</a><br/>
+            <img
+              src={linkedin}
+              style={{ width: "2rem", height: "100%", padding: "0", border: "none" }}
+              alt="linkedin"
+            />
+            &nbsp;
+            <a href="https://www.linkedin.com/in/masoud-naji/">linkedin</a><br />
+            
+            {/* <img
+              src={sandbox}
+              style={{ width: "2rem", height: "100%", padding: "0", border: "none" }}
+              alt="sandbox"
+            />
+            &nbsp;
+            <a href="https://codesandbox.io/u/masoud-naji">sandbox</a><br/> */}
+          </h2>
           <ol>
             <li>
               <Link className="navlink" to="./Coins">
@@ -402,7 +427,7 @@ function First() {
           background: "black",
         }}
       >
-        R U Kidding me??? where is my cofee?  😉😉
+        R U Kidding me??? where is my cofee? 😉😉
       </section>
     </div>
   );

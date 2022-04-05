@@ -204,7 +204,7 @@ function Details() {
                     style={{ background: "rgb(37, 54, 106)" }}
                     className={classes.insidetitle}
                   >
-                    <div className={infostyle.flextbtn}>
+                    <div className={classes.flextbtn}>
                       {/* ///////////////////////////////////////////////// coinselect DropDown//////////////////////////////// */}
                       <div>
                         <select

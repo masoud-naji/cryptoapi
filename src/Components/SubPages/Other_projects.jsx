@@ -27,11 +27,14 @@ const OtherProjects = () => {
             hand
             <p>
               <ul>
-                <li>input: save what you enterd on input box Save</li>
-                <li>Tab: Save the current</li>
-                <li>tab All Tabs: save all Tabs in All windows </li>
-                <li> Reset All: clear all Data</li>
-                <li>Open All: Open All tabs Color Picker: change the theme</li>
+                <li>input: save what you enterd on input box</li>
+                <li>Save Tab: Save the current tab</li>
+                <li>All Tabs: save all open Tabs </li>
+                <li>Reset All: clear all Data</li>
+                <li>Open All: Open All saved tabs</li>
+                <li>Theme: change the theme</li>
+                <li>Save Json: All open tabs save as a json file</li>
+                <li>Save CMD: All open tabs save as a stand alone executable cmd file</li>
               </ul>
             </p>
             Link:

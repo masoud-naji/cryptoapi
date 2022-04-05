@@ -122,7 +122,9 @@ li {
 }
 section { width: 80%;}
 
+
 @media (min-width: 50rem) {
+
   .emptybigcontainer {
     background-color: rgba(54, 162, 235, 1);
     font-size: medium;

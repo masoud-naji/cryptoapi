@@ -229,7 +229,7 @@ function Compare() {
         <img
           style={{
             all: "initial",
-            margin: "0 0 0 1rem",
+            margin: "0 0 0 0rem",
             left: "0",
             position: "absolute",
             opacity: ".5",
@@ -246,7 +246,7 @@ function Compare() {
     <img
       style={{
         all: "initial",
-        margin: "0 1rem 0 1rem",
+        margin: "0 1rem 0 0rem",
         opacity: ".5",
         left: "0",
         position: "absolute",
@@ -259,7 +259,7 @@ function Compare() {
     <img
       style={{
         all: "initial",
-        margin: "0 1rem 0 1rem",
+        margin: "0 1rem 0 0rem",
         opacity: ".5",
         left: "0",
         position: "absolute",
@@ -340,7 +340,7 @@ function Compare() {
           {/* ///////////////////////////////////////table/////////////////////////////// */}
           <Card className={`${classes.input} ${classes.topchartdetail}`}>
             {/* ///////////////////////////////////////////////// coin select DropDown//////////////////////////////// */}
-            <div className={infostyle.flextbtn}>
+            <div className={classes.flextbtn}>
               <div>
                 <select
                   className={style.dropdownsmall}

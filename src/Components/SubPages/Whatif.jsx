@@ -345,7 +345,7 @@ function Details() {
                   points.just for our knowledge.check if you invest $ $&nbsp;
                   {Invest.toLocaleString("en-US")}  at the lowest price point.
                   when...
-                  <ul>
+                  <ul style={{paddingLeft:"0.5rem"}}>
                     <li>- Highest $ {Highest.toLocaleString("en-US")}</li>
                     <li>- Lowest $ {Lowest.toLocaleString("en-US")}</li>
                     <li>

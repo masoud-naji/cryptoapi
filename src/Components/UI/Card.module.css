@@ -77,7 +77,6 @@
   -moz-filter: hue-rotate(180deg);
   -o-filter: hue-rotate(180deg);
   -ms-filter: hue-rotate(180deg); */
-  
 }
 
 .topchartdetail {
@@ -100,38 +99,55 @@
 .HeroPlace {
   display: -ms-grid;
   display: grid;
-  grid-auto-flow: row;
-  gap: 1rem;
-  align-content: center;
+  /* grid-auto-flow: row; */
+  /* gap: 1rem;
+  align-content: center; */
   height: 24rem;
   max-height: 24rem;
   min-height: 24rem;
+  grid-auto-flow: column;
+  align-content: center;
+  gap: 1rem;
 }
+
 .HeroPlaceWif {
   display: -ms-grid;
   display: grid;
-  grid-auto-flow: row;
-  gap: 1rem;
-  align-content: center;
-  /* height: 22rem;
-  max-height: 22rem;
-  min-height: 22rem; */
   height: minmax(22rem, fit-content);
+  grid-auto-flow: column;
+  align-content: center;
+  gap: 1rem;
+  grid-template-columns: 2fr 1fr;
+
 }
 
 .chartdisplay {
-  overflow: hidden;
+  /* overflow: hidden; */
   display: block;
   z-index: 999;
+  overflow: visible;
+  display: block;
+  z-index: 999;
+  margin-left: 0;
+
+  /* overflow: visible;
+  display: block;
+  z-index: 999;
+  margin-left: 0; */
+
 }
 
 .chartdisplayWif {
-  overflow: hidden;
+  /* overflow: hidden;
   display: block;
-  z-index: 999;
+  z-index: 999; */
   color: white;
   text-align: left;
   padding: 0rem 1rem 2rem 0rem;
+  overflow: visible;
+  display: block;
+  z-index: 999;
+  margin-left: 0;
 }
 .chartdisplayWif li {
   overflow: hidden;
@@ -140,10 +156,13 @@
   color: white;
   text-align: left;
   padding: 0rem 1rem 0rem 0rem;
+
 }
 
 .infodisplay {
-  overflow: scroll;
+  /* overflow: scroll; */
+  overflow: auto;
+
 }
 
 .App {
@@ -182,10 +201,57 @@
   list-style: circle;
 }
 
-@media screen and (max-width: 50rem) {
+.ImageEditor {
+  display: grid;
+  position: fixed;
+  left: 5%;
+  bottom: 1rem;
+  z-index: 999;
+  background: rgba(54, 162, 235, 1);
+  min-height: 14rem;
+  border: 10px solid rgb(37, 54, 106);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 5px 5px 10px rgba(54, 162, 235, 0.4);
+}
+
+.flextbtn {
+  display: flex;
+  top: 0;
+  margin: 0 auto auto auto;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 80%;
+}
+
+
+@media (max-width: 50rem) {
   .clipboardinside {
     /* height: 10rem; */
   }
+
+  .flextbtn {
+    display: flex;
+    top: 0;
+    margin: 0 auto auto auto;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 80%;
+  }
+
+  .HeroPlace {
+    display: -ms-grid;
+    display: grid;
+    grid-auto-flow: row;
+    height: 24rem;
+    max-height: fit-content;
+    min-height: fit-content;
+    align-content: center;
+    gap: 1rem;
+  }
+
   .clipboardinsidetext {
     color: rgb(37, 54, 106) !important;
     /* height: 8rem; */
@@ -206,45 +272,32 @@
     font-size: 10px;
     padding-left: 0px;
     margin-left: -30px;
+    overflow: hidden;
   }
   .chartdisplayWif {
     font-size: 10px;
     padding-left: 0px;
     margin-left: 0px;
+    
   }
   .regixText {
     width: fit-content;
   }
-}
 
-@media (min-width: 50rem) {
-  .HeroPlace {
-    grid-auto-flow: column;
-    align-content: center;
-    gap: 1rem;
-  }
-  .HeroPlaceWif {
-    grid-auto-flow: column;
-    align-content: center;
-    gap: 1rem;
-    grid-template-columns: 2fr 1fr;
-  }
-  .chartdisplay {
-    overflow: visible;
-    display: block;
+  .ImageEditor {
+    all: revert;
+    display: grid;
+    /* position: absolute; */
+    /* left: 5%;
+    bottom: 1rem; */
+    margin: auto;
+    max-width: 80%;
     z-index: 999;
-    margin-left: 0;
-  }
-  .chartdisplayWif {
-    overflow: visible;
-    display: block;
-    z-index: 999;
-    margin-left: 0;
-  }
-
-  .infodisplay {
-    overflow: auto;
+    background: rgba(54, 162, 235, 1);
+    min-height: 14rem;
+    border: 10px solid rgb(37, 54, 106);
+    border-radius: 1rem;
+    padding: 1rem;
+    /* box-shadow: 5px 5px 10px rgba(54, 162, 235, 0.4); */
   }
 }
-
-
