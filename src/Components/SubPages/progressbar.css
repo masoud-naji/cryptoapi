@@ -55,7 +55,6 @@ top:.2rem;
 
 .emptybigcontainer {
   background-color: rgba(54, 162, 235, 1);
-  font-size: medium;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,12 +68,13 @@ top:.2rem;
   overflow-wrap: break-word;
   overflow: auto;
   text-align: center;
-  padding: 0.5rem;
+  padding: 0.8rem;
   opacity: 1;
   text-align: left;
-  height: 4rem;
+  height: fit-content;
   font-variant-numeric: tabular-nums;
   font-size: 0.8rem;
+  padding-left: 35%;
 }
 .emptycontainer > ul,
 li {
@@ -141,11 +141,12 @@ section { width: 80%;}
     overflow-wrap: break-word;
     overflow: auto;
     text-align: center;
-    padding: 0.5rem;
+    padding: 0.8rem;
     opacity: 1;
     text-align: left;
     height: 5rem;
     font-variant-numeric: tabular-nums;
+    padding-left: 5%;
   }
   .infoandpichrt {
     grid-template-columns: repeat(1,3fr 1fr);

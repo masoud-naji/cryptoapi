@@ -192,7 +192,7 @@ const DocumentView = () => {
       alert("Something went wrong with Search " + error);
     }
   };
-
+  console.log(filterdList);
 
   return (
     <div>
@@ -322,12 +322,12 @@ const DocumentView = () => {
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
         <details id="DetailTable" open={TableDetail}>
           <summary>Table Preview</summary>
-          <table className={`{table container} ${tablestyle.userTable}`}>
+          <table className={`${tablestyle.userTable}`}>
             <thead>
               <tr>
                 {items.length > 0 ? (
                   Object.keys(items[0]).map((item, index) => (
-                    <th scope="col" key={index}>
+                    <th scope="col" key={index} className="tg-yuap">
                       {item}
                       &nbsp;
                       <input
@@ -366,16 +366,16 @@ const DocumentView = () => {
 
               {items &&
                 filterdList &&
-                filterdList
-                  .filter(Boolean)
-                  .map((d) => (
-                    <tr key={d.id}>
-                      {d &&
-                        Object.values(d).map((item) => (
-                          <th scope="col" key={d.index}>{item}</th>
-                        ))}
-                    </tr>
-                  ))}
+                filterdList.filter(Boolean).map((d) => (
+                  <tr key={d.id}>
+                    {d &&
+                      Object.entries(d).map((item) => (
+                        <td data-label={item[0]} scope="col" key={d.index}>
+                          {item[1]}
+                        </td>
+                      ))}
+                  </tr>
+                ))}
 
               {/* {items.map((d) => (
             <tr key={d.id}>

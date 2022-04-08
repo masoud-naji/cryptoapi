@@ -433,8 +433,8 @@ const RegexTest = () => {
             // data-tip="Drag 'n' drop some files here, or click to select files or  write or copy your text here then you can check the regex on it"
           >
             <hr />
-            <div className={cardStyle.tableContainer}>
-              <div {...getRootProps({ style })}>
+            <div className={cardStyle.tableContainerdragndrop}>
+              <div {...getRootProps({ style })} >
                 <input {...getInputProps()} />
                 <p>Drag 'n' drop a file here, or click to select file</p>
                 <p>.xlsx,.xlsm,.xlsb,.xls,xlw,.xlr,.csv,.json,doc,.docx,.xml</p>

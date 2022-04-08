@@ -189,7 +189,7 @@
 
 .OtherText ul,
 .OtherText {
-  width: 70%;
+  width: 100%;
   text-align: justify;
   text-justify: inter-word;
   color: white;
@@ -245,13 +245,24 @@
     display: -ms-grid;
     display: grid;
     grid-auto-flow: row;
-    height: 24rem;
+    height: fit-content;
     max-height: fit-content;
     min-height: fit-content;
     align-content: center;
     gap: 1rem;
   }
 
+
+  .HeroPlaceWif {
+    display: -ms-grid;
+    display: grid;
+    height: minmax(22rem, fit-content);
+    grid-auto-flow: row;
+    align-content: center;
+    gap: 1rem;
+    grid-template-columns:1fr;
+  
+  }
   .clipboardinsidetext {
     color: rgb(37, 54, 106) !important;
     /* height: 8rem; */

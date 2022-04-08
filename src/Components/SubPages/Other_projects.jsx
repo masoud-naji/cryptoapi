@@ -26,7 +26,7 @@ const OtherProjects = () => {
             Tabs . all tabs are stored on local storage and available on your
             hand
             <p>
-              <ul>
+              <ul >
                 <li>input: save what you enterd on input box</li>
                 <li>Save Tab: Save the current tab</li>
                 <li>All Tabs: save all open Tabs </li>

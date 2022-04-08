@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5426f06e.css",
+    "main.js": "/static/js/main.9f31915d.js",
+    "static/media/Daco.webp": "/static/media/Daco.be35b8faa933d22081c7.webp",
+    "static/media/cryptocurrency.webp": "/static/media/cryptocurrency.194412bc2263dc374293.webp",
+    "static/media/pexels-adrien-olichon-2387428.webp": "/static/media/pexels-adrien-olichon-2387428.b4a4f4f892ac336f2f79.webp",
+    "static/media/social.webp": "/static/media/social.114f7475d9ef638a6dd2.webp",
+    "static/media/pexels-polina-zimmerman-3782235.webp": "/static/media/pexels-polina-zimmerman-3782235.78d325fbe0437e241c64.webp",
+    "static/media/Coding.webp": "/static/media/Coding.4edba9a43a0abbaa2fea.webp",
+    "static/media/music.webp": "/static/media/music.93e4045719ac3aecaf31.webp",
+    "static/media/cam.webp": "/static/media/cam.8aa7f7f3b5d17de102dc.webp",
+    "static/media/light.webp": "/static/media/light.5059f8eb74c8c826d0eb.webp",
+    "static/media/wwwvecteezycom.webp": "/static/media/wwwvecteezycom.9f9984a190067ae898ce.webp",
+    "static/media/Business_SVG.svg": "/static/media/Business_SVG.f27f82ed591e2a572177e5c3fc8f42ae.svg",
+    "static/media/pngaaa.com-719740.png": "/static/media/pngaaa.com-719740.ade1b3d5beca3732211a.png",
+    "static/media/galaxy.webp": "/static/media/galaxy.373bd580b031f59d2124.webp",
+    "static/media/PDF.png": "/static/media/PDF.1ae7f5b6817cd02b50d5.png",
+    "static/media/Emails.png": "/static/media/Emails.d66c7d2988f785334f62.png",
+    "static/media/ChromeEXTScreenshot.png": "/static/media/ChromeEXTScreenshot.29b577bc80cc35ec683d.png",
+    "static/media/sandbox.png": "/static/media/sandbox.e8ac2ad61eb5f8b11124.png",
+    "index.html": "/index.html",
+    "main.5426f06e.css.map": "/static/css/main.5426f06e.css.map",
+    "main.9f31915d.js.map": "/static/js/main.9f31915d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5426f06e.css",
+    "static/js/main.9f31915d.js"
+  ]
+}

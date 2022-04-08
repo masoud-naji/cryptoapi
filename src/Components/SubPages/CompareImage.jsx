@@ -10,6 +10,7 @@ import ReactCompareImage from "react-compare-image";
 import { useDropzone } from "react-dropzone";
 import Resizer from "react-image-file-resizer";
 import Spinner from "react-bootstrap/Spinner";
+import { split } from "lodash";
 
 const baseStyle = {
   flex: 1,
@@ -70,7 +71,8 @@ const CompareImage = () => {
   const [File2path, setFile2path] = useState("");
   ///resizer config
   const [Loading, setLoading] = useState(false);
-  const [TempFile, setTempFile] = useState("");
+  const [ExportbtnEnable, setExportbtnEnable] = useState(true);
+  const [ConverttbtnEnable, setConvertbtnEnable] = useState(true);
   const [maxWidth, setMaxWidth] = useState(300);
   const [maxHeight, setMaxHeight] = useState(300);
   const [compressFormat, setCompressFormat] = useState("WEBP");
@@ -88,8 +90,15 @@ const CompareImage = () => {
   /////////////////////////drag and drop file upload/////////////////////////////
 
   useEffect(() => {
-    console.log("changed");
-  }, [File1, File2, File1path, File2path, estSize]);
+    const timeoutId = setTimeout(() => {
+      fileChangeHandler(File1path);
+    }, 500);
+    return () => {
+      setLoading(false);
+      clearTimeout(timeoutId);
+    };
+  }, [rotation, quality, compressFormat, maxWidth, maxHeight, ExportbtnEnable]);
+
   ////Left side
   const {
     getRootProps: getRootPropsFile1,
@@ -127,6 +136,7 @@ const CompareImage = () => {
       }
       try {
         setFile1(Imageresult);
+        setConvertbtnEnable(false);
       } catch (error) {
         setErrorDataFile1("**Not valid Image file!**");
         setFile1("");
@@ -189,50 +199,6 @@ const CompareImage = () => {
   // console.log(dateFile2path);
 
   ////////////////////////// Convert Image to base64 ///////////////////////////////
-  const fileChangeHandler = (File1path) => {
-    // console.log("change Hanlder", maxHeight, maxWidth, File1path);
-    setLoading(true);
-
-    setFile1path(File1path);
-    if (File1path) {
-      try {
-        setTimeout(() => {
-          Resizer.imageFileResizer(
-            File1path,
-            maxWidth,
-            maxHeight,
-            compressFormat,
-            quality,
-            rotation,
-            (uri) => {
-              setFile2(uri);
-              console.log("File2");
-              // let base64Length = uri.length - (uri.indexOf(",") + 1);
-              // let padding =
-              //   uri.charAt(uri.length - 2) === "="
-              //     ? 2
-              //     : uri.charAt(uri.length - 1) === "="
-              //     ? 1
-              //     : 0;
-              // let fileSize = base64Length * 0.75 - padding;
-              let base64lenght = uri.split(",")[1].split("=")[0].length;
-              let fileSize = base64lenght - (base64lenght / 8) * 2;
-              setestSize(fileSize);
-              console.log("estSize", fileSize);
-            },
-            "base64",
-            200,
-            200
-          );
-        }, 200);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setLoading(false);
-      }
-    }
-    setLoading(false);
-  };
 
   const sizemaker = (imagesize) => {
     let result = Math.round(imagesize / 10) / 100;
@@ -245,9 +211,53 @@ const CompareImage = () => {
     return result;
   };
 
+  const fileChangeHandler = (File1path) => {
+    if (File1path) {
+      try {
+        setLoading(true);
+        Resizer.imageFileResizer(
+          File1path,
+          maxWidth,
+          maxHeight,
+          compressFormat,
+          quality,
+          rotation,
+          (uri) => {
+            setFile2(uri);
+
+            //method 1
+            let base64Length = uri.length - (uri.indexOf(",") + 1);
+            let padding =
+              uri.charAt(uri.length - 2) === "="
+                ? 2
+                : uri.charAt(uri.length - 1) === "="
+                ? 1
+                : 0;
+            let fileSize = base64Length * 0.75 - padding;
+
+            // method 2
+            // let base64lenght = uri.split(",")[1].split("=")[0].length;
+            // let fileSize = base64lenght - (base64lenght / 8) * 2;
+            setestSize(fileSize);
+          },
+          "base64",
+          200,
+          200
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    setTimeout(() => {
+      setLoading(false);
+    }, 400);
+  };
+
   ////////////////////////////test download//////////////////////////////
 
   function downloadImage(src) {
+    const lastDot = File1path.path.lastIndexOf(".");
+    const fileName = File1path.path.substring(0, lastDot);
     const img = new Image();
     img.crossOrigin = "anonymous"; // This tells the browser to request cross-origin access when trying to download the image data.
     // ref: https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image#Implementing_the_save_feature
@@ -261,8 +271,8 @@ const CompareImage = () => {
       ctx.drawImage(img, 0, 0);
       // create a tag
       const a = document.createElement("a");
-      a.download = "download.png";
-      a.href = canvas.toDataURL("image/png");
+      a.download = `${fileName}.${compressFormat}`;
+      a.href = canvas.toDataURL(`${fileName}.${compressFormat}`);
       a.click();
     };
   }
@@ -406,24 +416,29 @@ const CompareImage = () => {
 
             <button
               className="anchorBtn"
+              disabled={ConverttbtnEnable}
+              onClick={() => {
+                setFile2(File1);
+                setExportbtnEnable(false);
+              }}
+            >
+              {ConverttbtnEnable ? "🚫 " : ""}
+              Convert Image
+            </button>
+            <button
+              className="anchorBtn"
               onClick={() => {
                 downloadImage(File2);
               }}
+              disabled={ExportbtnEnable}
             >
-              Export
+              {ExportbtnEnable ? "🚫 " : ""}
+              Export Image
             </button>
           </div>
         </div>
       </Card>
-      {/* ////////////////////////////  Image //////////////////////////////// */}
-      <Card className={`${classes.input} ${classes.topchartdetail}`}>
-        <ReactCompareImage
-          leftImage={File1}
-          rightImage={File2}
-          vertical={Orientation}
-          aspectRatio={aspectRatio}
-        />
-      </Card>
+
       {/* ////////////////////////////  Convert Control //////////////////////////////// */}
 
       <div
@@ -436,11 +451,11 @@ const CompareImage = () => {
           <input
             value={maxWidth}
             id="maxWidth"
-            type="text"
+            type="number"
             placeholder="Max Width..."
             onChange={(e) => {
               setMaxWidth(e.target.value);
-              fileChangeHandler(File1path);
+              // fileChangeHandler(File1path);
             }}
           />
         </section>
@@ -449,11 +464,11 @@ const CompareImage = () => {
           <input
             value={maxHeight}
             id="maxHeight"
-            type="text"
+            type="number"
             placeholder="Max Height.."
             onChange={(e) => {
               setMaxHeight(e.target.value);
-              fileChangeHandler(File1path);
+              // fileChangeHandler(File1path);
             }}
           />
         </section>
@@ -464,12 +479,12 @@ const CompareImage = () => {
             id="compressFormat"
             onChange={(e) => {
               setCompressFormat(e.target.value);
-              fileChangeHandler(File1path);
+              // fileChangeHandler(File1path);
             }}
           >
-            <option value="WEBP">WEBP</option>
-            <option value="JPEG">JPEG</option>
-            <option value="PNG">PNG</option>
+            <option value="WEBP">webp</option>
+            <option value="JPEG">jpeg</option>
+            <option value="PNG">png</option>
           </select>
         </section>
         <label>Quality:{quality}</label>
@@ -481,7 +496,7 @@ const CompareImage = () => {
           step={1}
           onChange={(e) => {
             setQuality(e.target.value);
-            fileChangeHandler(File1path);
+            // fileChangeHandler(File1path);
           }}
         />
         <label>Rotation:{rotation}</label>
@@ -493,14 +508,14 @@ const CompareImage = () => {
           step={1}
           onChange={(e) => {
             setRotation(e.target.value);
-            fileChangeHandler(File1path);
+            // fileChangeHandler(File1path);
           }}
         />
         <hr />
         <label>
           Estimated size:
           {Loading ? (
-            <Spinner animation="border" />
+           <>&nbsp; <Spinner animation="border" size="sm"/></>
           ) : estSize ? (
             sizemaker(estSize)
           ) : (
@@ -508,6 +523,16 @@ const CompareImage = () => {
           )}
         </label>
       </div>
+
+      {/* ////////////////////////////  Image //////////////////////////////// */}
+      <Card className={`${classes.input} ${classes.topchartdetail}`}>
+        <ReactCompareImage
+          leftImage={File1}
+          rightImage={File2}
+          vertical={Orientation}
+          aspectRatio={aspectRatio}
+        />
+      </Card>
     </div>
   );
 };

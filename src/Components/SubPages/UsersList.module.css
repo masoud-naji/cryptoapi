@@ -98,17 +98,23 @@
 }
 
 #myInput {
-  background-image: url("../../Images/searchicon.png"); /* Add a search icon to input */
-  background-position: 10px 8px; /* Position the search icon */
-  background-repeat: no-repeat; /* Do not repeat the icon image */
-  width: 100%; /* Full-width */
-  font-size: 16px; /* Increase font-size */
-  padding: 4px 20px 7px 40px; /* Add some padding */
-  border: 1px solid #ddd; /* Add a grey border */
-  margin-bottom: 12px; /* Add some space below the input */
+  background-image: url("../../Images/searchicon.png"); 
+  background-position: 10px 8px; 
+  background-repeat: no-repeat; 
+  width: 100%; 
+  font-size: 16px; 
+  padding: 4px 20px 7px 40px; 
+  border: 1px solid #ddd; 
+  margin-bottom: 12px; 
   border-radius: 5px;
   height: 38px;
 }
+
+
+
+
+
+
 
 .toptable {
   margin: auto;
@@ -119,17 +125,14 @@
   justify-content: space-around;
 }
 
-.toptable_childL {
-  /* flex: 1 1 max-content;
-  justify-content: left; */
-}
-.toptable_childM {
-  /* flex: 1 1 max-content;
-  justify-content: center; */
-}
-.toptable_childR {
-  /* flex: 1 1 inherit;
-  justify-content: right; */
+.toptable_child {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .dropdown {
@@ -161,52 +164,7 @@
 }
 
 /* Responsive layout - makes a one column layout (100%) instead of a two-column layout (50%) */
-@media screen and (max-width: 50rem) {
-  .toptable {
-    width: min(90%, 75rem);
-    margin: auto;
-    display: grid;
-    grid-auto-flow: row;
-    width: 100%;
-  }
 
-  .ftoptable-right,
-  .ftoptable-Middle,
-  .toptable-left {
-    flex: 100%;
-  }
-
-  .userTable thead {
-    display: none;
-  }
-
-  .userTable,
-  .userTable tbody,
-  .userTable tr,
-  .userTable td {
-    display: block;
-    width: 100%;
-  }
-  .userTable tr {
-    margin-bottom: 15px;
-  }
-  .userTable td {
-    text-align: right;
-    padding-left: 50%;
-    text-align: right;
-    position: relative;
-  }
-  .userTable td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 0;
-    width: 50%;
-    padding-left: 15px;
-    font-size: 15px;
-    font-weight: bold;
-    text-align: left;
-  }
-}
 
 [list] {
   background-color: #fff;
@@ -244,8 +202,6 @@ datalist,
   filter: hue-rotate(180deg);
   border-radius: 1rem;
 }
-
-
 
 iframe {
   border-radius: 10px !important;
@@ -295,7 +251,6 @@ iframe {
   z-index: -1;
 }
 
-
 .Maintitle {
   font-size: 2rem;
   color: white;
@@ -312,14 +267,13 @@ iframe {
   text-align: left;
   margin: auto;
 }
-.subtitle{
+.subtitle {
   font-size: 1.5rem;
   color: white;
   text-shadow: 0 0 5px black;
   padding: 0.5rem;
   text-align: left;
   margin: auto;
-
 }
 
 .section {
@@ -370,7 +324,7 @@ iframe {
   width: 100vw;
 }
 
-@media (min-width: 50rem) {
+/* @media (min-width: 50rem) { */
   .grid {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -404,5 +358,77 @@ iframe {
     font-size: 2rem;
     color: white;
     text-shadow: 0 0 5px black;
+  }
+/* } */
+.infobox{
+    display:grid;
+    width:100%;
+    text-align:center;
+    align-items:center;
+    font-weight:400;
+    color:#000;
+    border:none;
+    background:white;
+    padding:0 0.5rem;
+    min-width:100%;
+    max-width:100%;
+}
+
+
+@media (max-width: 50rem) {
+  .toptable {
+    width: min(90%, 75rem);
+    margin: auto;
+    display: grid;
+    grid-auto-flow: row;
+    width: 100%;
+  }
+
+  .ftoptable-right,
+  .ftoptable-Middle,
+  .toptable-left {
+    flex: 100%;
+  }
+
+  .toptable_child {
+    display: grid;
+    grid-auto-flow: row;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    gap: 1rem;
+    grid-template-columns: auto;
+  }
+
+  .userTable thead {
+    display: none;
+  }
+
+  .userTable,
+  .userTable tbody,
+  .userTable tr,
+  .userTable td {
+    display: block;
+    width: 100%;
+  }
+  .userTable tr {
+    margin-bottom: 15px;
+  }
+  .userTable td {
+    text-align: right;
+    padding-left: 50%;
+    text-align: right;
+    position: relative;
+  }
+  .userTable td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: left;
   }
 }

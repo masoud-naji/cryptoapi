@@ -41,22 +41,34 @@ function First() {
         <div className={`${style.gridInside} , ${style.gridColSpan2}`}></div>
         <div className={style.gridInside}>
           <h1 className={style.subtitle}>Masoud Naji</h1>
-          <h2 className={style.subtitle} style={{fontSize:"small"}}>
+          <h2 className={style.subtitle} style={{ fontSize: "small" }}>
             <img
               src={Github}
-              style={{ width: "2rem", height: "100%", padding: "0" , border: "none",filter:"invert(100%)" }}
+              style={{
+                width: "2rem",
+                height: "100%",
+                padding: "0",
+                border: "none",
+                filter: "invert(100%)",
+              }}
               alt="Github"
             />
             &nbsp;
-            <a href="https://github.com/masoud-naji" >Github</a><br/>
+            <a href="https://github.com/masoud-naji">Github</a>
+            <br />
             <img
               src={linkedin}
-              style={{ width: "2rem", height: "100%", padding: "0", border: "none" }}
+              style={{
+                width: "2rem",
+                height: "100%",
+                padding: "0",
+                border: "none",
+              }}
               alt="linkedin"
             />
             &nbsp;
-            <a href="https://www.linkedin.com/in/masoud-naji/">linkedin</a><br />
-            
+            <a href="https://www.linkedin.com/in/masoud-naji/">linkedin</a>
+            <br />
             {/* <img
               src={sandbox}
               style={{ width: "2rem", height: "100%", padding: "0", border: "none" }}
@@ -124,7 +136,7 @@ function First() {
             </li>
             <li>
               &nbsp;
-              <Link className="navlink" to="./Inventory">
+              <Link className="navlink" to="./DocumentView">
                 Document Viewer
               </Link>
             </li>
@@ -299,7 +311,7 @@ function First() {
         </div>
         <div className={style.gridInside}>
           <ul className={style.ulabout}>
-            <li>
+            <li style={{ marginTop: "8rem" }}>
               <strong>Overall 8+</strong>&nbsp;years of Information Technology
               experience in Web design and development of ERP application.
             </li>

@@ -250,6 +250,7 @@ function Compare() {
         opacity: ".5",
         left: "0",
         position: "absolute",
+        height: "100%",
       }}
       src={coinAllInfo.image.small ? coinAllInfo.image.small : "#"}
       alt="click to open Google Trend"
@@ -263,6 +264,7 @@ function Compare() {
         opacity: ".5",
         left: "0",
         position: "absolute",
+        height: "100%",
       }}
       src={coinAllInfo2.image.small ? coinAllInfo2.image.small : "#"}
       alt="click to open Google Trend"
@@ -457,7 +459,7 @@ function Compare() {
                           )
                         : ""}
                     </div>
-                    <div className="emptybigcontainer">
+                    <div className="emptybigcontainer" >
                       <Secondcoinimage />
                       Market Cap : $&nbsp;
                       {coinAllInfo2.market_data.market_cap.usd
@@ -474,12 +476,9 @@ function Compare() {
                         : ""}
                     </div>
                     <div
-                      className="emptybigcontainer test2"
-                      style={{
-                        height: "9rem",
-                        // fontVariantNumeric: "tabular-nums",
-                      }}
-                    >
+                      className="emptybigcontainer"
+                      style={{paddingLeft:"10%"}}
+                                        >
                       - Market Cap of the {coinAllInfo2.id} is &nbsp;
                       {coinAllInfo.market_data.market_cap.usd
                         ? (

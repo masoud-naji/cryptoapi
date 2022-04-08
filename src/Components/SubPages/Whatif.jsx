@@ -218,10 +218,7 @@ function Details() {
         <div className={style.tableContainer}>
           {/* /////////////////////////////////////////////////////Chart////////////////////////////////////////////////////// */}
 
-          <Card
-            className={`${classes.input} ${classes.topchartdetail}`}
-            style={{}}
-          >
+          <Card className={`${classes.input} ${classes.topchartdetail}`}>
             {foundCoins ? (
               <div className={classes.HeroPlaceWif}>
                 <div className={classes.infodisplay}>
@@ -343,9 +340,9 @@ function Details() {
                   <br />
                   You guess usually there are some delays for finding those
                   points.just for our knowledge.check if you invest $ $&nbsp;
-                  {Invest.toLocaleString("en-US")}  at the lowest price point.
+                  {Invest.toLocaleString("en-US")} at the lowest price point.
                   when...
-                  <ul style={{paddingLeft:"0.5rem"}}>
+                  <ul style={{ paddingLeft: "0.5rem" }}>
                     <li>- Highest $ {Highest.toLocaleString("en-US")}</li>
                     <li>- Lowest $ {Lowest.toLocaleString("en-US")}</li>
                     <li>
@@ -368,11 +365,12 @@ function Details() {
                     </li>
                     <li>
                       - Difference between Lowest & Highest with $&nbsp;
-                      {Invest.toLocaleString("en-US")} at start comes: 
+                      {Invest.toLocaleString("en-US")} at start comes:
                       &nbsp;$&nbsp;
                       {loWToHigh(Invest, Lowest, Highest).inHigh.toLocaleString(
                         "en-US"
-                      )}&nbsp; at the end.
+                      )}
+                      &nbsp; at the end.
                     </li>
                   </ul>
                   <br />
@@ -393,17 +391,23 @@ function Details() {
             <hr />
             <div className={cardStyle.infotext}>
               <div className={cardStyle.tableContainer}>
-                <Card className={cardStyle.mycard}>
+                <Card
+                  className={cardStyle.mycard}
+                  style={{
+                    maxWidth: "100%!important",
+                    alignContent: "center",
+                  }}
+                >
                   <img src={stock} alt="stock" />
-                  {/* className="tg" */}
+
                   {/* /////////////DropDown/////////////////// */}
 
-                  <div className="tablecontrol">
+                  <div className={tablestyle.toptable_child}>
                     <input
                       type="text"
                       className={style.dropdown}
                       style={{
-                        width: "100%",
+                        width: "80%",
                         textAlign: "center",
                         fontWeight: "600",
                         color: "#000",
@@ -412,25 +416,33 @@ function Details() {
                       onChange={() => console.log()}
                       value={`${getNumberOfDays(startDay, endDay) + 1}  Days `}
                     />
+                    <div
+                      className={style.toptable_childR}
+                      style={{
+                        width: "80%",
+                        alignContent: "center",
+                      }}
+                    >
+                      <Select
+                        className={style.dropdown}
+                        options={paginationOptions}
+                        onChange={optionSelectHandler}
+                        defaultValue={{ value: 10, label: "10" }}
+                      />
+                    </div>
 
-                    <Select
-                      className={style.dropdown}
-                      options={paginationOptions}
-                      onChange={optionSelectHandler}
-                      placeholder="Select Duration ..."
-                      defaultValue={{ value: 10, label: "10" }}
-                    />
                     <Pagination
                       itemsCount={foundCoins.length}
                       pageSize={pageSize}
                       onPageChange={PageChangeHandler}
                       currentPage={currentPage}
+                      style={{
+                        width: "80%",
+                      }}
                     />
                   </div>
 
-                  <table
-                    className={`${tablestyle.container} ${tablestyle.userTable}`}
-                  >
+                  <table className={` ${tablestyle.userTable}`}>
                     <thead>
                       <tr>
                         <th
@@ -452,7 +464,7 @@ function Details() {
                           className="tg-0pky"
                           style={{ overflowWrap: "break-word", width: "20%" }}
                         >
-                          Hight $
+                          High $
                         </th>
                         <th
                           className="tg-0pky"
@@ -488,13 +500,14 @@ function Details() {
                           .map((coin) => (
                             <tr key={coin.time}>
                               {/* Time */}
-                              <td className="tg-c3ow">
+                              <td data-label="Time" className="tg-c3ow">
                                 {new Date(coin.time * 1000).toLocaleDateString(
                                   "en-US"
                                 )}
                               </td>
                               {/* Low */}
                               <td
+                                data-label="Low $"
                                 className="tg-0pky"
                                 style={{
                                   color:
@@ -508,6 +521,7 @@ function Details() {
                               </td>
                               {/* High */}
                               <td
+                                data-label="High $"
                                 className="tg-0pky"
                                 style={{
                                   color:
@@ -520,8 +534,8 @@ function Details() {
                                 $ {coin.high.toLocaleString("en-US")}
                               </td>
                               {/* Tolerance */}
-                              <td className="tg-0pky">
-                                %{" "}
+                              <td data-label="Tolerance %" className="tg-0pky">
+                                %
                                 {(
                                   ((coin.high - coin.low) /
                                     ((coin.high + coin.low) / 2)) *
@@ -529,7 +543,10 @@ function Details() {
                                 ).toLocaleString("en-US")}
                               </td>
                               {/* Low With 0% Missed */}
-                              <td className="tg-0pky">
+                              <td
+                                data-label="Low with Missed"
+                                className="tg-0pky"
+                              >
                                 %{" "}
                                 {(
                                   Invest /
@@ -537,7 +554,10 @@ function Details() {
                                 ).toLocaleString("en-US")}
                               </td>
                               {/* High With 0% Missed */}
-                              <td className="tg-0pky">
+                              <td
+                                data-label="High with Missed"
+                                className="tg-0pky"
+                              >
                                 $
                                 {(
                                   (Invest /
@@ -547,6 +567,7 @@ function Details() {
                               </td>
                               {/* gain */}
                               <td
+                                data-label="Gain"
                                 className="tg-0lax"
                                 style={{
                                   color:

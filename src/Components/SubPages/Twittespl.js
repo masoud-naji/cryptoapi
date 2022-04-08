@@ -154,14 +154,14 @@ const Twittespl = () => {
             value={endChar}
             onChange={setEndChar}
             onEnter={setEndChar}
-            placeholder="Write next indicator 20Chr Max , if you want to add some indicator  like ⬇️,👇 Next  you can write it here"
+            placeholder="Write next indicator 20Chr Max like ⬇️,👇"
             maxLength={15}
           />
           <InputEmoji
             value={waterMark}
             onChange={setWaterMark}
             onEnter={setWaterMark}
-            placeholder="Write WaterMark for show on page 50Chr Max, watermark is just for show and take screenshot"
+            placeholder="WaterMark 50Chr Max , just for screenshot"
             maxLength={50}
           />
           {/* Watermark */}
