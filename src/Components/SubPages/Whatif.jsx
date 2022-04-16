@@ -14,6 +14,7 @@ import Pagination from "../UI/pagination";
 import Paginate from "../CustomHooks/Paginate";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 // require("dotenv").config();
 // require('dotenv').config({ path: require('find-config')('.env') })
 
@@ -117,7 +118,7 @@ function Details() {
 
     return { inHigh, deffrencePrices, deffrencePricesPersent };
   };
-  console.log(loWToHigh(Invest, Lowest, Highest));
+  // console.log(loWToHigh(Invest, Lowest, Highest));
 
   const priceInEndDay =
     foundCoins && foundCoins[foundCoins.length - 1].high - foundCoins[0].low;
@@ -214,393 +215,409 @@ function Details() {
     );
   } else if (foundCoins && !isItLoading) {
     return (
-      <Card className={classes.card}>
-        <div className={style.tableContainer}>
-          {/* /////////////////////////////////////////////////////Chart////////////////////////////////////////////////////// */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 2 }}
+      >
+        <Card className={classes.card}>
+          <div className={style.tableContainer}>
+            {/* /////////////////////////////////////////////////////Chart////////////////////////////////////////////////////// */}
 
-          <Card className={`${classes.input} ${classes.topchartdetail}`}>
-            {foundCoins ? (
-              <div className={classes.HeroPlaceWif}>
-                <div className={classes.infodisplay}>
-                  <div
-                    style={{ background: "rgb(37, 54, 106)" }}
-                    className={classes.insidetitle}
-                  >
-                    <div className="infoWhatif">
-                      {/* ///////////////////////////////////////////////// coinselect DropDown//////////////////////////////// */}
-                      <h3 className={style.tableTitle}>
-                        Select Your Crypto Currency
-                      </h3>
-                      <section>
-                        <select
-                          className={style.dropdownsmall}
-                          onChange={(e) => setName(e.target.value)}
-                          placeholder="Select Coin"
-                          value={name}
-                          // options={coinNameList}
-                        >
-                          {typeof coinCTX.coins !== "undefined" ? (
-                            coinCTX.coins.map((coin) => (
-                              <option key={coin.id} value={coin.symbol}>
-                                {coin.symbol}
-                              </option>
-                            ))
-                          ) : (
-                            <option value="btc">btc</option>
-                          )}
-                        </select>
-                      </section>
-                      <h3 className={style.tableTitle}>Select Start Time</h3>
-                      <section>
-                        <DatePicker
-                          className={style.dropdownsmall}
-                          selected={endDay || yesterday}
-                          minDate="2000-01-01"
-                          maxDate={yesterday}
-                          onChange={(date) => setEndDay(date)}
-                          showYearDropdown
-                          scrollableMonthYearDropdown
-                        />
-                      </section>
-                      <h3 className={style.tableTitle}>Select End Time</h3>
-                      <section>
-                        <DatePicker
-                          className={style.dropdownsmall}
-                          selected={startDay || new Date()}
-                          minDate="2000-01-01"
-                          maxDate={new Date()}
-                          onChange={(date) => {
-                            setStartDay(date);
-                          }}
-                          showYearDropdown
-                          scrollableMonthYearDropdown
-                        />
-                      </section>
-                      <h3 className={style.tableTitle}>
-                        Money you Wish to Invest at Start? $
-                      </h3>
-                      <section>
-                        <input
-                          type="number"
-                          className={style.dropdownsmall}
-                          onChange={(e) => setInvest(e.target.value)}
-                          value={Invest}
-                          placeholder="$ invest"
-                          min={0}
-                        />
-                      </section>
-                      <h3 className={style.tableTitle}>
-                        Maybe You Missed Lower price by %
-                      </h3>
-                      <section>
-                        <input
-                          type="number"
-                          className={style.dropdownsmall}
-                          onChange={(e) => setLowMiss(e.target.value)}
-                          value={LowMiss}
-                          placeholder="$ invest"
-                          min={0}
-                          max={100}
-                        />
-                      </section>
-                      <h3 className={style.tableTitle}>
-                        Maybe You Missed High price by %
-                      </h3>
-                      <section>
-                        <input
-                          type="number"
-                          className={style.dropdownsmall}
-                          onChange={(e) => setHighMiss(e.target.value)}
-                          value={HighMiss}
-                          placeholder="$ invest"
-                          min={0}
-                          max={100}
-                        />
-                      </section>
+            <Card className={`${classes.input} ${classes.topchartdetail}`}>
+              {foundCoins ? (
+                <div className={classes.HeroPlaceWif}>
+                  <div className={classes.infodisplay}>
+                    <div
+                      style={{ background: "rgb(37, 54, 106)" }}
+                      className={classes.insidetitle}
+                    >
+                      <div className="infoWhatif">
+                        {/* ///////////////////////////////////////////////// coinselect DropDown//////////////////////////////// */}
+                        <h3 className={style.tableTitle}>
+                          Select Your Crypto Currency
+                        </h3>
+                        <section>
+                          <select
+                            className={style.dropdownsmall}
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="Select Coin"
+                            value={name}
+                            // options={coinNameList}
+                          >
+                            {typeof coinCTX.coins !== "undefined" ? (
+                              coinCTX.coins.map((coin) => (
+                                <option key={coin.id} value={coin.symbol}>
+                                  {coin.symbol}
+                                </option>
+                              ))
+                            ) : (
+                              <option value="btc">btc</option>
+                            )}
+                          </select>
+                        </section>
+                        <h3 className={style.tableTitle}>Select Start Time</h3>
+                        <section>
+                          <DatePicker
+                            className={style.dropdownsmall}
+                            selected={endDay || yesterday}
+                            minDate="2000-01-01"
+                            maxDate={yesterday}
+                            onChange={(date) => setEndDay(date)}
+                            showYearDropdown
+                            scrollableMonthYearDropdown
+                          />
+                        </section>
+                        <h3 className={style.tableTitle}>Select End Time</h3>
+                        <section>
+                          <DatePicker
+                            className={style.dropdownsmall}
+                            selected={startDay || new Date()}
+                            minDate="2000-01-01"
+                            maxDate={new Date()}
+                            onChange={(date) => {
+                              setStartDay(date);
+                            }}
+                            showYearDropdown
+                            scrollableMonthYearDropdown
+                          />
+                        </section>
+                        <h3 className={style.tableTitle}>
+                          Money you Wish to Invest at Start? $
+                        </h3>
+                        <section>
+                          <input
+                            type="number"
+                            className={style.dropdownsmall}
+                            onChange={(e) => setInvest(e.target.value)}
+                            value={Invest}
+                            placeholder="$ invest"
+                            min={0}
+                          />
+                        </section>
+                        <h3 className={style.tableTitle}>
+                          Maybe You Missed Lower price by %
+                        </h3>
+                        <section>
+                          <input
+                            type="number"
+                            className={style.dropdownsmall}
+                            onChange={(e) => setLowMiss(e.target.value)}
+                            value={LowMiss}
+                            placeholder="$ invest"
+                            min={0}
+                            max={100}
+                          />
+                        </section>
+                        <h3 className={style.tableTitle}>
+                          Maybe You Missed High price by %
+                        </h3>
+                        <section>
+                          <input
+                            type="number"
+                            className={style.dropdownsmall}
+                            onChange={(e) => setHighMiss(e.target.value)}
+                            value={HighMiss}
+                            placeholder="$ invest"
+                            min={0}
+                            max={100}
+                          />
+                        </section>
 
-                      {/* ///////////////////////////////////////// ////////////////////////////////////////// */}
+                        {/* ///////////////////////////////////////// ////////////////////////////////////////// */}
+                      </div>
                     </div>
-                  </div>
-                  <div className={classes.insidecontent}>
-                    {foundCoins && (
-                      <div>
-                        {/* <h3 className={style.tableTitle}>
+                    <div className={classes.insidecontent}>
+                      {foundCoins && (
+                        <div>
+                          {/* <h3 className={style.tableTitle}>
                           {getNumberOfDays(startDay, endDay)} Records Show on
                           chart
                         </h3> */}
-                      </div>
-                    )}
+                        </div>
+                      )}
 
-                    <div className={style.toptablestatus}></div>
+                      <div className={style.toptablestatus}></div>
+                    </div>
+                  </div>
+                  <div className={classes.chartdisplayWif}>
+                    <br /> Some Fun Facts around the low and high prices
+                    regardless of priority.
+                    <br />
+                    You guess usually there are some delays for finding those
+                    points.just for our knowledge.check if you invest $ $&nbsp;
+                    {Invest.toLocaleString("en-US")} at the lowest price point.
+                    when...
+                    <ul style={{ paddingLeft: "0.5rem" }}>
+                      <li>- Highest $ {Highest.toLocaleString("en-US")}</li>
+                      <li>- Lowest $ {Lowest.toLocaleString("en-US")}</li>
+                      <li>
+                        - Difference: $&nbsp;
+                        {loWToHigh(
+                          Invest,
+                          Lowest,
+                          Highest
+                        ).deffrencePrices.toLocaleString("en-US")}
+                        &nbsp; ~ %&nbsp;
+                        {loWToHigh(
+                          Invest,
+                          Lowest,
+                          Highest
+                        ).deffrencePricesPersent.toLocaleString("en-US")}
+                      </li>
+                      <li>
+                        - Difference on sort sequence of Table: $&nbsp;
+                        {priceInEndDay.toLocaleString("en-US")}
+                      </li>
+                      <li>
+                        - Difference between Lowest & Highest with $&nbsp;
+                        {Invest.toLocaleString("en-US")} at start comes:
+                        &nbsp;$&nbsp;
+                        {loWToHigh(
+                          Invest,
+                          Lowest,
+                          Highest
+                        ).inHigh.toLocaleString("en-US")}
+                        &nbsp; at the end.
+                      </li>
+                    </ul>
+                    <br />
                   </div>
                 </div>
-                <div className={classes.chartdisplayWif}>
-                  <br /> Some Fun Facts around the low and high prices
-                  regardless of priority.
-                  <br />
-                  You guess usually there are some delays for finding those
-                  points.just for our knowledge.check if you invest $ $&nbsp;
-                  {Invest.toLocaleString("en-US")} at the lowest price point.
-                  when...
-                  <ul style={{ paddingLeft: "0.5rem" }}>
-                    <li>- Highest $ {Highest.toLocaleString("en-US")}</li>
-                    <li>- Lowest $ {Lowest.toLocaleString("en-US")}</li>
-                    <li>
-                      - Difference: $&nbsp;
-                      {loWToHigh(
-                        Invest,
-                        Lowest,
-                        Highest
-                      ).deffrencePrices.toLocaleString("en-US")}
-                      &nbsp; ~ %&nbsp;
-                      {loWToHigh(
-                        Invest,
-                        Lowest,
-                        Highest
-                      ).deffrencePricesPersent.toLocaleString("en-US")}
-                    </li>
-                    <li>
-                      - Difference on sort sequence of Table: $&nbsp;
-                      {priceInEndDay.toLocaleString("en-US")}
-                    </li>
-                    <li>
-                      - Difference between Lowest & Highest with $&nbsp;
-                      {Invest.toLocaleString("en-US")} at start comes:
-                      &nbsp;$&nbsp;
-                      {loWToHigh(Invest, Lowest, Highest).inHigh.toLocaleString(
-                        "en-US"
-                      )}
-                      &nbsp; at the end.
-                    </li>
-                  </ul>
-                  <br />
-                </div>
-              </div>
-            ) : (
-              <h2>{error}</h2>
-            )}
-          </Card>
+              ) : (
+                <h2>{error}</h2>
+              )}
+            </Card>
 
-          <hr />
-
-          {/* ///////////////////////////////////////table/////////////////////////////// */}
-          <Card
-            className={`${classes.input} ${classes.topchartdetail}`}
-            style={{ minHeight: "22rem" }}
-          >
             <hr />
-            <div className={cardStyle.infotext}>
-              <div className={cardStyle.tableContainer}>
-                <Card
-                  className={cardStyle.mycard}
-                  style={{
-                    maxWidth: "100%!important",
-                    alignContent: "center",
-                  }}
-                >
-                  <img src={stock} alt="stock" />
 
-                  {/* /////////////DropDown/////////////////// */}
+            {/* ///////////////////////////////////////table/////////////////////////////// */}
+            <Card
+              className={`${classes.input} ${classes.topchartdetail}`}
+              style={{ minHeight: "22rem" }}
+            >
+              <hr />
+              <div className={cardStyle.infotext}>
+                <div className={cardStyle.tableContainer}>
+                  <Card
+                    className={cardStyle.mycard}
+                    style={{
+                      maxWidth: "100%!important",
+                      alignContent: "center",
+                    }}
+                  >
+                    <img src={stock} alt="stock" />
 
-                  <div className={tablestyle.toptable_child}>
-                    <input
-                      type="text"
-                      className={style.dropdown}
-                      style={{
-                        width: "80%",
-                        textAlign: "center",
-                        fontWeight: "600",
-                        color: "#000",
-                        border: "none",
-                      }}
-                      onChange={() => console.log()}
-                      value={`${getNumberOfDays(startDay, endDay) + 1}  Days `}
-                    />
-                    <div
-                      className={style.toptable_childR}
-                      style={{
-                        width: "80%",
-                        alignContent: "center",
-                      }}
-                    >
-                      <Select
+                    {/* /////////////DropDown/////////////////// */}
+
+                    <div className={tablestyle.toptable_child}>
+                      <input
+                        type="text"
                         className={style.dropdown}
-                        options={paginationOptions}
-                        onChange={optionSelectHandler}
-                        defaultValue={{ value: 10, label: "10" }}
+                        style={{
+                          width: "80%",
+                          textAlign: "center",
+                          fontWeight: "600",
+                          color: "#000",
+                          border: "none",
+                        }}
+                        onChange={() => console.log()}
+                        value={`${
+                          getNumberOfDays(startDay, endDay) + 1
+                        }  Days `}
+                      />
+                      <div
+                        className={style.toptable_childR}
+                        style={{
+                          width: "80%",
+                          alignContent: "center",
+                        }}
+                      >
+                        <Select
+                          className={style.dropdown}
+                          options={paginationOptions}
+                          onChange={optionSelectHandler}
+                          defaultValue={{ value: 10, label: "10" }}
+                        />
+                      </div>
+
+                      <Pagination
+                        itemsCount={foundCoins.length}
+                        pageSize={pageSize}
+                        onPageChange={PageChangeHandler}
+                        currentPage={currentPage}
+                        style={{
+                          width: "80%",
+                        }}
                       />
                     </div>
 
-                    <Pagination
-                      itemsCount={foundCoins.length}
-                      pageSize={pageSize}
-                      onPageChange={PageChangeHandler}
-                      currentPage={currentPage}
-                      style={{
-                        width: "80%",
-                      }}
-                    />
-                  </div>
-
-                  <table className={` ${tablestyle.userTable}`}>
-                    <thead>
-                      <tr>
-                        <th
-                          onClick={() => sorting("time")}
-                          className="tg-yuap"
-                          style={{ overflowWrap: "break-word", width: "10%" }}
-                        >
-                          Time
-                        </th>
-                        <th
-                          onClick={() => sorting("low")}
-                          className="tg-0pky"
-                          style={{ overflowWrap: "break-word", width: "20%" }}
-                        >
-                          Low $
-                        </th>
-                        <th
-                          onClick={() => sorting("high")}
-                          className="tg-0pky"
-                          style={{ overflowWrap: "break-word", width: "20%" }}
-                        >
-                          High $
-                        </th>
-                        <th
-                          className="tg-0pky"
-                          style={{ overflowWrap: "break-word", width: "10%" }}
-                        >
-                          Tolerance %
-                        </th>
-                        <th
-                          className="tg-0pky"
-                          style={{ overflowWrap: "break-word", width: "15%" }}
-                        >
-                          Low with {LowMiss}% Missed
-                        </th>
-                        <th
-                          className="tg-0pky"
-                          style={{ overflowWrap: "break-word", width: "15%" }}
-                        >
-                          High with {HighMiss}% Missed
-                        </th>
-                        <th
-                          className="tg-0lax"
-                          style={{ overflowWrap: "break-word", width: "15%" }}
-                        >
-                          Gain $
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {foundCoins !== "undefined" &&
-                        // foundCoins.Data.map((coin) => (
-                        paginatedFilteredCoins
-                          .filter((coin) => coin !== null)
-                          .map((coin) => (
-                            <tr key={coin.time}>
-                              {/* Time */}
-                              <td data-label="Time" className="tg-c3ow">
-                                {new Date(coin.time * 1000).toLocaleDateString(
-                                  "en-US"
-                                )}
-                              </td>
-                              {/* Low */}
-                              <td
-                                data-label="Low $"
-                                className="tg-0pky"
-                                style={{
-                                  color:
-                                    coin.low.toLocaleString("en-US") ==
-                                    Lowest.toLocaleString("en-US")
-                                      ? "red"
-                                      : "black",
-                                }}
-                              >
-                                $ {coin.low.toLocaleString("en-US")}
-                              </td>
-                              {/* High */}
-                              <td
-                                data-label="High $"
-                                className="tg-0pky"
-                                style={{
-                                  color:
-                                    coin.high.toLocaleString("en-US") ==
-                                    Highest.toLocaleString("en-US")
-                                      ? "green"
-                                      : "black",
-                                }}
-                              >
-                                $ {coin.high.toLocaleString("en-US")}
-                              </td>
-                              {/* Tolerance */}
-                              <td data-label="Tolerance %" className="tg-0pky">
-                                %
-                                {(
-                                  ((coin.high - coin.low) /
-                                    ((coin.high + coin.low) / 2)) *
-                                  100
-                                ).toLocaleString("en-US")}
-                              </td>
-                              {/* Low With 0% Missed */}
-                              <td
-                                data-label="Low with Missed"
-                                className="tg-0pky"
-                              >
-                                %{" "}
-                                {(
-                                  Invest /
-                                  (coin.low + (coin.low * LowMiss) / 100)
-                                ).toLocaleString("en-US")}
-                              </td>
-                              {/* High With 0% Missed */}
-                              <td
-                                data-label="High with Missed"
-                                className="tg-0pky"
-                              >
-                                $
-                                {(
-                                  (Invest /
-                                    (coin.low + (coin.low * LowMiss) / 100)) *
-                                  (coin.high - (coin.high * HighMiss) / 100)
-                                ).toLocaleString("en-US")}
-                              </td>
-                              {/* gain */}
-                              <td
-                                data-label="Gain"
-                                className="tg-0lax"
-                                style={{
-                                  color:
+                    <table className={` ${tablestyle.userTable}`}>
+                      <thead>
+                        <tr>
+                          <th
+                            onClick={() => sorting("time")}
+                            className="tg-yuap"
+                            style={{ overflowWrap: "break-word", width: "10%" }}
+                          >
+                            Time
+                          </th>
+                          <th
+                            onClick={() => sorting("low")}
+                            className="tg-0pky"
+                            style={{ overflowWrap: "break-word", width: "20%" }}
+                          >
+                            Low $
+                          </th>
+                          <th
+                            onClick={() => sorting("high")}
+                            className="tg-0pky"
+                            style={{ overflowWrap: "break-word", width: "20%" }}
+                          >
+                            High $
+                          </th>
+                          <th
+                            className="tg-0pky"
+                            style={{ overflowWrap: "break-word", width: "10%" }}
+                          >
+                            Tolerance %
+                          </th>
+                          <th
+                            className="tg-0pky"
+                            style={{ overflowWrap: "break-word", width: "15%" }}
+                          >
+                            Low with {LowMiss}% Missed
+                          </th>
+                          <th
+                            className="tg-0pky"
+                            style={{ overflowWrap: "break-word", width: "15%" }}
+                          >
+                            High with {HighMiss}% Missed
+                          </th>
+                          <th
+                            className="tg-0lax"
+                            style={{ overflowWrap: "break-word", width: "15%" }}
+                          >
+                            Gain $
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {foundCoins !== "undefined" &&
+                          // foundCoins.Data.map((coin) => (
+                          paginatedFilteredCoins
+                            .filter((coin) => coin !== null)
+                            .map((coin) => (
+                              <tr key={coin.time}>
+                                {/* Time */}
+                                <td data-label="Time" className="tg-c3ow">
+                                  {new Date(
+                                    coin.time * 1000
+                                  ).toLocaleDateString("en-US")}
+                                </td>
+                                {/* Low */}
+                                <td
+                                  data-label="Low $"
+                                  className="tg-0pky"
+                                  style={{
+                                    color:
+                                      coin.low.toLocaleString("en-US") ==
+                                      Lowest.toLocaleString("en-US")
+                                        ? "red"
+                                        : "black",
+                                  }}
+                                >
+                                  $ {coin.low.toLocaleString("en-US")}
+                                </td>
+                                {/* High */}
+                                <td
+                                  data-label="High $"
+                                  className="tg-0pky"
+                                  style={{
+                                    color:
+                                      coin.high.toLocaleString("en-US") ==
+                                      Highest.toLocaleString("en-US")
+                                        ? "green"
+                                        : "black",
+                                  }}
+                                >
+                                  $ {coin.high.toLocaleString("en-US")}
+                                </td>
+                                {/* Tolerance */}
+                                <td
+                                  data-label="Tolerance %"
+                                  className="tg-0pky"
+                                >
+                                  %
+                                  {(
+                                    ((coin.high - coin.low) /
+                                      ((coin.high + coin.low) / 2)) *
+                                    100
+                                  ).toLocaleString("en-US")}
+                                </td>
+                                {/* Low With 0% Missed */}
+                                <td
+                                  data-label="Low with Missed"
+                                  className="tg-0pky"
+                                >
+                                  %{" "}
+                                  {(
+                                    Invest /
+                                    (coin.low + (coin.low * LowMiss) / 100)
+                                  ).toLocaleString("en-US")}
+                                </td>
+                                {/* High With 0% Missed */}
+                                <td
+                                  data-label="High with Missed"
+                                  className="tg-0pky"
+                                >
+                                  $
+                                  {(
+                                    (Invest /
+                                      (coin.low + (coin.low * LowMiss) / 100)) *
+                                    (coin.high - (coin.high * HighMiss) / 100)
+                                  ).toLocaleString("en-US")}
+                                </td>
+                                {/* gain */}
+                                <td
+                                  data-label="Gain"
+                                  className="tg-0lax"
+                                  style={{
+                                    color:
+                                      (Invest /
+                                        (coin.low +
+                                          (coin.low * LowMiss) / 100)) *
+                                        (coin.high -
+                                          (coin.high * HighMiss) / 100) -
+                                        Invest >=
+                                      0
+                                        ? "green"
+                                        : "red",
+                                  }}
+                                >
+                                  ${" "}
+                                  {(
                                     (Invest /
                                       (coin.low + (coin.low * LowMiss) / 100)) *
                                       (coin.high -
                                         (coin.high * HighMiss) / 100) -
-                                      Invest >=
-                                    0
-                                      ? "green"
-                                      : "red",
-                                }}
-                              >
-                                ${" "}
-                                {(
-                                  (Invest /
-                                    (coin.low + (coin.low * LowMiss) / 100)) *
-                                    (coin.high - (coin.high * HighMiss) / 100) -
-                                  Invest
-                                ).toLocaleString("en-US")}
-                              </td>
-                            </tr>
-                          ))}
-                    </tbody>
-                  </table>
-                </Card>
-              </div>
+                                    Invest
+                                  ).toLocaleString("en-US")}
+                                </td>
+                              </tr>
+                            ))}
+                      </tbody>
+                    </table>
+                  </Card>
+                </div>
 
-              <hr />
-            </div>
-          </Card>
-        </div>
-      </Card>
+                <hr />
+              </div>
+            </Card>
+          </div>
+        </Card>
+      </motion.div>
     );
   } else {
     return (

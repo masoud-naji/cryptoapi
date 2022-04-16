@@ -8,6 +8,7 @@ import LoremMaker from "../UI/LoremMaker";
 import style2 from "./UsersList.module.css";
 import ReactTooltip from "react-tooltip";
 import "./inventory.css";
+import { motion } from "framer-motion";
 
 const Twittespl = () => {
   const [tweet, setTweet] = useState("");
@@ -81,6 +82,12 @@ const Twittespl = () => {
   // console.log(detailElement);
 
   return (
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 2 }}
+    exit={{ opacity: 0}}
+  >
     <Card className={`${classes.input} ${classes.topchartdetail}`}>
       <div className={style.container}>
         <h1
@@ -321,7 +328,8 @@ const Twittespl = () => {
           delayHide={800}
         />
       </div>
-    </Card>
+      </Card>
+      </motion.div>
   );
 };
 

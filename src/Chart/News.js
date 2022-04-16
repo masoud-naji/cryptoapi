@@ -26,7 +26,7 @@ function Chart() {
   const mydata = coinCTX.Chartdata;
   const mydata2 = coinCTX.Chartdata2;
 
-  const newD = mydata.map((mdata) => ({
+  const newD =mydata &&  mydata.map((mdata) => ({
     date: new Date(mdata[0]).toLocaleDateString("en-US"),
     price: mdata[1],
   }));

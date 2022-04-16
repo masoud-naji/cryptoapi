@@ -17,6 +17,7 @@ import stock3 from "../../Images/stock3.png";
 import stock4 from "../../Images/stock4.png";
 import { split } from "lodash";
 import versus from "../../Images/pngaaa.com-719740.png";
+import { motion } from "framer-motion";
 
 function Compare() {
   const coinCTX = useContext(CoinContext);
@@ -251,6 +252,7 @@ function Compare() {
         left: "0",
         position: "absolute",
         height: "100%",
+        width: "100%",
       }}
       src={coinAllInfo.image.small ? coinAllInfo.image.small : "#"}
       alt="click to open Google Trend"
@@ -265,6 +267,7 @@ function Compare() {
         left: "0",
         position: "absolute",
         height: "100%",
+        width: "100%",
       }}
       src={coinAllInfo2.image.small ? coinAllInfo2.image.small : "#"}
       alt="click to open Google Trend"
@@ -299,426 +302,460 @@ function Compare() {
     Object.keys(coinAllInfo2).length > 0
   ) {
     return (
-      <Card className={classes.card}>
-        <div className={style.tableContainer}>
-          {/* /////////////////////////////////////////////////////Chart////////////////////////////////////////////////////// */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 2 }}
+      >
+        <Card className={classes.card}>
+          <div className={style.tableContainer}>
+            {/* /////////////////////////////////////////////////////Chart////////////////////////////////////////////////////// */}
 
-          <Card className={`${classes.input} ${classes.topchartdetail}`}>
-            {foundCoins && foundCoins.length > 0 ? (
-              <div className={classes.HeroPlace}>
-                <div className={classes.chartdisplay}>
-                  <Chart data={foundCoins} data2={foundCoins2} />
-                  {/* <Chart data={foundCoins} /> */}
-                </div>
-                <div className={classes.infodisplay}>
-                  <div
-                    style={{ background: "rgb(37, 54, 106)" }}
-                    className={classes.insidetitle}
-                  ></div>
+            <Card className={`${classes.input} ${classes.topchartdetail}`}>
+              {foundCoins && foundCoins.length > 0 ? (
+                <div className={classes.HeroPlace}>
+                  <div className={classes.chartdisplay}>
+                    <Chart data={foundCoins} data2={foundCoins2} />
+                    {/* <Chart data={foundCoins} /> */}
+                  </div>
+                  <div className={classes.infodisplay}>
+                    <div
+                      style={{ background: "rgb(37, 54, 106)" }}
+                      className={classes.insidetitle}
+                    ></div>
 
-                  {/* /////////////////////////////////////////Fear Greed ////////////////////////////////////////// */}
-                  <div className={style.toptablestatus}>
-                    <img
-                      src="https://alternative.me/crypto/fear-and-greed-index.png"
-                      alt="Latest Crypto Fear & Greed Index"
-                      style={{
-                        width: "65%",
+                    {/* /////////////////////////////////////////Fear Greed ////////////////////////////////////////// */}
+                    <div className={style.toptablestatus}>
+                      <img
+                        src="https://alternative.me/crypto/fear-and-greed-index.png"
+                        alt="Latest Crypto Fear & Greed Index"
+                        style={{
+                          width: "65%",
 
-                        borderRadius: ".6rem",
-                        filter: "hue-rotate(180deg)",
-                        border: "4px rgb(252, 125, 22) solid",
-                      }}
-                    />
+                          borderRadius: ".6rem",
+                          filter: "hue-rotate(180deg)",
+                          border: "4px rgb(252, 125, 22) solid",
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            ) : (
-              <h2>{error}</h2>
-            )}
-          </Card>
+              ) : (
+                <h2>{error}</h2>
+              )}
+            </Card>
 
-          <hr />
-
-          {/* ///////////////////////////////////////table/////////////////////////////// */}
-          <Card className={`${classes.input} ${classes.topchartdetail}`}>
-            {/* ///////////////////////////////////////////////// coin select DropDown//////////////////////////////// */}
-            <div className={classes.flextbtn}>
-              <div>
-                <select
-                  className={style.dropdownsmall}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Select Coin"
-                  value={name}
-                  // options={coinNameList}
-                >
-                  {typeof coinCTX.coins !== "undefined" ? (
-                    coinCTX.coins.map((coin) => (
-                      <option key={coin.id} value={coin.id}>
-                        {coin.symbol}
-                      </option>
-                    ))
-                  ) : (
-                    <option value="btc">btc</option>
-                  )}
-                </select>
-              </div>
-              <div>
-                <select
-                  className={style.dropdownsmall}
-                  onChange={(e) => setName2(e.target.value)}
-                  placeholder="Select Coin"
-                  value={name2}
-                  // options={coinNameList}
-                >
-                  {typeof coinCTX.coins !== "undefined" ? (
-                    coinCTX.coins.map((coin) => (
-                      <option key={coin.id} value={coin.id}>
-                        {coin.symbol}
-                      </option>
-                    ))
-                  ) : (
-                    <option value="btc">btc</option>
-                  )}
-                </select>
-              </div>
-
-              {/* ///////////////////////////////////////// Time Controller DropDown////////////////////////////////////////// */}
-              <div>
-                <select
-                  className={style.dropdownsmall}
-                  onChange={(e) => setStarthandler(e)}
-                  placeholder="Select Duration ..."
-                >
-                  <>
-                    <option value={Object.values(timeController[0])}>4H</option>
-                    <option value={Object.values(timeController[1])}>1D</option>
-                    <option value={Object.values(timeController[2])}>7D</option>
-                    <option value={Object.values(timeController[3])}>1M</option>
-                    <option value={Object.values(timeController[4])}>3M</option>
-                    <option value={Object.values(timeController[5])}>1Y</option>
-                    <option value={Object.values(timeController[6])}>5Y</option>
-                  </>
-                </select>
-              </div>
-            </div>
-
-            {/* //////////////////////////////////////////////BTNS//////////////////////////////////////////////// */}
             <hr />
-            <div className={cardStyle.infotext}>
-              <span title="Click to open Google Trend">
-                <a
-                  href={`https://trends.google.com/trends/explore?q=${coinAllInfo.id}&geo=US`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img
-                    src={
-                      coinAllInfo.image.small ? coinAllInfo.image.small : "#"
-                    }
-                    alt="click to open Google Trend"
-                  />
-                </a>
-                <img
-                  src={versus}
-                  alt="versus"
-                  style={{ width: "1rem", margin: "0 1rem 0 1rem" }}
-                />
-                <a
-                  href={`https://trends.google.com/trends/explore?q=${coinAllInfo2.id}&geo=US`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img
-                    src={
-                      coinAllInfo2.image.small ? coinAllInfo2.image.small : "#"
-                    }
-                    alt="click to open Google Trend"
-                  />
-                </a>
-              </span>
 
+            {/* ///////////////////////////////////////table/////////////////////////////// */}
+            <Card className={`${classes.input} ${classes.topchartdetail}`}>
+              {/* ///////////////////////////////////////////////// coin select DropDown//////////////////////////////// */}
+              <div className={classes.flextbtn}>
+                <div>
+                  <select
+                    className={style.dropdownsmall}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Select Coin"
+                    value={name}
+                    // options={coinNameList}
+                  >
+                    {typeof coinCTX.coins !== "undefined" ? (
+                      coinCTX.coins.map((coin) => (
+                        <option key={coin.id} value={coin.id}>
+                          {coin.symbol}
+                        </option>
+                      ))
+                    ) : (
+                      <option value="btc">btc</option>
+                    )}
+                  </select>
+                </div>
+                <div>
+                  <select
+                    className={style.dropdownsmall}
+                    onChange={(e) => setName2(e.target.value)}
+                    placeholder="Select Coin"
+                    value={name2}
+                    // options={coinNameList}
+                  >
+                    {typeof coinCTX.coins !== "undefined" ? (
+                      coinCTX.coins.map((coin) => (
+                        <option key={coin.id} value={coin.id}>
+                          {coin.symbol}
+                        </option>
+                      ))
+                    ) : (
+                      <option value="btc">btc</option>
+                    )}
+                  </select>
+                </div>
+
+                {/* ///////////////////////////////////////// Time Controller DropDown////////////////////////////////////////// */}
+                <div>
+                  <select
+                    className={style.dropdownsmall}
+                    onChange={(e) => setStarthandler(e)}
+                    placeholder="Select Duration ..."
+                  >
+                    <>
+                      <option value={Object.values(timeController[0])}>
+                        4H
+                      </option>
+                      <option value={Object.values(timeController[1])}>
+                        1D
+                      </option>
+                      <option value={Object.values(timeController[2])}>
+                        7D
+                      </option>
+                      <option value={Object.values(timeController[3])}>
+                        1M
+                      </option>
+                      <option value={Object.values(timeController[4])}>
+                        3M
+                      </option>
+                      <option value={Object.values(timeController[5])}>
+                        1Y
+                      </option>
+                      <option value={Object.values(timeController[6])}>
+                        5Y
+                      </option>
+                    </>
+                  </select>
+                </div>
+              </div>
+
+              {/* //////////////////////////////////////////////BTNS//////////////////////////////////////////////// */}
               <hr />
-              {/* ////////////////////////////marketCAp//////////////////////////////// */}
-              <div className={cardStyle.tableContainer}>
-                <Card className={cardStyle.mycard}>
-                  <section className="infoandpichrt">
-                    <img src={stock3} />
-                    <div className="emptybigcontainer">
-                      <Firstcoinimage />
-                      Market Cap : $&nbsp;
-                      {coinAllInfo.market_data.market_cap.usd
-                        ? coinAllInfo.market_data.market_cap.usd.toLocaleString(
-                            "en-US"
-                          )
-                        : ""}
-                      <br />
-                      Price : $&nbsp;
-                      {coinAllInfo.market_data.current_price.usd
-                        ? coinAllInfo.market_data.current_price.usd.toLocaleString(
-                            "en-US"
-                          )
-                        : ""}
-                    </div>
-                    <div className="emptybigcontainer" >
-                      <Secondcoinimage />
-                      Market Cap : $&nbsp;
-                      {coinAllInfo2.market_data.market_cap.usd
-                        ? coinAllInfo2.market_data.market_cap.usd.toLocaleString(
-                            "en-US"
-                          )
-                        : ""}
-                      <br />
-                      Price : $&nbsp;
-                      {coinAllInfo2.market_data.current_price.usd
-                        ? coinAllInfo2.market_data.current_price.usd.toLocaleString(
-                            "en-US"
-                          )
-                        : ""}
-                    </div>
-                    <div
-                      className="emptybigcontainer"
-                      style={{paddingLeft:"10%"}}
-                                        >
-                      - Market Cap of the {coinAllInfo2.id} is &nbsp;
-                      {coinAllInfo.market_data.market_cap.usd
-                        ? (
-                            (coinAllInfo2.market_data.market_cap.usd /
-                              coinAllInfo.market_data.market_cap.usd) *
-                            100
-                          ).toFixed(2)
-                        : ""}
-                      % of the {coinAllInfo.id}.
-                      <br />- {coinAllInfo.id} with the market cap of&nbsp;
-                      {coinAllInfo2.id}
-                      &nbsp;should be roughly $&nbsp;
-                      {coinAllInfo.market_data.market_cap.usd
-                        ? (
-                            coinAllInfo2.market_data.market_cap.usd /
-                            (coinAllInfo.market_data.market_cap.usd /
-                              coinAllInfo.market_data.current_price.usd)
-                          ).toLocaleString("en-US")
-                        : ""}
-                      
-                      <br />
-                      - {coinAllInfo2.id} with the market cap of&nbsp;
-                      {coinAllInfo.id}
-                      &nbsp;should be roughly $&nbsp;
-                      {coinAllInfo.market_data.market_cap.usd
-                        ? (
-                            coinAllInfo.market_data.market_cap.usd /
-                            (coinAllInfo2.market_data.market_cap.usd /
-                              coinAllInfo2.market_data.current_price.usd)
-                          ).toLocaleString("en-US")
-                        : ""}
-                    </div>
+              <div className={cardStyle.infotext}>
+                <span title="Click to open Google Trend">
+                  <a
+                    href={`https://trends.google.com/trends/explore?q=${coinAllInfo.id}&geo=US`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      src={
+                        coinAllInfo.image.small ? coinAllInfo.image.small : "#"
+                      }
+                      alt="click to open Google Trend"
+                    />
+                  </a>
+                  <img
+                    src={versus}
+                    alt="versus"
+                    style={{ width: "1rem", margin: "0 1rem 0 1rem" }}
+                  />
+                  <a
+                    href={`https://trends.google.com/trends/explore?q=${coinAllInfo2.id}&geo=US`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      src={
+                        coinAllInfo2.image.small
+                          ? coinAllInfo2.image.small
+                          : "#"
+                      }
+                      alt="click to open Google Trend"
+                    />
+                  </a>
+                </span>
 
-                    {/* ///////////////////////////////////////////////////////////////////////////////////////// */}
+                <hr />
+                {/* ////////////////////////////marketCAp//////////////////////////////// */}
+                <div className={cardStyle.tableContainer}>
+                  <Card className={cardStyle.mycard}>
+                    <section className="infoandpichrt">
+                      <img src={stock3} />
+                      <motion.div
+                        initial={{ x: "-100vw" }}
+                        animation={{ x: 0 }}
+                        transition={{ type: "spring" ,stiffness:120 }}
+                        className="emptybigcontainer"
+                      >
+                        <Firstcoinimage />
+                        Market Cap : $&nbsp;
+                        {coinAllInfo.market_data.market_cap.usd
+                          ? coinAllInfo.market_data.market_cap.usd.toLocaleString(
+                              "en-US"
+                            )
+                          : ""}
+                        <br />
+                        Price : $&nbsp;
+                        {coinAllInfo.market_data.current_price.usd
+                          ? coinAllInfo.market_data.current_price.usd.toLocaleString(
+                              "en-US"
+                            )
+                          : ""}
+                      </motion.div>
+                      <div className="emptybigcontainer">
+                        <Secondcoinimage />
+                        Market Cap : $&nbsp;
+                        {coinAllInfo2.market_data.market_cap.usd
+                          ? coinAllInfo2.market_data.market_cap.usd.toLocaleString(
+                              "en-US"
+                            )
+                          : ""}
+                        <br />
+                        Price : $&nbsp;
+                        {coinAllInfo2.market_data.current_price.usd
+                          ? coinAllInfo2.market_data.current_price.usd.toLocaleString(
+                              "en-US"
+                            )
+                          : ""}
+                      </div>
+                      <div
+                        className="emptybigcontainer"
+                        style={{ paddingLeft: "10%" }}
+                      >
+                        - Market Cap of the {coinAllInfo2.id} is &nbsp;
+                        {coinAllInfo.market_data.market_cap.usd
+                          ? (
+                              (coinAllInfo2.market_data.market_cap.usd /
+                                coinAllInfo.market_data.market_cap.usd) *
+                              100
+                            ).toFixed(2)
+                          : ""}
+                        % of the {coinAllInfo.id}.
+                        <br />- {coinAllInfo.id} with the market cap of&nbsp;
+                        {coinAllInfo2.id}
+                        &nbsp;should be roughly $&nbsp;
+                        {coinAllInfo.market_data.market_cap.usd
+                          ? (
+                              coinAllInfo2.market_data.market_cap.usd /
+                              (coinAllInfo.market_data.market_cap.usd /
+                                coinAllInfo.market_data.current_price.usd)
+                            ).toLocaleString("en-US")
+                          : ""}
+                        <br />- {coinAllInfo2.id} with the market cap of&nbsp;
+                        {coinAllInfo.id}
+                        &nbsp;should be roughly $&nbsp;
+                        {coinAllInfo.market_data.market_cap.usd
+                          ? (
+                              coinAllInfo.market_data.market_cap.usd /
+                              (coinAllInfo2.market_data.market_cap.usd /
+                                coinAllInfo2.market_data.current_price.usd)
+                            ).toLocaleString("en-US")
+                          : ""}
+                      </div>
 
-                    <div
-                      style={{
-                        backgroundImage: `conic-gradient(blue  ${
-                          coinAllInfo.market_data.market_cap.usd
+                      {/* ///////////////////////////////////////////////////////////////////////////////////////// */}
+
+                      <div
+                        style={{
+                          backgroundImage: `conic-gradient(blue  ${
+                            coinAllInfo.market_data.market_cap.usd
+                              ? (
+                                  (coinAllInfo2.market_data.market_cap.usd /
+                                    coinAllInfo.market_data.market_cap.usd) *
+                                  100
+                                ).toFixed(2)
+                              : ""
+                          }%, skyblue 0%, rgb(22, 160, 252))`,
+                        }}
+                      >
+                        <span
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            border: "0px solid black",
+                            backgroundColor: "transparent",
+                            fontWeight: "bold",
+                            color: "white",
+                          }}
+                        >
+                          {coinAllInfo.market_data.market_cap.usd
                             ? (
                                 (coinAllInfo2.market_data.market_cap.usd /
                                   coinAllInfo.market_data.market_cap.usd) *
                                 100
                               ).toFixed(2)
+                            : ""}{" "}
+                          %
+                        </span>
+                      </div>
+
+                      {/* ///////////////////////////////////////////////////////////////////////////////////////// */}
+                    </section>
+                  </Card>
+                </div>
+                {/* //////////////////////////////////////////////////////////// */}
+                <hr />
+                {/* ////////////////////////////////////////first line of detail///////////////////////////////////////// */}
+                <div className={cardStyle.container}>
+                  {/* //////////////////////////////////////////////////////////// */}
+                  <div className={cardStyle.tableContainer}>
+                    <Card className={cardStyle.mycard}>
+                      <img src={stock} alt="stock" />
+                      community score
+                      <Progress
+                        coinNumber={coinAllInfo.image.small}
+                        done={
+                          coinAllInfo.community_score
+                            ? coinAllInfo.community_score
                             : ""
-                        }%, skyblue 0%, rgb(22, 160, 252))`,
-                      }}
-                    >
-                      <span
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          border: "0px solid black",
-                          backgroundColor: "transparent",
-                          fontWeight: "bold",
-                          color: "white",
-                        }}
-                      >
-                        {coinAllInfo.market_data.market_cap.usd
-                        ? (
-                            (coinAllInfo2.market_data.market_cap.usd /
-                              coinAllInfo.market_data.market_cap.usd) *
-                            100
-                          ).toFixed(2)
-                        : ""} %
-                      </span>
-                    </div>
+                        }
+                      />
+                      <Progress
+                        coinNumber={coinAllInfo2.image.small}
+                        done={
+                          coinAllInfo2.community_score
+                            ? coinAllInfo2.community_score
+                            : ""
+                        }
+                      />
+                      {/* ////////////////////// */}
+                      developer score
+                      <Progress
+                        coinNumber={coinAllInfo.image.small}
+                        done={
+                          coinAllInfo.developer_score
+                            ? coinAllInfo.developer_score
+                            : ""
+                        }
+                      />
+                      <Progress
+                        coinNumber={coinAllInfo2.image.small}
+                        done={
+                          coinAllInfo2.developer_score
+                            ? coinAllInfo2.developer_score
+                            : ""
+                        }
+                      />
+                      {/* ////////////////////// */}
+                      liquidity score
+                      <Progress
+                        coinNumber={coinAllInfo.image.small}
+                        done={
+                          coinAllInfo.liquidity_score
+                            ? coinAllInfo.liquidity_score
+                            : ""
+                        }
+                      />
+                      <Progress
+                        coinNumber={coinAllInfo2.image.small}
+                        done={
+                          coinAllInfo2.liquidity_score
+                            ? coinAllInfo2.liquidity_score
+                            : ""
+                        }
+                      />
+                    </Card>
+                  </div>
+                  {/* //////////////////////////////////////////////////////////// */}
 
-                    {/* ///////////////////////////////////////////////////////////////////////////////////////// */}
-                  </section>
-                </Card>
-              </div>
-              {/* //////////////////////////////////////////////////////////// */}
-              <hr />
-              {/* ////////////////////////////////////////first line of detail///////////////////////////////////////// */}
-              <div className={cardStyle.container}>
-                {/* //////////////////////////////////////////////////////////// */}
-                <div className={cardStyle.tableContainer}>
-                  <Card className={cardStyle.mycard}>
-                    <img src={stock} alt="stock" />
-                    community score
-                    <Progress
-                      coinNumber={coinAllInfo.image.small}
-                      done={
-                        coinAllInfo.community_score
-                          ? coinAllInfo.community_score
-                          : ""
-                      }
-                    />
-                    <Progress
-                      coinNumber={coinAllInfo2.image.small}
-                      done={
-                        coinAllInfo2.community_score
-                          ? coinAllInfo2.community_score
-                          : ""
-                      }
-                    />
-                    {/* ////////////////////// */}
-                    developer score
-                    <Progress
-                      coinNumber={coinAllInfo.image.small}
-                      done={
-                        coinAllInfo.developer_score
-                          ? coinAllInfo.developer_score
-                          : ""
-                      }
-                    />
-                    <Progress
-                      coinNumber={coinAllInfo2.image.small}
-                      done={
-                        coinAllInfo2.developer_score
-                          ? coinAllInfo2.developer_score
-                          : ""
-                      }
-                    />
-                    {/* ////////////////////// */}
-                    liquidity score
-                    <Progress
-                      coinNumber={coinAllInfo.image.small}
-                      done={
-                        coinAllInfo.liquidity_score
-                          ? coinAllInfo.liquidity_score
-                          : ""
-                      }
-                    />
-                    <Progress
-                      coinNumber={coinAllInfo2.image.small}
-                      done={
-                        coinAllInfo2.liquidity_score
-                          ? coinAllInfo2.liquidity_score
-                          : ""
-                      }
-                    />
-                  </Card>
-                </div>
-                {/* //////////////////////////////////////////////////////////// */}
-
-                {/* //////////////////////////////////////////////////////////// */}
-                <div className={cardStyle.tableContainer}>
-                  <Card className={cardStyle.mycard}>
-                    <img src={stock4} alt="stock" />
-                    public interest stats
-                    <div
-                      className="emptycontainer"
-                      style={{
-                        opacity: 1,
-                        width: "100%",
-                        maxWidth: "100%",
-                        textAlign: "center",
-                      }}
-                    >
-                      <Firstcoinimage />
-                      <p
+                  {/* //////////////////////////////////////////////////////////// */}
+                  <div className={cardStyle.tableContainer}>
+                    <Card className={cardStyle.mycard}>
+                      <img src={stock4} alt="stock" />
+                      public interest stats
+                      <div
+                        className="emptycontainer"
                         style={{
-                          position: "absolute",
-                          left: "5rem",
-                          top: ".2rem",
+                          opacity: 1,
+                          width: "100%",
+                          maxWidth: "100%",
+                          textAlign: "center",
                         }}
                       >
-                        {coinAllInfo.public_interest_stats.alexa_rank
-                          ? coinAllInfo.public_interest_stats.alexa_rank
-                          : ""}
-                      </p>
-                    </div>
-                    <div
-                      className="emptycontainer"
-                      style={{
-                        opacity: 1,
-                        width: "100%",
-                        maxWidth: "100%",
-                        textAlign: "center",
-                      }}
-                    >
-                      <Secondcoinimage />
-                      <p
+                        <Firstcoinimage />
+                        <p
+                          style={{
+                            position: "absolute",
+                            left: "5rem",
+                            top: ".2rem",
+                          }}
+                        >
+                          {coinAllInfo.public_interest_stats.alexa_rank
+                            ? coinAllInfo.public_interest_stats.alexa_rank
+                            : ""}
+                        </p>
+                      </div>
+                      <div
+                        className="emptycontainer"
                         style={{
-                          position: "absolute",
-                          left: "5rem",
-                          top: ".2rem",
+                          opacity: 1,
+                          width: "100%",
+                          maxWidth: "100%",
+                          textAlign: "center",
                         }}
                       >
-                        {" "}
-                        {coinAllInfo2.public_interest_stats.alexa_rank
-                          ? coinAllInfo2.public_interest_stats.alexa_rank
-                          : ""}
-                      </p>
-                    </div>
-                    {/* ////////////////////// */}
-                    sentiment votes down
-                    <Progress
-                      coinNumber={coinAllInfo.image.small}
-                      done={
-                        coinAllInfo.sentiment_votes_down_percentage
-                          ? coinAllInfo.sentiment_votes_down_percentage
-                          : ""
-                      }
-                    />
-                    <Progress
-                      coinNumber={coinAllInfo2.image.small}
-                      done={
-                        coinAllInfo2.sentiment_votes_down_percentage
-                          ? coinAllInfo2.sentiment_votes_down_percentage
-                          : ""
-                      }
-                    />
-                    {/* ////////////////////// */}
-                    sentiment votes up
-                    <Progress
-                      coinNumber={coinAllInfo.image.small}
-                      done={
-                        coinAllInfo.sentiment_votes_up_percentage
-                          ? coinAllInfo.sentiment_votes_up_percentage
-                          : ""
-                      }
-                    />
-                    <Progress
-                      coinNumber={coinAllInfo2.image.small}
-                      done={
-                        coinAllInfo2.sentiment_votes_up_percentage
-                          ? coinAllInfo2.sentiment_votes_up_percentage
-                          : ""
-                      }
-                    />
-                    {/* /////////////////////////////// */}
-                  </Card>
+                        <Secondcoinimage />
+                        <p
+                          style={{
+                            position: "absolute",
+                            left: "5rem",
+                            top: ".2rem",
+                          }}
+                        >
+                          {" "}
+                          {coinAllInfo2.public_interest_stats.alexa_rank
+                            ? coinAllInfo2.public_interest_stats.alexa_rank
+                            : ""}
+                        </p>
+                      </div>
+                      {/* ////////////////////// */}
+                      sentiment votes down
+                      <Progress
+                        coinNumber={coinAllInfo.image.small}
+                        done={
+                          coinAllInfo.sentiment_votes_down_percentage
+                            ? coinAllInfo.sentiment_votes_down_percentage
+                            : ""
+                        }
+                      />
+                      <Progress
+                        coinNumber={coinAllInfo2.image.small}
+                        done={
+                          coinAllInfo2.sentiment_votes_down_percentage
+                            ? coinAllInfo2.sentiment_votes_down_percentage
+                            : ""
+                        }
+                      />
+                      {/* ////////////////////// */}
+                      sentiment votes up
+                      <Progress
+                        coinNumber={coinAllInfo.image.small}
+                        done={
+                          coinAllInfo.sentiment_votes_up_percentage
+                            ? coinAllInfo.sentiment_votes_up_percentage
+                            : ""
+                        }
+                      />
+                      <Progress
+                        coinNumber={coinAllInfo2.image.small}
+                        done={
+                          coinAllInfo2.sentiment_votes_up_percentage
+                            ? coinAllInfo2.sentiment_votes_up_percentage
+                            : ""
+                        }
+                      />
+                      {/* /////////////////////////////// */}
+                    </Card>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Card>
-        </div>
-      </Card>
+            </Card>
+          </div>
+        </Card>
+      </motion.div>
     );
   } else {
     return (
-      <Card className={classes.card}>
-        <div className={`${style.tableContainer} ${classes.App}`}>
-          Not Loading
-        </div>
-      </Card>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 2 }}
+      >
+        <Card className={classes.card}>
+          <div className={`${style.tableContainer} ${classes.App}`}>
+            Not Loading
+          </div>
+        </Card>
+      </motion.div>
     );
   }
 }

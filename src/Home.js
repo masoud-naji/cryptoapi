@@ -6,13 +6,18 @@ import CoinContext from "./contexts/coinContext";
 // import { useHistory } from "react-router";
 // import ShowWithAnimation from "./Components/CustomHooks/ShowWithDelay";
 // import heroimage from "./Images/Business_SVG.svg";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const coinCTX = useContext(CoinContext);
   return (
-
-    <div >
-       {coinCTX.error && (
+    <motion.div
+    initial={{ opacity: 0}}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 2 }}
+  >
+      {coinCTX.error && (
         <Card className={classes.input}>
           <h2>{coinCTX.error}</h2>
         </Card>
@@ -25,12 +30,11 @@ const Home = () => {
       {coinCTX.coins && (
         <div>
           {/* <Coins /> */}
-          <First/>
+          <First />
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 
 export default Home;
-

@@ -27,82 +27,130 @@ const MyNavbar = () => {
                 <Link to="./">Home</Link>
               </Nav.Link> */}
               <NavDropdown title="Cryptocurrency" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="./#/Coins">
-                  <Link className="navlink" to="./Coins">
+                <NavDropdown.Item as="li" href="./#/Coins">
+                  <Link
+                    className="navlink"
+                    to="./Coins"
+                    style={{ width: "100%", display: "block" }}
+                  >
                     Cryptocurrency
                   </Link>
                 </NavDropdown.Item>
 
-                <NavDropdown.Item href="./#/Details">
-                  <Link className="navlink" to="./Details">
+                <NavDropdown.Item as="li" href="./#/Details">
+                  <Link
+                    className="navlink"
+                    to="./Details"
+                    style={{ width: "100%", display: "block" }}
+                  >
                     Details
                   </Link>
                 </NavDropdown.Item>
 
-                <NavDropdown.Item href="./#/Compare">
-                  <Link className="navlink" to="./Compare">
+                <NavDropdown.Item as="li" href="./#/Compare">
+                  <Link
+                    className="navlink"
+                    to="./Compare"
+                    style={{ width: "100%", display: "block" }}
+                  >
                     Compare
                   </Link>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="./#/Whatif">
-                  <Link className="navlink" to="./Whatif">
+                <NavDropdown.Item as="li" href="./#/Whatif">
+                  <Link
+                    className="navlink"
+                    to="./Whatif"
+                    style={{ width: "100%", display: "block" }}
+                  >
                     What if
                   </Link>
                 </NavDropdown.Item>
               </NavDropdown>
 
               <NavDropdown title="Projrcts" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="./#/Twittespl">
-                  <Link className="navlink" to="./Twittespl">
+                <NavDropdown.Item as="li" href="./#/Twittespl">
+                  <Link
+                    className="navlink"
+                    to="./Twittespl"
+                    style={{ width: "100%", display: "block" }}
+                  >
                     Twitte Splitter
                   </Link>
                 </NavDropdown.Item>
 
-                <NavDropdown.Item href="./#/DocumentView">
-                  <Link className="navlink" to="./DocumentView">
+                <NavDropdown.Item as="li" href="./#/DocumentView">
+                  <Link
+                    className="navlink"
+                    to="./DocumentView"
+                    style={{ width: "100%", display: "block" }}
+                  >
                     Document Viewer
                   </Link>
                 </NavDropdown.Item>
 
-                <NavDropdown.Item href="./#/Regextest">
-                  <Link className="navlink" to="./Regextest">
+                <NavDropdown.Item as="li" href="./#/Regextest">
+                  <Link
+                    className="navlink"
+                    to="./Regextest"
+                    style={{ width: "100%", display: "block" }}
+                  >
                     Regex Test
                   </Link>
                 </NavDropdown.Item>
 
-                <NavDropdown.Item href="./#/CompareText">
-                  <Link className="navlink" to="./CompareText">
+                <NavDropdown.Item as="li" href="./#/CompareText">
+                  <Link
+                    className="navlink"
+                    to="./CompareText"
+                    style={{ width: "100%", display: "block" }}
+                  >
                     Compare Text
                   </Link>
                 </NavDropdown.Item>
 
-                <NavDropdown.Item href="./#/CompareImage">
-                  <Link className="navlink" to="./CompareImage">
+                <NavDropdown.Item as="li" href="./#/CompareImage">
+                  <Link
+                    className="navlink"
+                    to="./CompareImage"
+                    style={{ width: "100%", display: "block" }}
+                  >
                     Compare Image
                   </Link>
                 </NavDropdown.Item>
 
-                {/* <NavDropdown.Item href="./#/CompareImage">
-                  <Link className="navlink" to="./SimplePaint">
+                {/* <NavDropdown.Item as="li" href="./#/CompareImage">
+                  <Link className="navlink" to="./SimplePaint" style={{width:"100%" ,display : "block"}}>
                   Simple Paint
                   </Link>
                 </NavDropdown.Item> */}
 
-                <NavDropdown.Item href="./#/Other_projects">
-                  <Link className="navlink" to="./Other_projects">
+                <NavDropdown.Item as="li" href="./#/Other_projects">
+                  <Link
+                    className="navlink"
+                    to="./Other_projects"
+                    style={{ width: "100%", display: "block" }}
+                  >
                     Other Projects
                   </Link>
                 </NavDropdown.Item>
               </NavDropdown>
 
               <NavDropdown title="About" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="./#/About" for="Aboutid">
-                  <Link className="navlink" to="./About" id="Aboutid">
+                <NavDropdown.Item as="li" href="./#/About" for="Aboutid">
+                  <Link
+                    className="navlink"
+                    to="./About"
+                    id="Aboutid"
+                    style={{ width: "100%", display: "block" }}
+                  >
                     About
                   </Link>
                 </NavDropdown.Item>
 
-                <NavDropdown.Item href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397104&authkey=AA1uxVivZIR3duU&em=2">
+                <NavDropdown.Item
+                  as="li"
+                  href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397104&authkey=AA1uxVivZIR3duU&em=2"
+                >
                   <a
                     href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397104&authkey=AA1uxVivZIR3duU&em=2"
                     download=""
@@ -112,7 +160,10 @@ const MyNavbar = () => {
                     </button>
                   </a>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397100&authkey=ABpz3ESHdwNSzEQ&em=2">
+                <NavDropdown.Item
+                  as="li"
+                  href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397100&authkey=ABpz3ESHdwNSzEQ&em=2"
+                >
                   <a
                     href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397100&authkey=ABpz3ESHdwNSzEQ&em=2"
                     download=""
@@ -123,45 +174,66 @@ const MyNavbar = () => {
                   </a>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="mailto:info@masoudnaji.com?subject=Mail From WebSite&body=...">
-                  <img
-                    src={Emails}
-                    style={{ width: "2rem", height: "100%", padding: "0" }}
-                    alt="Emails"
-                  />
-                  &nbsp;
-                  <a href="mailto:info@masoudnaji.com?subject=Mail From WebSite&body=...">
-                    Email
+                <NavDropdown.Item
+                  as="li"
+                  href="mailto:info@masoudnaji.com?subject=Mail From WebSite&body=..."
+                >
+                  <a
+                    href="mailto:info@masoudnaji.com?subject=Mail From WebSite&body=..."
+                    style={{ width: "100%", display: "block" }}
+                  >
+                    <img
+                      src={Emails}
+                      style={{ width: "2rem", height: "100%", padding: "0" }}
+                      alt="Emails"
+                    />
+                    &nbsp; Email
                   </a>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="https://www.linkedin.com/in/masoud-naji/">
-                  <img
-                    src={linkedin}
-                    style={{ width: "2rem", height: "100%", padding: "0" }}
-                    alt="linkedin"
-                  />
-                  &nbsp;
-                  <a href="https://www.linkedin.com/in/masoud-naji/">
-                    linkedin
+                <NavDropdown.Item
+                  as="li"
+                  href="https://www.linkedin.com/in/masoud-naji/"
+                >
+                  <a
+                    href="https://www.linkedin.com/in/masoud-naji/"
+                    style={{ width: "100%", display: "block" }}
+                  >
+                    <img
+                      src={linkedin}
+                      style={{ width: "2rem", height: "100%", padding: "0" }}
+                      alt="linkedin"
+                    />
+                    &nbsp; Linkedin
                   </a>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="https://github.com/masoud-naji">
-                  <img
-                    src={Github}
-                    style={{ width: "2rem", height: "100%", padding: "0" }}
-                    alt="Github"
-                  />
-                  &nbsp;
-                  <a href="https://github.com/masoud-naji">Github</a>
+                <NavDropdown.Item as="li" href="https://github.com/masoud-naji">
+                  <a
+                    href="https://github.com/masoud-naji"
+                    style={{ width: "100%", display: "block" }}
+                  >
+                    <img
+                      src={Github}
+                      style={{ width: "2rem", height: "100%", padding: "0" }}
+                      alt="Github"
+                    />
+                    &nbsp; Github
+                  </a>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="https://codesandbox.io/u/masoud-naji">
-                  <img
-                    src={sandbox}
-                    style={{ width: "2rem", height: "100%", padding: "0" }}
-                    alt="sandbox"
-                  />
-                  &nbsp;
-                  <a href="https://codesandbox.io/u/masoud-naji">sandbox</a>
+                <NavDropdown.Item
+                  as="li"
+                  href="https://codesandbox.io/u/masoud-naji"
+                >
+                  <a
+                    href="https://codesandbox.io/u/masoud-naji"
+                    style={{ width: "100%", display: "block" }}
+                  >
+                    <img
+                      src={sandbox}
+                      style={{ width: "2rem", height: "100%", padding: "0" }}
+                      alt="sandbox"
+                    />
+                    &nbsp; sandbox
+                  </a>
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
@@ -186,13 +258,12 @@ const MyNavbar = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-          
 
       {/* <input type="checkbox" id="nav-toggle" className="nav-toggle"></input>
       <nav className="mainnavbar">
         <ul className="navul">
           <li key="1" className="navli">
-            <Link className="navlink" to="./">
+            <Link className="navlink" to="./" style={{width:"100%" ,display : "block"}}>
               Home
             </Link>
           </li>

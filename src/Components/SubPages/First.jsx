@@ -14,9 +14,16 @@ import linkedin from "../../Images/linkedin.png";
 import Github from "../../Images/Github.png";
 import sandbox from "../../Images/sandbox.png";
 import Emails from "../../Images/Emails.png";
+import { motion } from "framer-motion";
 
 function First() {
   return (
+    <motion.div
+    initial={{ opacity: 0}}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 2 }}
+  >
     <div className={style.cover}>
       <div className={style.homebackground}>
         {/* <video autoPlay loop muted className={style.videoBg}>
@@ -441,7 +448,8 @@ function First() {
       >
         R U Kidding me??? where is my cofee? 😉😉
       </section>
-    </div>
+      </div>
+      </motion.div>
   );
 }
 

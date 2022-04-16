@@ -4,12 +4,15 @@ import Card from "./Components/UI/Card";
 import cardStyle from "./Components/SubPages/infoCard.module.css";
 import style from "./about.module.css";
 import pdficon from "./Images/PDF.png";
-// import { Link } from "react-router-dom";
+import Gform from "./Images/Gform.png";
 
 const About = () => {
   const initialURL =
-    "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397104&authkey=AA1uxVivZIR3duU&em=2";
+    "https://docs.google.com/forms/d/e/1FAIpQLScVrRWGMdozZow7oF1y0aGDZQu_lLsgrtN2ZRuxkHkAUsC0HA/viewform?embedded=true";
   const [urlSrc, seturlSrc] = useState(initialURL);
+  const ResmuneFile =
+    "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397104&authkey=AA1uxVivZIR3duU&em=2";
+
   const allCertificates = [
     {
       React_Web_Developer:
@@ -93,6 +96,9 @@ const About = () => {
     },
   ];
 
+
+  
+
   const IFrame = () => {
     return (
       <iframe
@@ -100,8 +106,8 @@ const About = () => {
         src={urlSrc}
         width="100%"
         height="700"
-        frameborder="0"
-        scrolling="no"
+        frameBorder="0"
+        scrolling="yes"
         name="pageshow"
       ></iframe>
     );
@@ -114,8 +120,8 @@ const About = () => {
     document.body.appendChild(script);
   }, []);
 
-  console.log(Object.keys(allCertificates));
-  console.log(Object.values(allCertificates));
+  console.log(urlSrc);
+
   return (
     <div className={style.container}>
       <Card
@@ -138,8 +144,6 @@ const About = () => {
                 <br />
                 California – Los Angeles
                 <br />
-                747-333-2870
-                <br />
                 <a
                   href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397104&authkey=AA1uxVivZIR3duU&em=2"
                   download
@@ -155,6 +159,10 @@ const About = () => {
                   <br />
                   <button className={style.cta}>Download Word Resume</button>
                 </a>
+                <br />
+                <a href="https://buymeacoffee.com/maxnajiO" target="_blank">
+                  <button className={style.cta}> buymeacoffee ☕</button>
+                </a>
               </strong>
             </div>
 
@@ -164,25 +172,41 @@ const About = () => {
               <div
                 className="github-card"
                 data-github="masoud-naji"
-                data-width="400"
+                data-width="fit-content"
                 data-height=""
                 data-theme="default"
               ></div>
             </div>
             {/* //////////////////////////////////////// */}
-          
           </div>
         </div>
       </Card>
       <IFrame />
       <hr />
       <button
+        onClick={() => seturlSrc(ResmuneFile)}
+        className={style.cta}
+        style={{ width: "20rem", textAlign: "left" }}
+      >
+        <img
+          src={pdficon}
+          style={{ width: "2rem", height: "2.3rem" }}
+          alt="PDF icon"
+        />
+        &nbsp; View Resume
+      </button>
+      {/* /////////form */}
+      <button
         onClick={() => seturlSrc(initialURL)}
         className={style.cta}
         style={{ width: "20rem", textAlign: "left" }}
       >
-        <img src={pdficon} style={{ width: "2rem" }} alt="PDF icon" />
-        &nbsp; View Resume
+        <img
+          src={Gform}
+          style={{ width: "2.3rem", height: "2.3rem" }}
+          alt="PDF icon"
+        />
+        &nbsp; Contact Form
       </button>
       <hr />
       {/* //////////////////////////////////////////////certificates */}
@@ -197,15 +221,19 @@ const About = () => {
             {/* //////////////// */}
             {allCertificates.map((urls) => (
               <button
+                key={Object.values(urls)}
                 onClick={() => seturlSrc(Object.values(urls))}
                 className={style.cta}
                 style={{ width: "20rem", textAlign: "left" }}
               >
-                <img src={pdficon} style={{ width: "2rem" }} alt="PDF icon" />
+                <img
+                  src={pdficon}
+                  style={{ width: "2rem", height: "2.3rem" }}
+                  alt="PDF icon"
+                />
                 &nbsp;
                 {Object.keys(urls)}
               </button>
-            
             ))}
           </div>
         </div>

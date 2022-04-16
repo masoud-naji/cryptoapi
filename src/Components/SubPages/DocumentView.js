@@ -13,6 +13,7 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import TopPage from "../../Images/TopPage.png";
 import { useDropzone } from "react-dropzone";
 import ReactTooltip from "react-tooltip";
+import { motion } from "framer-motion";
 
 const baseStyle = {
   flex: 1,
@@ -192,10 +193,15 @@ const DocumentView = () => {
       alert("Something went wrong with Search " + error);
     }
   };
-  console.log(filterdList);
+  // console.log(filterdList);
 
   return (
-    <div>
+    <motion.div
+    initial={{ opacity: 0}}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 2 }}
+  >
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
         <div className={classes.HeroPlace}>
           {filterdList && filterdList.length > 0 ? (
@@ -421,7 +427,7 @@ const DocumentView = () => {
         className="customeTheme"
         delayHide={800}
       />
-    </div>
+    </motion.div>
   );
 };
 

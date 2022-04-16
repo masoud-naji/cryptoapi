@@ -10,7 +10,7 @@ import ReactCompareImage from "react-compare-image";
 import { useDropzone } from "react-dropzone";
 import Resizer from "react-image-file-resizer";
 import Spinner from "react-bootstrap/Spinner";
-import { split } from "lodash";
+import { motion } from "framer-motion";
 
 const baseStyle = {
   flex: 1,
@@ -278,7 +278,12 @@ const CompareImage = () => {
   }
 
   return (
-    <div>
+    <motion.div
+    initial={{ opacity: 0}}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 2 }}
+  >
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
         <div className={classes.infodisplay}>
           <h1 className={tablestyle.title}>Image Compare & Convert</h1>
@@ -515,7 +520,9 @@ const CompareImage = () => {
         <label>
           Estimated size:
           {Loading ? (
-           <>&nbsp; <Spinner animation="border" size="sm"/></>
+            <>
+              &nbsp; <Spinner animation="border" size="sm" />
+            </>
           ) : estSize ? (
             sizemaker(estSize)
           ) : (
@@ -533,7 +540,7 @@ const CompareImage = () => {
           aspectRatio={aspectRatio}
         />
       </Card>
-    </div>
+    </motion.div>
   );
 };
 

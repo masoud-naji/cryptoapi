@@ -16,6 +16,8 @@ import stock2 from "../../Images/stock2.png";
 import stock3 from "../../Images/stock3.png";
 import stock4 from "../../Images/stock4.png";
 import { split } from "lodash";
+import { motion } from "framer-motion";
+
 // import { stream } from "xlsx";
 
 // import googleTrendShow from "../GoogleTrend/GoogleTrendShow";
@@ -189,6 +191,12 @@ function Details() {
     // console.log(coinAllInfo.links);
     // console.log(coinCTX.selectedCoin);
     return (
+      <motion.div
+      initial={{ opacity: 0}}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+    >
       <Card className={classes.card}>
         <div className={style.tableContainer}>
           {/* /////////////////////////////////////////////////////Chart////////////////////////////////////////////////////// */}
@@ -492,7 +500,8 @@ function Details() {
             </div>
           </Card>
         </div>
-      </Card>
+        </Card>
+        </motion.div>
     );
   } else {
     return (
