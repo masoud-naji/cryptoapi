@@ -285,6 +285,7 @@ iframe {
 .grid {
   padding: 2rem;
   /* height: 80vh; */
+  grid-template-columns: repeat(4, 1fr);
   color: white;
   font-size: medium;
   font-weight: 400;
@@ -325,9 +326,7 @@ iframe {
 }
 
 /* @media (min-width: 50rem) { */
-  .grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+
 
   .gridInside:nth-child(2) {
     grid-column-start: 1;
@@ -376,6 +375,16 @@ iframe {
 
 
 @media (max-width: 50rem) {
+  .grid {
+    padding: 2rem;
+    /* height: 80vh; */
+    /* grid-template-columns: repeat(4, 1fr); */
+    color: white;
+    font-size: medium;
+    font-weight: 400;
+    display: block;
+    gap: 2rem;
+  }
   .toptable {
     width: min(90%, 75rem);
     margin: auto;

@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.a3671e11.css",
-    "main.js": "/static/js/main.a353b6e7.js",
+    "main.css": "/static/css/main.45f1d264.css",
+    "main.js": "/static/js/main.196e1b94.js",
     "static/media/Daco.webp": "/static/media/Daco.be35b8faa933d22081c7.webp",
     "static/media/cryptocurrency.webp": "/static/media/cryptocurrency.194412bc2263dc374293.webp",
     "static/media/pexels-adrien-olichon-2387428.webp": "/static/media/pexels-adrien-olichon-2387428.b4a4f4f892ac336f2f79.webp",
@@ -21,11 +21,11 @@
     "static/media/sandbox.png": "/static/media/sandbox.e8ac2ad61eb5f8b11124.png",
     "static/media/Gform.png": "/static/media/Gform.7c62c2653ba16757d204.png",
     "index.html": "/index.html",
-    "main.a3671e11.css.map": "/static/css/main.a3671e11.css.map",
-    "main.a353b6e7.js.map": "/static/js/main.a353b6e7.js.map"
+    "main.45f1d264.css.map": "/static/css/main.45f1d264.css.map",
+    "main.196e1b94.js.map": "/static/js/main.196e1b94.js.map"
   },
   "entrypoints": [
-    "static/css/main.a3671e11.css",
-    "static/js/main.a353b6e7.js"
+    "static/css/main.45f1d264.css",
+    "static/js/main.196e1b94.js"
   ]
 }

@@ -13,7 +13,12 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import TopPage from "../../Images/TopPage.png";
 import { useDropzone } from "react-dropzone";
 import ReactTooltip from "react-tooltip";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useViewportScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 
 const baseStyle = {
   flex: 1,
@@ -52,6 +57,15 @@ const DocumentView = () => {
   const [FileDetail, setFileDetail] = useState(false);
   const [TableDetail, setTableDetail] = useState(false);
   const [errorData, setErrorData] = useState("");
+ 
+  const [isComplete, setIsComplete] = useState(false);
+  const { scrollYProgress } = useViewportScroll();
+  const yRange = useTransform(scrollYProgress, [0, 0.9], [0, 1]);
+  const pathLength = useSpring(yRange, { stiffness: 400, damping: 90 });
+
+  useEffect(() => yRange.onChange(v => setIsComplete(v >= 1)), [yRange]);
+
+
   useEffect(() => {
     items.length > 0 &&
       setCheckedState(Array(Object.keys(items[0]).length).fill(false));
@@ -197,11 +211,43 @@ const DocumentView = () => {
 
   return (
     <motion.div
-    initial={{ opacity: 0}}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    transition={{ duration: 2 }}
-  >
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+    >
+
+
+
+<svg className="progress-icon" viewBox="0 0 60 60">
+        <motion.path
+          fill="none"
+          strokeWidth="5"
+          stroke="white"
+          strokeDasharray="0 1"
+          d="M 0, 20 a 20, 20 0 1,0 40,0 a 20, 20 0 1,0 -40,0"
+          style={{
+            pathLength,
+            rotate: 90,
+            translateX: 5,
+            translateY: 5,
+            scaleX: -1 // Reverse direction of line animation
+          }}
+        />
+        <motion.path
+          fill="none"
+          strokeWidth="5"
+          stroke="white"
+          d="M14,26 L 22,33 L 35,16"
+          initial={false}
+          strokeDasharray="0 1"
+          animate={{ pathLength: isComplete ? 1 : 0 }}
+        />
+      </svg>
+
+
+
+
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
         <div className={classes.HeroPlace}>
           {filterdList && filterdList.length > 0 ? (
@@ -318,11 +364,7 @@ const DocumentView = () => {
         >
           Table View
         </AnchorLink>
-        <AnchorLink href="#Top_Page" offset="150" className="Top_key">
-          Top
-          <br />
-          <img src={TopPage} alt="TopPage" />
-        </AnchorLink>
+       
       </Card>
       <section id="Top_Page"></section>
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
@@ -418,6 +460,11 @@ const DocumentView = () => {
           )}
         </details>
       </Card>
+      <AnchorLink href="#Top_Page" offset="150" className="Top_key">
+          Top
+          <br />
+          <img src={TopPage} alt="TopPage" />
+        </AnchorLink>
       <ReactTooltip
         id="main"
         multiline={true}

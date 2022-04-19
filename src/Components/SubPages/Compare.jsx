@@ -467,13 +467,17 @@ function Compare() {
                 <div className={cardStyle.tableContainer}>
                   <Card className={cardStyle.mycard}>
                     <section className="infoandpichrt">
-                      <img src={stock3} />
                       <motion.div
-                        initial={{ x: "-100vw" }}
-                        animation={{ x: 0 }}
-                        transition={{ type: "spring" ,stiffness:120 }}
                         className="emptybigcontainer"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          delay: 1,
+                          duration: 1,
+                        }}
                       >
+                        <img src={stock3} />
                         <Firstcoinimage />
                         Market Cap : $&nbsp;
                         {coinAllInfo.market_data.market_cap.usd
@@ -489,7 +493,16 @@ function Compare() {
                             )
                           : ""}
                       </motion.div>
-                      <div className="emptybigcontainer">
+                      <motion.div
+                        className="emptybigcontainer"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          delay: 3,
+                          duration: 1,
+                        }}
+                      >
                         <Secondcoinimage />
                         Market Cap : $&nbsp;
                         {coinAllInfo2.market_data.market_cap.usd
@@ -504,9 +517,16 @@ function Compare() {
                               "en-US"
                             )
                           : ""}
-                      </div>
-                      <div
+                      </motion.div>
+                      <motion.div
                         className="emptybigcontainer"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          delay: 5,
+                          duration: 1,
+                        }}
                         style={{ paddingLeft: "10%" }}
                       >
                         - Market Cap of the {coinAllInfo2.id} is &nbsp;
@@ -527,7 +547,7 @@ function Compare() {
                               (coinAllInfo.market_data.market_cap.usd /
                                 coinAllInfo.market_data.current_price.usd)
                             ).toLocaleString("en-US")
-                          : ""}
+                          : ""} 💵
                         <br />- {coinAllInfo2.id} with the market cap of&nbsp;
                         {coinAllInfo.id}
                         &nbsp;should be roughly $&nbsp;
@@ -537,10 +557,47 @@ function Compare() {
                               (coinAllInfo2.market_data.market_cap.usd /
                                 coinAllInfo2.market_data.current_price.usd)
                             ).toLocaleString("en-US")
-                          : ""}
-                      </div>
+                          : ""} 💵
+                      </motion.div>
 
                       {/* ///////////////////////////////////////////////////////////////////////////////////////// */}
+                      {/* <motion.div
+                        animate={{
+                          scale: [1, 2, 2, 1, 1],
+                          rotate: [0, -120, 270, 360, 0],
+                          borderRadius: ["30%", "20%", "50%", "80%", "20%"],
+                        }}
+                        transition={{
+                          duration: 2,
+                          ease: "easeInOut",
+                          times: [0, 0.2, 0.5, 0.8, 1],
+                          repeat: Infinity,
+                          repeatDelay: 1,
+                        }}
+                        style={{
+                          background: "#ffc0eb",
+                          borderRadius: "30px",
+                          width: "150px",
+                          height: "150px",
+                        }}
+                      >
+                        test
+                      </motion.div> */}
+                      {/* <motion.div
+                        initial={{ x: "-100vw" }}
+                        animate={{ x: "0" }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 120,
+                          delay: 5,
+                        }}
+                        style={{
+                          background: "#ffc0eb",
+                          borderRadius: "30px",
+                          width: "150px",
+                          height: "150px",
+                        }}
+                      > */}
 
                       <div
                         style={{

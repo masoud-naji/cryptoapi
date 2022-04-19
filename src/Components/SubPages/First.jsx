@@ -425,7 +425,8 @@ function First() {
           bottom: "-220vh",
           color: "gray",
           position: "relative",
-          textAlign: "center",
+            textAlign: "center",
+          marginTop: "auto",
         }}
       >
         So You Come This far to know me.
@@ -443,7 +444,8 @@ function First() {
           textAlign: "center",
           fontWeight: "bold",
           stroke: "black",
-          background: "black",
+            background: "black",
+            marginTop: "auto",
         }}
       >
         R U Kidding me??? where is my cofee? 😉😉

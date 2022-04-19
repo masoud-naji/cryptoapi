@@ -279,11 +279,11 @@ const CompareImage = () => {
 
   return (
     <motion.div
-    initial={{ opacity: 0}}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    transition={{ duration: 2 }}
-  >
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+    >
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
         <div className={classes.infodisplay}>
           <h1 className={tablestyle.title}>Image Compare & Convert</h1>
@@ -306,7 +306,8 @@ const CompareImage = () => {
             >
               <input {...getInputPropsFile1()} />
               <div className={cardStyle.tableContainer}>
-                Drag 'n' drop some files here, or click to select files
+                For converting or compare Drag 'n' drop first file here
+                <br />, or click to select files
               </div>
               <div className="container">
                 <p>Only Images Accepted</p>
@@ -329,6 +330,8 @@ const CompareImage = () => {
                         const { offsetHeight, offsetWidth } = img;
                         setImprtImgH1(offsetHeight);
                         setImprtImgW1(offsetWidth);
+                        setMaxHeight(offsetHeight);
+                        setMaxWidth(offsetWidth);
                         console.log(offsetHeight, offsetWidth);
                       }}
                       style={{
@@ -342,50 +345,67 @@ const CompareImage = () => {
             </div>
 
             {/* ////////////////////////////  File 2 //////////////////////////////// */}
-
-            <div
-              style={{
-                background: "rgba(54, 162, 235, 1)",
-                minHeight: "14rem",
-              }}
-              className={(cardStyle.container, classes.card)}
-              {...getRootPropsFile2({ stylefile2 })}
-            >
-              <input {...getInputPropsFile2()} />
-              <div className={cardStyle.tableContainer}>
-                Drag 'n' drop some files here, or click to select files
+            {ConverttbtnEnable ? (
+              <div
+                style={{
+                  background: "rgba(54, 162, 235, 1)",
+                  minHeight: "14rem",
+                }}
+                className={(cardStyle.container, classes.card)}
+              >
+                <div className={cardStyle.tableContainer}>
+                  First you have to add first file , or click to select files
+                  <div className="container">
+                    <p>🚫Add first file first</p>
+                  </div>
+                </div>
               </div>
-              <div className="container">
-                <p>Only Images Accepted</p>
+            ) : (
+              <div
+                style={{
+                  background: "rgba(54, 162, 235, 1)",
+                  minHeight: "14rem",
+                }}
+                className={(cardStyle.container, classes.card)}
+                {...getRootPropsFile2({ stylefile2 })}
+              >
+                <input {...getInputPropsFile2()} />
+                <div className={cardStyle.tableContainer}>
+                  For compare Drag 'n' drop second file here , or click to
+                  select files
+                </div>
+                <div className="container">
+                  <p>Only Images Accepted</p>
+                </div>
+                {errorDataFile2 ? (
+                  errorDataFile2
+                ) : File2path ? (
+                  <ul>
+                    <li>Name: {File2path.path}</li>
+                    <li>Size: {sizemaker(File2path.size)}</li>
+                    {/* <li>last Modified Date: {File2path.size}</li> */}
+                    <li>Height :{ImprtImgW2}</li>
+                    <li>Width : {ImprtImgH2}</li>
+                    <li>
+                      <img
+                        src={File2}
+                        alt=""
+                        onLoad={({ target: img }) => {
+                          const { offsetHeight, offsetWidth } = img;
+                          setImprtImgH2(offsetHeight);
+                          setImprtImgW2(offsetWidth);
+                          console.log(offsetHeight, offsetWidth);
+                        }}
+                        style={{
+                          position: "absolute",
+                          marginLeft: "-10000px",
+                        }}
+                      />
+                    </li>
+                  </ul>
+                ) : null}
               </div>
-              {errorDataFile2 ? (
-                errorDataFile2
-              ) : File2path ? (
-                <ul>
-                  <li>Name: {File2path.path}</li>
-                  <li>Size: {sizemaker(File2path.size)}</li>
-                  {/* <li>last Modified Date: {File2path.size}</li> */}
-                  <li>Height :{ImprtImgW2}</li>
-                  <li>Width : {ImprtImgH2}</li>
-                  <li>
-                    <img
-                      src={File2}
-                      alt=""
-                      onLoad={({ target: img }) => {
-                        const { offsetHeight, offsetWidth } = img;
-                        setImprtImgH2(offsetHeight);
-                        setImprtImgW2(offsetWidth);
-                        console.log(offsetHeight, offsetWidth);
-                      }}
-                      style={{
-                        position: "absolute",
-                        marginLeft: "-10000px",
-                      }}
-                    />
-                  </li>
-                </ul>
-              ) : null}
-            </div>
+            )}
 
             {/* ------------------------------------------- */}
             {/* ? coinAllInfo.description.en.replace(/<[^>]+>/g, "") */}
