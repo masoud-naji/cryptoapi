@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-import style from "./UsersList.module.css";
+import style from "../Styles/UsersList.module.css";
 import classes from "../UI/Card.module.css";
-import cardStyle from "./infoCard.module.css";
-import tablestyle from "./UsersList.module.css";
+import cardStyle from "../Styles/infoCard.module.css";
+import tablestyle from "../Styles/UsersList.module.css";
 import Card from "../UI/Card";
-import "./progressbar.css";
+import "../Styles/progressbar.css";
 import axios from "axios";
 import CoinContext from "../../contexts/coinContext";
 import stock from "../../Images/stock.png";
@@ -15,6 +15,7 @@ import Paginate from "../CustomHooks/Paginate";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 // require("dotenv").config();
 // require('dotenv').config({ path: require('find-config')('.env') })
 
@@ -221,6 +222,10 @@ function Details() {
         exit={{ opacity: 0 }}
         transition={{ duration: 2 }}
       >
+        <Helmet>
+          <title>Crypto Fun Facts</title>
+          <meta name="description" content="Crypto Fun Facts" />
+        </Helmet>
         <Card className={classes.card}>
           <div className={style.tableContainer}>
             {/* /////////////////////////////////////////////////////Chart////////////////////////////////////////////////////// */}

@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import classes from "../UI/Card.module.css";
-import cardStyle from "./infoCard.module.css";
-import tablestyle from "./UsersList.module.css";
-import style from "../../about.module.css";
+import cardStyle from "../Styles/infoCard.module.css";
+import tablestyle from "../Styles/UsersList.module.css";
+import style from "../Styles/about.module.css";
 import Card from "../UI/Card";
-import "./progressbar.css";
+import "../Styles/progressbar.css";
+import { Helmet } from "react-helmet";
 
 const SimplePaint =
   () => {

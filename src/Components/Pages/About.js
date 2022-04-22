@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import classes from "./Components/UI/Card.module.css";
-import Card from "./Components/UI/Card";
-import cardStyle from "./Components/SubPages/infoCard.module.css";
-import style from "./about.module.css";
-import pdficon from "./Images/PDF.png";
-import Gform from "./Images/Gform.png";
+import classes from "../UI/Card.module.css";
+import Card from "../UI/Card";
+import cardStyle from "../Styles/infoCard.module.css";
+import style from "../Styles/about.module.css";
+import pdficon from "../../Images/PDF.png";
+import Gform from "../../Images/Gform.png";
+import { Helmet } from "react-helmet";
 
 const About = () => {
   const initialURL =
@@ -96,9 +97,6 @@ const About = () => {
     },
   ];
 
-
-  
-
   const IFrame = () => {
     return (
       <iframe
@@ -124,6 +122,10 @@ const About = () => {
 
   return (
     <div className={style.container}>
+      <Helmet>
+        <title>Masoud Naji</title>
+        <meta name="description" content="Masoud Naji Frontend developer" />
+      </Helmet>
       <Card
         style={{ height: "18rem" }}
         className={`${classes.clipboardinside} ${classes.topchart}`}

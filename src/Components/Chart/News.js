@@ -7,7 +7,7 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
-import CoinContext from "../contexts/coinContext";
+import CoinContext from "../../contexts/coinContext";
 
 function Chart() {
   const coinCTX = useContext(CoinContext);

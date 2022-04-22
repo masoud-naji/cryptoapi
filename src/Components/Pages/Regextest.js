@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import "./inventory.css";
+import "../Styles/inventory.css";
 import classes from "../UI/Card.module.css";
-import cardStyle from "./infoCard.module.css";
+import cardStyle from "../Styles/infoCard.module.css";
 import Card from "../UI/Card";
 import HighlightWithinTextarea from "react-highlight-within-textarea";
-import tablestyle from "./UsersList.module.css";
+import tablestyle from "../Styles/UsersList.module.css";
 import ReactTooltip from "react-tooltip";
 import "../UI/Custombootstrap.scss";
 import Accordion from "react-bootstrap/Accordion";
@@ -20,7 +20,8 @@ import Substitutions from "../../Components/Accordions/Substitutions";
 import AllRegexes from "../Accordions/AllRegexes";
 import { useDropzone } from "react-dropzone";
 import { conformsTo } from "lodash";
-
+import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 ///////////////////////////dropzone style/////////////////////////////
 const baseStyle = {
   flex: 1,
@@ -262,7 +263,16 @@ const RegexTest = () => {
   }, []);
 
   return (
-    <div>
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 2 }}
+  >
+      <Helmet>
+        <title>Regex tester</title>
+        <meta name="description" content="Regex tester" />
+      </Helmet>
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
         <div className={classes.HeroPlace}>
           {/* ///////////////////////////////////test left/////////////// */}
@@ -434,7 +444,7 @@ const RegexTest = () => {
           >
             <hr />
             <div className={cardStyle.tableContainerdragndrop}>
-              <div {...getRootProps({ style })} >
+              <div {...getRootProps({ style })}>
                 <input {...getInputProps()} />
                 <p>Drag 'n' drop a file here, or click to select file</p>
                 <p>.xlsx,.xlsm,.xlsb,.xls,xlw,.xlr,.csv,.json,doc,.docx,.xml</p>
@@ -465,7 +475,7 @@ const RegexTest = () => {
           className="customeTheme"
         />
       </Card>
-    </div>
+    </motion.div>
   );
 };
 

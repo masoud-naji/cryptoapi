@@ -1,15 +1,16 @@
 import React, { useEffect, useState, useMemo } from "react";
 import classes from "../UI/Card.module.css";
-import cardStyle from "./infoCard.module.css";
-import tablestyle from "./UsersList.module.css";
-import style from "../../about.module.css";
+import cardStyle from "../Styles/infoCard.module.css";
+import tablestyle from "../Styles/UsersList.module.css";
+import style from "../Styles/about.module.css";
 import * as XLSX from "xlsx";
 import Card from "../UI/Card";
-import "./progressbar.css";
+import "../Styles/progressbar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import ReactDiffViewer, { DiffMethod } from "react-diff-viewer";
 import { useDropzone } from "react-dropzone";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 // import Prism from "prismjs"
 // import eclipse from "../../Images/eclipse.gif";
 // import Line from "../../Images/Line.gif";
@@ -210,7 +211,14 @@ const CompareText = () => {
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
     transition={{ duration: 2 }}
-  >
+    >
+          <Helmet>
+        <title>Compare Texts</title>
+        <meta
+          name="description"
+          content="Compare Texts"
+        />
+      </Helmet>
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
         <div className={classes.infodisplay}>
           <h1 className={tablestyle.title}>Text Compare</h1>

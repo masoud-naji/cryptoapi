@@ -1,15 +1,14 @@
 import React, { useEffect, useState, useContext, Fragment } from "react";
-import style from "./UsersList.module.css";
+import style from "../Styles/UsersList.module.css";
 import classes from "../UI/Card.module.css";
-import cardStyle from "./infoCard.module.css";
+import cardStyle from "../Styles/infoCard.module.css";
 import Card from "../UI/Card";
-
-import "./progressbar.css";
+import "../Styles/progressbar.css";
 import axios from "axios";
 import CoinContext from "../../contexts/coinContext";
 // import _uniqueId from "lodash/uniqueId";
-import infostyle from "../../about.module.css";
-import Chart from "../../Chart/News";
+import infostyle from "../Styles/about.module.css";
+import Chart from "../Chart/News";
 import parse from "html-react-parser";
 import stock from "../../Images/stock.png";
 import stock2 from "../../Images/stock2.png";
@@ -18,6 +17,7 @@ import stock4 from "../../Images/stock4.png";
 import { split } from "lodash";
 import versus from "../../Images/pngaaa.com-719740.png";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 function Compare() {
   const coinCTX = useContext(CoinContext);
@@ -311,6 +311,14 @@ function Compare() {
         exit={{ opacity: 0 }}
         transition={{ duration: 2 }}
       >
+         <Helmet>
+        <title>Compare Crypto Currencies</title>
+        <meta
+          name="description"
+          content="Compare Crypto Currencies"
+        />
+      </Helmet>
+
         <Card className={classes.card}>
           <div className={style.tableContainer}>
             {/* /////////////////////////////////////////////////////Chart////////////////////////////////////////////////////// */}

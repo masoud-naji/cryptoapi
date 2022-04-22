@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { loremIpsum } from "react-lorem-ipsum";
-import style from "../../about.module.css";
+import style from "../Styles/about.module.css";
 
 export default function LoremMaker(props) {
   const [paragraph, setparagraph] = useState(2);

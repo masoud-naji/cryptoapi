@@ -1,21 +1,21 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import styles from "./App.module.css";
-import Home from "./Home";
-import Details from "./Components/SubPages/Details";
-import Compare from "./Components/SubPages/Compare";
-import Whatif from "./Components/SubPages/Whatif";
-import Coins from "./Components/SubPages/Coins";
-import Twittespl from "./Components/SubPages/Twittespl";
-import DocumentView from "./Components/SubPages/DocumentView";
-import Regextest from "./Components/SubPages/Regextest";
-import CompareText from "./Components/SubPages/CompareText";
-import CompareImage from "./Components/SubPages/CompareImage";
-import SimplePaint from "./Components/SubPages/SimplePaint";
-import Other_projects from "./Components/SubPages/Other_projects";
+import styles from "./Components/Styles/App.module.css";
+import Home from "./Components/Pages/Home";
+import Details from "./Components/Pages/Details";
+import Compare from "./Components/Pages/Compare";
+import Whatif from "./Components/Pages/Whatif";
+import Coins from "./Components/Pages/Coins";
+import Twittespl from "./Components/Pages/Twittespl";
+import DocumentView from "./Components/Pages/DocumentView";
+import Regextest from "./Components/Pages/Regextest";
+import CompareText from "./Components/Pages/CompareText";
+import CompareImage from "./Components/Pages/CompareImage";
+import SimplePaint from "./Components/Pages/SimplePaint";
+import Other_projects from "./Components/Pages/Other_projects";
 import NotFound from "./Components/UI/NotFound";
-import Chart from "./Chart/News";
-import About from "./About";
+import Chart from "./Components/Chart/News";
+import About from "./Components/Pages/About";
 import { AnimatePresence } from "framer-motion";
 
 function AnimatedRoutes() {
@@ -37,7 +37,7 @@ function AnimatedRoutes() {
         <Route path="/CompareImage" element={<CompareImage />}></Route>
         <Route path="/SimplePaint" element={<SimplePaint />}></Route>
         <Route path="/Other_projects" element={<Other_projects />}></Route>
-        <Route path="/needs/*" element={<NotFound />}></Route>
+        <Route path="/*" element={<NotFound />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </AnimatePresence>

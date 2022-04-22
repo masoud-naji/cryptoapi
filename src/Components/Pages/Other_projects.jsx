@@ -1,14 +1,15 @@
 import React from "react";
 import classes from "../UI/Card.module.css";
-import cardStyle from "./infoCard.module.css";
-import tablestyle from "./UsersList.module.css";
+import cardStyle from "../Styles/infoCard.module.css";
+import tablestyle from "../Styles/UsersList.module.css";
 import Card from "../UI/Card";
-import "./progressbar.css";
+import "../Styles/progressbar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import extentionImage from "../../Images/ChromeEXTScreenshot.png";
 import SimplePaint from "./SimplePaint";
 import { motion } from "framer-motion";
 import Gist from "react-gist";
+import { Helmet } from "react-helmet";
 
 const OtherProjects = () => {
   return (
@@ -18,6 +19,10 @@ const OtherProjects = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
     >
+      <Helmet>
+        <title>Other Projects</title>
+        <meta name="description" content="Other small Projects" />
+      </Helmet>
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
         <div className={classes.infodisplay}>
           <h1 className={tablestyle.title}>Other Projects</h1>

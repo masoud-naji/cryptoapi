@@ -1,16 +1,17 @@
 import React, { useEffect, useState, useMemo } from "react";
 import classes from "../UI/Card.module.css";
-import cardStyle from "./infoCard.module.css";
-import tablestyle from "./UsersList.module.css";
-import style from "../../about.module.css";
+import cardStyle from "../Styles/infoCard.module.css";
+import tablestyle from "../Styles/UsersList.module.css";
+import style from "../Styles/about.module.css";
 import Card from "../UI/Card";
-import "./progressbar.css";
+import "../Styles/progressbar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import ReactCompareImage from "react-compare-image";
 import { useDropzone } from "react-dropzone";
 import Resizer from "react-image-file-resizer";
 import Spinner from "react-bootstrap/Spinner";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const baseStyle = {
   flex: 1,
@@ -284,6 +285,10 @@ const CompareImage = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
     >
+      <Helmet>
+        <title>Convert and Compare Images</title>
+        <meta name="description" content="Convert and Compare Images to webp png" />
+      </Helmet>
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
         <div className={classes.infodisplay}>
           <h1 className={tablestyle.title}>Image Compare & Convert</h1>
@@ -356,7 +361,8 @@ const CompareImage = () => {
                 className={(cardStyle.container, classes.card)}
               >
                 <div className={cardStyle.tableContainer}>
-                  For Comparing two Images you have to add the first image section
+                  For Comparing two Images you have to add the first image
+                  section
                   <div className="container">
                     <p>🚫Add first file first</p>
                   </div>
@@ -366,8 +372,8 @@ const CompareImage = () => {
               <div
                 style={{
                   background: "rgba(54, 162, 235, 1)",
-                    minHeight: "14rem",
-                    aspectRatio: "16/7",
+                  minHeight: "14rem",
+                  aspectRatio: "16/7",
                 }}
                 className={(cardStyle.container, classes.card)}
                 {...getRootPropsFile2({ stylefile2 })}

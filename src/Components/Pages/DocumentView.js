@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import "./inventory.css";
+import "../Styles/inventory.css";
 import * as XLSX from "xlsx";
 import { MockDocument } from "./MockDocument";
-import MOCK_DOCUMENT from "./MOCK_DOCUMENT.json";
+import MOCK_DOCUMENT from "../CustomHooks/MOCK_DOCUMENT.json";
 import classes from "../UI/Card.module.css";
-import cardStyle from "./infoCard.module.css";
-import tablestyle from "./UsersList.module.css";
+import cardStyle from "../Styles/infoCard.module.css";
+import tablestyle from "../Styles/UsersList.module.css";
 import Card from "../UI/Card";
-import InventoryCHart from "../../Chart/inventoryChart";
+import InventoryCHart from "../Chart/inventoryChart";
 import Svgimage from "../../Images/Business_SVG.svg";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import TopPage from "../../Images/TopPage.png";
@@ -19,6 +19,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const baseStyle = {
   flex: 1,
@@ -57,14 +58,13 @@ const DocumentView = () => {
   const [FileDetail, setFileDetail] = useState(false);
   const [TableDetail, setTableDetail] = useState(false);
   const [errorData, setErrorData] = useState("");
- 
+
   const [isComplete, setIsComplete] = useState(false);
   const { scrollYProgress } = useViewportScroll();
   const yRange = useTransform(scrollYProgress, [0, 0.9], [0, 1]);
   const pathLength = useSpring(yRange, { stiffness: 400, damping: 90 });
 
-  useEffect(() => yRange.onChange(v => setIsComplete(v >= 1)), [yRange]);
-
+  useEffect(() => yRange.onChange((v) => setIsComplete(v >= 1)), [yRange]);
 
   useEffect(() => {
     items.length > 0 &&
@@ -216,10 +216,12 @@ const DocumentView = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
     >
+      <Helmet>
+        <title>Documents Viewer</title>
+        <meta name="description" content="Documents Viewers" />
+      </Helmet>
 
-
-
-<svg className="progress-icon" viewBox="0 0 60 60">
+      <svg className="progress-icon" viewBox="0 0 60 60">
         <motion.path
           fill="none"
           strokeWidth="5"
@@ -231,7 +233,7 @@ const DocumentView = () => {
             rotate: 90,
             translateX: 5,
             translateY: 5,
-            scaleX: -1 // Reverse direction of line animation
+            scaleX: -1, // Reverse direction of line animation
           }}
         />
         <motion.path
@@ -244,9 +246,6 @@ const DocumentView = () => {
           animate={{ pathLength: isComplete ? 1 : 0 }}
         />
       </svg>
-
-
-
 
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
         <div className={classes.HeroPlace}>
@@ -364,7 +363,6 @@ const DocumentView = () => {
         >
           Table View
         </AnchorLink>
-       
       </Card>
       <section id="Top_Page"></section>
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
@@ -461,10 +459,10 @@ const DocumentView = () => {
         </details>
       </Card>
       <AnchorLink href="#Top_Page" offset="150" className="Top_key">
-          Top
-          <br />
-          <img src={TopPage} alt="TopPage" />
-        </AnchorLink>
+        Top
+        <br />
+        <img src={TopPage} alt="TopPage" />
+      </AnchorLink>
       <ReactTooltip
         id="main"
         multiline={true}
