@@ -300,6 +300,7 @@ const CompareImage = () => {
               style={{
                 background: "rgba(54, 162, 235, 1)",
                 minHeight: "14rem",
+                aspectRatio: "16/7",
               }}
               className={(cardStyle.container, classes.card)}
               {...getRootPropsFile1({ stylefile1 })}
@@ -348,13 +349,14 @@ const CompareImage = () => {
             {ConverttbtnEnable ? (
               <div
                 style={{
-                  background: "rgba(54, 162, 235, 1)",
+                  background: "rgba(54, 162, 235, .5)",
                   minHeight: "14rem",
+                  aspectRatio: "16/7",
                 }}
                 className={(cardStyle.container, classes.card)}
               >
                 <div className={cardStyle.tableContainer}>
-                  First you have to add first file , or click to select files
+                  For Comparing two Images you have to add the first image section
                   <div className="container">
                     <p>🚫Add first file first</p>
                   </div>
@@ -364,7 +366,8 @@ const CompareImage = () => {
               <div
                 style={{
                   background: "rgba(54, 162, 235, 1)",
-                  minHeight: "14rem",
+                    minHeight: "14rem",
+                    aspectRatio: "16/7",
                 }}
                 className={(cardStyle.container, classes.card)}
                 {...getRootPropsFile2({ stylefile2 })}

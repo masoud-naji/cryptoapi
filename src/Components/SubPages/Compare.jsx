@@ -234,6 +234,7 @@ function Compare() {
             left: "0",
             position: "absolute",
             opacity: ".5",
+            aspectRatio: "1/1",
           }}
           src={coinNumber}
           alt={coinNumber}
@@ -251,8 +252,9 @@ function Compare() {
         opacity: ".5",
         left: "0",
         position: "absolute",
-        height: "100%",
-        width: "100%",
+        // height: "100%",
+        // width: "100%",
+        aspectRatio: "1/1",
       }}
       src={coinAllInfo.image.small ? coinAllInfo.image.small : "#"}
       alt="click to open Google Trend"
@@ -266,8 +268,9 @@ function Compare() {
         opacity: ".5",
         left: "0",
         position: "absolute",
-        height: "100%",
-        width: "100%",
+        // height: "100%",
+        // width: "100%",
+        aspectRatio: "1/1",
       }}
       src={coinAllInfo2.image.small ? coinAllInfo2.image.small : "#"}
       alt="click to open Google Trend"
@@ -547,7 +550,8 @@ function Compare() {
                               (coinAllInfo.market_data.market_cap.usd /
                                 coinAllInfo.market_data.current_price.usd)
                             ).toLocaleString("en-US")
-                          : ""} 💵
+                          : ""}{" "}
+                        💵
                         <br />- {coinAllInfo2.id} with the market cap of&nbsp;
                         {coinAllInfo.id}
                         &nbsp;should be roughly $&nbsp;
@@ -557,7 +561,8 @@ function Compare() {
                               (coinAllInfo2.market_data.market_cap.usd /
                                 coinAllInfo2.market_data.current_price.usd)
                             ).toLocaleString("en-US")
-                          : ""} 💵
+                          : ""}{" "}
+                        💵
                       </motion.div>
 
                       {/* ///////////////////////////////////////////////////////////////////////////////////////// */}

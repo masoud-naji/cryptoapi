@@ -345,15 +345,16 @@ function Details() {
                     <br /> Some Fun Facts around the low and high prices
                     regardless of priority.
                     <br />
-                    You guess usually there are some delays for finding those
-                    points.just for our knowledge.check if you invest $ $&nbsp;
+                    Usually there are some delays for finding those points.
+                    <br />
+                    just for our knowledge , check if you invest $ $&nbsp;
                     {Invest.toLocaleString("en-US")} at the lowest price point.
-                    when...
+                    when ...
                     <ul style={{ paddingLeft: "0.5rem" }}>
                       <li>- Highest $ {Highest.toLocaleString("en-US")}</li>
                       <li>- Lowest $ {Lowest.toLocaleString("en-US")}</li>
                       <li>
-                        - Difference: $&nbsp;
+                        - Difference possible to make: $&nbsp;
                         {loWToHigh(
                           Invest,
                           Lowest,
