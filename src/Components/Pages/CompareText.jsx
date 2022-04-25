@@ -222,6 +222,10 @@ const CompareText = () => {
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
         <div className={classes.infodisplay}>
           <h1 className={tablestyle.title}>Text Compare</h1>
+          <h2 className={tablestyle.smallsubtitle}>
+            Open and compare any text base file ( .xlsx,.xlsm,.xlsb,.xls,xlw,.xlr,.csv,.json,doc,.docx,.xml)
+            you can check your code file is same or not.
+        </h2>
           <div className={classes.HeroPlace}>
             {/* ////////////////////////////  file 1 //////////////////////////////// */}
             {/* <div

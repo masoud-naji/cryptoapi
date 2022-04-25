@@ -11,7 +11,7 @@ import CoinContext from "../../contexts/coinContext";
 
 function Chart() {
   const coinCTX = useContext(CoinContext);
-  console.log(coinCTX);
+  // console.log(coinCTX);
   // console.log(coinCTX.Chartdata);
   // console.log(coinCTX.Chartdata2);
 

@@ -1,3 +1,16 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow:#/Coins
+Allow:#/Details
+Allow:#/Compare
+Allow:#/Crypto_fun_facts
+Allow:#/Twittespl
+Allow:#/DocumentView
+Allow:#/Regextest
+Allow:#/CompareText
+Allow:#/CompareImage
+Allow:#/Other_projects
+Allow:#/About
+
+
+

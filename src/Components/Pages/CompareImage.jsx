@@ -287,11 +287,30 @@ const CompareImage = () => {
     >
       <Helmet>
         <title>Convert and Compare Images</title>
-        <meta name="description" content="Convert and Compare Images to webp png" />
+        <meta
+          name="description"
+          content="Use this handy webp converter to resize you images from one format to another."
+        />
+        <meta
+          name="description"
+          content="Convert images from one format to another with the powerful image converter in this free image tool."
+        />
+        <meta
+          name="description"
+          content="Convert images and resize them in webp format with this handy online tool."
+        />
+        <meta
+          name="description"
+          content="This application helps you to compare two images and find the best match."
+        />
       </Helmet>
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
         <div className={classes.infodisplay}>
           <h1 className={tablestyle.title}>Image Compare & Convert</h1>
+          <h2 className={tablestyle.smallsubtitle}>
+            Open and compare two images and find the best match. Convert images
+            and resize them in webp , jpg , png format with this handy online tool.
+          </h2>
           <div
             className={classes.HeroPlace}
             style={{

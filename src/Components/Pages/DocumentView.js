@@ -50,11 +50,11 @@ const rejectStyle = {
 };
 
 const DocumentView = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(MockDocument);
   const [filterValue, setFilterValue] = useState("");
   const [filterdList, setfilterdList] = useState(MockDocument);
   const [chartElemet, setChartElemet] = useState(["name", "age", "money"]);
-  const [checkedState, setCheckedState] = useState([]);
+  const [checkedState, setCheckedState] = useState("");
   const [FileDetail, setFileDetail] = useState(false);
   const [TableDetail, setTableDetail] = useState(false);
   const [errorData, setErrorData] = useState("");
@@ -74,7 +74,6 @@ const DocumentView = () => {
   /////////////////////////drag and drop file upload/////////////////////////////
 
   const onDrop = useCallback((acceptedFiles) => {
-    console.log(acceptedFiles);
     readExcel(acceptedFiles[0]);
   }, []);
   const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } =
@@ -118,11 +117,9 @@ const DocumentView = () => {
           return;
         }
         try {
-          console.log(typeof result[0]);
           setChartElemet([]);
           setErrorData(null);
           setItems(result);
-          console.log(result);
           setfilterdList(result);
         } catch (e) {
           setErrorData("**Not valid JSON file!**");
@@ -146,7 +143,7 @@ const DocumentView = () => {
           reject(errorData);
         };
       });
-      console.log(filterdList);
+      // console.log(filterdList);
       promise.then((d) => {
         setItems(d);
         console.log(d);
@@ -188,10 +185,10 @@ const DocumentView = () => {
 
   const filterHandler = (e) => {
     const filterWord = e.target.value;
-    console.log(items.length);
+
     try {
       if (filterWord !== "" && items.length > 0) {
-        console.log(items);
+        // console.log(items);
         const newlist = items.filter((nlist) => {
           return Object.values(nlist)
             .toString()
@@ -207,7 +204,6 @@ const DocumentView = () => {
       alert("Something went wrong with Search " + error);
     }
   };
-  // console.log(filterdList);
 
   return (
     <motion.div
@@ -218,7 +214,14 @@ const DocumentView = () => {
     >
       <Helmet>
         <title>Documents Viewer</title>
-        <meta name="description" content="Documents Viewers" />
+        <meta
+          name="description"
+          content="Open and read any Microsoft Excel file, all formats supported by Microsoft Office."
+        />
+        <meta
+          name="description"
+          content="Open and read any .xlsx,.xlsm,.xlsb,.xls,xlw,.xlr,.csv,.json,doc,.docx,.xml"
+        />
       </Helmet>
 
       <svg className="progress-icon" viewBox="0 0 60 60">
@@ -248,6 +251,11 @@ const DocumentView = () => {
       </svg>
 
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
+        <h1 className={tablestyle.title}>Document Viewer</h1>
+        <h2 className={tablestyle.smallsubtitle}>
+          Open and read any text base file (
+          .xlsx,.xlsm,.xlsb,.xls,xlw,.xlr,.csv,.json,doc,.docx,.xml)
+        </h2>
         <div className={classes.HeroPlace}>
           {filterdList && filterdList.length > 0 ? (
             <div className={classes.chartdisplay}>
@@ -301,7 +309,7 @@ const DocumentView = () => {
                   className={tablestyle.dropdownsmall}
                   type="text"
                   placeholder="search..."
-                  value={filterValue}
+                  value={filterValue ?? ""}
                   onChange={(e) => filterHandler(e)}
                 />
 
@@ -310,7 +318,12 @@ const DocumentView = () => {
                 {chartElemet && (
                   <>
                     {
-                      <ul style={{ display: "flex" }}>
+                      <ul
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-evenly",
+                        }}
+                      >
                         <li
                           data-for="main"
                           data-tip="Item to show on chart <br/> it should be string to make sense "
@@ -371,14 +384,14 @@ const DocumentView = () => {
           <table className={`${tablestyle.userTable}`}>
             <thead>
               <tr>
-                {items.length > 0 ? (
-                  Object.keys(items[0]).map((item, index) => (
+                {filterdList.length > 0 ? (
+                  Object.keys(filterdList[0]).map((item, index) => (
                     <th scope="col" key={index} className="tg-yuap">
                       {item}
                       &nbsp;
                       <input
                         type="checkbox"
-                        value={item}
+                        value={item ?? ""}
                         name={item}
                         checked={checkedState[index]}
                         id={`custom-checkbox-${index}`}
@@ -449,11 +462,11 @@ const DocumentView = () => {
                 height: `${filterdList.length + 1}rem`,
                 borderRadius: "10px",
               }}
-              defaultValue={filterdList.map(
-                (e) => JSON.stringify(e),
-                undefined,
-                2
-              )}
+              defaultValue={
+                filterdList.map((e) => {
+                  return JSON.stringify(e, undefined, 2);
+                }) ?? ""
+              }
             />
           )}
         </details>

@@ -10,9 +10,12 @@ import ReactTooltip from "react-tooltip";
 import "../Styles/inventory.css";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
+import ImageUploader from "./ImageUploader";
 
 const Twittespl = () => {
-  const [tweet, setTweet] = useState("");
+  const [tweet, setTweet] = useState(
+    JSON.parse(localStorage.getItem("tweet")) || ""
+  );
   const [Stweet, setSTweet] = useState([]);
   const [endChar, setEndChar] = useState("");
   const [divDirection, setDivDirection] = useState(true);
@@ -22,28 +25,42 @@ const Twittespl = () => {
   const [counterlenght, setCounterlenght] = useState("");
   const [waterMark, setWaterMark] = useState("");
   const [ColorWater, setColorWater] = useState("#ff0000");
-  const [posWatermark, setposWatermark] = useState("24");
-  const [posverWatermark, setposverWatermark] = useState("22");
+  const [posWatermark, setposWatermark] = useState(
+    JSON.parse(localStorage.getItem("posWatermaek")) || "24"
+  );
+  const [posverWatermark, setposverWatermark] = useState(
+    JSON.parse(localStorage.getItem("posverWatermark")) || "22"
+  );
   const [detailElement, setDetailElement] = useState(false);
+  const [detailUpload, setDetailUpload] = useState(false);
+  const { File, FilePath, dateFilePath, UploadForm } = ImageUploader();
 
   useEffect(() => {
-    var Counter = "";
+    // const backgroundTweet = getComputedStyle(document.documentElement).getPropertyValue('--tweetBackgroung');
+    // console.log(backgroundTweet);
+    console.log(File);
+    document.documentElement.style.setProperty(
+      "--tweetBackgroung",
+      `url('${File}')`
+    );
+
+    let Counter = "";
     if (addCounter) {
       Counter = counterlenght + 1;
     } else {
       Counter = 0;
     }
-    var s = tweet;
+    let s = tweet;
 
     const size = 280 - endChar.length - Counter;
-    // console.log(size);
-    // console.log(endChar.length);
-    // console.log(Counter);
-
     const regex = new RegExp(String.raw`\S.{1,${size - 2}}\S(?= |$)`, "g");
-    var chunk = s.match(regex);
+    let chunk = s.match(regex);
     chunk && setSTweet(chunk);
-  }, [tweet, endChar, addCounter]);
+  }, [tweet, endChar, addCounter, File, ColorWater]);
+
+  // const settestcolor = (e) => {
+  //   document.documentElement.style.setProperty("--color", e.target.value);
+  // }
 
   async function copyTextToClipboard(text) {
     if ("clipboard" in navigator) {
@@ -80,7 +97,7 @@ const Twittespl = () => {
     setTweet(newValue);
   };
 
-  // console.log(detailElement);
+  // console.log(File);
 
   return (
     <motion.div
@@ -91,7 +108,22 @@ const Twittespl = () => {
     >
       <Helmet>
         <title>Twitte Splitter</title>
-        <meta name="description" content="Split your long twittes" />
+        <meta
+          name="description"
+          content="This tweet splitter will split a long tweet into multiple tweets automatically. You can split the tweet by character."
+        />
+        <meta
+          name="description"
+          content="A simple Twitter to Multi twitte splitter. EASY TO USE, IT CAN BE USED IN A SECS."
+        />
+        <meta
+          name="description"
+          content="You can now split twitter messages into multiple parts.with next indicator"
+        />
+        <meta
+          name="description"
+          content="share image on twitter? need watermark? add water mark now"
+        />
       </Helmet>
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
         <div className={style.container}>
@@ -102,20 +134,25 @@ const Twittespl = () => {
           >
             Twitte Splitter
           </h1>
+          <h2 className={style2.smallsubtitle}>
+            This tweet splitter will split a long tweet into multiple tweets
+            automatically. You can split the tweet by time or by character.
+            <br />
+            {clipArtforshow[1] ? (
+              `Box Below is Your ClipBoard Now ➡️ Part + ${
+                +clipArtforshow[1] + 1
+              }`
+            ) : (
+              <br />
+            )}
+          </h2>
 
-          <Card
-            // style={{ height: "18rem" }}
-            className={`${classes.clipboardinside} ${classes.topTwitter}`}
-          >
+          <Card className={`${classes.clipboardinside} ${classes.topTwitter}`}>
             {clipArtforshow.length ? (
               <div
                 dir={divDirection ? "ltr" : "rtl"}
                 className={classes.clipboardinsidetext}
               >
-                <div className={classes.insidetitle}>
-                  What is in Your ClipBoard Now ➡️ Part {+clipArtforshow[1] + 1}
-                  <hr style={{ margin: "5px" }} />
-                </div>
                 <div
                   style={{
                     position: "absolute",
@@ -152,12 +189,28 @@ const Twittespl = () => {
                 </div>
               </details>
             </div>
+            <div
+              className={style.lorembox}
+              style={{ color: "#CCC", height: "fit-content" }}
+            >
+              <details
+                style={{ color: "#CCC" }}
+                open={detailUpload}
+                onToggle={(e) => setDetailUpload(e.currentTarget.open)}
+              >
+                <summary>- Background Uploader</summary>
+                <div>{UploadForm}</div>
+              </details>
+            </div>
           </div>
 
           <form dir={divDirection ? "ltr" : "rtl"}>
             <textarea
               value={tweet}
-              onChange={(e) => setTweet(e.target.value)}
+              onChange={(e) => (
+                setTweet(e.target.value),
+                localStorage.setItem("tweet", JSON.stringify(e.target.value))
+              )}
               placeholder="write your long tweet here"
               className={style.textareamain}
             ></textarea>
@@ -200,7 +253,7 @@ const Twittespl = () => {
             onClick={(e) => detailElement !== false && setDetailElement(false)}
             dir="ltr"
           >
-            <div className={style.watermatkchilds}>
+            <div className={style.watermatkchilds} style={{position:"relative" , margin:"0 0 -.5rem 0" }}>
               <input
                 style={{ padding: "10px" }}
                 className={style.languagebtn}
@@ -210,6 +263,17 @@ const Twittespl = () => {
                 data-for="main"
                 data-tip="Chose Color for watermark"
               />
+              <h5
+                style={{
+                  position: "absolute",
+                  top: "2rem",
+                  left: "2rem",
+                  fontSize: ".8rem",
+                  pointerEvents: "none",
+                }}
+              >
+                Watermark
+              </h5>
             </div>
             <div
               className={style.watermatkchilds}
@@ -222,9 +286,13 @@ const Twittespl = () => {
                 max={100}
                 step={1}
                 value={posWatermark}
-                onChange={(e) => {
-                  setposWatermark(e.target.value);
-                }}
+                onChange={(e) => (
+                  setposWatermark(e.target.value),
+                  localStorage.setItem(
+                    "posWatermark",
+                    JSON.stringify(e.target.value)
+                  )
+                )}
                 className={style.rangeselector}
                 data-for="main"
                 data-tip="Change the WaterMark Position"
@@ -235,9 +303,13 @@ const Twittespl = () => {
                 max={100}
                 step={1}
                 value={posverWatermark}
-                onChange={(e) => {
-                  setposverWatermark(e.target.value);
-                }}
+                onChange={(e) => (
+                  setposverWatermark(e.target.value),
+                  localStorage.setItem(
+                    "posverWatermark",
+                    JSON.stringify(e.target.value)
+                  )
+                )}
                 style={{ transform: "rotate(90deg)" }}
                 className={style.rangeselector}
                 data-for="main"
@@ -265,7 +337,12 @@ const Twittespl = () => {
               className={(style.watermatkchilds, style.languagebtn)}
               onClick={() =>
                 tweet !== ""
-                  ? (setTweet(""), setSTweet(""), setWaterMark(""))
+                  ? (setTweet(""),
+                    setSTweet(""),
+                    setWaterMark(""),
+                    localStorage.setItem("tweet", JSON.stringify("")),
+                    localStorage.setItem("posWatermark", JSON.stringify("")),
+                    localStorage.setItem("posverWatermark", JSON.stringify("")))
                   : setEndChar("")
               }
               data-for="main"
@@ -273,6 +350,7 @@ const Twittespl = () => {
             >
               Clear 🆑
             </button>
+            {/* image:{File} */}
           </div>
         </div>
 

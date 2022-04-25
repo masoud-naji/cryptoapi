@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { HashRouter } from "react-router-dom";
+import { HashRouter, BrowserRouter } from "react-router-dom";
 import CoinContext from "./contexts/coinContext";
 import MyNavbar from "./Components/UI/Navbar";
 import styles from "./Components/Styles/App.module.css";
 import axios from "axios";
 import AnimatedRoutes from "./AnimatedRoutes";
 import { Helmet } from "react-helmet";
+
+
 
 function App() {
   const [isPending, setIsPending] = useState(false);
@@ -18,7 +20,6 @@ function App() {
   useEffect(() => {
     axios
       .get(
-        // "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=7d"
       )
       .then((res) => {
@@ -34,7 +35,7 @@ function App() {
   // console.log(coins);
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Helmet>
         <meta charset="utf-8" />
         <title>Masoud Naji</title>
@@ -69,21 +70,8 @@ function App() {
         </div>
       </CoinContext.Provider>
       {/* </BrowserRouter> */}
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
 export default App;
-
-//npx json-server --watch Post/db.json --port 8000
-//npm install react-confirm-alert --save
-//npm install bootstrap react-bootstrap
-//npm i lodash
-//npm install --save react-chartjs-2 chart.js
-//npm i react-router
-//npm install -S react-router-dom
-//npm i react-select
-// npm install html-to-text
-//npx json-server --watch Post/db.json --port 8000
-//npm i react-id-generator
-//npm install  react-table

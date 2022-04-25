@@ -56,13 +56,13 @@ const MyNavbar = () => {
                     Compare
                   </Link>
                 </NavDropdown.Item>
-                <NavDropdown.Item as="li" href="./#/Whatif">
+                <NavDropdown.Item as="li" href="./#/Crypto_fun_facts">
                   <Link
                     className="navlink"
-                    to="./Whatif"
+                    to="./Crypto_fun_facts"
                     style={{ width: "100%", display: "block" }}
                   >
-                    What if
+                    Crypto Fun Facts
                   </Link>
                 </NavDropdown.Item>
               </NavDropdown>
