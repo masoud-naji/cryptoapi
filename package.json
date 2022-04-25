@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "homepage": "http://masoudnaji.com",
   "private": true,
+  "keywords": [
+    "crypto",
+    "regex",
+    "tweet_spliter",
+    "Document_Viewer"
+  ],
+  "author": "Masoud Naji",
+  "license": "MIT",
   "dependencies": {
     "-": "^0.0.1",
     "@testing-library/jest-dom": "^5.15.0",
