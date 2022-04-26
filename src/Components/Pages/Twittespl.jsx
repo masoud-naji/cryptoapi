@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import classes from "../UI/Card.module.css";
+import classes from "../Styles/Card.module.css";
 import Card from "../UI/Card";
 import style from "../Styles/about.module.css";
 import InputEmoji from "react-input-emoji";
@@ -10,7 +10,7 @@ import ReactTooltip from "react-tooltip";
 import "../Styles/inventory.css";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
-import ImageUploader from "./ImageUploader";
+import useImageUploader from "../CustomHooks/useImageUploader";
 
 const Twittespl = () => {
   const [tweet, setTweet] = useState(
@@ -33,7 +33,7 @@ const Twittespl = () => {
   );
   const [detailElement, setDetailElement] = useState(false);
   const [detailUpload, setDetailUpload] = useState(false);
-  const { File, FilePath, dateFilePath, UploadForm } = ImageUploader();
+  const { File, FilePath, dateFilePath, UploadForm } = useImageUploader();
 
   useEffect(() => {
     // const backgroundTweet = getComputedStyle(document.documentElement).getPropertyValue('--tweetBackgroung');
@@ -253,7 +253,10 @@ const Twittespl = () => {
             onClick={(e) => detailElement !== false && setDetailElement(false)}
             dir="ltr"
           >
-            <div className={style.watermatkchilds} style={{position:"relative" , margin:"0 0 -.5rem 0" }}>
+            <div
+              className={style.watermatkchilds}
+              style={{ position: "relative", margin: "0 0 -.5rem 0" }}
+            >
               <input
                 style={{ padding: "10px" }}
                 className={style.languagebtn}

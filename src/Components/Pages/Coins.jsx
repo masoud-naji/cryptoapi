@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import style from "../Styles/UsersList.module.css";
-import classes from "../UI/Card.module.css";
+import classes from "../Styles/Card.module.css";
 import Card from "../UI/Card";
 import Pagination from "../UI/pagination";
 import Paginate from "../CustomHooks/Paginate";

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import style from "../Styles/UsersList.module.css";
-import classes from "../UI/Card.module.css";
+import classes from "../Styles/Card.module.css";
 import cardStyle from "../Styles/infoCard.module.css";
 import Card from "../UI/Card";
 // import Select from "react-select";
@@ -19,7 +19,6 @@ import { split } from "lodash";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 // import { stream } from "xlsx";
-
 // import googleTrendShow from "../GoogleTrend/GoogleTrendShow";
 // import Script from "react-load-script";
 
@@ -192,88 +191,85 @@ function Details() {
     // console.log(coinCTX.selectedCoin);
     return (
       <motion.div
-      initial={{ opacity: 0}}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 2 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 2 }}
       >
         <Helmet>
-        <title>Crypto Currency`s Details</title>
-        <meta
-          name="description"
-          content="Crypto Currency`s Details"
-        />
-      </Helmet>
-      <Card className={classes.card}>
-        <div className={style.tableContainer}>
-          {/* /////////////////////////////////////////////////////Chart////////////////////////////////////////////////////// */}
+          <title>Crypto Currency`s Details</title>
+          <meta name="description" content="Crypto Currency`s Details" />
+        </Helmet>
+        <Card className={classes.card}>
+          <div className={style.tableContainer}>
+            {/* /////////////////////////////////////////////////////Chart////////////////////////////////////////////////////// */}
 
-          <Card className={`${classes.input} ${classes.topchartdetail}`}>
-            {foundCoins && foundCoins.length > 0 ? (
-              <div className={classes.HeroPlace}>
-                <div className={classes.chartdisplay}>
-                  <Chart data={foundCoins} data2={"USD Coin"} />
-                </div>
-                <div className={classes.infodisplay}>
-                  <div
-                    style={{ background: "rgb(37, 54, 106)" }}
-                    className={classes.insidetitle}
-                  >
-                    <div className={classes.flextbtn}>
-                      {/* ///////////////////////////////////////////////// coinselect DropDown//////////////////////////////// */}
-                      <div>
-                        <select
-                          className={style.dropdownsmall}
-                          onChange={(e) => setName(e.target.value)}
-                          placeholder="Select Coin"
-                          value={name}
-                          // options={coinNameList}
-                        >
-                          {typeof coinCTX.coins !== "undefined" ? (
-                            coinCTX.coins.map((coin) => (
-                              <option key={coin.id} value={coin.id}>
-                                {coin.symbol}
+            <Card className={`${classes.input} ${classes.topchartdetail}`}>
+              {foundCoins && foundCoins.length > 0 ? (
+                <div className={classes.HeroPlace}>
+                  <div className={classes.chartdisplay}>
+                    <Chart data={foundCoins} data2={"USD Coin"} />
+                  </div>
+                  <div className={classes.infodisplay}>
+                    <div
+                      style={{ background: "rgb(37, 54, 106)" }}
+                      className={classes.insidetitle}
+                    >
+                      <div className={classes.flextbtn}>
+                        {/* ///////////////////////////////////////////////// coinselect DropDown//////////////////////////////// */}
+                        <div>
+                          <select
+                            className={style.dropdownsmall}
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="Select Coin"
+                            value={name}
+                            // options={coinNameList}
+                          >
+                            {typeof coinCTX.coins !== "undefined" ? (
+                              coinCTX.coins.map((coin) => (
+                                <option key={coin.id} value={coin.id}>
+                                  {coin.symbol}
+                                </option>
+                              ))
+                            ) : (
+                              <option value="btc">btc</option>
+                            )}
+                          </select>
+                        </div>
+
+                        {/* ///////////////////////////////////////// TimeControler DropDown////////////////////////////////////////// */}
+                        <div>
+                          <select
+                            className={style.dropdownsmall}
+                            onChange={(e) => setStarthandler(e)}
+                            // onChange={(e) => alert(e.target.value)}
+                            placeholder="Select Duration ..."
+                            // value={startTime}
+                          >
+                            <>
+                              <option value={Object.values(timeController[0])}>
+                                4H
                               </option>
-                            ))
-                          ) : (
-                            <option value="btc">btc</option>
-                          )}
-                        </select>
-                      </div>
+                              <option value={Object.values(timeController[1])}>
+                                1D
+                              </option>
+                              <option value={Object.values(timeController[2])}>
+                                7D
+                              </option>
+                              <option value={Object.values(timeController[3])}>
+                                1M
+                              </option>
+                              <option value={Object.values(timeController[4])}>
+                                3M
+                              </option>
+                              <option value={Object.values(timeController[5])}>
+                                1Y
+                              </option>
+                              <option value={Object.values(timeController[6])}>
+                                5Y
+                              </option>
 
-                      {/* ///////////////////////////////////////// TimeControler DropDown////////////////////////////////////////// */}
-                      <div>
-                        <select
-                          className={style.dropdownsmall}
-                          onChange={(e) => setStarthandler(e)}
-                          // onChange={(e) => alert(e.target.value)}
-                          placeholder="Select Duration ..."
-                          // value={startTime}
-                        >
-                          <>
-                            <option value={Object.values(timeController[0])}>
-                              4H
-                            </option>
-                            <option value={Object.values(timeController[1])}>
-                              1D
-                            </option>
-                            <option value={Object.values(timeController[2])}>
-                              7D
-                            </option>
-                            <option value={Object.values(timeController[3])}>
-                              1M
-                            </option>
-                            <option value={Object.values(timeController[4])}>
-                              3M
-                            </option>
-                            <option value={Object.values(timeController[5])}>
-                              1Y
-                            </option>
-                            <option value={Object.values(timeController[6])}>
-                              5Y
-                            </option>
-
-                            {/* {typeof coinCTX.coins !== "undefined" ? (
+                              {/* {typeof coinCTX.coins !== "undefined" ? (
                               timeController.map((timeC) => (
                                 <option key={timeC.value} value={Object.values(timeC)}>
                                   {timeC.label}
@@ -282,233 +278,242 @@ function Details() {
                             ) : (
                               <option value="1D">1D</option>
                             )} */}
-                          </>
-                        </select>
+                            </>
+                          </select>
+                        </div>
+                        {/* ///////////////////////////////////////// ////////////////////////////////////////// */}
                       </div>
-                      {/* ///////////////////////////////////////// ////////////////////////////////////////// */}
                     </div>
-                  </div>
-                  <div className={classes.insidecontent}>
-                    {foundCoins && (
-                      <div>
-                        <h3 className={style.tableTitle}>
-                          {foundCoins.length} Records Show on chart
-                        </h3>
-                      </div>
-                    )}
-
-                    {/* ? coinAllInfo.description.en.replace(/<[^>]+>/g, "") */}
-                    <div className={style.toptablestatus}>
-                      <ul>
-                        {coinAllInfo.status_updates.length > 0 ? (
-                          coinAllInfo.status_updates.map((descript) => (
-                            <li
-                              key={descript.created_at}
-                              className={style.tableTitle}
-                            >
-                              <p className={cardStyle.infotext}>
-                                Date: {descript.created_at} <br />
-                                Category: {descript.category}
-                              </p>
-                              {descript.description}--
-                            </li>
-                          ))
-                        ) : (
-                          <div className={style.errorMessage}>
-                            Any Event will show here if its available , we
-                            coulden't found anything for this Coin
-                          </div>
-                        )}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <h2>{error}</h2>
-            )}
-          </Card>
-
-          <hr />
-
-          {/* ///////////////////////////////////////table/////////////////////////////// */}
-          <Card className={`${classes.input} ${classes.topchartdetail}`}>
-            <hr />
-            <div className={cardStyle.infotext}>
-              <span title="Click to open Google Trend">
-                <a
-                  href={`https://trends.google.com/trends/explore?q=${coinAllInfo.id}&geo=US`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img
-                    src={
-                      coinAllInfo.image.small ? coinAllInfo.image.small : "#"
-                    }
-                    alt="click to open Google Trend"
-                  />
-                </a>
-              </span>
-              <details style={{ color: "#CCC" }}>
-                <summary className={cardStyle.infotext}>
-                  {coinAllInfo.links.blockchain_site
-                    ? coinAllInfo.links.blockchain_site.filter(
-                        (sites) => sites !== ""
-                      ).length
-                    : null}
-                  - Official WebSites
-                </summary>
-                {coinAllInfo.links.blockchain_site
-                  ? coinAllInfo.links.blockchain_site
-                      .filter((sites) => sites !== "")
-                      .map((site) => (
-                        <li key={site} className={cardStyle.infotext}>
-                          <a
-                            className={cardStyle.infotext}
-                            href={site}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            {site}
-                          </a>
-                        </li>
-                      ))
-                  : null}
-              </details>
-              <hr />
-              {/* ////////////////////////////////////////first line of detail///////////////////////////////////////// */}
-              <div className={cardStyle.container}>
-                <div className={cardStyle.tableContainer}>
-                  <Card className={cardStyle.mycard}>
-                    <img src={stock} alt="stock" />
-                    community score
-                    <Progress
-                      done={
-                        coinAllInfo.community_score
-                          ? coinAllInfo.community_score
-                          : ""
-                      }
-                    />
-                    developer score
-                    <Progress
-                      done={
-                        coinAllInfo.developer_score
-                          ? coinAllInfo.developer_score
-                          : ""
-                      }
-                    />
-                    liquidity score
-                    <Progress
-                      done={
-                        coinAllInfo.liquidity_score
-                          ? coinAllInfo.liquidity_score
-                          : ""
-                      }
-                    />
-                  </Card>
-                </div>
-                <div className={cardStyle.tableContainer}>
-                  <Card className={cardStyle.mycard}>
-                    <img src={stock2} />
-                    genesis date
-                    <div className="emptycontainer">
-                      {coinAllInfo.genesis_date ? coinAllInfo.genesis_date : ""}
-                    </div>
-                    hashing algorithm
-                    <div className="emptycontainer">
-                      {coinAllInfo.hashing_algorithm
-                        ? coinAllInfo.hashing_algorithm
-                        : ""}
-                    </div>
-                    block time in minutes
-                    <div className="emptycontainer">
-                      {coinAllInfo.block_time_in_minutes
-                        ? coinAllInfo.block_time_in_minutes
-                        : ""}
-                    </div>
-                  </Card>
-                </div>
-                <div className={cardStyle.tableContainer}>
-                  <Card className={cardStyle.mycard}>
-                    <img src={stock3} alt="stock" />
-                    categories - {coinAllInfo.categories.length}
-                    <div className="emptycontainer">
-                      {coinAllInfo.categories.length > 1 ? (
-                        <ul>
-                          {coinAllInfo.categories.map((coincategory, index) => (
-                            <li key={index}> {coincategory}</li>
-                          ))}
-                        </ul>
-                      ) : (
-                        coinAllInfo.categories
+                    <div className={classes.insidecontent}>
+                      {foundCoins && (
+                        <div>
+                          <h3 className={style.tableTitle}>
+                            {foundCoins.length} Records Show on chart
+                          </h3>
+                        </div>
                       )}
-                    </div>
-                    official forum
-                    <div className="emptycontainer">
-                      {coinAllInfo.links.official_forum_url
-                        ? coinAllInfo.links.official_forum_url
-                        : ""}
-                    </div>
-                    twitter
-                    <div className="emptycontainer">
-                      {coinAllInfo.links.twitter_screen_name
-                        ? coinAllInfo.links.twitter_screen_name
-                        : ""}
-                    </div>
-                  </Card>
-                </div>
-                <div className={cardStyle.tableContainer}>
-                  <Card className={cardStyle.mycard}>
-                    <img src={stock4} alt="stock" />
-                    public interest stats
-                    <div className="emptycontainer">
-                      <p
-                        style={{
-                          position: "absolute",
-                          left: "5rem",
-                          top: ".2rem",
-                        }}
-                      >
-                        {coinAllInfo.public_interest_stats.alexa_rank
-                          ? coinAllInfo.public_interest_stats.alexa_rank
-                          : ""}
-                      </p>
-                    </div>
-                    sentiment votes down
-                    <Progress
-                      done={
-                        coinAllInfo.sentiment_votes_down_percentage
-                          ? coinAllInfo.sentiment_votes_down_percentage
-                          : ""
-                      }
-                    />
-                    sentiment votes up
-                    <Progress
-                      done={
-                        coinAllInfo.sentiment_votes_up_percentage
-                          ? coinAllInfo.sentiment_votes_up_percentage
-                          : ""
-                      }
-                    />
-                  </Card>
-                </div>
-              </div>
 
-              <details style={{ color: "rgb(57,133,197)" }}>
-                <summary className={cardStyle.infotext}>
-                  More info {coinAllInfo.id}
-                </summary>
-                {parse(
-                  `${
-                    coinAllInfo.description.en ? coinAllInfo.description.en : ""
-                  }`
-                )}
-              </details>
-            </div>
-          </Card>
-        </div>
+                      {/* ? coinAllInfo.description.en.replace(/<[^>]+>/g, "") */}
+                      <div
+                        className={style.toptablestatus}
+                        style={{ maxHeight: "20rem" }}
+                      >
+                        <ul>
+                          {coinAllInfo.status_updates.length > 0 ? (
+                            coinAllInfo.status_updates.map((descript) => (
+                              <li
+                                key={descript.created_at}
+                                className={style.tableTitle}
+                              >
+                                <p className={cardStyle.infotext}>
+                                  Date: {descript.created_at} <br />
+                                  Category: {descript.category}
+                                </p>
+                                {descript.description}--
+                              </li>
+                            ))
+                          ) : (
+                            <div className={style.errorMessage}>
+                              Any Event will show here if its available , we
+                              coulden't found anything for this Coin
+                            </div>
+                          )}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <h2>{error}</h2>
+              )}
+            </Card>
+
+            <hr />
+
+            {/* ///////////////////////////////////////table/////////////////////////////// */}
+            <Card className={`${classes.input} ${classes.topchartdetail}`}>
+              <hr />
+              <div className={cardStyle.infotext}>
+                <span title="Click to open Google Trend">
+                  <a
+                    href={`https://trends.google.com/trends/explore?q=${coinAllInfo.id}&geo=US`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      src={
+                        coinAllInfo.image.small ? coinAllInfo.image.small : "#"
+                      }
+                      alt="click to open Google Trend"
+                    />
+                  </a>
+                </span>
+                <details style={{ color: "#CCC" }}>
+                  <summary className={cardStyle.infotext}>
+                    {coinAllInfo.links.blockchain_site
+                      ? coinAllInfo.links.blockchain_site.filter(
+                          (sites) => sites !== ""
+                        ).length
+                      : null}
+                    - Official WebSites
+                  </summary>
+                  {coinAllInfo.links.blockchain_site
+                    ? coinAllInfo.links.blockchain_site
+                        .filter((sites) => sites !== "")
+                        .map((site) => (
+                          <li key={site} className={cardStyle.infotext}>
+                            <a
+                              className={cardStyle.infotext}
+                              href={site}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              {site}
+                            </a>
+                          </li>
+                        ))
+                    : null}
+                </details>
+                <hr />
+                {/* ////////////////////////////////////////first line of detail///////////////////////////////////////// */}
+                <div className={cardStyle.container}>
+                  <div className={cardStyle.tableContainer}>
+                    <Card className={cardStyle.mycard}>
+                      <img src={stock} alt="stock" />
+                      community score
+                      <Progress
+                        done={
+                          coinAllInfo.community_score
+                            ? coinAllInfo.community_score
+                            : ""
+                        }
+                      />
+                      developer score
+                      <Progress
+                        done={
+                          coinAllInfo.developer_score
+                            ? coinAllInfo.developer_score
+                            : ""
+                        }
+                      />
+                      liquidity score
+                      <Progress
+                        done={
+                          coinAllInfo.liquidity_score
+                            ? coinAllInfo.liquidity_score
+                            : ""
+                        }
+                      />
+                    </Card>
+                  </div>
+                  <div className={cardStyle.tableContainer}>
+                    <Card className={cardStyle.mycard}>
+                      <img src={stock2} />
+                      genesis date
+                      <div className="emptycontainer">
+                        {coinAllInfo.genesis_date
+                          ? coinAllInfo.genesis_date
+                          : ""}
+                      </div>
+                      hashing algorithm
+                      <div className="emptycontainer">
+                        {coinAllInfo.hashing_algorithm
+                          ? coinAllInfo.hashing_algorithm
+                          : ""}
+                      </div>
+                      block time in minutes
+                      <div className="emptycontainer">
+                        {coinAllInfo.block_time_in_minutes
+                          ? coinAllInfo.block_time_in_minutes
+                          : ""}
+                      </div>
+                    </Card>
+                  </div>
+                  <div className={cardStyle.tableContainer}>
+                    <Card className={cardStyle.mycard}>
+                      <img src={stock3} alt="stock" />
+                      categories - {coinAllInfo.categories.length}
+                      <div className="emptycontainer">
+                        {coinAllInfo.categories.length > 1 ? (
+                          <ul>
+                            {coinAllInfo.categories.map(
+                              (coincategory, index) => (
+                                <li key={index}> {coincategory}</li>
+                              )
+                            )}
+                          </ul>
+                        ) : (
+                          coinAllInfo.categories
+                        )}
+                      </div>
+                      official forum
+                      <div className="emptycontainer">
+                        {coinAllInfo.links.official_forum_url
+                          ? coinAllInfo.links.official_forum_url
+                          : ""}
+                      </div>
+                      twitter
+                      <div className="emptycontainer">
+                        {coinAllInfo.links.twitter_screen_name
+                          ? coinAllInfo.links.twitter_screen_name
+                          : ""}
+                      </div>
+                    </Card>
+                  </div>
+                  <div className={cardStyle.tableContainer}>
+                    <Card className={cardStyle.mycard}>
+                      <img src={stock4} alt="stock" />
+                      public interest stats
+                      <div className="emptycontainer">
+                        <p
+                          style={{
+                            position: "absolute",
+                            left: "5rem",
+                            top: ".2rem",
+                          }}
+                        >
+                          {coinAllInfo.public_interest_stats.alexa_rank
+                            ? coinAllInfo.public_interest_stats.alexa_rank
+                            : ""}
+                        </p>
+                      </div>
+                      sentiment votes down
+                      <Progress
+                        done={
+                          coinAllInfo.sentiment_votes_down_percentage
+                            ? coinAllInfo.sentiment_votes_down_percentage
+                            : ""
+                        }
+                      />
+                      sentiment votes up
+                      <Progress
+                        done={
+                          coinAllInfo.sentiment_votes_up_percentage
+                            ? coinAllInfo.sentiment_votes_up_percentage
+                            : ""
+                        }
+                      />
+                    </Card>
+                  </div>
+                </div>
+
+                <details style={{ color: "rgb(57,133,197)" }}>
+                  <summary className={cardStyle.infotext}>
+                    More info {coinAllInfo.id}
+                  </summary>
+                  {parse(
+                    `${
+                      coinAllInfo.description.en
+                        ? coinAllInfo.description.en
+                        : ""
+                    }`
+                  )}
+                </details>
+              </div>
+            </Card>
+          </div>
         </Card>
-        </motion.div>
+      </motion.div>
     );
   } else {
     return (

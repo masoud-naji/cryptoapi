@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import classes from "../UI/Card.module.css";
+import classes from "../Styles/Card.module.css";
 import cardStyle from "../Styles/infoCard.module.css";
 import tablestyle from "../Styles/UsersList.module.css";
 import style from "../Styles/about.module.css";

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import style from "../Styles/UsersList.module.css";
-import classes from "../UI/Card.module.css";
+import classes from "../Styles/Card.module.css";
 import cardStyle from "../Styles/infoCard.module.css";
 import tablestyle from "../Styles/UsersList.module.css";
 import Card from "../UI/Card";

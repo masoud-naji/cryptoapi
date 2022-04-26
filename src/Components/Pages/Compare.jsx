@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext, Fragment } from "react";
 import style from "../Styles/UsersList.module.css";
-import classes from "../UI/Card.module.css";
+import classes from "../Styles/Card.module.css";
 import cardStyle from "../Styles/infoCard.module.css";
 import Card from "../UI/Card";
 import "../Styles/progressbar.css";

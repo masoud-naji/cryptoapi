@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import classes from "../UI/Card.module.css";
+import classes from "../Styles/Card.module.css";
 import Card from "../UI/Card";
 import cardStyle from "../Styles/infoCard.module.css";
 import style from "../Styles/about.module.css";
@@ -12,7 +12,7 @@ const About = () => {
   const initialURL =
     "https://docs.google.com/forms/d/e/1FAIpQLScVrRWGMdozZow7oF1y0aGDZQu_lLsgrtN2ZRuxkHkAUsC0HA/viewform?embedded=true";
   const [urlSrc, seturlSrc] = useState(initialURL);
-  const ResmuneFile =
+  const ResumeFile =
     "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397104&authkey=AA1uxVivZIR3duU&em=2";
 
   const allCertificates = [
@@ -119,8 +119,6 @@ const About = () => {
     document.body.appendChild(script);
   }, []);
 
-  // console.log(urlSrc);
-
   return (
     <div className={style.container}>
       <Helmet>
@@ -188,7 +186,7 @@ const About = () => {
       <IFrame />
       <hr />
       <button
-        onClick={() => seturlSrc(ResmuneFile)}
+        onClick={() => seturlSrc(ResumeFile)}
         className={style.cta}
         style={{ width: "20rem", textAlign: "left" }}
       >

@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import "../Styles/inventory.css";
 import * as XLSX from "xlsx";
-import { MockDocument } from "./MockDocument";
-import MOCK_DOCUMENT from "../CustomHooks/MOCK_DOCUMENT.json";
-import classes from "../UI/Card.module.css";
+import { MockDocument } from "../CustomHooks/MockDocument";
+import classes from "../Styles/Card.module.css";
 import cardStyle from "../Styles/infoCard.module.css";
 import tablestyle from "../Styles/UsersList.module.css";
 import Card from "../UI/Card";
@@ -13,6 +12,8 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import TopPage from "../../Images/TopPage.png";
 import { useDropzone } from "react-dropzone";
 import ReactTooltip from "react-tooltip";
+import UseJsonPretteir from "../CustomHooks/useJsonPretteir";
+
 import {
   motion,
   useViewportScroll,
@@ -146,7 +147,7 @@ const DocumentView = () => {
       // console.log(filterdList);
       promise.then((d) => {
         setItems(d);
-        console.log(d);
+        setErrorData(null);
         setfilterdList(d);
         setChartElemet([]);
       });
@@ -204,6 +205,8 @@ const DocumentView = () => {
       alert("Something went wrong with Search " + error);
     }
   };
+
+  // json prettire
 
   return (
     <motion.div
@@ -451,24 +454,28 @@ const DocumentView = () => {
           </table>
         </details>
       </Card>
+
+      {/* file view  */}
+
+      <section id="File_View"></section>
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
         <section id="File_View"></section>
         <details open={FileDetail}>
           <summary> File preview {FileDetail}</summary>
-          {filterdList && (
-            <textarea
-              style={{
-                width: "100%",
-                height: `${filterdList.length + 1}rem`,
-                borderRadius: "10px",
-              }}
-              defaultValue={
-                filterdList.map((e) => {
-                  return JSON.stringify(e, undefined, 2);
-                }) ?? ""
-              }
-            />
-          )}
+          <UseJsonPretteir
+            prettyjson={filterdList}
+            preBcl="white"
+            stringCl="green"
+            numberCl="darkorange"
+            booleanCl="blue"
+            nullCl="magenta"
+            keyCl="red"
+            string_font_size="2rem"
+            number_font_size="2rem"
+            boolean_font_size="2rem"
+            null_font_size="2rem"
+            key_font_size="2rem"
+          />
         </details>
       </Card>
       <AnchorLink href="#Top_Page" offset="150" className="Top_key">

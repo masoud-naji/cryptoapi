@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import "../Styles/inventory.css";
-import classes from "../UI/Card.module.css";
+import classes from "../Styles/Card.module.css";
 import cardStyle from "../Styles/infoCard.module.css";
 import Card from "../UI/Card";
 import HighlightWithinTextarea from "react-highlight-within-textarea";
