@@ -470,11 +470,11 @@ const DocumentView = () => {
             booleanCl="blue"
             nullCl="magenta"
             keyCl="red"
-            string_font_size="2rem"
-            number_font_size="2rem"
-            boolean_font_size="2rem"
-            null_font_size="2rem"
-            key_font_size="2rem"
+            string_font_size="1rem"
+            number_font_size="1rem"
+            boolean_font_size="1rem"
+            null_font_size="1rem"
+            key_font_size="1.2rem"
           />
         </details>
       </Card>
