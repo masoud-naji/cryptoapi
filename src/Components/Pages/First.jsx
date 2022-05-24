@@ -1,19 +1,18 @@
 import style from "../Styles/UsersList.module.css";
 import "../UI/Custombootstrap.scss";
-import { Carousel } from "react-bootstrap";
-import cam from "../../Images/cam.webp";
-import social from "../../Images/social.webp";
-import cryptocurrency from "../../Images/cryptocurrency.webp";
-import music from "../../Images/music.webp";
-import Coding from "../../Images/Coding.webp";
-import Light from "../../Images/light.webp";
+// import { Carousel } from "react-bootstrap";
+// import cam from "../../Images/cam.webp";
+// import social from "../../Images/social.webp";
+// import cryptocurrency from "../../Images/cryptocurrency.webp";
+// import music from "../../Images/music.webp";
+// import Coding from "../../Images/Coding.webp";
+// import Light from "../../Images/light.webp";
 import Daco from "../../Images/Daco.webp";
 import adrien from "../../Images/pexels-adrien-olichon-2387428.webp";
 import { Link } from "react-router-dom";
 import linkedin from "../../Images/linkedin.png";
 import Github from "../../Images/Github.png";
-import sandbox from "../../Images/sandbox.png";
-import Emails from "../../Images/Emails.png";
+import skills from "../../Images/skills.svg";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 
@@ -128,7 +127,7 @@ function First() {
                 </li>
               </ol>
               <li>
-                <Link className="navlink" to="./Whatif">
+                <Link className="navlink" to="./Crypto_fun_facts">
                   Some Fun Facts around the low and high prices regardless of
                   priority.
                 </Link>
@@ -251,7 +250,11 @@ function First() {
           </div>
 
           <div className={`${style.gridInside} , ${style.gridColSpan2}`}>
-            <Carousel>
+            <img src={skills} alt="" width="100%" />
+
+            
+            
+            {/* <Carousel>
               <Carousel.Item>
                 <img
                   className="d-block w-100 "
@@ -343,7 +346,7 @@ function First() {
                   </p>
                 </Carousel.Caption>
               </Carousel.Item>
-            </Carousel>
+            </Carousel> */}
           </div>
           <div className={style.gridInside}>
             <ul className={style.ulabout}>

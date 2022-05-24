@@ -118,12 +118,6 @@ const MyNavbar = () => {
                   </Link>
                 </NavDropdown.Item>
 
-                {/* <NavDropdown.Item as="li" href="./#/CompareImage">
-                  <Link className="navlink" to="./SimplePaint" style={{width:"100%" ,display : "block"}}>
-                  Simple Paint
-                  </Link>
-                </NavDropdown.Item> */}
-
                 <NavDropdown.Item as="li" href="./#/Other_projects">
                   <Link
                     className="navlink"
@@ -238,23 +232,6 @@ const MyNavbar = () => {
               </NavDropdown>
             </Nav>
 
-            {/* <Nav >
-              <Nav.Link href="#deets" >
-                <a href="https://www.linkedin.com/in/masoud-naji/">
-                  <img src={linkedin} style={{ width: "2rem", padding: "0" }} />
-                </a>
-              </Nav.Link>
-              <Nav.Link href="#deets">
-                <a href="https://github.com/masoud-naji">
-                  <img src={Github} style={{ width: "2rem", padding: "0" }} />
-                </a>
-              </Nav.Link>
-              <Nav.Link href="#deets">
-                <a href="https://codesandbox.io/u/masoud-naji">
-                  <img src={sandbox} style={{ width: "2rem", padding: "0" }} />
-                </a>
-              </Nav.Link>
-            </Nav> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>

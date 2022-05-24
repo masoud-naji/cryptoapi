@@ -155,6 +155,11 @@
   z-index: 999;
   margin-left: 0;
 }
+.chartdisplayWif ul {
+  padding-left: 0.5rem;
+  list-style: circle;
+}
+
 .chartdisplayWif li {
   overflow: hidden;
   display: block;
@@ -163,6 +168,14 @@
   text-align: left;
   padding: 0rem 1rem 0rem 0rem;
 }
+
+.chartdisplayWif b {
+  color: aqua;
+}
+/* .chartdisplayWif li :nth-child(2) {
+  color: white;
+  margin-left: 25%;
+} */
 
 .infodisplay {
   /* overflow: scroll; */

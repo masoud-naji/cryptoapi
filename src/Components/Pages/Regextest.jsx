@@ -57,8 +57,9 @@ const RegexTest = () => {
   const [value, setValue] = useState(
     `Lorem ipsum dolor, sit amet consectetur adipisicing elit.1 2 3 4 5 6 7 8 9 10 Ipsa goose repellendus itaque reiciendis ab explicabo quasi, dicta temporibus quod tempore quis saepe fugit ut autem dolorem eos incidunt voluptates et veritatis fugiat at. Voluptatem nulla, libero magni architecto tempore laudantium dolorum quam impedit placeat aliquid, et similique, quos consectetur veritatis eligendi id iure quia. Recusandae, ullam quidem vero deserunt perspiciatis eligendi voluptates corporis molestiae ab nesciunt non aperiam necessitatibus nemo nam repellendus provident, fugit iure nobis obcaecati cupiditate quos, libero sequi autem! Dolorem adipisci nesciunt repellat, libero quam cumque aliquid expedita, ipsum illo, numquam autem quos voluptates accusantium? Ex ut fugit, mollitia libero hic optio veniam saepe. Ipsam reprehenderit placeat perspiciatis numquam consequatur? Quaerat deserunt quos aut velit iusto a, doloremque veritatis id tempore. Obcaecati nobis accusamus unde, vel necessitatibus ipsa aspernatur iure ducimus maxime labore a repellendus perferendis ullam. Dignissimos rerum aliquid similique unde, rem numquam tempore minus est sed iste provident quasi sit, veritatis sapiente a repudiandae explicabo consequuntur autem asperiores debitis molestiae? Quam in, aliquam a sapiente ducimus odit? Nemo facilis voluptates officia vel animi alias! Quaerat vel architecto voluptas obcaecati, exercitationem, laborum, minus earum consequatur`
   );
-  const savedInput = localStorage.getItem("inputValue");
-  const initialState =   JSON.parse(savedInput) || "lo[rtyu]em";
+  // const savedInput = localStorage.getItem("inputValue");
+  // const initialState =   JSON.parse(savedInput) || "lo[rtyu]em";
+  const initialState = "lo[rtyu]em";
   const [searchValue, setSearchValue] = useState(initialState);
   const [searchShowValue, setSearchShowValue] = useState(initialState);
   const [highlightValue, setHighlightValue] = useState();
@@ -191,7 +192,7 @@ const RegexTest = () => {
     var inputValue = "";
     e ? (inputValue = e.target.value) : (inputValue = initialState);
     setSearchShowValue(inputValue);
-    localStorage.setItem("inputValue", JSON.stringify(inputValue));
+    // localStorage.setItem("inputValue", JSON.stringify(inputValue));
     let regExp = "";
 
     if (
@@ -469,7 +470,10 @@ const RegexTest = () => {
               <div {...getRootProps({ style })}>
                 <input {...getInputProps()} />
                 <p>Drag 'n' drop a file here, or click to select file</p>
-                <p>.xlsx,.xlsm,.xlsb,.xls,xlw,.xlr,.csv,.json,doc,.docx,.xml</p>
+                <p style={{ wordBreak: "break-word" }}>
+                  .xlsx ,.xlsm ,.xlsb ,.xls ,.xlw ,.xlr ,.csv ,.json ,.doc
+                  ,.docx ,.xml
+                </p>
                 Text Below is editable and could write or copy your text here
                 then you can check the regex on it
               </div>

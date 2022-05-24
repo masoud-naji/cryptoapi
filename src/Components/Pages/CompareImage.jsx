@@ -5,6 +5,7 @@ import tablestyle from "../Styles/UsersList.module.css";
 import style from "../Styles/about.module.css";
 import Card from "../UI/Card";
 import "../Styles/progressbar.css";
+import "../Styles/inventory.css";
 import "react-datepicker/dist/react-datepicker.css";
 import ReactCompareImage from "react-compare-image";
 import { useDropzone } from "react-dropzone";
@@ -309,7 +310,8 @@ const CompareImage = () => {
           <h1 className={tablestyle.title}>Image Compare & Convert</h1>
           <h2 className={tablestyle.smallsubtitle}>
             Open and compare two images and find the best match. Convert images
-            and resize them in webp , jpg , png format with this handy online tool.
+            and resize them in webp , jpg , png format with this handy online
+            tool.
           </h2>
           <div
             className={classes.HeroPlace}
@@ -321,73 +323,9 @@ const CompareImage = () => {
           >
             {/* ////////////////////////////  file 1 //////////////////////////////// */}
             <div
-              style={{
-                background: "rgba(54, 162, 235, 1)",
-                minHeight: "14rem",
-                aspectRatio: "16/7",
-              }}
-              className={(cardStyle.container, classes.card)}
-              {...getRootPropsFile1({ stylefile1 })}
+              className={cardStyle.tableContainerdragndrop}
+              style={{ maxWidth: "62%", minWidth: "62%" }}
             >
-              <input {...getInputPropsFile1()} />
-              <div className={cardStyle.tableContainer}>
-                For converting or compare Drag 'n' drop first file here
-                <br />, or click to select files
-              </div>
-              <div className="container">
-                <p>Only Images Accepted</p>
-              </div>
-
-              {errorDataFile1 ? (
-                errorDataFile1
-              ) : File1path ? (
-                <ul>
-                  <li>Name: {File1path.path}</li>
-                  <li>Size: {sizemaker(File1path.size)}</li>
-                  {/* <li>last Modified Date: {dateFile1path}</li> */}
-                  <li>Height :{ImprtImgW1}</li>
-                  <li>Width : {ImprtImgH1}</li>
-                  <li>
-                    <img
-                      src={File1}
-                      alt=""
-                      onLoad={({ target: img }) => {
-                        const { offsetHeight, offsetWidth } = img;
-                        setImprtImgH1(offsetHeight);
-                        setImprtImgW1(offsetWidth);
-                        setMaxHeight(offsetHeight);
-                        setMaxWidth(offsetWidth);
-                        console.log(offsetHeight, offsetWidth);
-                      }}
-                      style={{
-                        position: "absolute",
-                        marginLeft: "-10000px",
-                      }}
-                    />
-                  </li>
-                </ul>
-              ) : null}
-            </div>
-
-            {/* ////////////////////////////  File 2 //////////////////////////////// */}
-            {ConverttbtnEnable ? (
-              <div
-                style={{
-                  background: "rgba(54, 162, 235, .5)",
-                  minHeight: "14rem",
-                  aspectRatio: "16/7",
-                }}
-                className={(cardStyle.container, classes.card)}
-              >
-                <div className={cardStyle.tableContainer}>
-                  For Comparing two Images you have to add the first image
-                  section
-                  <div className="container">
-                    <p>🚫Add first file first</p>
-                  </div>
-                </div>
-              </div>
-            ) : (
               <div
                 style={{
                   background: "rgba(54, 162, 235, 1)",
@@ -395,33 +333,35 @@ const CompareImage = () => {
                   aspectRatio: "16/7",
                 }}
                 className={(cardStyle.container, classes.card)}
-                {...getRootPropsFile2({ stylefile2 })}
+                {...getRootPropsFile1({ stylefile1 })}
               >
-                <input {...getInputPropsFile2()} />
+                <input {...getInputPropsFile1()} />
                 <div className={cardStyle.tableContainer}>
-                  For compare Drag 'n' drop second file here , or click to
-                  select files
+                  For converting or compare Drag 'n' drop first file here
+                  <br />, or click to select files
                 </div>
                 <div className="container">
                   <p>Only Images Accepted</p>
                 </div>
-                {errorDataFile2 ? (
-                  errorDataFile2
-                ) : File2path ? (
+                {errorDataFile1 ? (
+                  errorDataFile1
+                ) : File1path ? (
                   <ul>
-                    <li>Name: {File2path.path}</li>
-                    <li>Size: {sizemaker(File2path.size)}</li>
-                    {/* <li>last Modified Date: {File2path.size}</li> */}
-                    <li>Height :{ImprtImgW2}</li>
-                    <li>Width : {ImprtImgH2}</li>
+                    <li>Name: {File1path.path}</li>
+                    <li>Size: {sizemaker(File1path.size)}</li>
+                    {/* <li>last Modified Date: {dateFile1path}</li> */}
+                    <li>Height :{ImprtImgW1}</li>
+                    <li>Width : {ImprtImgH1}</li>
                     <li>
                       <img
-                        src={File2}
+                        src={File1}
                         alt=""
                         onLoad={({ target: img }) => {
                           const { offsetHeight, offsetWidth } = img;
-                          setImprtImgH2(offsetHeight);
-                          setImprtImgW2(offsetWidth);
+                          setImprtImgH1(offsetHeight);
+                          setImprtImgW1(offsetWidth);
+                          setMaxHeight(offsetHeight);
+                          setMaxWidth(offsetWidth);
                           console.log(offsetHeight, offsetWidth);
                         }}
                         style={{
@@ -432,6 +372,83 @@ const CompareImage = () => {
                     </li>
                   </ul>
                 ) : null}
+              </div>
+            </div>
+
+            {/* ////////////////////////////  File 2 //////////////////////////////// */}
+            {ConverttbtnEnable ? (
+              <div
+                className="cardStyle tableContainerdragndrop"
+                style={{ maxWidth: "62%" }}
+              >
+                <div
+                  style={{
+                    background: "rgba(54, 162, 235, .5)",
+                    minHeight: "14rem",
+                    aspectRatio: "16/7",
+                  }}
+                  // className={(cardStyle.container, classes.card)}
+                  className={(cardStyle.container, classes.card)}
+                >
+                  <div className={cardStyle.tableContainer}>
+                    For Comparing two Images you have to add the first image
+                    section
+                    <div className="container">
+                      <p>🚫Add first file first</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div
+                className="cardStyle tableContainerdragndrop"
+                style={{ maxWidth: "62%" }}
+              >
+                <div
+                  style={{
+                    background: "rgba(54, 162, 235, 1)",
+                    minHeight: "14rem",
+                    aspectRatio: "16/7",
+                  }}
+                  className={(cardStyle.container, classes.card)}
+                  {...getRootPropsFile2({ stylefile2 })}
+                >
+                  <input {...getInputPropsFile2()} />
+                  <div className={cardStyle.tableContainer}>
+                    For compare Drag 'n' drop second file here , or click to
+                    select files
+                  </div>
+                  <div className="container">
+                    <p>Only Images Accepted</p>
+                  </div>
+                  {errorDataFile2 ? (
+                    errorDataFile2
+                  ) : File2path ? (
+                    <ul>
+                      <li>Name: {File2path.path}</li>
+                      <li>Size: {sizemaker(File2path.size)}</li>
+                      {/* <li>last Modified Date: {File2path.size}</li> */}
+                      <li>Height :{ImprtImgW2}</li>
+                      <li>Width : {ImprtImgH2}</li>
+                      <li>
+                        <img
+                          src={File2}
+                          alt=""
+                          onLoad={({ target: img }) => {
+                            const { offsetHeight, offsetWidth } = img;
+                            setImprtImgH2(offsetHeight);
+                            setImprtImgW2(offsetWidth);
+                            console.log(offsetHeight, offsetWidth);
+                          }}
+                          style={{
+                            position: "absolute",
+                            marginLeft: "-10000px",
+                          }}
+                        />
+                      </li>
+                    </ul>
+                  ) : null}
+                </div>
               </div>
             )}
 

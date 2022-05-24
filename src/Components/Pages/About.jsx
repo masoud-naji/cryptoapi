@@ -134,7 +134,7 @@ const About = () => {
           style={{ padding: "1rem" }}
         >
           <div className={cardStyle.container} style={{ gap: "3rem" }}>
-            <div className={cardStyle.tableContainer}>
+            <div className={cardStyle.tableContainer} >
               <strong>
                 <a href="mailto:Masoud.Naji@outlook.com?subject=Resume from webSite">
                   Masoud.Naji@outlook.com
@@ -142,12 +142,14 @@ const About = () => {
                 <br />
                 <a href="https://www.linkedin.com/in/masoud-naji/">linkedin</a>
                 <br />
-                California – Los Angeles
+                <br />
+                California - Los Angeles
                 <br />
                 <a
                   href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397104&authkey=AA1uxVivZIR3duU&em=2"
                   download
                 >
+                <br />
                   <button className={style.cta}>
                     Download PDF Resume&nbsp;&nbsp;
                   </button>

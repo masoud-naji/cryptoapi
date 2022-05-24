@@ -13,6 +13,7 @@ import TopPage from "../../Images/TopPage.png";
 import { useDropzone } from "react-dropzone";
 import ReactTooltip from "react-tooltip";
 import UseJsonPretteir from "../CustomHooks/useJsonPretteir";
+import CsvDownload from "react-json-to-csv";
 
 import {
   motion,
@@ -206,7 +207,34 @@ const DocumentView = () => {
     }
   };
 
-  // json prettire
+  // json download
+
+  const downloadFile = ({ data, fileName, fileType }) => {
+    // Create a blob with the data we want to download as a file
+    const blob = new Blob([data], { type: fileType });
+    // Create an anchor element and dispatch a click event on it
+    // to trigger a download
+    const a = document.createElement("a");
+    a.download = fileName;
+    a.href = window.URL.createObjectURL(blob);
+    const clickEvt = new MouseEvent("click", {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+    });
+    a.dispatchEvent(clickEvt);
+    a.remove();
+  };
+
+  const exportToJson = (e) => {
+    console.log("save json");
+    e.preventDefault();
+    downloadFile({
+      data: JSON.stringify(filterdList),
+      fileName: "users.json",
+      fileType: "text/json",
+    });
+  };
 
   return (
     <motion.div
@@ -216,18 +244,22 @@ const DocumentView = () => {
       transition={{ duration: 2 }}
     >
       <Helmet>
-        <title>Documents Viewer</title>
+        <title>Documents Viewer / Converter</title>
         <meta
           name="description"
-          content="Open and read any Microsoft Excel file, all formats supported by Microsoft Office."
+          content="Open ,read and Convert any Microsoft Excel file, all formats supported by Microsoft Office."
         />
         <meta
           name="description"
-          content="Open and read any .xlsx,.xlsm,.xlsb,.xls,xlw,.xlr,.csv,.json,doc,.docx,.xml"
+          content="Open ,read and Convert any .xlsx,.xlsm,.xlsb,.xls,xlw,.xlr,.csv,.json,doc,.docx,.xml"
         />
       </Helmet>
 
-      <svg className="progress-icon" viewBox="0 0 60 60">
+      <svg
+        className="progress-icon"
+        viewBox="0 0 60 60"
+        style={{ maxWidth: "80px" }}
+      >
         <motion.path
           fill="none"
           strokeWidth="5"
@@ -240,6 +272,7 @@ const DocumentView = () => {
             translateX: 5,
             translateY: 5,
             scaleX: -1, // Reverse direction of line animation
+            maxWidth: "80px",
           }}
         />
         <motion.path
@@ -252,12 +285,14 @@ const DocumentView = () => {
           animate={{ pathLength: isComplete ? 1 : 0 }}
         />
       </svg>
-
       <Card className={`${classes.input} ${classes.topchartdetail}`}>
-        <h1 className={tablestyle.title}>Document Viewer</h1>
-        <h2 className={tablestyle.smallsubtitle}>
-          Open and read any text base file (
-          .xlsx,.xlsm,.xlsb,.xls,xlw,.xlr,.csv,.json,doc,.docx,.xml)
+        <h1 className={tablestyle.title}>Document Viewer / Converter</h1>
+        <h2
+          className={tablestyle.smallsubtitle}
+          style={{ wordBreak: "break-word" }}
+        >
+          Open ,read and Convert any text base file ( .xlsx ,.xlsm ,.xlsb ,.xls
+          ,.xlw ,.xlr ,.csv ,.json ,doc ,.docx ,.xml)
         </h2>
         <div className={classes.HeroPlace}>
           {filterdList && filterdList.length > 0 ? (
@@ -266,7 +301,7 @@ const DocumentView = () => {
             </div>
           ) : (
             <div>
-              <h1 className={tablestyle.title}>Document Viewer</h1>
+              <h1 className={tablestyle.title}>Document Viewer / Converter</h1>
               <img
                 alt="stock"
                 src={Svgimage}
@@ -288,7 +323,8 @@ const DocumentView = () => {
                     Drag 'n' drop some files here, or click to select files
                   </p>
                   <p style={{ wordBreak: "break-word" }}>
-                    .xlsx,.xlsm,.xlsb,.xls,xlw,.xlr,.csv,.json,doc,.docx,.xml
+                    .xlsx,.xlsm ,.xlsb ,.xls ,.xlw ,.xlr ,.csv ,.json ,.doc
+                    ,.docx ,.xml
                   </p>
                 </div>
               </div>
@@ -347,6 +383,82 @@ const DocumentView = () => {
                         </li>
                       </ul>
                     }
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-evenly",
+                      }}
+                    >
+                      <AnchorLink
+                        href="#File_View"
+                        offset="100"
+                        className="anchorBtn"
+                        style={{
+                          height: "2.2rem",
+                          color: "#96A5BE",
+                          margin: "0rem",
+                          width: "25%",
+                          background: "rgb(35,52,101)",
+                          paddingTop: "0.6rem",
+                        }}
+                        onClick={() => {
+                          setFileDetail(true);
+                          setTableDetail(false);
+                        }}
+                      >
+                        File version
+                      </AnchorLink>
+                      &nbsp;
+                      <AnchorLink
+                        href="#Top_Page"
+                        offset="100"
+                        className="anchorBtn"
+                        style={{
+                          height: "2.2rem",
+                          color: "#96A5BE",
+                          margin: "0rem",
+                          width: "25%",
+                          background: "rgb(35,52,101)",
+                          paddingTop: "0.6rem",
+                        }}
+                        onClick={() => {
+                          setFileDetail(false);
+                          setTableDetail(true);
+                        }}
+                      >
+                        Table version
+                      </AnchorLink>
+                      &nbsp;
+                      <button
+                        className="anchorBtn"
+                        style={{
+                          height: "2.2rem",
+                          color: "#96A5BE",
+                          margin: "0rem",
+                          width: "25%",
+                          background: "rgb(35,52,101)",
+                        }}
+                        type="button"
+                        onClick={exportToJson}
+                      >
+                        export Json
+                      </button>
+                      &nbsp;
+                      <CsvDownload
+                        data={filterdList}
+                        className="anchorBtn"
+                        style={{
+                          height: "2.2rem",
+                          color: "#96A5BE",
+                          margin: "0rem",
+                          width: "25%",
+                          background: "rgb(35,52,101)",
+                        }}
+                        type="button"
+                      >
+                        export Csv
+                      </CsvDownload>
+                    </div>
                   </>
                 )}
               </div>
@@ -356,29 +468,6 @@ const DocumentView = () => {
             {/* ? coinAllInfo.description.en.replace(/<[^>]+>/g, "") */}
           </div>
         </div>
-        <AnchorLink
-          href="#File_View"
-          offset="100"
-          className="anchorBtn"
-          onClick={() => {
-            setFileDetail(true);
-            setTableDetail(false);
-          }}
-        >
-          File View
-        </AnchorLink>
-        &nbsp;
-        <AnchorLink
-          href="#Top_Page"
-          offset="100"
-          className="anchorBtn"
-          onClick={() => {
-            setFileDetail(false);
-            setTableDetail(true);
-          }}
-        >
-          Table View
-        </AnchorLink>
       </Card>
       <section id="Top_Page"></section>
       <Card className={`${classes.input} ${classes.topchartdetail}`}>

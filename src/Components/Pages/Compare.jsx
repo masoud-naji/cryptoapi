@@ -559,6 +559,7 @@ function Compare() {
                                 coinAllInfo.market_data.current_price.usd)
                             ).toLocaleString("en-US")
                           : ""}{" "}
+                        
                         💵
                         <br />- {coinAllInfo2.id} with the market cap of&nbsp;
                         {coinAllInfo.id}

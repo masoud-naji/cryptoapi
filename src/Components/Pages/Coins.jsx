@@ -36,7 +36,7 @@ function Coins() {
   ];
 
   useEffect(() => {
-    coinCTX ? setIsItLoading(false) : setIsItLoading(false);
+    coinCTX ? setIsItLoading((prev) => false) : setIsItLoading((prev) => false);
   }, [coinCTX]);
 
   //////////////////////////////////////////// search by filter//////////////////////////////////////////////////
@@ -53,6 +53,7 @@ function Coins() {
           );
         });
       setFoundCoins(results);
+       setCurrentPage(1)
     } else {
       setFoundCoins(coinCTX.coins);
       // If the text field is empty, show all users

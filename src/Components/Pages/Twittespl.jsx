@@ -1,16 +1,17 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import classes from "../Styles/Card.module.css";
 import Card from "../UI/Card";
-import style from "../Styles/about.module.css";
 import InputEmoji from "react-input-emoji";
 import LoremMaker from "../UI/LoremMaker";
-import style2 from "../Styles/UsersList.module.css";
 import ReactTooltip from "react-tooltip";
 import "../Styles/inventory.css";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
+import classes from "../Styles/Card.module.css";
+import style from "../Styles/about.module.css";
+import style2 from "../Styles/UsersList.module.css";
 import useImageUploader from "../CustomHooks/useImageUploader";
+import TextareaAutosize from 'react-textarea-autosize';
 
 const Twittespl = () => {
   const [tweet, setTweet] = useState(
@@ -38,7 +39,7 @@ const Twittespl = () => {
   useEffect(() => {
     // const backgroundTweet = getComputedStyle(document.documentElement).getPropertyValue('--tweetBackgroung');
     // console.log(backgroundTweet);
-    console.log(File);
+    // console.log(File);
     document.documentElement.style.setProperty(
       "--tweetBackgroung",
       `url('${File}')`
@@ -205,15 +206,19 @@ const Twittespl = () => {
           </div>
 
           <form dir={divDirection ? "ltr" : "rtl"}>
-            <textarea
-              value={tweet}
-              onChange={(e) => (
-                setTweet(e.target.value),
-                localStorage.setItem("tweet", JSON.stringify(e.target.value))
-              )}
-              placeholder="write your long tweet here"
-              className={style.textareamain}
-            ></textarea>
+          
+              <TextareaAutosize 
+                value={tweet}
+                name="text"
+                id="text"
+                onChange={(e) => (
+                  setTweet(e.target.value),
+                  localStorage.setItem("tweet", JSON.stringify(e.target.value))
+                )}
+                placeholder="write your long tweet here"
+                className={style.textareamain}
+              ></TextareaAutosize>
+            
             {/* Next Indicator */}
             <InputEmoji
               value={endChar}

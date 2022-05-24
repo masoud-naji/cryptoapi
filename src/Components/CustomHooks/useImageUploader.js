@@ -138,7 +138,7 @@ const ImageUploader = () => {
     dateFilePath,
     UploadForm: (
       <div
-        className={classes.HeroPlace}
+        className={cardStyle.container}
         style={{
           paddingTop: "2rem",
           height: "fit-content",

@@ -11,7 +11,6 @@
   max-width: 90%;
   margin-bottom: 1rem;
   overflow: scroll;
- 
 }
 
 .ulabout {
@@ -94,7 +93,8 @@ a {
   border-radius: 0.5rem;
   width: 100%;
   resize: initial;
-  height: 6rem;
+  min-height: 6rem;
+  height: fit-content;
 }
 
 .languagebtn {

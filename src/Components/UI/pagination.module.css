@@ -1,6 +1,8 @@
-.mypagination{
-    color: blue;
-    margin-bottom: -0.4rem;
+.mypagination {
+  color: blue !important;
+  margin-bottom: -0.4rem;
 }
+
+
 
 /* it is not effecting */

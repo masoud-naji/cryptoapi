@@ -3,19 +3,21 @@ import style from "../Styles/UsersList.module.css";
 import classes from "../Styles/Card.module.css";
 import cardStyle from "../Styles/infoCard.module.css";
 import tablestyle from "../Styles/UsersList.module.css";
-import Card from "../UI/Card";
 import "../Styles/progressbar.css";
+// import "react-datepicker/dist/react-datepicker.css";
+import Card from "../UI/Card";
 import axios from "axios";
 import CoinContext from "../../contexts/coinContext";
 import stock from "../../Images/stock.png";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from "react-datepicker";
 import Pagination from "../UI/pagination";
 import Paginate from "../CustomHooks/Paginate";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
+import DatePicker from "react-date-picker";
+
 // require("dotenv").config();
 // require('dotenv').config({ path: require('find-config')('.env') })
 
@@ -30,9 +32,9 @@ function Crypto_fun_facts() {
   const [LowMiss, setLowMiss] = useState("0");
   const [HighMiss, setHighMiss] = useState("0");
 
-  const yesterday = new Date();
-  const pastDate = yesterday.getDate() - 1;
-  yesterday.setDate(pastDate);
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
 
   /////////////////page and pagination system
   const navigate = useNavigate();
@@ -52,6 +54,33 @@ function Crypto_fun_facts() {
   ////////////////////////////////////////////////duration Cotrol maker/////////////////////////////////////////
   const [startDay, setStartDay] = useState();
   const [endDay, setEndDay] = useState();
+
+  function getCompleteDate(setDate) {
+    const unixTimestamp = setDate;
+    const date = new Date(unixTimestamp * 1000);
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    const year = date.getFullYear();
+    const month = months[date.getMonth()];
+    const dt = date.getDate();
+    const hours = date.getHours();
+    const minutes = "0" + date.getMinutes();
+    const seconds = "0" + date.getSeconds();
+    const formattedTime = `${year}-${month}-${dt}`;
+    return formattedTime;
+  }
 
   const getToday = () => {
     const date = new Date();
@@ -101,12 +130,39 @@ function Crypto_fun_facts() {
       )
     : 0;
 
-  const LowestPriceDate = foundCoins
-    ? foundCoins.reduce(
-        (min, coin) => (coin.Low < min ? coin.time : min),
-        foundCoins[0].time
-      )
-    : "";
+  const LowestPriceDate = () => {
+    let LowResult = "";
+    if (foundCoins) {
+      const lowDate = foundCoins.filter((lowDate) => lowDate.low === Lowest);
+      const lowDateFr = lowDate[0].time * 1000;
+      LowResult = new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }).format(lowDateFr);
+    }
+    // console.log("Lowresult", LowResult);
+    return String(LowResult);
+  };
+  LowestPriceDate();
+
+  const HiestPriceDate = () => {
+    let highResult = "";
+    if (foundCoins) {
+      const HighDate = foundCoins.filter(
+        (highDate) => highDate.high === Highest
+      );
+      const HighDateFr = HighDate[0].time * 1000;
+      highResult = new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }).format(HighDateFr);
+    }
+    // console.log("highResult", highResult);
+    return String(highResult);
+  };
+  HiestPriceDate();
 
   const loWToHigh = (Invest, Lowest, Highest) => {
     const number = Invest / Lowest;
@@ -153,6 +209,20 @@ function Crypto_fun_facts() {
       console.log(foundCoins);
     }
   };
+
+  const allGains =
+    foundCoins &&
+    foundCoins
+      ?.filter((coin) => coin !== null)
+      .map(
+        (coin) =>
+          (Invest / (coin.low + (coin.low * LowMiss) / 100)) *
+            (coin.high - (coin.high * HighMiss) / 100) -
+          Invest
+      );
+  const allGainsSum =
+    allGains &&
+    allGains.reduce((acc, curr) => acc + curr, 0).toLocaleString("en-US");
 
   ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -266,26 +336,26 @@ function Crypto_fun_facts() {
                         <section>
                           <DatePicker
                             className={style.dropdownsmall}
-                            selected={endDay || yesterday}
-                            minDate="2000-01-01"
+                            value={endDay || yesterday}
+                            minDate={new Date(2017, 7, 1)}
                             maxDate={yesterday}
                             onChange={(date) => setEndDay(date)}
-                            showYearDropdown
-                            scrollableMonthYearDropdown
+                            format="MM/dd/yyyy"
                           />
                         </section>
                         <h3 className={style.tableTitle}>Select End Time</h3>
                         <section>
                           <DatePicker
                             className={style.dropdownsmall}
-                            selected={startDay || new Date()}
-                            minDate="2000-01-01"
+                            value={startDay || new Date()}
+                            minDate={new Date(2017, 7, 1)}
                             maxDate={new Date()}
                             onChange={(date) => {
                               setStartDay(date);
                             }}
-                            showYearDropdown
-                            scrollableMonthYearDropdown
+                            format="MM/dd/yyyy"
+                            // showYearDropdown
+                            // scrollableMonthYearDropdown
                           />
                         </section>
                         <h3 className={style.tableTitle}>
@@ -347,45 +417,76 @@ function Crypto_fun_facts() {
                     </div>
                   </div>
                   <div className={classes.chartdisplayWif}>
-                    <br /> Some Fun Facts around the low and high prices
-                    regardless of priority.
-                    <br />
-                    Usually there are some delays for finding those points.
-                    <br />
-                    just for our knowledge , check if you invest $ $&nbsp;
-                    {Invest.toLocaleString("en-US")} at the lowest price point.
-                    when ...
-                    <ul style={{ paddingLeft: "0.5rem" }}>
-                      <li>- Highest $ {Highest.toLocaleString("en-US")}</li>
-                      <li>- Lowest $ {Lowest.toLocaleString("en-US")}</li>
+                    It does not necessarily mean that high prices always come
+                    after low prices but Imagine if you could and just for fun ,
+                    check if you invest $&nbsp;
+                    <b>{Invest.toLocaleString("en-US")}</b> at the lowest price
+                    point. when ...
+                    <ul>
                       <li>
-                        - Difference possible to make: $&nbsp;
-                        {loWToHigh(
-                          Invest,
-                          Lowest,
-                          Highest
-                        ).deffrencePrices.toLocaleString("en-US")}
-                        &nbsp; ~ %&nbsp;
-                        {loWToHigh(
-                          Invest,
-                          Lowest,
-                          Highest
-                        ).deffrencePricesPersent.toLocaleString("en-US")}
+                        - Highest <b>$ {Highest.toLocaleString("en-US")}</b>
+                        &nbsp;at{" "}
+                        <b>
+                          &nbsp;
+                          <HiestPriceDate />
+                        </b>
                       </li>
                       <li>
-                        - Difference on sort sequence of Table: $&nbsp;
-                        {priceInEndDay.toLocaleString("en-US")}
+                        - Lowest &nbsp;<b>$ {Lowest.toLocaleString("en-US")}</b>
+                        &nbsp;at{" "}
+                        <b>
+                          &nbsp;
+                          <LowestPriceDate />
+                        </b>
                       </li>
                       <li>
-                        - Difference between Lowest & Highest with $&nbsp;
-                        {Invest.toLocaleString("en-US")} at start comes:
-                        &nbsp;$&nbsp;
-                        {loWToHigh(
-                          Invest,
-                          Lowest,
-                          Highest
-                        ).inHigh.toLocaleString("en-US")}
+                        - Difference possible to make:
+                        <b>
+                          {" "}
+                          $&nbsp;
+                          {loWToHigh(
+                            Invest,
+                            Lowest,
+                            Highest
+                          ).deffrencePrices.toLocaleString("en-US")}
+                        </b>
+                        <b>
+                          ~ %&nbsp;
+                          {loWToHigh(
+                            Invest,
+                            Lowest,
+                            Highest
+                          ).deffrencePricesPersent.toLocaleString("en-US")}
+                        </b>
+                      </li>
+                      <li>
+                        - Difference on sort sequence of Table:{" "}
+                        <b>
+                          $&nbsp;
+                          {priceInEndDay.toLocaleString("en-US")}
+                        </b>
+                      </li>
+                      <li>
+                        - Difference between Lowest & Highest with &nbsp;
+                        <b>
+                          $&nbsp;
+                          {Invest.toLocaleString("en-US")}
+                        </b>
+                        &nbsp; at start comes: &nbsp;
+                        <b>
+                          $&nbsp;
+                          {loWToHigh(
+                            Invest,
+                            Lowest,
+                            Highest
+                          ).inHigh.toLocaleString("en-US")}
+                        </b>
                         &nbsp; at the end.
+                      </li>
+                      <li>
+                        - Gains if you buy everyday at the lowest price of the
+                        day and sell at the highest price of the day. Regardless
+                        of this priority , you could make <b>$ {allGainsSum}</b>
                       </li>
                     </ul>
                     <br />
