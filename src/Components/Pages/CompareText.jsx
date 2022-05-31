@@ -11,6 +11,7 @@ import ReactDiffViewer, { DiffMethod } from "react-diff-viewer";
 import { useDropzone } from "react-dropzone";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
+import "../Styles/inventory.css";
 // import Prism from "prismjs"
 // import eclipse from "../../Images/eclipse.gif";
 // import Line from "../../Images/Line.gif";

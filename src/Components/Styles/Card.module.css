@@ -231,6 +231,7 @@
   border-radius: 1rem;
   padding: 1rem;
   box-shadow: 5px 5px 10px rgba(54, 162, 235, 0.4);
+  font-size: 0.8rem;
 }
 
 .flextbtn {
@@ -242,6 +243,18 @@
   gap: 0.5rem;
   width: 80%;
 }
+
+
+.codesapmle{
+  width: 55vw;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: rgb(196, 196, 196);
+  opacity: 0.95;
+  color: black;
+}
+
 
 @media (max-width: 50rem) {
   .clipboardinside {
@@ -323,6 +336,7 @@
     border: 10px solid rgb(37, 54, 106);
     border-radius: 1rem;
     padding: 1rem;
+    font-size: 0.8rem;
     /* box-shadow: 5px 5px 10px rgba(54, 162, 235, 0.4); */
   }
 }

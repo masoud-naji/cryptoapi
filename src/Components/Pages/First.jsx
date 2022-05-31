@@ -16,6 +16,7 @@ import skills from "../../Images/skills.svg";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 
+
 function First() {
   return (
     <motion.div
@@ -252,8 +253,7 @@ function First() {
           <div className={`${style.gridInside} , ${style.gridColSpan2}`}>
             <img src={skills} alt="" width="100%" />
 
-            
-            
+        
             {/* <Carousel>
               <Carousel.Item>
                 <img

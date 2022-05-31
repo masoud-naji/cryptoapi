@@ -189,8 +189,16 @@ a {
 .rangeselector {
   width: 80px;
 }
+.ReadmeBtn{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
 
 @media (min-width: 50rem) {
+  .ReadmeBtn{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
   .languagebtn {
     margin: 1rem 0 1rem 0;
     width: 100%;

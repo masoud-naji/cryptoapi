@@ -118,6 +118,16 @@ const MyNavbar = () => {
                   </Link>
                 </NavDropdown.Item>
 
+                <NavDropdown.Item as="li" href="./#/ReadmeCreator">
+                  <Link
+                    className="navlink"
+                    to="./ReadmeCreator"
+                    style={{ width: "100%", display: "block" }}
+                  >
+                    README.me Creator
+                  </Link>
+                </NavDropdown.Item>
+
                 <NavDropdown.Item as="li" href="./#/Other_projects">
                   <Link
                     className="navlink"
