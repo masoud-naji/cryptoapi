@@ -19,7 +19,7 @@ const skills = () => {
           className="progress-done"
           style={{
             opacity: 1,
-            width: `${skill.skillPercantage}%`,
+            width: `${skill.skillPercentage}%`,
             overflow: "hidden",
             display: "grid",
             alignContent: "center",
@@ -32,7 +32,7 @@ const skills = () => {
           }}
         >
           <p style={{ marginTop: "-4px" }}>
-            {skill.skillName} {skill.skillPercantage}%
+            {skill.skillName} {skill.skillPercentage}%
           </p>
         </div>
       </div>

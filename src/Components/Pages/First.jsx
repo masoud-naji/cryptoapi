@@ -15,6 +15,7 @@ import Github from "../../Images/Github.png";
 import skills from "../../Images/skills.svg";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
+import SkillsRadarChart from "../Skill/SkillsRadarChart";
 
 
 function First() {
@@ -252,6 +253,8 @@ function First() {
 
           <div className={`${style.gridInside} , ${style.gridColSpan2}`}>
             <img src={skills} alt="" width="100%" />
+
+            {/* <SkillsRadarChart/> */}
 
         
             {/* <Carousel>
