@@ -7,8 +7,6 @@ import axios from "axios";
 import AnimatedRoutes from "./AnimatedRoutes";
 import { Helmet } from "react-helmet";
 
-
-
 function App() {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState();
@@ -46,7 +44,7 @@ function App() {
         <link rel="apple-touch-icon" href="/logo192.png" />
         <link rel="manifest" href="/manifest.json" />
       </Helmet>
-      {/* <BrowserRouter> */}
+
       <CoinContext.Provider
         value={{
           coins: coins,
@@ -69,7 +67,6 @@ function App() {
           </div>
         </div>
       </CoinContext.Provider>
-      {/* </BrowserRouter> */}
     </BrowserRouter>
   );
 }

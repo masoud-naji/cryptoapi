@@ -7,7 +7,9 @@
     "crypto",
     "regex",
     "tweet_spliter",
-    "Document_Viewer"
+    "Document_Viewer",
+    "image Converter",
+    "webp maker"
   ],
   "author": "Masoud Naji",
   "license": "MIT",

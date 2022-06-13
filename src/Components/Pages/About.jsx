@@ -21,80 +21,84 @@ const About = () => {
         "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397105&authkey=AAPFt0zLCz42hGE&em=2",
     },
     {
-      Modern_React_Redux:
-        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397112&authkey=ALUpDIIHbEHIXCw&em=2",
-    },
-    {
-      Java_Web_Developer:
+      Java_Web_Developer_NanoDegree:
         "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2136440&authkey=ABNpSdn-QNs6XIg&em=2",
     },
     {
-      SQL_Server_1:
+      SQL_Server_2019_Essential_1:
         "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2130513&authkey=APd1Fe3Lcx_OiCc&em=2",
     },
     {
-      SQL_Server_2:
+      SQL_Server_2019_Essential_2:
         "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2130512&authkey=ADp3j8qThTsxKq4&em=2",
-    },
-    {
-      Mongodb_Essential:
-        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21398747&authkey=AB4jxR9iITzmWms&em=2",
     },
     {
       Google_Analytics:
         "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2138218&authkey=AHibj4epIWsLs4o&em=2",
     },
     {
-      Spring_Boot:
-        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2136439&authkey=AK5GVpVlvNMlfqc&em=2",
-    },
-    {
-      Data_Science_R_Basics:
-        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2128735&authkey=AE5AoFaVNESSQ6Y&em=2",
-    },
-    {
-      Power_BI_with_DAX:
+      Power_BI_Data_Modeling_with_DAX:
         "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2131449&authkey=ABPNdzZ6ACFZtfc&em=2",
     },
     {
-      Power_BI:
+      Analyzing_and_Visualizing_Power_BI:
         "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2111466&authkey=ANbywV0XKnRcT6E&em=2",
     },
     {
-      Excel_VBA_Macro:
-        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2128751&authkey=AGq4Y_3xkaKmN5g&em=2",
+      Data_Science__R_Basics:
+        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2128735&authkey=AE5AoFaVNESSQ6Y&em=2",
     },
     {
-      Excel_Accountants:
+      Excel_for_Accountants:
         "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2131451&authkey=ANImj8gtXIbtrNQ&em=2",
     },
     {
-      Excel_Awesome_Charts:
+      How_Charts_Awesome:
         "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2129099&authkey=ALTAnsz9mT6svQ0&em=2",
     },
     {
-      Technical_Support:
-        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2132887&authkey=ANvmtoHbhqLcb1M&em=2",
-    },
-    {
-      BitcoinCryptocurrency:
-        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2136559&authkey=AKvrxkgYKRQTWkM&em=2",
+      Spring_Boot_Quick_Start:
+        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2136439&authkey=AK5GVpVlvNMlfqc&em=2",
     },
     {
       Storytelling_with_Data:
         "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2128760&authkey=APvgyJXhp0MBw9U&em=2",
     },
     {
-      QuickBooks_Online:
-        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2128761&authkey=ADwSJ4UdG5rI4wM&em=2",
+      Technical_Support_Fundamentals:
+        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2132887&authkey=ANvmtoHbhqLcb1M&em=2",
     },
     {
-      Financial_Stmnts_Per:
+      Financial_Statements_Performance:
         "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2132757&authkey=AJXMTI6tvMJoXaM&em=2",
     },
     {
-      Financial_Stmnts_Pos:
+      Financial_Statements_Position:
         "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2131919&authkey=AE9Y_-9BEA-KtrA&em=2",
+    },
+    {
+      Unlock_Excel_VBA_and_Excel_Macro:
+        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2128751&authkey=AGq4Y_3xkaKmN5g&em=2",
+    },
+    {
+      Cryptocurrency_Trading_2021:
+        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2136559&authkey=AKvrxkgYKRQTWkM&em=2",
+    },
+    {
+      QuickBooks_Essential:
+        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%2128761&authkey=ADwSJ4UdG5rI4wM&em=2",
+    },
+    {
+      Modern_React_Redux:
+        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397112&authkey=ALUpDIIHbEHIXCw&em=2",
+    },
+    {
+      Components_library_Storybook:
+        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%211913682&authkey=AJ-IBl2PZXWdvT4&em=2",
+    },
+    {
+      Mongodb_Essential:
+        "https://onedrive.live.com/embed?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21398747&authkey=AB4jxR9iITzmWms&em=2",
     },
   ];
 
@@ -134,7 +138,7 @@ const About = () => {
           style={{ padding: "1rem" }}
         >
           <div className={cardStyle.container} style={{ gap: "3rem" }}>
-            <div className={cardStyle.tableContainer} >
+            <div className={cardStyle.tableContainer}>
               <strong>
                 <a href="mailto:Masoud.Naji@outlook.com?subject=Resume from webSite">
                   Masoud.Naji@outlook.com
@@ -149,7 +153,7 @@ const About = () => {
                   href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397104&authkey=AA1uxVivZIR3duU&em=2"
                   download
                 >
-                <br />
+                  <br />
                   <button className={style.cta}>
                     Download PDF Resume&nbsp;&nbsp;
                   </button>
@@ -228,7 +232,7 @@ const About = () => {
                 key={Object.values(urls)}
                 onClick={() => seturlSrc(Object.values(urls))}
                 className={style.cta}
-                style={{ width: "20rem", textAlign: "left" }}
+                style={{ width: "20rem", textAlign: "left", fontSize: ".8rem" }}
               >
                 <img
                   src={pdficon}

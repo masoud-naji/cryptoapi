@@ -294,6 +294,14 @@ const CompareImage = () => {
         />
         <meta
           name="description"
+          content="jpg to Webp converter"
+        />
+        <meta
+          name="description"
+          content="png to Webp converter"
+        />
+        <meta
+          name="description"
           content="Convert images from one format to another with the powerful image converter in this free image tool."
         />
         <meta

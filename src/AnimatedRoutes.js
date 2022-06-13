@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import ReactGA from "react-ga4";
+import Spinner from "react-bootstrap/Spinner";
 
 const Home = lazy(() => import("./Components/Pages/Home"));
 const Details = lazy(() => import("./Components/Pages/Details"));
@@ -34,7 +35,7 @@ function AnimatedRoutes() {
   usePageViews();
   return (
     <AnimatePresence>
-      <Suspense fallback={<p>Loading</p>}>
+      <Suspense fallback={<Spinner animation="border" size="sm" />}>
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/Details" element={<Details />}></Route>

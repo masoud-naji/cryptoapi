@@ -295,6 +295,7 @@ function Crypto_fun_facts() {
         <Helmet>
           <title>Crypto Fun Facts</title>
           <meta name="description" content="Crypto Fun Facts" />
+          <meta name="description" content="Crypto opportunity you lost already" />
         </Helmet>
         <Card className={classes.card}>
           <div className={style.tableContainer}>
