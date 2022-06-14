@@ -6,6 +6,7 @@ import styles from "./Components/Styles/App.module.css";
 import axios from "axios";
 import AnimatedRoutes from "./AnimatedRoutes";
 import { Helmet } from "react-helmet";
+import { AuthContextProvider } from "./contexts/AuthContext";
 
 function App() {
   const [isPending, setIsPending] = useState(false);
@@ -33,41 +34,43 @@ function App() {
   // console.log(coins);
 
   return (
-    <BrowserRouter>
-      <Helmet>
-        <meta charset="utf-8" />
-        <title>Masoud Naji</title>
-        <meta name="description" content="Masoud Naji , FrontEnd Developer" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/logo192.png" />
-        <link rel="manifest" href="/manifest.json" />
-      </Helmet>
+    <AuthContextProvider>
+      <BrowserRouter>
+        <Helmet>
+          <meta charset="utf-8" />
+          <title>Masoud Naji</title>
+          <meta name="description" content="Masoud Naji , FrontEnd Developer" />
+          <meta name="viewport" content="width=device-width,initial-scale=1" />
+          <meta name="theme-color" content="#000000" />
+          <link rel="icon" href="/favicon.ico" />
+          <link rel="apple-touch-icon" href="/logo192.png" />
+          <link rel="manifest" href="/manifest.json" />
+        </Helmet>
 
-      <CoinContext.Provider
-        value={{
-          coins: coins,
-          error: error,
-          isPending: isPending,
-          Chartdata: Chartdata,
-          setChartData: setChartData,
-          Chartdata2: Chartdata2,
-          setChartData2: setChartData2,
-          selectedCoin: selectedCoin,
-          setSelectedCoin: setSelectedCoin,
-        }}
-      >
-        <div style={{ overflow: "hidden" }}>
-          <section>
-            <MyNavbar />
-          </section>
-          <div className={styles.mainfram}>
-            <AnimatedRoutes />
+        <CoinContext.Provider
+          value={{
+            coins: coins,
+            error: error,
+            isPending: isPending,
+            Chartdata: Chartdata,
+            setChartData: setChartData,
+            Chartdata2: Chartdata2,
+            setChartData2: setChartData2,
+            selectedCoin: selectedCoin,
+            setSelectedCoin: setSelectedCoin,
+          }}
+        >
+          <div style={{ overflow: "hidden" }}>
+            <section>
+              <MyNavbar />
+            </section>
+            <div className={styles.mainfram}>
+              <AnimatedRoutes />
+            </div>
           </div>
-        </div>
-      </CoinContext.Provider>
-    </BrowserRouter>
+        </CoinContext.Provider>
+      </BrowserRouter>
+    </AuthContextProvider>
   );
 }
 

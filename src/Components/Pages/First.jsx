@@ -1,12 +1,6 @@
 import style from "../Styles/UsersList.module.css";
 import "../UI/Custombootstrap.scss";
-// import { Carousel } from "react-bootstrap";
-// import cam from "../../Images/cam.webp";
-// import social from "../../Images/social.webp";
-// import cryptocurrency from "../../Images/cryptocurrency.webp";
-// import music from "../../Images/music.webp";
-// import Coding from "../../Images/Coding.webp";
-// import Light from "../../Images/light.webp";
+
 import Daco from "../../Images/Daco.webp";
 import adrien from "../../Images/pexels-adrien-olichon-2387428.webp";
 import { Link } from "react-router-dom";
@@ -16,7 +10,6 @@ import skills from "../../Images/skills.svg";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import SkillsRadarChart from "../Skill/SkillsRadarChart";
-
 
 function First() {
   return (
@@ -82,13 +75,6 @@ function First() {
               &nbsp;
               <a href="https://www.linkedin.com/in/masoud-naji/">linkedin</a>
               <br />
-              {/* <img
-              src={sandbox}
-              style={{ width: "2rem", height: "100%", padding: "0", border: "none" }}
-              alt="sandbox"
-            />
-            &nbsp;
-            <a href="https://codesandbox.io/u/masoud-naji">sandbox</a><br/> */}
             </h2>
             <ol>
               <li>
@@ -253,103 +239,6 @@ function First() {
 
           <div className={`${style.gridInside} , ${style.gridColSpan2}`}>
             <img src={skills} alt="" width="100%" />
-
-            {/* <SkillsRadarChart/> */}
-
-        
-            {/* <Carousel>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100 "
-                  src={cam}
-                  alt="First slide"
-                  loading="lazy"
-                />
-                <Carousel.Caption>
-                  <h3>Front-End</h3>
-                  <p>
-                    years of Information Technology experience in Web design and
-                    development of ERP application.
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
-
-              <Carousel.Item>
-                <img
-                  className="d-block w-100 "
-                  src={social}
-                  alt="Second slide"
-                  loading="lazy"
-                />
-                <Carousel.Caption>
-                  <h3> UI Developer</h3>
-                  <p>
-                    database designing, development, and installation of
-                    different modules.
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
-
-              <Carousel.Item>
-                <img
-                  className="d-block w-100 "
-                  src={cryptocurrency}
-                  alt="Third slide"
-                  loading="lazy"
-                />
-                <Carousel.Caption>
-                  <h3>API</h3>
-                  <p>
-                    Experience on various Charting/UI tools - High Charts,
-                    Google API , IBM Watson , YouTube , Spotify
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
-
-              <Carousel.Item>
-                <img
-                  className="d-block w-100 "
-                  src={music}
-                  alt="Third slide"
-                  loading="lazy"
-                />
-                <Carousel.Caption>
-                  <h3>UI web applications</h3>
-                  <p>
-                    technologies like HTML5, CSS3, JavaScript, reactJS, XML,
-                    DHTML, XHTML, JSON
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
-
-              <Carousel.Item>
-                <img
-                  className="d-block w-100 "
-                  src={Coding}
-                  alt="Third slide"
-                  loading="lazy"
-                />
-                <Carousel.Caption>
-                  <h3>Document Object Model (DOM)</h3>
-                  <p>
-                    Excellent Understanding ofDocument Object Model (DOM) andDOM
-                    Functions.
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
-
-              <Carousel.Item>
-                <img className="d-block w-100 " src={Light} alt="Third slide" />
-                <Carousel.Caption>
-                  <h3>UIpatterns and UI applications</h3>
-                  <p>
-                    Experience in designing UIpatterns and UI applications with
-                    the help of Adobe products like Adobe Photoshop, Adobe XD
-                    and Adobe Illustrator.
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
-            </Carousel> */}
           </div>
           <div className={style.gridInside}>
             <ul className={style.ulabout}>
