@@ -16,6 +16,7 @@ import "../Styles/progressbar.css";
 // import BasicTable from "./Table/BasicTable";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
+import { set } from "lodash";
 
 function Coins() {
   const coinCTX = useContext(CoinContext);
@@ -23,10 +24,11 @@ function Coins() {
   const [order, setOrder] = useState("ASC");
   const [isItLoading, setIsItLoading] = useState(true);
   const navigate = useNavigate();
-  // const [error, setError] = useState();
+  const [showDetails, setShowDetails] = useState(false);
   const [name, setName] = useState("");
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+  const [favShow, setFavShow] = useState(false);
   const paginatedFilteredCoins = Paginate(foundCoins, currentPage, pageSize);
   const paginationOptions = [
     { value: 10, label: "10" },
@@ -53,7 +55,7 @@ function Coins() {
           );
         });
       setFoundCoins(results);
-       setCurrentPage(1)
+      setCurrentPage(1);
     } else {
       setFoundCoins(coinCTX.coins);
       // If the text field is empty, show all users
@@ -62,6 +64,19 @@ function Coins() {
   };
   ////////////////////////////////////  Sorting ////////////////////////////////////////////////////////////
   const sorting = (col) => {
+    if (order === "ASC") {
+      const sorted = [...foundCoins].sort((a, b) => (a[col] > b[col] ? 1 : -1));
+      setFoundCoins(sorted);
+      setOrder("DSC");
+    }
+    if (order === "DSC") {
+      const sorted = [...foundCoins].sort((a, b) => (a[col] < b[col] ? 1 : -1));
+      setFoundCoins(sorted);
+      setOrder("ASC");
+    }
+  };
+  //////////////////////////////sort onfav///////////////////////////////////////////////////////////////
+  const sortOnFav = (col) => {
     if (order === "ASC") {
       const sorted = [...foundCoins].sort((a, b) => (a[col] > b[col] ? 1 : -1));
       setFoundCoins(sorted);
@@ -90,7 +105,6 @@ function Coins() {
   };
 
   // ///////////////////////////////Tops gainer and loser Finder////////////////
-  // coinCTX.coins ? console.log(coinCTX.coins) : console.log("loading");
   const TopGainer = coinCTX.coins
     ? coinCTX.coins.reduce(
         (max, coin) =>
@@ -116,15 +130,56 @@ function Coins() {
         coinCTX.coins[0].price_change_percentage_24h
       )
     : 0;
-
-  // console.log("TopLoser", TopLoser);
-
   const TopLoserID = coinCTX.coins
     ? coinCTX.coins.filter(
         (coin) => coin.price_change_percentage_24h === TopLoser
       )[0].id
     : "No loser";
-  // console.log("TopLoserID", TopLoserID);
+  // ///////////////////////////////Favorite////////////////
+  const addFavoritehandler = (coin) => {
+    coinCTX.setFavoritesCoin((prev) => [...prev, coin.id]);
+  };
+
+  const removeFavoritehandler = (FavoriteCoin) => {
+    coinCTX.setFavoritesCoin((prev) =>
+      prev.filter((coin) => coin !== FavoriteCoin.id)
+    );
+  };
+
+  const itemIsFavorite = (coin) => {
+    if (coinCTX.FavoritesCoin) {
+      return coinCTX.FavoritesCoin.some((favorite) => favorite === coin.id);
+    }
+    return false;
+  };
+
+  const toggleFavorite = (e, coin) => {
+    e.preventDefault();
+    localStorage.removeItem("favorites");
+    if (itemIsFavorite(coin)) {
+      removeFavoritehandler(coin);
+    } else {
+      addFavoritehandler(coin);
+    }
+    localStorage.setItem(
+      "favoriteCoins",
+      JSON.stringify(coinCTX.FavoritesCoin)
+    );
+  };
+
+  const FavCoinsList = () => {
+    if (favShow) {
+      const favelistcoin =
+        coinCTX.coins &&
+        coinCTX.coins.length > 0 &&
+        coinCTX.coins.filter((coin) => coinCTX.FavoritesCoin.includes(coin.id));
+      setFoundCoins(favelistcoin);
+    } else {
+      setFoundCoins(coinCTX.coins);
+    }
+    setFavShow((prev) => !prev);
+  };
+
   ////////////////////////////////////////////////////////////////
 
   if (isItLoading) {
@@ -183,13 +238,16 @@ function Coins() {
             {/* <div className={style.toptable}> */}
             <div className={style.toptable_child}>
               <input
+                style={{ position: "relative" }}
                 type="search"
                 value={name}
                 id={style.myInput}
                 onChange={filter}
+                onDoubleClick={() => setShowDetails(!showDetails)}
                 placeholder="Search for coin names.."
-                list="suggestions"
+                list={showDetails && "suggestions"}
               />
+
               <datalist id="suggestions" style={{ width: "100%" }}>
                 <option value="bitcoin">btc</option>
                 <option value="avalanche">AVAX</option>
@@ -321,6 +379,7 @@ function Coins() {
                 <thead>
                   <tr>
                     <th>image</th>
+                    <th onClick={FavCoinsList}>Fav</th>
                     <th onClick={() => sorting("market_cap_rank")}>Rank</th>
                     <th onClick={() => sorting("name")}>Name</th>
                     <th onClick={() => sorting("symbol")}>symbol</th>
@@ -347,28 +406,71 @@ function Coins() {
                           coin !== null && (
                             <tr
                               key={coin.id}
-                              onClick={(e) => onRowClick(coin.id)}
+                              // onClick={(e) => onRowClick(coin.id)}
                             >
-                              <td>
+                              <td onClick={(e) => onRowClick(coin.id)}>
                                 <img
                                   src={coin.image}
                                   height="50rem"
                                   alt={coin.image}
                                 ></img>
                               </td>
-                              <td data-label="market_cap_rank">
+                              <td>
+                                <button
+                                  onClick={(e) => toggleFavorite(e, coin)}
+                                  style={{
+                                    backgroundColor: "#ff000000",
+                                    border: "0",
+                                    padding: "0",
+                                  }}
+                                >
+                                  {itemIsFavorite(coin) ? "❤️" : "🤍"}
+                                </button>
+                              </td>
+                              <td
+                                data-label="market_cap_rank"
+                                onClick={(e) => onRowClick(coin.id)}
+                              >
                                 {coin.market_cap_rank}
                               </td>
-                              <td data-label="Name"> {coin.name}</td>
-                              <td data-label="symbol"> {coin.symbol}</td>
-                              <td data-label="current_price">
+                              <td
+                                data-label="Name"
+                                onClick={(e) => onRowClick(coin.id)}
+                              >
+                                {" "}
+                                {coin.name}
+                              </td>
+                              <td
+                                data-label="symbol"
+                                onClick={(e) => onRowClick(coin.id)}
+                              >
+                                {" "}
+                                {coin.symbol}
+                              </td>
+                              <td
+                                data-label="current_price"
+                                onClick={(e) => onRowClick(coin.id)}
+                              >
                                 {coin.current_price}
                               </td>
-                              <td data-label="total_volume">
+                              <td
+                                data-label="total_volume"
+                                onClick={(e) => onRowClick(coin.id)}
+                              >
                                 {coin.total_volume}
                               </td>
-                              <td data-label="low_24h">{coin.low_24h} $</td>
-                              <td data-label="high_24h">{coin.high_24h} $</td>
+                              <td
+                                data-label="low_24h"
+                                onClick={(e) => onRowClick(coin.id)}
+                              >
+                                {coin.low_24h} $
+                              </td>
+                              <td
+                                data-label="high_24h"
+                                onClick={(e) => onRowClick(coin.id)}
+                              >
+                                {coin.high_24h} $
+                              </td>
                               <td
                                 data-label="price_change_percentage_24h"
                                 style={{
@@ -379,6 +481,7 @@ function Coins() {
                                       ? "red"
                                       : "#6adc6a",
                                 }}
+                                onClick={(e) => onRowClick(coin.id)}
                               >
                                 {coin.price_change_percentage_24h}%
                               </td>

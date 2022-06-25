@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { HashRouter, BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import CoinContext from "./contexts/coinContext";
 import MyNavbar from "./Components/UI/Navbar";
 import styles from "./Components/Styles/App.module.css";
@@ -9,14 +9,24 @@ import { Helmet } from "react-helmet";
 import { AuthContextProvider } from "./contexts/AuthContext";
 
 function App() {
+  const FavoriteCoinsList = localStorage.getItem("favoriteCoins");
+  const faveArray = JSON.parse(FavoriteCoinsList);
+
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState();
   const [coins, setCoins] = useState();
   const [Chartdata, setChartData] = useState([]);
   const [Chartdata2, setChartData2] = useState([]);
   const [selectedCoin, setSelectedCoin] = useState("bitcoin");
+  const [FavoritesCoin, setFavoritesCoin] = useState([]);
+  const [totalFavorites, setTotalFavorites] = useState([]);
 
   useEffect(() => {
+    localStorage.setItem("favoriteCoins", JSON.stringify(FavoritesCoin));
+  }, [FavoritesCoin]);
+
+  useEffect(() => {
+    setFavoritesCoin(faveArray);
     axios
       .get(
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=7d"
@@ -31,7 +41,15 @@ function App() {
       });
   }, []);
 
-  // console.log(coins);
+ 
+
+
+
+  // coins &&
+  //   coins.length > 0 &&
+  //   console.log(coins.filter((coin) => faveArray.indexOf(coin.id) !== -1));
+
+  // console.log(FavoritesCoin);
 
   return (
     <AuthContextProvider>
@@ -58,6 +76,10 @@ function App() {
             setChartData2: setChartData2,
             selectedCoin: selectedCoin,
             setSelectedCoin: setSelectedCoin,
+            FavoritesCoin: FavoritesCoin,
+            setFavoritesCoin: setFavoritesCoin,
+            totalFavorites: totalFavorites,
+            setTotalFavorites: setTotalFavorites,
           }}
         >
           <div style={{ overflow: "hidden" }}>

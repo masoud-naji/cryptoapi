@@ -6,6 +6,8 @@ import Github from "../../Images/Github.png";
 import sandbox from "../../Images/sandbox.png";
 import Emails from "../../Images/Emails.png";
 import AuthContext from "../../contexts/AuthContext";
+import CoinContext from "../../contexts/coinContext";
+import favclass from "../Styles/FavShow.module.css";
 import "./Custombootstrap.scss";
 import {
   Navbar,
@@ -19,6 +21,7 @@ import {
 
 const MyNavbar = () => {
   const authCtx = useContext(AuthContext);
+  const coinCtx = useContext(CoinContext);
   const isLoggedIn = authCtx.isLoggedIn;
   const logout = authCtx.logout;
 
@@ -39,7 +42,12 @@ const MyNavbar = () => {
                     to="./Coins"
                     style={{ width: "100%", display: "block" }}
                   >
-                    All Coins
+                    <div className={favclass.mainfav}>
+                      All Coins{" "}
+                      <section className={favclass.notif}>
+                        {coinCtx.FavoritesCoin.length}
+                      </section>
+                    </div>
                   </Link>
                 </NavDropdown.Item>
 
