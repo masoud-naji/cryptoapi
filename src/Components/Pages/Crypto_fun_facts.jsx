@@ -23,6 +23,7 @@ import DatePicker from "react-date-picker";
 
 function Crypto_fun_facts() {
   const coinCTX = useContext(CoinContext);
+  console.log(coinCTX);
   const [foundCoins, setFoundCoins] = useState();
   const [order, setOrder] = useState("ASC");
   const [name, setName] = useState("BTC");

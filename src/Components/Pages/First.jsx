@@ -1,17 +1,28 @@
 import style from "../Styles/UsersList.module.css";
 import "../UI/Custombootstrap.scss";
-
+import "./test.css";
 import Daco from "../../Images/Daco.webp";
 import adrien from "../../Images/pexels-adrien-olichon-2387428.webp";
 import { Link } from "react-router-dom";
 import linkedin from "../../Images/linkedin.png";
 import Github from "../../Images/Github.png";
 import skills from "../../Images/skills.svg";
-import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import SkillsRadarChart from "../Skill/SkillsRadarChart";
+import { useRef, useEffect, useState } from "react";
+import {
+  motion,
+  useViewportScroll,
+  useTransform,
+} from "framer-motion";
 
 function First() {
+
+  // const { scrollYProgress } = useViewportScroll();
+  // const MypathLength = useTransform(scrollYProgress, [0, 1], [0, 1.1]);
+
+  
+  
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -28,6 +39,11 @@ function First() {
           {/* <video autoPlay loop muted className={style.videoBg}>
           <source src={video} type="video/mp4" />
         </video> */}
+
+        
+         
+
+          
           <img src={adrien} className={style.background} alt="galaxy" />
           <img src={Daco} className={style.foreground} alt="Daco" />
           <h2 className={style.Maintitle}>
@@ -379,6 +395,27 @@ function First() {
         >
           R U Kidding me??? where is my cofee? 😉😉
         </section>
+
+        {/* <div class="svgContainer">
+  
+  
+        <motion.svg
+          width="620"
+          height="1024"
+          viewBox="0 0 620 1024"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <motion.path
+            d="M2 2.5C148.667 61.6667 409.7 218.1 280.5 370.5C119 561 9 535 253 616C497 697 767 732.5 510 755.5C253 778.5 223 726 280.5 705.5C338 685 369 655.5 397.5 705.5C426 755.5 495 809 361.5 850C228 891 107 742.5 85.5 889.5C68.3 1007.1 148.333 1027.83 190.5 1023.5"
+            stroke="black"
+            stroke-width="10"
+            style={{
+              pathLength: MypathLength
+            }}
+          />
+        </motion.svg>
+        </div> */}
       </div>
     </motion.div>
   );

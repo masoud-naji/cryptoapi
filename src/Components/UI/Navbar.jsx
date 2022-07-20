@@ -142,6 +142,16 @@ const MyNavbar = () => {
                     README.me Creator
                   </Link>
                 </NavDropdown.Item>
+               
+                <NavDropdown.Item as="li">
+                  <Link
+                    className="navlink"
+                    to="./PictureTexter"
+                    style={{ width: "100%", display: "block" }}
+                  >
+                    Picture Texter
+                  </Link>
+                </NavDropdown.Item>
 
                 <NavDropdown.Item as="li">
                   <Link

@@ -8,7 +8,7 @@ import Select from "react-select";
 import CoinContext from "../../contexts/coinContext";
 import PieChart from "../Chart/pieChart";
 import { useNavigate } from "react-router-dom";
-import "../Styles/progressbar.css";
+// import "../Styles/progressbar.css";
 // import { reduce } from "lodash";
 // import cardStyle from "./infoCard.module.css";
 // import GoogleTrends from "../GoogleTrend/GoogleTrends";

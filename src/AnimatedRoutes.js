@@ -15,6 +15,7 @@ const Regextest = lazy(() => import("./Components/Pages/Regextest"));
 const CompareText = lazy(() => import("./Components/Pages/CompareText"));
 const CompareImage = lazy(() => import("./Components/Pages/CompareImage"));
 const ReadmeCreator = lazy(() => import("./Components/Pages/ReadmeCreator"));
+const PictureTexter = lazy(() => import("./Components/Pages/Picturetexter"));
 const Other_projects = lazy(() => import("./Components/Pages/Other_projects"));
 const NotFound = lazy(() => import("./Components/UI/NotFound"));
 const Chart = lazy(() => import("./Components/Chart/News"));
@@ -59,6 +60,7 @@ function AnimatedRoutes() {
           <Route path="/CompareText" element={<CompareText />}></Route>
           <Route path="/CompareImage" element={<CompareImage />}></Route>
           <Route path="/ReadmeCreator" element={<ReadmeCreator />}></Route>
+          <Route path="/PictureTexter" element={<PictureTexter />}></Route>
           <Route path="/Other_projects" element={<Other_projects />}></Route>
           <Route
             path="/AuthForm"
