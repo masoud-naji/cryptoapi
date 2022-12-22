@@ -8,7 +8,7 @@ import AuthContext from "./contexts/AuthContext";
 const Home = lazy(() => import("./Components/Pages/Home"));
 const Details = lazy(() => import("./Components/Pages/Details"));
 const Compare = lazy(() => import("./Components/Pages/Compare"));
-const Coins = lazy(() => import("./Components/Pages/Coins"));
+const Coins = lazy(() => import("./Components/Pages/Coins/Coins"));
 const Twittespl = lazy(() => import("./Components/Pages/Twittespl"));
 const DocumentView = lazy(() => import("./Components/Pages/DocumentView"));
 const Regextest = lazy(() => import("./Components/Pages/Regextest"));

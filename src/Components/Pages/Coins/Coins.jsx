@@ -1,22 +1,25 @@
 import React, { useState, useContext, useEffect } from "react";
-import style from "../Styles/UsersList.module.css";
-import classes from "../Styles/Card.module.css";
-import Card from "../UI/Card";
-import Pagination from "../UI/pagination";
-import Paginate from "../CustomHooks/Paginate";
+import style from "../../Styles/UsersList.module.css";
+import classes from "../../Styles/Card.module.css";
+import Card from "../../UI/Card";
+import Pagination from "../../UI/pagination";
+import Paginate from "../../CustomHooks/Paginate";
+import CoinContext from "../../../contexts/coinContext";
+import PieChart from "../../Chart/pieChart";
 import Select from "react-select";
-import CoinContext from "../../contexts/coinContext";
-import PieChart from "../Chart/pieChart";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
+import { set } from "lodash";
 // import "../Styles/progressbar.css";
 // import { reduce } from "lodash";
 // import cardStyle from "./infoCard.module.css";
 // import GoogleTrends from "../GoogleTrend/GoogleTrends";
 // import { LineChart, Line } from "recharts";
 // import BasicTable from "./Table/BasicTable";
-import { motion } from "framer-motion";
-import { Helmet } from "react-helmet";
-import { set } from "lodash";
+
+
+
 
 function Coins() {
   const coinCTX = useContext(CoinContext);
@@ -513,3 +516,4 @@ function Coins() {
   }
 }
 export default Coins;
+

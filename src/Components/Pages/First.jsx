@@ -20,8 +20,6 @@ function First() {
 
   // const { scrollYProgress } = useViewportScroll();
   // const MypathLength = useTransform(scrollYProgress, [0, 1], [0, 1.1]);
-
-  
   
   return (
     <motion.div
@@ -39,11 +37,6 @@ function First() {
           {/* <video autoPlay loop muted className={style.videoBg}>
           <source src={video} type="video/mp4" />
         </video> */}
-
-        
-         
-
-          
           <img src={adrien} className={style.background} alt="galaxy" />
           <img src={Daco} className={style.foreground} alt="Daco" />
           <h2 className={style.Maintitle}>

@@ -142,8 +142,8 @@ const MyNavbar = () => {
                     README.me Creator
                   </Link>
                 </NavDropdown.Item>
-               
-                <NavDropdown.Item as="li">
+
+                {/* <NavDropdown.Item as="li">
                   <Link
                     className="navlink"
                     to="./PictureTexter"
@@ -151,7 +151,7 @@ const MyNavbar = () => {
                   >
                     Picture Texter
                   </Link>
-                </NavDropdown.Item>
+                </NavDropdown.Item> */}
 
                 <NavDropdown.Item as="li">
                   <Link
