@@ -1,26 +1,30 @@
-import React, { lazy, Suspense, useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import React, { lazy, Suspense, useEffect, useContext } from "react";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import ReactGA from "react-ga4";
 import Spinner from "react-bootstrap/Spinner";
+import AuthContext from "./contexts/AuthContext";
 
 const Home = lazy(() => import("./Components/Pages/Home"));
 const Details = lazy(() => import("./Components/Pages/Details"));
 const Compare = lazy(() => import("./Components/Pages/Compare"));
-const Crypto_fun_facts = lazy(() =>
-  import("./Components/Pages/Crypto_fun_facts")
-);
-const Coins = lazy(() => import("./Components/Pages/Coins"));
+const Coins = lazy(() => import("./Components/Pages/Coins/Coins"));
 const Twittespl = lazy(() => import("./Components/Pages/Twittespl"));
 const DocumentView = lazy(() => import("./Components/Pages/DocumentView"));
 const Regextest = lazy(() => import("./Components/Pages/Regextest"));
 const CompareText = lazy(() => import("./Components/Pages/CompareText"));
 const CompareImage = lazy(() => import("./Components/Pages/CompareImage"));
 const ReadmeCreator = lazy(() => import("./Components/Pages/ReadmeCreator"));
+const PictureTexter = lazy(() => import("./Components/Pages/Picturetexter"));
 const Other_projects = lazy(() => import("./Components/Pages/Other_projects"));
 const NotFound = lazy(() => import("./Components/UI/NotFound"));
 const Chart = lazy(() => import("./Components/Chart/News"));
 const About = lazy(() => import("./Components/Pages/About"));
+const AuthForm = lazy(() => import("./Components/Auth/AuthForm/AuthForm"));
+const UserProfile = lazy(() => import("./Components/Auth/Profile/UserProfile"));
+const Crypto_fun_facts = lazy(() =>
+  import("./Components/Pages/Crypto_fun_facts")
+);
 
 function usePageViews() {
   let location = useLocation();
@@ -33,6 +37,9 @@ function usePageViews() {
 
 function AnimatedRoutes() {
   usePageViews();
+  const authCtx = useContext(AuthContext);
+  const LoggedIn = authCtx.isLoggedIn;
+
   return (
     <AnimatePresence>
       <Suspense fallback={<Spinner animation="border" size="sm" />}>
@@ -53,9 +60,19 @@ function AnimatedRoutes() {
           <Route path="/CompareText" element={<CompareText />}></Route>
           <Route path="/CompareImage" element={<CompareImage />}></Route>
           <Route path="/ReadmeCreator" element={<ReadmeCreator />}></Route>
+          <Route path="/PictureTexter" element={<PictureTexter />}></Route>
           <Route path="/Other_projects" element={<Other_projects />}></Route>
-          <Route path="/*" element={<NotFound />}></Route>
-          <Route path="*" element={<NotFound />}></Route>
+          <Route
+            path="/AuthForm"
+            element={!LoggedIn ? <AuthForm /> : <Navigate to="/" />}
+          ></Route>
+          <Route
+            path="/UserProfile"
+            element={LoggedIn ? <UserProfile /> : <Navigate to="/AuthForm" />}
+          ></Route>
+
+          <Route path="/*" element={<Navigate to="/" />}></Route>
+          <Route path="*" element={<Navigate to="/" />}></Route>
         </Routes>
       </Suspense>
     </AnimatePresence>

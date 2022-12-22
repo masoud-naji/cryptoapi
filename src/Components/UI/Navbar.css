@@ -19,43 +19,6 @@ header {
   border-bottom: #f2f2f2 4px solid;
 }
 
-/* .nav-toggle {
-  display: none;
-}
-.nav-toggle-label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-left: 1em;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.nav-toggle-label span,
-.nav-toggle-label span::before,
-.nav-toggle-label span::after {
-  display: block;
-  background: white;
-  height: 2px;
-  width: 2rem;
-  border-radius: 2px;
-  position: relative;
-}
-
-.nav-toggle-label span::before,
-.nav-toggle-label span::after {
-  content: "";
-  position: absolute;
-}
-
-.nav-toggle-label span::before {
-  bottom: 7px;
-}
-
-.nav-toggle-label span::after {
-  top: 7px;
-} */
 
 .mainnavbar {
   position: absolute;
@@ -92,7 +55,6 @@ nav a :hover {
   color: black;
 }
 
-/* lookng for nav sibbling toggle */
 .nav-toggle:checked ~ nav {
   transform: scale(1, 1);
 }
@@ -166,10 +128,10 @@ nav a :hover {
     display: none;
   }
 
-  header {
+  /* header {
     display: grid;
     grid-template-columns: auto minmax(20rem, 2fr) 1fr;
-  }
+  } */
 
   .logo {
     grid-column: 1 / 2;
