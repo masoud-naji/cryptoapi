@@ -11,7 +11,7 @@ import Svgimage from "../../Images/Business_SVG.svg";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import TopPage from "../../Images/TopPage.png";
 import { useDropzone } from "react-dropzone";
-import ReactTooltip from "react-tooltip";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 import UseJsonPretteir from "../CustomHooks/useJsonPretteir";
 import CsvDownload from "react-json-to-csv";
 

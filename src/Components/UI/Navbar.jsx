@@ -178,6 +178,19 @@ const MyNavbar = () => {
 
                 <NavDropdown.Item
                   as="li"
+                  href="https://www.linkedin.com/in/masoud-naji/"
+                >
+                  <a
+                    href="https://www.masoud-naji.com"
+                    style={{ width: "100%", display: "block" }}
+                    target="_blank"
+                  >
+                    NextJs WebSite
+                  </a>
+                </NavDropdown.Item>
+
+                <NavDropdown.Item
+                  as="li"
                   href="https://onedrive.live.com/download?cid=4CA8BFEFFFE61AB8&resid=4CA8BFEFFFE61AB8%21397104&authkey=AA1uxVivZIR3duU&em=2"
                 >
                   <a
@@ -226,6 +239,7 @@ const MyNavbar = () => {
                   <a
                     href="https://www.linkedin.com/in/masoud-naji/"
                     style={{ width: "100%", display: "block" }}
+                    target="_blank"
                   >
                     <img
                       src={linkedin}
@@ -239,6 +253,7 @@ const MyNavbar = () => {
                   <a
                     href="https://github.com/masoud-naji"
                     style={{ width: "100%", display: "block" }}
+                    target="_blank"
                   >
                     <img
                       src={Github}
@@ -255,6 +270,7 @@ const MyNavbar = () => {
                   <a
                     href="https://codesandbox.io/u/masoud-naji"
                     style={{ width: "100%", display: "block" }}
+                    target="_blank"
                   >
                     <img
                       src={sandbox}

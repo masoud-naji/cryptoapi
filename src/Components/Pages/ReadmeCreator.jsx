@@ -8,7 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import cardStyle from "../Styles/infoCard.module.css";
-import ReactTooltip from "react-tooltip";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 import style from "../Styles/about.module.css";
 

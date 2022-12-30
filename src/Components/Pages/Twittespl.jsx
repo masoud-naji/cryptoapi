@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Card from "../UI/Card";
 import InputEmoji from "react-input-emoji";
 import LoremMaker from "../UI/LoremMaker";
-import ReactTooltip from "react-tooltip";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 import "../Styles/inventory.css";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
@@ -11,7 +11,7 @@ import classes from "../Styles/Card.module.css";
 import style from "../Styles/about.module.css";
 import style2 from "../Styles/UsersList.module.css";
 import useImageUploader from "../CustomHooks/useImageUploader";
-import TextareaAutosize from 'react-textarea-autosize';
+import TextareaAutosize from "react-textarea-autosize";
 
 const Twittespl = () => {
   const [tweet, setTweet] = useState(
@@ -206,19 +206,18 @@ const Twittespl = () => {
           </div>
 
           <form dir={divDirection ? "ltr" : "rtl"}>
-          
-              <TextareaAutosize 
-                value={tweet}
-                name="text"
-                id="text"
-                onChange={(e) => (
-                  setTweet(e.target.value),
-                  localStorage.setItem("tweet", JSON.stringify(e.target.value))
-                )}
-                placeholder="write your long tweet here"
-                className={style.textareamain}
-              ></TextareaAutosize>
-            
+            <TextareaAutosize
+              value={tweet}
+              name="text"
+              id="text"
+              onChange={(e) => (
+                setTweet(e.target.value),
+                localStorage.setItem("tweet", JSON.stringify(e.target.value))
+              )}
+              placeholder="write your long tweet here"
+              className={style.textareamain}
+            ></TextareaAutosize>
+
             {/* Next Indicator */}
             <InputEmoji
               value={endChar}

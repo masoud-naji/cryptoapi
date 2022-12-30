@@ -5,7 +5,7 @@ import cardStyle from "../Styles/infoCard.module.css";
 import Card from "../UI/Card";
 import HighlightWithinTextarea from "react-highlight-within-textarea";
 import tablestyle from "../Styles/UsersList.module.css";
-import ReactTooltip from "react-tooltip";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 import "../UI/Custombootstrap.scss";
 import Accordion from "react-bootstrap/Accordion";
 import CommonToken from "../Accordions/CommonToken";
